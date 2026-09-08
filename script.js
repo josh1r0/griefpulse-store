@@ -1,0 +1,1 @@
+function buy(product,price){const nick=document.getElementById('nickname').value.trim();if(!nick){alert('Введите Minecraft ник перед покупкой.');document.getElementById('nickname').focus();return}alert('GRIEFPULSE\n\nТовар: '+product+'\nИгрок: '+nick+'\nЦена: '+price+' ₽\n\nОплата будет подключена через платёжную систему.');}

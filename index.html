@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GRIEFPULSE — Store</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="#"><span>G</span> GRIEFPULSE</a>
+  <nav><a href="#donate">Донат</a><a href="#coins">Коины</a><a href="#cases">Кейсы</a></nav>
+  <div class="online"><i></i> Сервер онлайн</div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="hero-content">
+    <div class="pill">⚡ GRIEFPULSE STORE</div>
+    <h1>УСИЛЬ СВОЮ<br><span>ИГРУ</span></h1>
+    <p>Привилегии, коины и кейсы для игроков GRIEFPULSE.</p>
+    <div class="hero-actions"><a class="primary" href="#donate">Перейти в магазин →</a><a class="secondary" href="#cases">Смотреть кейсы</a></div>
+  </div>
+  <div class="hero-cube">◆</div>
+</section>
+
+<section class="player-box">
+  <div class="player-icon">◈</div>
+  <div class="player-text"><b>Куда отправить покупку?</b><span>Введите Minecraft ник игрока</span></div>
+  <input id="nickname" maxlength="16" placeholder="Ваш никнейм">
+  <div class="check">✓</div>
+</section>
+
+<section id="donate" class="section">
+  <div class="section-head"><div><small>01 / ПРИВИЛЕГИИ</small><h2>ДОНАТ</h2></div><span>Выбери свой ранг</span></div>
+  <div class="grid">
+    <article class="card"><div class="rank">S</div><h3>SILVER</h3><p>Стартовая привилегия</p><strong>20 ₽</strong><button onclick="buy('SILVER',20)">Купить</button></article>
+    <article class="card"><div class="rank">W</div><h3>WITHER</h3><p>Мощнее обычного игрока</p><strong>70 ₽</strong><button onclick="buy('WITHER',70)">Купить</button></article>
+    <article class="card"><div class="rank">L</div><h3>LEGEND</h3><p>Для настоящих легенд</p><strong>140 ₽</strong><button onclick="buy('LEGEND',140)">Купить</button></article>
+    <article class="card featured"><div class="popular">ПОПУЛЯРНО</div><div class="rank">I</div><h3>IMPERATOR</h3><p>Максимум возможностей</p><strong>249 ₽</strong><button onclick="buy('IMPERATOR',249)">Купить</button></article>
+    <article class="card god"><div class="rank">G</div><h3>GOD</h3><p>Абсолютная привилегия</p><strong>599 ₽</strong><button onclick="buy('GOD',599)">Купить</button></article>
+  </div>
+</section>
+
+<section id="coins" class="section">
+  <div class="section-head"><div><small>02 / ВАЛЮТА</small><h2>КОИНЫ</h2></div><span>Пополняй баланс</span></div>
+  <div class="grid">
+    <article class="card"><div class="coin">●</div><h3>20 КОИНОВ</h3><p>20 коинов</p><strong>20 ₽</strong><button onclick="buy('20 коинов',20)">Купить</button></article>
+    <article class="card"><div class="coin">●</div><h3>50 + 10</h3><p>Получишь <b class="bonus">60</b> коинов</p><strong>50 ₽</strong><button onclick="buy('60 коинов',50)">Купить</button></article>
+    <article class="card"><div class="coin">●</div><h3>100 + 40</h3><p>Получишь <b class="bonus">140</b> коинов</p><strong>100 ₽</strong><button onclick="buy('140 коинов',100)">Купить</button></article>
+    <article class="card"><div class="coin">●</div><h3>500 + 120</h3><p>Получишь <b class="bonus">620</b> коинов</p><strong>469 ₽</strong><button onclick="buy('620 коинов',469)">Купить</button></article>
+    <article class="card"><div class="coin">●</div><h3>1000 + 800</h3><p>Получишь <b class="bonus">1800</b> коинов</p><strong>899 ₽</strong><button onclick="buy('1800 коинов',899)">Купить</button></article>
+    <article class="card"><div class="coin">●</div><h3>3000 + 2000</h3><p>Получишь <b class="bonus">5000</b> коинов</p><strong>2499 ₽</strong><button onclick="buy('5000 коинов',2499)">Купить</button></article>
+  </div>
+</section>
+
+<section id="cases" class="section">
+  <div class="section-head"><div><small>03 / УДАЧА</small><h2>КЕЙСЫ</h2></div><span>Испытай удачу</span></div>
+  <div class="grid">
+    <article class="card"><div class="case">◆</div><h3>КЕЙСЫ С ДОНАТОМ</h3><p>3 штуки</p><strong>99 ₽</strong><button onclick="buy('Кейсы с донатом ×3',99)">Купить</button></article>
+    <article class="card"><div class="case">◆</div><h3>КЕЙСЫ С ДОНАТОМ</h3><p>10 штук</p><strong>279 ₽</strong><button onclick="buy('Кейсы с донатом ×10',279)">Купить</button></article>
+    <article class="card"><div class="case">◆</div><h3>КЕЙСЫ С ДОНАТОМ</h3><p>30 штук</p><strong>699 ₽</strong><button onclick="buy('Кейсы с донатом ×30',699)">Купить</button></article>
+    <article class="card"><div class="case">◇</div><h3>КЕЙСЫ С МОНЕТАМИ</h3><p>5 штук</p><strong>35 ₽</strong><button onclick="buy('Кейсы с монетами ×5',35)">Купить</button></article>
+    <article class="card"><div class="case">◇</div><h3>КЕЙСЫ С МОНЕТАМИ</h3><p>10 штук</p><strong>65 ₽</strong><button onclick="buy('Кейсы с монетами ×10',65)">Купить</button></article>
+    <article class="card"><div class="case">◇</div><h3>КЕЙСЫ С МОНЕТАМИ</h3><p>25 штук</p><strong>150 ₽</strong><button onclick="buy('Кейсы с монетами ×25',150)">Купить</button></article>
+    <article class="card"><div class="case">✦</div><h3>КЕЙСЫ С КОИНАМИ</h3><p>1 штука</p><strong>40 ₽</strong><button onclick="buy('Кейсы с коинами ×1',40)">Купить</button></article>
+    <article class="card"><div class="case">✦</div><h3>КЕЙСЫ С КОИНАМИ</h3><p>3 штуки</p><strong>99 ₽</strong><button onclick="buy('Кейсы с коинами ×3',99)">Купить</button></article>
+    <article class="card"><div class="case">✦</div><h3>КЕЙСЫ С КОИНАМИ</h3><p>5 штук</p><strong>165 ₽</strong><button onclick="buy('Кейсы с коинами ×5',165)">Купить</button></article>
+    <article class="card"><div class="case">✦</div><h3>КЕЙСЫ С КОИНАМИ</h3><p>10 штук</p><strong>289 ₽</strong><button onclick="buy('Кейсы с коинами ×10',289)">Купить</button></article>
+    <article class="card locked"><div class="case">?</div><h3>КЕЙСЫ С ВЕЩАМИ</h3><p>Новые предметы уже скоро</p><strong>—</strong><button disabled>СКОРО</button></article>
+  </div>
+</section>
+</main>
+
+<footer><b>GRIEFPULSE</b><span>Minecraft Store</span></footer>
+<script src="script.js"></script>
+</body></html>
