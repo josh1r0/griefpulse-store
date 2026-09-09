@@ -4,27 +4,47 @@
 
 const SERVER_IP = "shadowland.land";
 
+
 // ============================================================
 // CRAFTINGSTORE LINKS
 // ============================================================
 
 const PRODUCT_LINKS = {
-    "Silver": "https://shadowlandmc.craftingstore.net/package/1592426"
+
+    "Silver":
+        "https://shadowlandmc.craftingstore.net/package/1592426"
+
 };
+
 
 // ============================================================
 // COPY SERVER IP
 // ============================================================
 
-function copyIP() {
-    navigator.clipboard.writeText(SERVER_IP)
-        .then(() => {
-            showMessage("IP сервера скопирован: " + SERVER_IP);
-        })
-        .catch(() => {
-            showMessage("IP сервера: " + SERVER_IP);
-        });
+async function copyIP() {
+
+    try {
+
+        await navigator.clipboard.writeText(
+            SERVER_IP
+        );
+
+        showMessage(
+            "IP скопирован: " +
+            SERVER_IP
+        );
+
+    } catch (error) {
+
+        showMessage(
+            "IP сервера: " +
+            SERVER_IP
+        );
+
+    }
+
 }
+
 
 // ============================================================
 // BUY
@@ -32,27 +52,96 @@ function copyIP() {
 
 function buy(product, price) {
 
-    const nicknameInput = document.getElementById("nickname");
-    const nickname = nicknameInput.value.trim();
+    const nicknameInput =
+        document.getElementById(
+            "nickname"
+        );
+
+    if (!nicknameInput) {
+
+        showMessage(
+            "Поле ника не найдено."
+        );
+
+        return;
+    }
+
+
+    const nickname =
+        nicknameInput.value.trim();
+
+
+    // ========================================================
+    // EMPTY NICKNAME
+    // ========================================================
 
     if (!nickname) {
+
         nicknameInput.focus();
-        showMessage("Сначала введи свой Minecraft ник!");
+
+        showMessage(
+            "Сначала введи свой Minecraft ник!"
+        );
+
         return;
     }
 
-    if (!/^[A-Za-z0-9_]{3,16}$/.test(nickname)) {
+
+    // ========================================================
+    // INVALID NICKNAME
+    // ========================================================
+
+    if (
+        !/^[A-Za-z0-9_]{3,16}$/.test(
+            nickname
+        )
+    ) {
+
         nicknameInput.focus();
-        showMessage("Проверь Minecraft ник. Допустимо 3–16 символов.");
+
+        showMessage(
+            "Проверь Minecraft ник. Допустимо 3–16 символов."
+        );
+
         return;
     }
 
-    const productLink = PRODUCT_LINKS[product];
+
+    // ========================================================
+    // SAVE NICKNAME
+    // ========================================================
+
+    localStorage.setItem(
+        "shadowland_nickname",
+        nickname
+    );
+
+
+    // ========================================================
+    // GET PRODUCT LINK
+    // ========================================================
+
+    const productLink =
+        PRODUCT_LINKS[product];
+
+
+    // ========================================================
+    // PRODUCT NOT CONNECTED
+    // ========================================================
 
     if (!productLink) {
-        showMessage("Этот товар пока ещё не подключён к оплате.");
+
+        showMessage(
+            "Этот товар пока ещё не подключён к оплате."
+        );
+
         return;
     }
+
+
+    // ========================================================
+    // REDIRECT
+    // ========================================================
 
     showMessage(
         "Переходим к покупке " +
@@ -62,10 +151,19 @@ function buy(product, price) {
         " ₽"
     );
 
-    setTimeout(() => {
-        window.location.href = productLink;
-    }, 500);
+
+    setTimeout(
+        () => {
+
+            window.location.href =
+                productLink;
+
+        },
+        500
+    );
+
 }
+
 
 // ============================================================
 // MESSAGE
@@ -73,110 +171,629 @@ function buy(product, price) {
 
 function showMessage(text) {
 
-    const oldMessage = document.querySelector(".site-message");
+    const oldMessage =
+        document.querySelector(
+            ".site-message"
+        );
+
 
     if (oldMessage) {
+
         oldMessage.remove();
+
     }
 
-    const message = document.createElement("div");
 
-    message.className = "site-message";
-    message.textContent = text;
+    const message =
+        document.createElement(
+            "div"
+        );
 
-    Object.assign(message.style, {
-        position: "fixed",
-        left: "50%",
-        bottom: "25px",
-        transform: "translateX(-50%)",
-        zIndex: "9999",
-        maxWidth: "calc(100% - 30px)",
-        padding: "14px 20px",
-        background: "#10161e",
-        color: "#ffffff",
-        border: "1px solid rgba(57,255,136,.35)",
-        borderRadius: "10px",
-        boxShadow: "0 15px 40px rgba(0,0,0,.4)",
-        fontSize: "14px",
-        fontWeight: "700",
-        textAlign: "center",
-        opacity: "1"
-    });
 
-    document.body.appendChild(message);
+    message.className =
+        "site-message";
 
-    setTimeout(() => {
 
-        message.style.opacity = "0";
-        message.style.transition = "opacity .3s";
+    message.textContent =
+        text;
 
-        setTimeout(() => {
-            message.remove();
-        }, 300);
 
-    }, 3000);
+    Object.assign(
+        message.style,
+        {
+
+            position:
+                "fixed",
+
+            left:
+                "50%",
+
+            bottom:
+                "24px",
+
+            transform:
+                "translateX(-50%)",
+
+            zIndex:
+                "9999",
+
+            maxWidth:
+                "calc(100% - 28px)",
+
+            padding:
+                "13px 18px",
+
+            background:
+                "rgba(10,14,20,.97)",
+
+            color:
+                "#ffffff",
+
+            border:
+                "1px solid rgba(71,255,145,.26)",
+
+            borderRadius:
+                "11px",
+
+            boxShadow:
+                "0 18px 50px rgba(0,0,0,.46)",
+
+            fontSize:
+                "12px",
+
+            fontWeight:
+                "800",
+
+            textAlign:
+                "center",
+
+            opacity:
+                "1"
+
+        }
+    );
+
+
+    document.body.appendChild(
+        message
+    );
+
+
+    setTimeout(
+        () => {
+
+            message.style.opacity =
+                "0";
+
+            message.style.transition =
+                "opacity .25s";
+
+
+            setTimeout(
+                () => {
+
+                    message.remove();
+
+                },
+                250
+            );
+
+        },
+        2800
+    );
+
 }
+
 
 // ============================================================
 // NICKNAME
 // ============================================================
 
-document.addEventListener("DOMContentLoaded", () => {
+function setupNickname() {
 
-    const nickname = document.getElementById("nickname");
+    const nickname =
+        document.getElementById(
+            "nickname"
+        );
+
+
+    const wrap =
+        document.querySelector(
+            ".nickname-wrap"
+        );
+
 
     if (!nickname) {
+
         return;
+
     }
 
-    nickname.addEventListener("input", () => {
 
-        nickname.value = nickname.value
-            .replace(/[^A-Za-z0-9_]/g, "")
-            .slice(0, 16);
+    // ========================================================
+    // LOAD SAVED NICK
+    // ========================================================
 
-    });
+    const saved =
+        localStorage.getItem(
+            "shadowland_nickname"
+        );
 
-});
+
+    if (
+        saved &&
+        /^[A-Za-z0-9_]{3,16}$/.test(
+            saved
+        )
+    ) {
+
+        nickname.value =
+            saved;
+
+    }
+
+
+    // ========================================================
+    // UPDATE
+    // ========================================================
+
+    const update = () => {
+
+        nickname.value =
+            nickname.value
+
+                .replace(
+                    /[^A-Za-z0-9_]/g,
+                    ""
+                )
+
+                .slice(
+                    0,
+                    16
+                );
+
+
+        const valid =
+            /^[A-Za-z0-9_]{3,16}$/.test(
+                nickname.value
+            );
+
+
+        if (wrap) {
+
+            wrap.classList.toggle(
+                "valid",
+                valid
+            );
+
+        }
+
+
+        if (valid) {
+
+            localStorage.setItem(
+                "shadowland_nickname",
+                nickname.value
+            );
+
+        }
+
+    };
+
+
+    nickname.addEventListener(
+        "input",
+        update
+    );
+
+
+    update();
+
+}
+
 
 // ============================================================
 // SCROLL REVEAL
 // ============================================================
 
-const observer = new IntersectionObserver(
-    entries => {
+function setupReveal() {
 
-        entries.forEach(entry => {
+    const elements =
+        document.querySelectorAll(
 
-            if (entry.isIntersecting) {
+            ".product, " +
+            ".advantages > div, " +
+            ".player-card, " +
+            ".section-title, " +
+            ".coming-soon"
 
-                entry.target.style.opacity = "1";
-                entry.target.style.transform = "translateY(0)";
+        );
 
-                observer.unobserve(entry.target);
+
+    elements.forEach(
+        element => {
+
+            element.classList.add(
+                "reveal"
+            );
+
+        }
+    );
+
+
+    const observer =
+        new IntersectionObserver(
+
+            entries => {
+
+                entries.forEach(
+                    entry => {
+
+                        if (
+                            entry.isIntersecting
+                        ) {
+
+                            entry.target
+                                .classList
+                                .add(
+                                    "visible"
+                                );
+
+
+                            observer
+                                .unobserve(
+                                    entry.target
+                                );
+
+                        }
+
+                    }
+                );
+
+            },
+
+            {
+
+                threshold:
+                    0.08
+
             }
 
-        });
+        );
 
-    },
-    {
-        threshold: 0.08
+
+    elements.forEach(
+        element => {
+
+            observer.observe(
+                element
+            );
+
+        }
+    );
+
+}
+
+
+// ============================================================
+// HEADER
+// ============================================================
+
+function setupHeader() {
+
+    const header =
+        document.querySelector(
+            ".header"
+        );
+
+
+    if (!header) {
+
+        return;
+
     }
+
+
+    const update = () => {
+
+        header.classList.toggle(
+
+            "scrolled",
+
+            window.scrollY > 20
+
+        );
+
+    };
+
+
+    window.addEventListener(
+
+        "scroll",
+
+        update,
+
+        {
+            passive:
+                true
+        }
+
+    );
+
+
+    update();
+
+}
+
+
+// ============================================================
+// PARTICLES
+// ============================================================
+
+function setupParticles() {
+
+    const canvas =
+        document.getElementById(
+            "particles"
+        );
+
+
+    if (!canvas) {
+
+        return;
+
+    }
+
+
+    const ctx =
+        canvas.getContext(
+            "2d"
+        );
+
+
+    if (!ctx) {
+
+        return;
+
+    }
+
+
+    let width =
+        0;
+
+
+    let height =
+        0;
+
+
+    let particles =
+        [];
+
+
+    // ========================================================
+    // RESIZE
+    // ========================================================
+
+    function resize() {
+
+        const dpr =
+            Math.min(
+
+                window.devicePixelRatio ||
+                1,
+
+                2
+
+            );
+
+
+        width =
+            window.innerWidth;
+
+
+        height =
+            window.innerHeight;
+
+
+        canvas.width =
+            width * dpr;
+
+
+        canvas.height =
+            height * dpr;
+
+
+        canvas.style.width =
+            width + "px";
+
+
+        canvas.style.height =
+            height + "px";
+
+
+        ctx.setTransform(
+
+            dpr,
+            0,
+            0,
+            dpr,
+            0,
+            0
+
+        );
+
+
+        const count =
+            Math.min(
+
+                60,
+
+                Math.max(
+
+                    22,
+
+                    Math.floor(
+                        width / 28
+                    )
+
+                )
+
+            );
+
+
+        particles =
+            Array.from(
+
+                {
+                    length:
+                        count
+                },
+
+                () => ({
+
+                    x:
+                        Math.random() *
+                        width,
+
+                    y:
+                        Math.random() *
+                        height,
+
+                    r:
+                        Math.random() *
+                        1.2 +
+                        .3,
+
+                    speed:
+                        Math.random() *
+                        .16 +
+                        .04,
+
+                    alpha:
+                        Math.random() *
+                        .3 +
+                        .08
+
+                })
+
+            );
+
+    }
+
+
+    // ========================================================
+    // DRAW
+    // ========================================================
+
+    function draw() {
+
+        ctx.clearRect(
+
+            0,
+            0,
+            width,
+            height
+
+        );
+
+
+        particles.forEach(
+            particle => {
+
+                particle.y -=
+                    particle.speed;
+
+
+                if (
+                    particle.y < -10
+                ) {
+
+                    particle.y =
+                        height + 10;
+
+
+                    particle.x =
+                        Math.random() *
+                        width;
+
+                }
+
+
+                ctx.beginPath();
+
+
+                ctx.fillStyle =
+
+                    "rgba(" +
+                    "130," +
+                    "255," +
+                    "178," +
+                    particle.alpha +
+                    ")";
+
+
+                ctx.arc(
+
+                    particle.x,
+
+                    particle.y,
+
+                    particle.r,
+
+                    0,
+
+                    Math.PI * 2
+
+                );
+
+
+                ctx.fill();
+
+            }
+        );
+
+
+        requestAnimationFrame(
+            draw
+        );
+
+    }
+
+
+    window.addEventListener(
+
+        "resize",
+
+        resize
+
+    );
+
+
+    resize();
+
+    draw();
+
+}
+
+
+// ============================================================
+// START
+// ============================================================
+
+document.addEventListener(
+
+    "DOMContentLoaded",
+
+    () => {
+
+        setupNickname();
+
+        setupReveal();
+
+        setupHeader();
+
+        setupParticles();
+
+    }
+
 );
-
-document.addEventListener("DOMContentLoaded", () => {
-
-    document
-        .querySelectorAll(".product, .advantages > div, .player-card")
-        .forEach(element => {
-
-            element.style.opacity = "0";
-            element.style.transform = "translateY(15px)";
-            element.style.transition =
-                "opacity .5s ease, transform .5s ease";
-
-            observer.observe(element);
-
-        });
-
-});
