@@ -2,7 +2,9 @@
 
 :root {
     --bg: #05060a;
-    --panel: #0b0e15;
+    --bg2: #080b11;
+    --panel: #0b0f16;
+
     --text: #f5f7fb;
     --muted: #737c8a;
 
@@ -13,6 +15,11 @@
     --cyan: #43d9ff;
 }
 
+
+/* ============================================================
+   RESET
+============================================================ */
+
 * {
     margin: 0;
     padding: 0;
@@ -21,13 +28,39 @@
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
+    min-height: 100vh;
+
     font-family: "Inter", Arial, sans-serif;
-    background: #05060a;
+
     color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(71, 255, 145, .10),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 15% 25%,
+            rgba(141, 92, 255, .08),
+            transparent 30%
+        ),
+
+        radial-gradient(
+            circle at 85% 45%,
+            rgba(71, 255, 145, .05),
+            transparent 28%
+        ),
+
+        #05060a;
+
     line-height: 1.5;
+
     overflow-x: hidden;
 }
 
@@ -47,17 +80,27 @@ button {
 
 .container {
     width: min(1220px, calc(100% - 44px));
-    margin: auto;
+    margin: 0 auto;
 }
+
+
+/* ============================================================
+   PARTICLES
+============================================================ */
 
 #particles {
     position: fixed;
+
     inset: 0;
-    width: 100%;
-    height: 100%;
+
+    width: 100vw;
+    height: 100vh;
+
     pointer-events: none;
-    z-index: -1;
-    opacity: .45;
+
+    z-index: 0;
+
+    opacity: .75;
 }
 
 
@@ -67,30 +110,39 @@ button {
 
 .header {
     position: fixed;
+
     top: 0;
     left: 0;
     right: 0;
+
     z-index: 1000;
 
-    background: rgba(5, 6, 10, .76);
-    backdrop-filter: blur(20px);
+    background:
+        rgba(4, 6, 10, .72);
 
-    border-bottom: 1px solid rgba(255, 255, 255, .055);
+    backdrop-filter:
+        blur(20px);
+
+    border-bottom:
+        1px solid rgba(255, 255, 255, .055);
 
     transition: .3s;
 }
 
 .header.scrolled {
-    background: rgba(5, 6, 10, .94);
+    background:
+        rgba(4, 6, 10, .94);
 
     box-shadow:
-        0 15px 45px rgba(0, 0, 0, .25);
+        0 15px 45px
+        rgba(0, 0, 0, .35);
 }
 
 .nav {
-    min-height: 78px;
+    min-height: 72px;
 
     display: flex;
+
     align-items: center;
     justify-content: space-between;
 
@@ -98,10 +150,13 @@ button {
 }
 
 
-/* LOGO */
+/* ============================================================
+   LOGO
+============================================================ */
 
 .logo {
     display: flex;
+
     align-items: center;
 
     gap: 12px;
@@ -112,31 +167,67 @@ button {
     height: 40px;
 
     display: grid;
+
     place-items: center;
+
+    position: relative;
 
     border-radius: 11px;
 
-    background: var(--green);
+    background:
+        linear-gradient(
+            135deg,
+            #65ffa2,
+            #35e980
+        );
 
     color: #041008;
 
-    font-family: "Space Grotesk", sans-serif;
+    font-family:
+        "Space Grotesk",
+        sans-serif;
+
     font-size: 21px;
     font-weight: 700;
 
     box-shadow:
-        0 0 28px rgba(71, 255, 145, .25);
+        0 0 10px rgba(71, 255, 145, .25),
+        0 0 35px rgba(71, 255, 145, .18);
+
+    overflow: hidden;
+}
+
+.logo-icon::before {
+    content: "";
+
+    position: absolute;
+
+    width: 70px;
+    height: 12px;
+
+    top: -15px;
+    left: -20px;
+
+    background:
+        rgba(255, 255, 255, .4);
+
+    transform:
+        rotate(-35deg);
 }
 
 .logo-text {
     display: flex;
+
     flex-direction: column;
 
     line-height: 1;
 }
 
 .logo-text strong {
-    font-family: "Space Grotesk", sans-serif;
+    font-family:
+        "Space Grotesk",
+        sans-serif;
+
     font-size: 18px;
     font-weight: 700;
 
@@ -146,7 +237,7 @@ button {
 .logo-text small {
     margin-top: 5px;
 
-    color: #626b7a;
+    color: #606978;
 
     font-size: 8px;
     font-weight: 800;
@@ -155,16 +246,22 @@ button {
 }
 
 
-/* NAVIGATION */
+/* ============================================================
+   NAV
+============================================================ */
 
 nav {
     display: flex;
+
+    align-items: center;
 
     gap: 30px;
 }
 
 nav a {
-    color: #8a92a0;
+    position: relative;
+
+    color: #858e9c;
 
     font-size: 13px;
     font-weight: 700;
@@ -172,26 +269,66 @@ nav a {
     transition: .2s;
 }
 
+nav a::after {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    bottom: -8px;
+
+    width: 0;
+    height: 2px;
+
+    border-radius: 10px;
+
+    background: var(--green);
+
+    box-shadow:
+        0 0 10px var(--green);
+
+    transition: .25s;
+}
+
 nav a:hover,
 nav a.active {
-    color: var(--green);
+    color: white;
+}
+
+nav a:hover::after,
+nav a.active::after {
+    width: 100%;
 }
 
 .nav-button {
-    padding: 11px 17px;
+    padding: 10px 17px;
 
     border:
-        1px solid rgba(71, 255, 145, .22);
+        1px solid rgba(71, 255, 145, .25);
 
     border-radius: 10px;
 
     background:
-        rgba(71, 255, 145, .05);
+        rgba(71, 255, 145, .055);
 
     color: var(--green);
 
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 900;
+
+    transition: .2s;
+}
+
+.nav-button:hover {
+    transform:
+        translateY(-2px);
+
+    background:
+        rgba(71, 255, 145, .10);
+
+    box-shadow:
+        0 10px 30px
+        rgba(71, 255, 145, .10);
 }
 
 
@@ -200,105 +337,203 @@ nav a.active {
 ============================================================ */
 
 .hero {
-    min-height: 820px;
+    width: 100%;
+
+    min-height: 100svh;
 
     position: relative;
+
+    z-index: 1;
 
     overflow: hidden;
 
     display: flex;
+
     align-items: center;
+    justify-content: center;
+
+    padding:
+        100px 0 70px;
 
     text-align: center;
-
-    padding: 130px 0 95px;
 
     background:
 
         radial-gradient(
-            circle at 50% 30%,
-            rgba(71, 255, 145, .12),
-            transparent 25%
+            ellipse at 50% 28%,
+            rgba(71, 255, 145, .15),
+            transparent 27%
         ),
 
         radial-gradient(
-            circle at 67% 20%,
-            rgba(141, 92, 255, .10),
-            transparent 24%
+            ellipse at 68% 20%,
+            rgba(141, 92, 255, .13),
+            transparent 28%
+        ),
+
+        radial-gradient(
+            ellipse at 25% 65%,
+            rgba(37, 139, 255, .055),
+            transparent 30%
         ),
 
         linear-gradient(
             180deg,
-            #080a10,
-            #05060a
+            #080b11 0%,
+            #05070c 58%,
+            #05060a 100%
         );
 }
 
+
+/* ============================================================
+   HERO GRID
+============================================================ */
+
 .hero-grid {
     position: absolute;
+
     inset: 0;
 
-    opacity: .13;
+    pointer-events: none;
+
+    opacity: .20;
 
     background-image:
 
         linear-gradient(
-            rgba(255, 255, 255, .08) 1px,
+            rgba(71, 255, 145, .06) 1px,
             transparent 1px
         ),
 
         linear-gradient(
             90deg,
-            rgba(255, 255, 255, .08) 1px,
+            rgba(71, 255, 145, .06) 1px,
             transparent 1px
         );
 
-    background-size: 52px 52px;
+    background-size:
+        52px 52px;
 
     mask-image:
-        linear-gradient(
-            to bottom,
-            #000,
-            transparent 90%
+        radial-gradient(
+            ellipse at center,
+            black 5%,
+            transparent 73%
         );
 }
 
 
-/* GLOWS */
+/* ============================================================
+   EXTRA HERO LIGHT
+============================================================ */
+
+.hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 900px;
+    height: 420px;
+
+    left: 50%;
+    top: 17%;
+
+    transform:
+        translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(71, 255, 145, .09),
+            rgba(141, 92, 255, .035) 45%,
+            transparent 72%
+        );
+
+    filter:
+        blur(28px);
+
+    pointer-events: none;
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+
+        linear-gradient(
+            90deg,
+            rgba(5, 6, 10, .85),
+            transparent 16%,
+            transparent 84%,
+            rgba(5, 6, 10, .85)
+        ),
+
+        linear-gradient(
+            180deg,
+            rgba(5, 6, 10, .05),
+            transparent 55%,
+            rgba(5, 6, 10, .95)
+        );
+}
+
+
+/* ============================================================
+   HERO GLOWS
+============================================================ */
 
 .hero-glow {
     position: absolute;
 
-    width: 300px;
-    height: 300px;
-
     border-radius: 50%;
 
-    filter: blur(70px);
+    pointer-events: none;
 
-    opacity: .16;
+    filter:
+        blur(85px);
+
+    opacity: .22;
 
     animation:
-        float 9s ease-in-out infinite;
+        floatGlow 9s
+        ease-in-out
+        infinite;
 }
 
 .hero-glow-green {
-    background: var(--green);
+    width: 330px;
+    height: 330px;
 
-    left: 10%;
-    top: 28%;
+    left: 8%;
+    top: 30%;
+
+    background:
+        var(--green);
 }
 
 .hero-glow-purple {
-    background: var(--purple);
+    width: 360px;
+    height: 360px;
 
-    right: 10%;
+    right: 8%;
     top: 18%;
 
-    animation-direction: reverse;
+    background:
+        var(--purple);
+
+    animation-direction:
+        reverse;
 }
 
-@keyframes float {
+@keyframes floatGlow {
 
     0%,
     100% {
@@ -309,16 +544,27 @@ nav a.active {
 
     50% {
         transform:
-            translateY(35px)
+            translateY(30px)
             scale(1.08);
     }
+
 }
 
+
+/* ============================================================
+   HERO CONTENT
+============================================================ */
 
 .hero-content {
     position: relative;
 
-    z-index: 2;
+    z-index: 5;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
 }
 
 
@@ -326,28 +572,33 @@ nav a.active {
 
 .online {
     display: inline-flex;
+
     align-items: center;
 
     gap: 9px;
 
-    margin-bottom: 20px;
+    margin-bottom: 18px;
 
-    padding: 8px 13px;
+    padding: 8px 14px;
 
     border:
-        1px solid rgba(71, 255, 145, .20);
+        1px solid rgba(71, 255, 145, .22);
 
     border-radius: 999px;
 
     background:
-        rgba(71, 255, 145, .045);
+        rgba(71, 255, 145, .055);
 
-    color: #a0ffc4;
+    color: #9effc1;
 
     font-size: 10px;
     font-weight: 900;
 
     letter-spacing: 1.8px;
+
+    box-shadow:
+        0 0 30px
+        rgba(71, 255, 145, .035);
 }
 
 .online-dot {
@@ -356,26 +607,52 @@ nav a.active {
 
     border-radius: 50%;
 
-    background: var(--green);
+    background:
+        var(--green);
 
     box-shadow:
-        0 0 14px var(--green);
+        0 0 13px
+        var(--green);
+
+    animation:
+        onlinePulse
+        1.8s
+        infinite;
 }
 
+@keyframes onlinePulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .45;
+    }
+
+}
+
+
+/* ============================================================
+   EYEBROW
+============================================================ */
 
 .eyebrow {
     margin-bottom: 12px;
 
-    color: #5d6574;
+    color: #5d6674;
 
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 900;
 
     letter-spacing: 4px;
 }
 
 
-/* TITLE */
+/* ============================================================
+   TITLE
+============================================================ */
 
 .hero h1 {
     font-family:
@@ -384,16 +661,22 @@ nav a.active {
 
     font-size:
         clamp(
-            72px,
-            12vw,
-            154px
+            68px,
+            10vw,
+            138px
         );
 
-    line-height: .84;
+    line-height: .88;
 
     font-weight: 700;
 
-    letter-spacing: -8px;
+    letter-spacing: -7px;
+
+    color: white;
+
+    text-shadow:
+        0 0 70px
+        rgba(71, 255, 145, .12);
 }
 
 .hero h1 span {
@@ -401,36 +684,55 @@ nav a.active {
 
     background:
         linear-gradient(
-            110deg,
-            #f4fff8,
-            var(--green),
-            #c6ffdb
+            105deg,
+            #f5fff8 0%,
+            #66ffa4 40%,
+            #3df58a 60%,
+            #caffdd 100%
         );
 
-    -webkit-background-clip: text;
-    background-clip: text;
+    -webkit-background-clip:
+        text;
+
+    background-clip:
+        text;
+
+    filter:
+        drop-shadow(
+            0 0 20px
+            rgba(71, 255, 145, .12)
+        );
 }
 
-.hero-subtitle {
-    margin-top: 30px;
 
-    font-size: 22px;
+/* ============================================================
+   HERO TEXT
+============================================================ */
+
+.hero-subtitle {
+    margin-top: 26px;
+
+    font-size: 21px;
     font-weight: 800;
+
+    color: #f5f7fb;
 }
 
 .hero-description {
-    max-width: 650px;
+    max-width: 620px;
 
     margin:
-        11px auto 30px;
+        10px auto 27px;
 
-    color: #7f8796;
+    color: #7c8593;
 
-    font-size: 14px;
+    font-size: 13px;
 }
 
 
-/* HERO BUTTONS */
+/* ============================================================
+   HERO BUTTONS
+============================================================ */
 
 .hero-buttons {
     display: flex;
@@ -452,16 +754,20 @@ nav a.active {
 
     gap: 14px;
 
-    padding: 14px 22px;
+    padding: 13px 22px;
 
-    border-radius: 11px;
+    border-radius: 10px;
 
     cursor: pointer;
 
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 900;
 
-    transition: .22s;
+    transition:
+        transform .2s,
+        box-shadow .2s,
+        background .2s,
+        border-color .2s;
 }
 
 .button:hover {
@@ -473,46 +779,49 @@ nav a.active {
     background:
         linear-gradient(
             135deg,
-            #52ff99,
-            #35e981
+            #5aff9c,
+            #36e981
         );
 
     color: #041009;
 
     box-shadow:
-        0 12px 35px
-        rgba(71, 255, 145, .12);
+        0 10px 35px
+        rgba(71, 255, 145, .13);
 }
 
 .button.primary:hover {
     box-shadow:
-        0 18px 45px
-        rgba(71, 255, 145, .22);
+        0 15px 42px
+        rgba(71, 255, 145, .24);
 }
 
 .button.secondary {
     border:
-        1px solid rgba(255, 255, 255, .085);
+        1px solid rgba(255, 255, 255, .09);
 
     background:
         rgba(255, 255, 255, .035);
 
-    color: #e9edf4;
+    color: white;
 }
 
 .button.secondary:hover {
     border-color:
-        rgba(141, 92, 255, .35);
+        rgba(141, 92, 255, .4);
 
     background:
-        rgba(141, 92, 255, .07);
+        rgba(141, 92, 255, .08);
 }
 
 
-/* SERVER IP */
+/* ============================================================
+   SERVER IP
+============================================================ */
 
 .server-ip {
-    margin: 34px auto 0;
+    margin:
+        27px auto 0;
 
     min-width: 420px;
 
@@ -523,12 +832,13 @@ nav a.active {
 
     gap: 13px;
 
-    padding: 12px 15px;
+    padding:
+        11px 15px;
 
     border:
-        1px solid rgba(255, 255, 255, .07);
+        1px solid rgba(255, 255, 255, .075);
 
-    border-radius: 11px;
+    border-radius: 10px;
 
     background:
         rgba(255, 255, 255, .025);
@@ -542,10 +852,14 @@ nav a.active {
 
 .server-ip:hover {
     border-color:
-        rgba(71, 255, 145, .25);
+        rgba(71, 255, 145, .30);
 
     background:
-        rgba(71, 255, 145, .03);
+        rgba(71, 255, 145, .045);
+
+    box-shadow:
+        0 0 30px
+        rgba(71, 255, 145, .04);
 }
 
 .server-ip span {
@@ -554,10 +868,12 @@ nav a.active {
     font-size: 9px;
     font-weight: 900;
 
-    letter-spacing: 1.4px;
+    letter-spacing: 1.3px;
 }
 
 .server-ip strong {
+    color: white;
+
     font-size: 13px;
 }
 
@@ -571,17 +887,19 @@ nav a.active {
 }
 
 
-/* HERO STATS */
+/* ============================================================
+   HERO STATS
+============================================================ */
 
 .hero-stats {
     width:
         min(
-            610px,
+            580px,
             100%
         );
 
     margin:
-        38px auto 0;
+        28px auto 0;
 
     display: grid;
 
@@ -597,14 +915,14 @@ nav a.active {
 
 .hero-stats > div {
     padding:
-        20px 12px 0;
+        15px 12px 0;
 
     border-right:
         1px solid rgba(255, 255, 255, .05);
 }
 
 .hero-stats > div:last-child {
-    border-right: 0;
+    border-right: none;
 }
 
 .hero-stats strong {
@@ -614,110 +932,121 @@ nav a.active {
         "Space Grotesk",
         sans-serif;
 
-    font-size: 22px;
-    font-weight: 700;
+    font-size: 20px;
 }
 
 .hero-stats span {
-    color: #5f6876;
+    color: #5d6673;
 
-    font-size: 10px;
+    font-size: 9px;
 }
 
 
 /* ============================================================
-   PLAYER
+   PLAYER AREA
 ============================================================ */
 
 .player-section {
+    position: relative;
+
+    z-index: 10;
+
     padding:
-        0 0 35px;
+        0 0 30px;
+
+    background: #05060a;
+
+    scroll-margin-top: 85px;
 }
 
 .player-card {
-    margin-top: -30px;
-
     position: relative;
 
-    z-index: 4;
+    margin-top: -23px;
 
     display: grid;
 
     grid-template-columns:
         auto
         1fr
-        minmax(320px, 410px);
+        minmax(
+            320px,
+            410px
+        );
 
     align-items: center;
 
     gap: 22px;
 
-    padding: 24px;
+    padding: 23px;
 
     border:
-        1px solid rgba(255, 255, 255, .08);
+        1px solid rgba(255, 255, 255, .085);
 
-    border-radius: 18px;
+    border-radius: 17px;
 
     background:
 
-        linear-gradient(
-            135deg,
-            rgba(71, 255, 145, .035),
+        radial-gradient(
+            circle at 0% 50%,
+            rgba(71, 255, 145, .055),
             transparent 35%
         ),
 
-        rgba(11, 14, 21, .97);
+        #0b0f16;
 
     box-shadow:
-        0 30px 70px
-        rgba(0, 0, 0, .30);
+        0 25px 65px
+        rgba(0, 0, 0, .38);
 }
 
 .player-icon {
-    width: 54px;
-    height: 54px;
+    width: 52px;
+    height: 52px;
 
     display: grid;
 
     place-items: center;
 
     border:
-        1px solid rgba(71, 255, 145, .12);
+        1px solid rgba(71, 255, 145, .14);
 
-    border-radius: 13px;
+    border-radius: 12px;
 
     background:
-        rgba(71, 255, 145, .05);
+        rgba(71, 255, 145, .06);
 
     color: var(--green);
 
-    font-size: 22px;
+    font-size: 21px;
 }
 
 .small-label {
-    color: var(--green);
+    color:
+        var(--green);
 
     font-size: 8px;
     font-weight: 900;
 
-    letter-spacing: 2.2px;
+    letter-spacing: 2px;
 }
 
 .player-card h3 {
-    margin-top: 5px;
+    margin-top: 4px;
 
-    font-size: 17px;
+    font-size: 16px;
 }
 
 .player-card p {
-    color: #697280;
+    color: #68717e;
 
     font-size: 11px;
 }
 
 
-/* NICKNAME */
+/* ============================================================
+   NICKNAME
+============================================================ */
 
 .nickname-wrap {
     position: relative;
@@ -732,39 +1061,43 @@ nav a.active {
 
     left: 15px;
 
-    color: #555e6d;
+    z-index: 2;
+
+    color: #555e6b;
 
     font-size: 10px;
     font-weight: 900;
+
+    pointer-events: none;
 }
 
 .player-card input {
     width: 100%;
 
     padding:
-        14px
-        45px
-        14px
-        48px;
+        13px 45px
+        13px 48px;
 
-    outline: 0;
+    outline: none;
 
     border:
-        1px solid rgba(255, 255, 255, .08);
+        1px solid rgba(255, 255, 255, .085);
 
     border-radius: 10px;
 
-    background: #07090d;
+    background: #06080c;
 
-    color: #fff;
+    color: white;
 
     font-size: 13px;
     font-weight: 700;
+
+    transition: .2s;
 }
 
 .player-card input:focus {
     border-color:
-        rgba(71, 255, 145, .5);
+        rgba(71, 255, 145, .48);
 
     box-shadow:
         0 0 0 4px
@@ -790,6 +1123,9 @@ nav a.active {
 
     color: var(--green);
 
+    font-size: 11px;
+    font-weight: 900;
+
     opacity: 0;
 
     transform:
@@ -808,20 +1144,36 @@ nav a.active {
 
 
 /* ============================================================
-   SECTIONS
+   SHOP SECTIONS
 ============================================================ */
 
 .shop-section,
 .why {
-    padding:
-        105px 0;
+    position: relative;
 
-    background: #05060a;
+    z-index: 2;
+
+    padding:
+        90px 0;
+
+    background:
+        #05060a;
+
+    scroll-margin-top:
+        70px;
 }
 
 .shop-section.dark,
 .why {
-    background: #070910;
+    background:
+
+        radial-gradient(
+            circle at 80% 10%,
+            rgba(141, 92, 255, .035),
+            transparent 35%
+        ),
+
+        #070910;
 
     border-top:
         1px solid rgba(255, 255, 255, .035);
@@ -830,18 +1182,25 @@ nav a.active {
         1px solid rgba(255, 255, 255, .035);
 }
 
+
+/* ============================================================
+   SECTION TITLE
+============================================================ */
+
 .section-title {
     display: flex;
 
+    align-items: flex-start;
+
     gap: 18px;
 
-    margin-bottom: 42px;
+    margin-bottom: 38px;
 }
 
 .section-title > span {
     min-width: 38px;
 
-    padding-top: 9px;
+    padding-top: 8px;
 
     color: var(--green);
 
@@ -873,9 +1232,9 @@ nav a.active {
 
     font-size:
         clamp(
-            32px,
+            31px,
             4vw,
-            46px
+            44px
         );
 
     line-height: 1;
@@ -884,7 +1243,7 @@ nav a.active {
 }
 
 .section-title p {
-    margin-top: 9px;
+    margin-top: 8px;
 
     color: #707987;
 
@@ -893,7 +1252,7 @@ nav a.active {
 
 
 /* ============================================================
-   PRODUCTS
+   PRODUCT GRID
 ============================================================ */
 
 .products {
@@ -918,6 +1277,11 @@ nav a.active {
         );
 }
 
+
+/* ============================================================
+   PRODUCT
+============================================================ */
+
 .product {
     position: relative;
 
@@ -936,13 +1300,34 @@ nav a.active {
 
         linear-gradient(
             180deg,
-            rgba(255, 255, 255, .018),
+            rgba(255, 255, 255, .02),
             transparent
         ),
 
-        var(--panel);
+        #0b0e15;
 
-    transition: .25s;
+    transition:
+        transform .25s,
+        border-color .25s,
+        box-shadow .25s;
+}
+
+.product::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+
+        linear-gradient(
+            120deg,
+            rgba(255, 255, 255, .035),
+            transparent 28%
+        );
 }
 
 .product:hover {
@@ -950,34 +1335,47 @@ nav a.active {
         translateY(-6px);
 
     border-color:
-        rgba(71, 255, 145, .18);
+        rgba(71, 255, 145, .20);
 
     box-shadow:
         0 24px 55px
-        rgba(0, 0, 0, .28);
+        rgba(0, 0, 0, .32);
 }
 
 
-/* CARD GLOW */
+/* ============================================================
+   CARD GLOW
+============================================================ */
 
 .card-glow {
-    width: 140px;
-    height: 140px;
+    width: 150px;
+    height: 150px;
 
     position: absolute;
 
-    top: -80px;
-    right: -60px;
+    top: -85px;
+    right: -65px;
 
     border-radius: 50%;
 
-    filter: blur(50px);
+    filter:
+        blur(48px);
 
-    opacity: .14;
+    opacity: .15;
+
+    transition: .3s;
+}
+
+.product:hover
+.card-glow {
+    transform:
+        scale(1.2);
+
+    opacity: .25;
 }
 
 .silver-card .card-glow {
-    background: #e0e4eb;
+    background: #dce1e8;
 }
 
 .wither-card .card-glow {
@@ -997,7 +1395,9 @@ nav a.active {
 }
 
 
-/* PRODUCT TOP */
+/* ============================================================
+   PRODUCT TOP
+============================================================ */
 
 .product-top {
     position: relative;
@@ -1006,8 +1406,9 @@ nav a.active {
 
     display: flex;
 
-    align-items: center;
     justify-content: space-between;
+
+    align-items: center;
 
     gap: 8px;
 }
@@ -1020,31 +1421,35 @@ nav a.active {
 }
 
 .price {
-    padding: 5px 8px;
+    padding:
+        5px 8px;
 
     border:
-        1px solid rgba(71, 255, 145, .10);
+        1px solid rgba(71, 255, 145, .11);
 
     border-radius: 7px;
 
     background:
         rgba(71, 255, 145, .035);
 
-    color: var(--green);
+    color:
+        var(--green);
 
     font-size: 10px;
     font-weight: 900;
 }
 
 
-/* RANK ICON */
+/* ============================================================
+   RANK MARK
+============================================================ */
 
 .rank-mark {
     width: 56px;
     height: 56px;
 
     margin:
-        38px 0 21px;
+        37px 0 21px;
 
     display: grid;
 
@@ -1064,10 +1469,11 @@ nav a.active {
 
     transform:
         rotate(-4deg);
+
+    box-shadow:
+        inset 0 0 20px
+        rgba(255, 255, 255, .015);
 }
-
-
-/* COLORS */
 
 .silver,
 .silver-mark {
@@ -1099,13 +1505,23 @@ nav a.active {
 }
 
 
-/* TEXT */
+/* ============================================================
+   PRODUCT TEXT
+============================================================ */
 
 .product h3 {
+    position: relative;
+
+    z-index: 2;
+
     font-size: 18px;
 }
 
 .product p {
+    position: relative;
+
+    z-index: 2;
+
     margin-top: 5px;
 
     color: #69717e;
@@ -1114,7 +1530,9 @@ nav a.active {
 }
 
 
-/* BUY BUTTON */
+/* ============================================================
+   PRODUCT BUTTON
+============================================================ */
 
 .product button {
     position: absolute;
@@ -1123,6 +1541,8 @@ nav a.active {
     right: 20px;
     bottom: 18px;
 
+    z-index: 5;
+
     display: flex;
 
     align-items: center;
@@ -1130,16 +1550,18 @@ nav a.active {
 
     gap: 10px;
 
-    padding: 10px 12px;
+    padding:
+        10px 12px;
 
     border:
         1px solid rgba(255, 255, 255, .065);
 
     border-radius: 9px;
 
-    background: #121720;
+    background:
+        #121720;
 
-    color: #fff;
+    color: white;
 
     cursor: pointer;
 
@@ -1150,13 +1572,19 @@ nav a.active {
 }
 
 .product button:hover {
-    background: var(--green);
+    background:
+        var(--green);
+
+    border-color:
+        var(--green);
 
     color: #041009;
 }
 
 
-/* IMPERATOR */
+/* ============================================================
+   FEATURED
+============================================================ */
 
 .featured {
     border-color:
@@ -1166,7 +1594,7 @@ nav a.active {
 
         linear-gradient(
             180deg,
-            rgba(255, 95, 145, .065),
+            rgba(255, 95, 145, .07),
             transparent 45%
         ),
 
@@ -1179,14 +1607,22 @@ nav a.active {
     top: 0;
     right: 0;
 
-    z-index: 4;
+    z-index: 10;
 
-    padding: 6px 10px;
+    padding:
+        6px 10px;
 
     border-radius:
         0 0 0 9px;
 
-    background: var(--pink);
+    background:
+        linear-gradient(
+            135deg,
+            #ff6294,
+            #ec447c
+        );
+
+    color: white;
 
     font-size: 7px;
     font-weight: 900;
@@ -1219,16 +1655,27 @@ nav a.active {
     place-items: center;
 
     border:
-        1px solid rgba(255, 201, 77, .16);
+        1px solid rgba(255, 201, 77, .17);
 
     border-radius: 50%;
 
     background:
+        radial-gradient(
+            circle at 35% 30%,
+            rgba(255, 255, 255, .18),
+            transparent 25%
+        ),
+
         rgba(255, 201, 77, .055);
 
-    color: var(--gold);
+    color:
+        var(--gold);
 
     font-size: 21px;
+
+    box-shadow:
+        0 0 25px
+        rgba(255, 201, 77, .05);
 }
 
 .coin-card h3 {
@@ -1245,7 +1692,7 @@ nav a.active {
 
     flex-direction: column;
 
-    gap: 45px;
+    gap: 42px;
 }
 
 .case-group > h3 {
@@ -1294,24 +1741,36 @@ nav a.active {
 }
 
 .case-icon.purple {
-    background:
-        rgba(141, 92, 255, .06);
+    border:
+        1px solid rgba(141, 92, 255, .16);
 
-    color: #a783ff;
+    background:
+        rgba(141, 92, 255, .055);
+
+    color:
+        #a783ff;
 }
 
 .case-icon.cyan {
+    border:
+        1px solid rgba(67, 217, 255, .16);
+
     background:
         rgba(67, 217, 255, .05);
 
-    color: var(--cyan);
+    color:
+        var(--cyan);
 }
 
 .case-icon.gold {
+    border:
+        1px solid rgba(255, 201, 77, .16);
+
     background:
         rgba(255, 201, 77, .05);
 
-    color: var(--gold);
+    color:
+        var(--gold);
 }
 
 .product.small strong {
@@ -1319,21 +1778,26 @@ nav a.active {
 
     margin-top: 10px;
 
-    color: var(--green);
+    color:
+        var(--green);
 
     font-size: 17px;
 }
 
 
-/* COMING SOON */
+/* ============================================================
+   COMING SOON
+============================================================ */
 
 .coming-soon {
-    padding: 28px;
+    padding:
+        26px;
 
     text-align: center;
 
     border:
-        1px dashed rgba(255, 255, 255, .10);
+        1px dashed
+        rgba(255, 255, 255, .10);
 
     border-radius: 15px;
 
@@ -1342,7 +1806,8 @@ nav a.active {
 }
 
 .coming-soon span {
-    color: var(--green);
+    color:
+        var(--green);
 
     font-size: 8px;
     font-weight: 900;
@@ -1357,7 +1822,8 @@ nav a.active {
 .coming-soon p {
     margin-top: 4px;
 
-    color: #626b78;
+    color:
+        #626b78;
 
     font-size: 11px;
 }
@@ -1380,7 +1846,7 @@ nav a.active {
 }
 
 .advantages > div {
-    min-height: 220px;
+    min-height: 215px;
 
     position: relative;
 
@@ -1391,7 +1857,8 @@ nav a.active {
 
     border-radius: 15px;
 
-    background: var(--panel);
+    background:
+        #0b0e15;
 
     transition: .25s;
 }
@@ -1410,7 +1877,8 @@ nav a.active {
     right: 18px;
     top: 15px;
 
-    color: #3f4651;
+    color:
+        #3f4651;
 
     font-size: 10px;
 }
@@ -1431,18 +1899,20 @@ nav a.active {
     background:
         rgba(71, 255, 145, .045);
 
-    color: var(--green);
+    color:
+        var(--green);
 }
 
 .advantages h3 {
     margin:
-        33px 0 7px;
+        31px 0 7px;
 
     font-size: 16px;
 }
 
 .advantages p {
-    color: #6b7481;
+    color:
+        #6b7481;
 
     font-size: 11px;
 }
@@ -1453,9 +1923,14 @@ nav a.active {
 ============================================================ */
 
 footer {
-    padding-top: 52px;
+    position: relative;
 
-    background: #030408;
+    z-index: 2;
+
+    padding-top: 48px;
+
+    background:
+        #030408;
 
     border-top:
         1px solid rgba(255, 255, 255, .045);
@@ -1468,7 +1943,7 @@ footer {
 
     gap: 35px;
 
-    padding-bottom: 45px;
+    padding-bottom: 40px;
 }
 
 .footer-logo {
@@ -1483,7 +1958,8 @@ footer {
 .footer-content p {
     margin-top: 10px;
 
-    color: #565f6c;
+    color:
+        #565f6c;
 
     font-size: 11px;
 }
@@ -1500,26 +1976,32 @@ footer {
 .footer-links button {
     background: none;
 
-    color: #68717e;
+    color:
+        #68717e;
 
     cursor: pointer;
 
     font-size: 11px;
     font-weight: 700;
+
+    transition: .2s;
 }
 
 .footer-links a:hover,
 .footer-links button:hover {
-    color: var(--green);
+    color:
+        var(--green);
 }
 
 .copyright {
-    padding: 18px 20px;
+    padding:
+        18px 20px;
 
     border-top:
         1px solid rgba(255, 255, 255, .04);
 
-    color: #3e4550;
+    color:
+        #3e4550;
 
     text-align: center;
 
@@ -1528,29 +2010,30 @@ footer {
 
 
 /* ============================================================
-   SCROLL ANIMATION
+   REVEAL
 ============================================================ */
 
 .reveal {
     opacity: 0;
 
     transform:
-        translateY(20px);
+        translateY(16px);
 
     transition:
-        opacity .55s,
-        transform .55s;
+        opacity .45s ease,
+        transform .45s ease;
 }
 
 .reveal.visible {
     opacity: 1;
 
-    transform: none;
+    transform:
+        translateY(0);
 }
 
 
 /* ============================================================
-   RESPONSIVE
+   TABLET
 ============================================================ */
 
 @media (max-width: 1100px) {
@@ -1573,6 +2056,10 @@ footer {
 
 }
 
+
+/* ============================================================
+   TABLET SMALL
+============================================================ */
 
 @media (max-width: 900px) {
 
@@ -1604,104 +2091,167 @@ footer {
 }
 
 
+/* ============================================================
+   MOBILE
+============================================================ */
+
 @media (max-width: 650px) {
 
     .container {
         width:
             min(
-                100% - 24px,
+                calc(100% - 24px),
                 1220px
             );
     }
+
+
+    .nav {
+        min-height: 66px;
+    }
+
+
+    .logo-icon {
+        width: 37px;
+        height: 37px;
+
+        font-size: 19px;
+    }
+
+
+    .logo-text strong {
+        font-size: 15px;
+    }
+
 
     .logo-text small {
         display: none;
     }
 
+
     .nav-button {
         padding:
             9px 11px;
 
-        font-size: 10px;
+        font-size: 9px;
     }
+
 
     .hero {
-        min-height: 720px;
+        min-height:
+            100svh;
 
-        padding-top: 120px;
+        padding:
+            95px 0 45px;
     }
+
 
     .hero h1 {
         font-size:
             clamp(
-                58px,
-                19vw,
-                90px
+                55px,
+                18vw,
+                82px
             );
 
-        letter-spacing: -5px;
+        letter-spacing: -4px;
     }
+
+
+    .eyebrow {
+        letter-spacing: 2.5px;
+    }
+
 
     .hero-subtitle {
-        font-size: 18px;
+        margin-top: 22px;
+
+        font-size: 17px;
     }
 
+
     .hero-description {
-        font-size: 12px;
+        max-width: 420px;
+
+        font-size: 11px;
     }
+
+
+    .button {
+        width: 100%;
+
+        max-width: 310px;
+    }
+
 
     .server-ip {
         width: 100%;
+
+        max-width: 370px;
 
         min-width: 0;
 
         flex-wrap: wrap;
     }
 
+
     .server-ip small {
         width: 100%;
     }
 
+
     .hero-stats {
-        grid-template-columns: 1fr;
+        margin-top: 24px;
 
-        max-width: 250px;
+        max-width: 310px;
     }
 
-    .hero-stats > div {
-        border-right: 0;
 
-        border-bottom:
-            1px solid rgba(255, 255, 255, .05);
-
-        padding-bottom: 12px;
+    .hero-stats strong {
+        font-size: 17px;
     }
 
-    .hero-stats > div:last-child {
-        border-bottom: 0;
+
+    .hero-stats span {
+        font-size: 8px;
     }
+
 
     .player-card {
-        margin-top: -18px;
+        margin-top: -16px;
 
         grid-template-columns: 1fr;
 
         text-align: center;
     }
 
+
     .player-icon {
         margin: auto;
     }
+
 
     .nickname-wrap {
         grid-column: auto;
     }
 
+
     .shop-section,
     .why {
         padding:
-            80px 0;
+            72px 0;
     }
+
+
+    .section-title {
+        gap: 8px;
+    }
+
+
+    .section-title > span {
+        min-width: 28px;
+    }
+
 
     .donate-products,
     .coin-products,
@@ -1711,9 +2261,16 @@ footer {
         grid-template-columns: 1fr;
     }
 
+
+    .coin-card {
+        min-height: 225px;
+    }
+
+
     .footer-content {
         flex-direction: column;
     }
+
 
     .footer-links {
         flex-wrap: wrap;
