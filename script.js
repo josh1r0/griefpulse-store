@@ -18,7 +18,7 @@ const PRODUCT_LINKS = {
 
 
 // ============================================================
-// COPY SERVER IP
+// COPY IP
 // ============================================================
 
 async function copyIP() {
@@ -29,17 +29,21 @@ async function copyIP() {
             SERVER_IP
         );
 
+
         showMessage(
             "IP скопирован: " +
             SERVER_IP
         );
 
+
     } catch (error) {
+
 
         showMessage(
             "IP сервера: " +
             SERVER_IP
         );
+
 
     }
 
@@ -52,18 +56,17 @@ async function copyIP() {
 
 function buy(product, price) {
 
+
     const nicknameInput =
         document.getElementById(
             "nickname"
         );
 
+
     if (!nicknameInput) {
 
-        showMessage(
-            "Поле ника не найдено."
-        );
-
         return;
+
     }
 
 
@@ -72,23 +75,27 @@ function buy(product, price) {
 
 
     // ========================================================
-    // EMPTY NICKNAME
+    // EMPTY
     // ========================================================
 
     if (!nickname) {
 
+
         nicknameInput.focus();
+
 
         showMessage(
             "Сначала введи свой Minecraft ник!"
         );
 
+
         return;
+
     }
 
 
     // ========================================================
-    // INVALID NICKNAME
+    // VALIDATE
     // ========================================================
 
     if (
@@ -97,18 +104,22 @@ function buy(product, price) {
         )
     ) {
 
+
         nicknameInput.focus();
+
 
         showMessage(
             "Проверь Minecraft ник. Допустимо 3–16 символов."
         );
 
+
         return;
+
     }
 
 
     // ========================================================
-    // SAVE NICKNAME
+    // SAVE
     // ========================================================
 
     localStorage.setItem(
@@ -118,24 +129,23 @@ function buy(product, price) {
 
 
     // ========================================================
-    // GET PRODUCT LINK
+    // LINK
     // ========================================================
 
     const productLink =
         PRODUCT_LINKS[product];
 
 
-    // ========================================================
-    // PRODUCT NOT CONNECTED
-    // ========================================================
-
     if (!productLink) {
+
 
         showMessage(
             "Этот товар пока ещё не подключён к оплате."
         );
 
+
         return;
+
     }
 
 
@@ -144,19 +154,27 @@ function buy(product, price) {
     // ========================================================
 
     showMessage(
+
         "Переходим к покупке " +
+
         product +
+
         " за " +
+
         price +
+
         " ₽"
+
     );
 
 
     setTimeout(
         () => {
 
+
             window.location.href =
                 productLink;
+
 
         },
         500
@@ -171,15 +189,16 @@ function buy(product, price) {
 
 function showMessage(text) {
 
-    const oldMessage =
+
+    const old =
         document.querySelector(
             ".site-message"
         );
 
 
-    if (oldMessage) {
+    if (old) {
 
-        oldMessage.remove();
+        old.remove();
 
     }
 
@@ -215,31 +234,31 @@ function showMessage(text) {
                 "translateX(-50%)",
 
             zIndex:
-                "9999",
+                "99999",
 
             maxWidth:
-                "calc(100% - 28px)",
+                "calc(100% - 30px)",
 
             padding:
-                "13px 18px",
+                "12px 18px",
+
+            borderRadius:
+                "9px",
 
             background:
-                "rgba(10,14,20,.97)",
+                "rgba(7,10,15,.97)",
+
+            border:
+                "1px solid rgba(66,255,138,.28)",
+
+            boxShadow:
+                "0 15px 45px rgba(0,0,0,.5)",
 
             color:
                 "#ffffff",
 
-            border:
-                "1px solid rgba(71,255,145,.26)",
-
-            borderRadius:
-                "11px",
-
-            boxShadow:
-                "0 18px 50px rgba(0,0,0,.46)",
-
             fontSize:
-                "12px",
+                "11px",
 
             fontWeight:
                 "800",
@@ -247,8 +266,8 @@ function showMessage(text) {
             textAlign:
                 "center",
 
-            opacity:
-                "1"
+            transition:
+                "opacity .25s"
 
         }
     );
@@ -262,11 +281,9 @@ function showMessage(text) {
     setTimeout(
         () => {
 
+
             message.style.opacity =
                 "0";
-
-            message.style.transition =
-                "opacity .25s";
 
 
             setTimeout(
@@ -275,8 +292,9 @@ function showMessage(text) {
                     message.remove();
 
                 },
-                250
+                260
             );
+
 
         },
         2800
@@ -291,28 +309,25 @@ function showMessage(text) {
 
 function setupNickname() {
 
-    const nickname =
+
+    const input =
         document.getElementById(
             "nickname"
         );
 
 
-    const wrap =
+    const wrapper =
         document.querySelector(
             ".nickname-wrap"
         );
 
 
-    if (!nickname) {
+    if (!input) {
 
         return;
 
     }
 
-
-    // ========================================================
-    // LOAD SAVED NICK
-    // ========================================================
 
     const saved =
         localStorage.getItem(
@@ -327,20 +342,19 @@ function setupNickname() {
         )
     ) {
 
-        nickname.value =
+
+        input.value =
             saved;
+
 
     }
 
 
-    // ========================================================
-    // UPDATE
-    // ========================================================
+    function update() {
 
-    const update = () => {
 
-        nickname.value =
-            nickname.value
+        input.value =
+            input.value
 
                 .replace(
                     /[^A-Za-z0-9_]/g,
@@ -355,33 +369,37 @@ function setupNickname() {
 
         const valid =
             /^[A-Za-z0-9_]{3,16}$/.test(
-                nickname.value
+                input.value
             );
 
 
-        if (wrap) {
+        if (wrapper) {
 
-            wrap.classList.toggle(
+
+            wrapper.classList.toggle(
                 "valid",
                 valid
             );
+
 
         }
 
 
         if (valid) {
 
+
             localStorage.setItem(
                 "shadowland_nickname",
-                nickname.value
+                input.value
             );
+
 
         }
 
-    };
+    }
 
 
-    nickname.addEventListener(
+    input.addEventListener(
         "input",
         update
     );
@@ -398,14 +416,21 @@ function setupNickname() {
 
 function setupReveal() {
 
+
     const elements =
         document.querySelectorAll(
 
-            ".product, " +
-            ".advantages > div, " +
-            ".player-card, " +
-            ".section-title, " +
-            ".coming-soon"
+            ".donate-card, " +
+
+            ".coin-card, " +
+
+            ".case-card, " +
+
+            ".advantages article, " +
+
+            ".section-heading, " +
+
+            ".player-card"
 
         );
 
@@ -413,9 +438,11 @@ function setupReveal() {
     elements.forEach(
         element => {
 
+
             element.classList.add(
                 "reveal"
             );
+
 
         }
     );
@@ -426,12 +453,15 @@ function setupReveal() {
 
             entries => {
 
+
                 entries.forEach(
                     entry => {
+
 
                         if (
                             entry.isIntersecting
                         ) {
+
 
                             entry.target
                                 .classList
@@ -440,15 +470,17 @@ function setupReveal() {
                                 );
 
 
-                            observer
-                                .unobserve(
-                                    entry.target
-                                );
+                            observer.unobserve(
+                                entry.target
+                            );
+
 
                         }
 
+
                     }
                 );
+
 
             },
 
@@ -465,9 +497,11 @@ function setupReveal() {
     elements.forEach(
         element => {
 
+
             observer.observe(
                 element
             );
+
 
         }
     );
@@ -480,6 +514,7 @@ function setupReveal() {
 // ============================================================
 
 function setupHeader() {
+
 
     const header =
         document.querySelector(
@@ -494,284 +529,71 @@ function setupHeader() {
     }
 
 
-    const update = () => {
+    function updateHeader() {
 
-        header.classList.toggle(
 
-            "scrolled",
-
+        if (
             window.scrollY > 20
+        ) {
 
-        );
 
-    };
+            header.style.background =
+                "rgba(3,5,8,.96)";
+
+
+        } else {
+
+
+            header.style.background =
+                "rgba(3,5,8,.88)";
+
+
+        }
+
+    }
 
 
     window.addEventListener(
-
         "scroll",
-
-        update,
-
+        updateHeader,
         {
             passive:
                 true
         }
-
     );
 
 
-    update();
+    updateHeader();
 
 }
 
 
 // ============================================================
-// PARTICLES
+// FIX HASH POSITION
 // ============================================================
 
-function setupParticles() {
+function fixInitialPosition() {
 
-    const canvas =
-        document.getElementById(
-            "particles"
+
+    if (
+        window.location.hash === "#shop"
+    ) {
+
+
+        history.replaceState(
+            null,
+            "",
+            window.location.pathname
         );
 
 
-    if (!canvas) {
-
-        return;
-
-    }
-
-
-    const ctx =
-        canvas.getContext(
-            "2d"
-        );
-
-
-    if (!ctx) {
-
-        return;
-
-    }
-
-
-    let width =
-        0;
-
-
-    let height =
-        0;
-
-
-    let particles =
-        [];
-
-
-    // ========================================================
-    // RESIZE
-    // ========================================================
-
-    function resize() {
-
-        const dpr =
-            Math.min(
-
-                window.devicePixelRatio ||
-                1,
-
-                2
-
-            );
-
-
-        width =
-            window.innerWidth;
-
-
-        height =
-            window.innerHeight;
-
-
-        canvas.width =
-            width * dpr;
-
-
-        canvas.height =
-            height * dpr;
-
-
-        canvas.style.width =
-            width + "px";
-
-
-        canvas.style.height =
-            height + "px";
-
-
-        ctx.setTransform(
-
-            dpr,
-            0,
-            0,
-            dpr,
+        window.scrollTo(
             0,
             0
-
         );
 
-
-        const count =
-            Math.min(
-
-                60,
-
-                Math.max(
-
-                    22,
-
-                    Math.floor(
-                        width / 28
-                    )
-
-                )
-
-            );
-
-
-        particles =
-            Array.from(
-
-                {
-                    length:
-                        count
-                },
-
-                () => ({
-
-                    x:
-                        Math.random() *
-                        width,
-
-                    y:
-                        Math.random() *
-                        height,
-
-                    r:
-                        Math.random() *
-                        1.2 +
-                        .3,
-
-                    speed:
-                        Math.random() *
-                        .16 +
-                        .04,
-
-                    alpha:
-                        Math.random() *
-                        .3 +
-                        .08
-
-                })
-
-            );
 
     }
-
-
-    // ========================================================
-    // DRAW
-    // ========================================================
-
-    function draw() {
-
-        ctx.clearRect(
-
-            0,
-            0,
-            width,
-            height
-
-        );
-
-
-        particles.forEach(
-            particle => {
-
-                particle.y -=
-                    particle.speed;
-
-
-                if (
-                    particle.y < -10
-                ) {
-
-                    particle.y =
-                        height + 10;
-
-
-                    particle.x =
-                        Math.random() *
-                        width;
-
-                }
-
-
-                ctx.beginPath();
-
-
-                ctx.fillStyle =
-
-                    "rgba(" +
-                    "130," +
-                    "255," +
-                    "178," +
-                    particle.alpha +
-                    ")";
-
-
-                ctx.arc(
-
-                    particle.x,
-
-                    particle.y,
-
-                    particle.r,
-
-                    0,
-
-                    Math.PI * 2
-
-                );
-
-
-                ctx.fill();
-
-            }
-        );
-
-
-        requestAnimationFrame(
-            draw
-        );
-
-    }
-
-
-    window.addEventListener(
-
-        "resize",
-
-        resize
-
-    );
-
-
-    resize();
-
-    draw();
 
 }
 
@@ -781,10 +603,11 @@ function setupParticles() {
 // ============================================================
 
 document.addEventListener(
-
     "DOMContentLoaded",
-
     () => {
+
+
+        fixInitialPosition();
 
         setupNickname();
 
@@ -792,8 +615,6 @@ document.addEventListener(
 
         setupHeader();
 
-        setupParticles();
 
     }
-
 );
