@@ -1,1132 +1,69 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>ShadowLand — Официальный магазин</title>
-    <meta name="description" content="Официальный магазин Minecraft сервера ShadowLand">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="style.css">
+    <title>
+        ShadowLand — Официальный магазин
+    </title>
+
+    <meta
+        name="description"
+        content="Официальный магазин Minecraft сервера ShadowLand"
+    >
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
+
 
 <body>
 
-<canvas id="particles"></canvas>
+
+<!-- ============================================================
+     HEADER
+============================================================ -->
 
 <header class="header">
+
     <div class="container nav">
 
-        <a href="#top" class="logo">
-            <span class="logo-icon">S</span>
+
+        <a
+            href="#top"
+            class="logo"
+        >
+
+            <span class="logo-icon">
+                S
+            </span>
 
             <span class="logo-text">
-                <strong>SHADOWLAND</strong>
-                <small>MINECRAFT SERVER</small>
-            </span>
-        </a>
-
-        <nav>
-            <a href="#donate">Донат</a>
-            <a href="#coins">Коины</a>
-            <a href="#cases">Кейсы</a>
-            <a href="#why">О сервере</a>
-        </nav>
-
-        <a href="#shop" class="nav-button">
-            МАГАЗИН →
-        </a>
-
-    </div>
-</header>
-
-
-<main id="top">
-
-    <!-- ===================================================== -->
-    <!-- HERO -->
-    <!-- ===================================================== -->
-
-    <section class="hero">
-
-        <div class="hero-grid"></div>
-        <div class="hero-glow hero-glow-green"></div>
-        <div class="hero-glow hero-glow-purple"></div>
-
-        <div class="container hero-content">
-
-            <div class="online">
-                <span class="online-dot"></span>
-                SHADOWLAND ONLINE
-            </div>
-
-            <div class="eyebrow">
-                GRIEF • SURVIVAL • PVP
-            </div>
-
-            <h1>
-                SHADOW<span>LAND</span>
-            </h1>
-
-            <p class="hero-subtitle">
-                Официальный магазин сервера
-            </p>
-
-            <p class="hero-description">
-                Донат, коины, кейсы и эксклюзивные возможности.
-                Введи ник, выбери товар и забирай покупку на сервере.
-            </p>
-
-            <div class="hero-buttons">
-
-                <a href="#shop" class="button primary">
-                    Открыть магазин
-                    <b>→</b>
-                </a>
-
-                <button
-                    class="button secondary"
-                    onclick="copyIP()"
-                >
-                    Скопировать IP
-                    <b>⧉</b>
-                </button>
-
-            </div>
-
-            <button
-                class="server-ip"
-                onclick="copyIP()"
-                type="button"
-            >
-                <span>SERVER IP</span>
 
                 <strong>
-                    shadowland.land
+                    SHADOWLAND
                 </strong>
 
                 <small>
-                    НАЖМИ, ЧТОБЫ СКОПИРОВАТЬ
+                    MINECRAFT SERVER
                 </small>
-            </button>
 
-            <div class="hero-stats">
+            </span>
 
-                <div>
-                    <strong>5</strong>
-                    <span>донат-рангов</span>
-                </div>
+        </a>
 
-                <div>
-                    <strong>6</strong>
-                    <span>наборов коинов</span>
-                </div>
 
-                <div>
-                    <strong>10</strong>
-                    <span>наборов кейсов</span>
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ===================================================== -->
-    <!-- NICKNAME -->
-    <!-- ===================================================== -->
-
-    <section class="player-section" id="shop">
-
-        <div class="container">
-
-            <div class="player-card">
-
-                <div class="player-icon">
-                    ⌨
-                </div>
-
-                <div>
-
-                    <span class="small-label">
-                        ПОКУПКА НА АККАУНТ
-                    </span>
-
-                    <h3>
-                        Введи Minecraft ник
-                    </h3>
-
-                    <p>
-                        На этот ник будет оформлена покупка.
-                    </p>
-
-                </div>
-
-                <div class="nickname-wrap">
-
-                    <span class="nickname-prefix">
-                        MC
-                    </span>
-
-                    <input
-                        type="text"
-                        id="nickname"
-                        placeholder="Например: Steve"
-                        maxlength="16"
-                        autocomplete="off"
-                    >
-
-                    <span class="nickname-check">
-                        ✓
-                    </span>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ===================================================== -->
-    <!-- DONATE -->
-    <!-- ===================================================== -->
-
-    <section class="shop-section" id="donate">
-
-        <div class="container">
-
-            <div class="section-title">
-
-                <span>01</span>
-
-                <div>
-
-                    <small>
-                        ПРИВИЛЕГИИ
-                    </small>
-
-                    <h2>
-                        ДОНАТ
-                    </h2>
-
-                    <p>
-                        Выбери привилегию для своего аккаунта.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="products donate-products">
-
-
-                <!-- SILVER -->
-
-                <article class="product silver-card">
-
-                    <div class="card-glow"></div>
-
-                    <div class="product-top">
-
-                        <span class="rank silver">
-                            SILVER
-                        </span>
-
-                        <span class="price">
-                            20 ₽
-                        </span>
-
-                    </div>
-
-                    <div class="rank-mark silver-mark">
-                        S
-                    </div>
-
-                    <h3>
-                        Silver
-                    </h3>
-
-                    <p>
-                        Базовая привилегия ShadowLand
-                    </p>
-
-                    <button onclick="buy('Silver', 20)">
-                        Купить
-                        <span>→</span>
-                    </button>
-
-                </article>
-
-
-                <!-- WITHER -->
-
-                <article class="product wither-card">
-
-                    <div class="card-glow"></div>
-
-                    <div class="product-top">
-
-                        <span class="rank wither">
-                            WITHER
-                        </span>
-
-                        <span class="price">
-                            70 ₽
-                        </span>
-
-                    </div>
-
-                    <div class="rank-mark wither-mark">
-                        W
-                    </div>
-
-                    <h3>
-                        Wither
-                    </h3>
-
-                    <p>
-                        Расширенные возможности
-                    </p>
-
-                    <button onclick="buy('Wither', 70)">
-                        Купить
-                        <span>→</span>
-                    </button>
-
-                </article>
-
-
-                <!-- LEGEND -->
-
-                <article class="product legend-card">
-
-                    <div class="card-glow"></div>
-
-                    <div class="product-top">
-
-                        <span class="rank legend">
-                            LEGEND
-                        </span>
-
-                        <span class="price">
-                            140 ₽
-                        </span>
-
-                    </div>
-
-                    <div class="rank-mark legend-mark">
-                        L
-                    </div>
-
-                    <h3>
-                        Legend
-                    </h3>
-
-                    <p>
-                        Привилегия высокого уровня
-                    </p>
-
-                    <button onclick="buy('Legend', 140)">
-                        Купить
-                        <span>→</span>
-                    </button>
-
-                </article>
-
-
-                <!-- IMPERATOR -->
-
-                <article class="product featured imperator-card">
-
-                    <div class="featured-label">
-                        ПОПУЛЯРНО
-                    </div>
-
-                    <div class="card-glow"></div>
-
-                    <div class="product-top">
-
-                        <span class="rank imperator">
-                            IMPERATOR
-                        </span>
-
-                        <span class="price">
-                            249 ₽
-                        </span>
-
-                    </div>
-
-                    <div class="rank-mark imperator-mark">
-                        I
-                    </div>
-
-                    <h3>
-                        Imperator
-                    </h3>
-
-                    <p>
-                        Максимум возможностей для игрока
-                    </p>
-
-                    <button onclick="buy('Imperator', 249)">
-                        Купить
-                        <span>→</span>
-                    </button>
-
-                </article>
-
-
-                <!-- GOD -->
-
-                <article class="product god-card">
-
-                    <div class="card-glow"></div>
-
-                    <div class="product-top">
-
-                        <span class="rank god">
-                            GOD
-                        </span>
-
-                        <span class="price">
-                            599 ₽
-                        </span>
-
-                    </div>
-
-                    <div class="rank-mark god-mark">
-                        G
-                    </div>
-
-                    <h3>
-                        God
-                    </h3>
-
-                    <p>
-                        Главная привилегия ShadowLand
-                    </p>
-
-                    <button onclick="buy('God', 599)">
-                        Купить
-                        <span>→</span>
-                    </button>
-
-                </article>
-
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ===================================================== -->
-    <!-- COINS -->
-    <!-- ===================================================== -->
-
-    <section class="shop-section dark" id="coins">
-
-        <div class="container">
-
-            <div class="section-title">
-
-                <span>02</span>
-
-                <div>
-
-                    <small>
-                        ВАЛЮТА СЕРВЕРА
-                    </small>
-
-                    <h2>
-                        КОИНЫ
-                    </h2>
-
-                    <p>
-                        Пополняй баланс и покупай уникальные товары.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="products coin-products">
-
-
-                <article class="product coin-card">
-
-                    <div class="coin-orb">
-                        ◈
-                    </div>
-
-                    <div class="product-top">
-
-                        <span class="rank coin">
-                            20 COINS
-                        </span>
-
-                        <span class="price">
-                            20 ₽
-                        </span>
-
-                    </div>
-
-                    <h3>
-                        20 коинов
-                    </h3>
-
-                    <p>
-                        Получишь 20 коинов
-                    </p>
-
-                    <button onclick="buy('20 коинов', 20)">
-                        Купить
-                        <span>→</span>
-                    </button>
-
-                </article>
-
-
-                <article class="product coin-card">
-
-                    <div class="coin-orb">
-                        ◈
-                    </div>
-
-                    <div class="product-top">
-
-                        <span class="rank coin">
-                            60 COINS
-                        </span>
-
-                        <span class="price">
-                            50 ₽
-                        </span>
-
-                    </div>
-
-                    <h3>
-                        50 + 10 коинов
-                    </h3>
-
-                    <p>
-                        Всего 60 коинов
-                    </p>
-
-                    <button onclick="buy('50 + 10 коинов', 50)">
-                        Купить
-                        <span>→</span>
-                    </button>
-
-                </article>
-
-
-                <article class="product coin-card">
-
-                    <div class="coin-orb">
-                        ◈
-                    </div>
-
-                    <div class="product-top">
-
-                        <span class="rank coin">
-                            140 COINS
-                        </span>
-
-                        <span class="price">
-                            100 ₽
-                        </span>
-
-                    </div>
-
-                    <h3>
-                        100 + 40 коинов
-                    </h3>
-
-                    <p>
-                        Всего 140 коинов
-                    </p>
-
-                    <button onclick="buy('100 + 40 коинов', 100)">
-                        Купить
-                        <span>→</span>
-                    </button>
-
-                </article>
-
-
-                <article class="product coin-card">
-
-                    <div class="coin-orb">
-                        ◈
-                    </div>
-
-                    <div class="product-top">
-
-                        <span class="rank coin">
-                            620 COINS
-                        </span>
-
-                        <span class="price">
-                            469 ₽
-                        </span>
-
-                    </div>
-
-                    <h3>
-                        500 + 120 коинов
-                    </h3>
-
-                    <p>
-                        Всего 620 коинов
-                    </p>
-
-                    <button onclick="buy('500 + 120 коинов', 469)">
-                        Купить
-                        <span>→</span>
-                    </button>
-
-                </article>
-
-
-                <article class="product coin-card">
-
-                    <div class="coin-orb">
-                        ◈
-                    </div>
-
-                    <div class="product-top">
-
-                        <span class="rank coin">
-                            1800 COINS
-                        </span>
-
-                        <span class="price">
-                            899 ₽
-                        </span>
-
-                    </div>
-
-                    <h3>
-                        1000 + 800 коинов
-                    </h3>
-
-                    <p>
-                        Всего 1800 коинов
-                    </p>
-
-                    <button onclick="buy('1000 + 800 коинов', 899)">
-                        Купить
-                        <span>→</span>
-                    </button>
-
-                </article>
-
-
-                <article class="product coin-card">
-
-                    <div class="coin-orb">
-                        ◈
-                    </div>
-
-                    <div class="product-top">
-
-                        <span class="rank coin">
-                            5000 COINS
-                        </span>
-
-                        <span class="price">
-                            2499 ₽
-                        </span>
-
-                    </div>
-
-                    <h3>
-                        3000 + 2000 коинов
-                    </h3>
-
-                    <p>
-                        Всего 5000 коинов
-                    </p>
-
-                    <button onclick="buy('3000 + 2000 коинов', 2499)">
-                        Купить
-                        <span>→</span>
-                    </button>
-
-                </article>
-
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ===================================================== -->
-    <!-- CASES -->
-    <!-- ===================================================== -->
-
-    <section class="shop-section" id="cases">
-
-        <div class="container">
-
-            <div class="section-title">
-
-                <span>03</span>
-
-                <div>
-
-                    <small>
-                        СЛУЧАЙНЫЕ НАГРАДЫ
-                    </small>
-
-                    <h2>
-                        КЕЙСЫ
-                    </h2>
-
-                    <p>
-                        Открывай кейсы и получай награды.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="case-groups">
-
-
-                <!-- DONATE CASES -->
-
-                <div class="case-group">
-
-                    <h3>
-                        ◆ Кейсы с донатом
-                    </h3>
-
-                    <div class="case-products">
-
-
-                        <article class="product small">
-
-                            <div class="case-icon purple">
-                                ◆
-                            </div>
-
-                            <h3>
-                                3 кейса
-                            </h3>
-
-                            <strong>
-                                99 ₽
-                            </strong>
-
-                            <button onclick="buy('3 кейса с донатом', 99)">
-                                Купить
-                                <span>→</span>
-                            </button>
-
-                        </article>
-
-
-                        <article class="product small">
-
-                            <div class="case-icon purple">
-                                ◆
-                            </div>
-
-                            <h3>
-                                10 кейсов
-                            </h3>
-
-                            <strong>
-                                279 ₽
-                            </strong>
-
-                            <button onclick="buy('10 кейсов с донатом', 279)">
-                                Купить
-                                <span>→</span>
-                            </button>
-
-                        </article>
-
-
-                        <article class="product small">
-
-                            <div class="case-icon purple">
-                                ◆
-                            </div>
-
-                            <h3>
-                                30 кейсов
-                            </h3>
-
-                            <strong>
-                                699 ₽
-                            </strong>
-
-                            <button onclick="buy('30 кейсов с донатом', 699)">
-                                Купить
-                                <span>→</span>
-                            </button>
-
-                        </article>
-
-
-                    </div>
-
-                </div>
-
-
-                <!-- MONEY CASES -->
-
-                <div class="case-group">
-
-                    <h3>
-                        ● Кейсы с монетами
-                    </h3>
-
-                    <div class="case-products">
-
-
-                        <article class="product small">
-
-                            <div class="case-icon cyan">
-                                ●
-                            </div>
-
-                            <h3>
-                                5 кейсов
-                            </h3>
-
-                            <strong>
-                                35 ₽
-                            </strong>
-
-                            <button onclick="buy('5 кейсов с монетами', 35)">
-                                Купить
-                                <span>→</span>
-                            </button>
-
-                        </article>
-
-
-                        <article class="product small">
-
-                            <div class="case-icon cyan">
-                                ●
-                            </div>
-
-                            <h3>
-                                10 кейсов
-                            </h3>
-
-                            <strong>
-                                65 ₽
-                            </strong>
-
-                            <button onclick="buy('10 кейсов с монетами', 65)">
-                                Купить
-                                <span>→</span>
-                            </button>
-
-                        </article>
-
-
-                        <article class="product small">
-
-                            <div class="case-icon cyan">
-                                ●
-                            </div>
-
-                            <h3>
-                                25 кейсов
-                            </h3>
-
-                            <strong>
-                                150 ₽
-                            </strong>
-
-                            <button onclick="buy('25 кейсов с монетами', 150)">
-                                Купить
-                                <span>→</span>
-                            </button>
-
-                        </article>
-
-
-                    </div>
-
-                </div>
-
-
-                <!-- COIN CASES -->
-
-                <div class="case-group">
-
-                    <h3>
-                        ✦ Кейсы с коинами
-                    </h3>
-
-                    <div class="case-products four">
-
-
-                        <article class="product small">
-
-                            <div class="case-icon gold">
-                                ✦
-                            </div>
-
-                            <h3>
-                                1 кейс
-                            </h3>
-
-                            <strong>
-                                40 ₽
-                            </strong>
-
-                            <button onclick="buy('1 кейс с коинами', 40)">
-                                Купить
-                                <span>→</span>
-                            </button>
-
-                        </article>
-
-
-                        <article class="product small">
-
-                            <div class="case-icon gold">
-                                ✦
-                            </div>
-
-                            <h3>
-                                3 кейса
-                            </h3>
-
-                            <strong>
-                                99 ₽
-                            </strong>
-
-                            <button onclick="buy('3 кейса с коинами', 99)">
-                                Купить
-                                <span>→</span>
-                            </button>
-
-                        </article>
-
-
-                        <article class="product small">
-
-                            <div class="case-icon gold">
-                                ✦
-                            </div>
-
-                            <h3>
-                                5 кейсов
-                            </h3>
-
-                            <strong>
-                                165 ₽
-                            </strong>
-
-                            <button onclick="buy('5 кейсов с коинами', 165)">
-                                Купить
-                                <span>→</span>
-                            </button>
-
-                        </article>
-
-
-                        <article class="product small">
-
-                            <div class="case-icon gold">
-                                ✦
-                            </div>
-
-                            <h3>
-                                10 кейсов
-                            </h3>
-
-                            <strong>
-                                289 ₽
-                            </strong>
-
-                            <button onclick="buy('10 кейсов с коинами', 289)">
-                                Купить
-                                <span>→</span>
-                            </button>
-
-                        </article>
-
-
-                    </div>
-
-                </div>
-
-
-                <!-- COMING SOON -->
-
-                <div class="coming-soon">
-
-                    <span>
-                        СКОРО
-                    </span>
-
-                    <h3>
-                        Кейсы с вещами
-                    </h3>
-
-                    <p>
-                        Новые уникальные предметы уже готовятся.
-                    </p>
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- ===================================================== -->
-    <!-- WHY -->
-    <!-- ===================================================== -->
-
-    <section class="why" id="why">
-
-        <div class="container">
-
-            <div class="section-title">
-
-                <span>04</span>
-
-                <div>
-
-                    <small>
-                        SHADOWLAND
-                    </small>
-
-                    <h2>
-                        СОЗДАНО ДЛЯ ИГРОКОВ
-                    </h2>
-
-                    <p>
-                        Всё необходимое для удобной покупки в одном месте.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="advantages">
-
-
-                <div>
-
-                    <strong>
-                        01
-                    </strong>
-
-                    <div class="advantage-icon">
-                        ⚡
-                    </div>
-
-                    <h3>
-                        Быстрая выдача
-                    </h3>
-
-                    <p>
-                        Покупки выдаются на указанный Minecraft аккаунт.
-                    </p>
-
-                </div>
-
-
-                <div>
-
-                    <strong>
-                        02
-                    </strong>
-
-                    <div class="advantage-icon">
-                        ◆
-                    </div>
-
-                    <h3>
-                        Безопасная оплата
-                    </h3>
-
-                    <p>
-                        Оплата проходит через подключённую платёжную систему.
-                    </p>
-
-                </div>
-
-
-                <div>
-
-                    <strong>
-                        03
-                    </strong>
-
-                    <div class="advantage-icon">
-                        ✦
-                    </div>
-
-                    <h3>
-                        Уникальный контент
-                    </h3>
-
-                    <p>
-                        Получай эксклюзивные возможности ShadowLand.
-                    </p>
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-    </section>
-
-</main>
-
-
-<!-- ========================================================= -->
-<!-- FOOTER -->
-<!-- ========================================================= -->
-
-<footer>
-
-    <div class="container footer-content">
-
-        <div>
-
-            <div class="footer-logo">
-                SHADOWLAND
-            </div>
-
-            <p>
-                Официальный магазин Minecraft сервера ShadowLand.
-            </p>
-
-        </div>
-
-
-        <div class="footer-links">
+        <nav>
 
             <a href="#donate">
                 Донат
@@ -1140,23 +77,1589 @@
                 Кейсы
             </a>
 
-            <button onclick="copyIP()">
-                shadowland.land
-            </button>
+            <a href="#why">
+                О сервере
+            </a>
+
+        </nav>
+
+
+        <a
+            href="#shop"
+            class="nav-button"
+        >
+            МАГАЗИН
+            <span>→</span>
+        </a>
+
+
+    </div>
+
+</header>
+
+
+
+<main id="top">
+
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+
+<section class="hero">
+
+
+    <!-- BACKGROUND -->
+
+    <div class="hero-background">
+
+
+        <div class="hero-word hero-word-one">
+            SHADOW
+        </div>
+
+        <div class="hero-word hero-word-two">
+            LAND
+        </div>
+
+
+        <div class="hero-grid"></div>
+
+
+        <div class="hero-line line-one"></div>
+
+        <div class="hero-line line-two"></div>
+
+        <div class="hero-line line-three"></div>
+
+
+        <div class="hero-light light-green"></div>
+
+        <div class="hero-light light-purple"></div>
+
+
+    </div>
+
+
+
+    <!-- CONTENT -->
+
+    <div class="container hero-content">
+
+
+        <div class="online">
+
+            <span class="online-dot"></span>
+
+            SHADOWLAND ONLINE
 
         </div>
 
+
+        <div class="hero-mini">
+
+            GRIEF
+
+            <span>•</span>
+
+            SURVIVAL
+
+            <span>•</span>
+
+            PVP
+
+        </div>
+
+
+        <h1>
+
+            <span class="shadow-text">
+                SHADOW
+            </span>
+
+            <span class="land-text">
+                LAND
+            </span>
+
+        </h1>
+
+
+        <div class="hero-divider">
+
+            <span></span>
+
+            <i></i>
+
+            <span></span>
+
+        </div>
+
+
+        <h2>
+            Официальный магазин сервера
+        </h2>
+
+
+        <p class="hero-description">
+
+            Донат, коины, кейсы и уникальные возможности
+            для игроков ShadowLand.
+
+        </p>
+
+
+        <div class="hero-buttons">
+
+
+            <a
+                href="#shop"
+                class="hero-button main-button"
+            >
+
+                ОТКРЫТЬ МАГАЗИН
+
+                <span>
+                    →
+                </span>
+
+            </a>
+
+
+            <button
+                class="hero-button ip-button"
+                onclick="copyIP()"
+            >
+
+                СКОПИРОВАТЬ IP
+
+                <span>
+                    ⧉
+                </span>
+
+            </button>
+
+
+        </div>
+
+
+
+        <!-- SERVER -->
+
+        <button
+            class="server-box"
+            onclick="copyIP()"
+            type="button"
+        >
+
+            <div class="server-status">
+
+                <span class="status-dot"></span>
+
+                ONLINE
+
+            </div>
+
+
+            <div class="server-address">
+
+                <small>
+                    IP СЕРВЕРА
+                </small>
+
+                <strong>
+                    shadowland.land
+                </strong>
+
+            </div>
+
+
+            <div class="server-copy">
+                НАЖМИ ДЛЯ КОПИРОВАНИЯ
+            </div>
+
+
+        </button>
+
+
     </div>
+
+
+
+    <a
+        href="#shop"
+        class="scroll-down"
+    >
+
+        <span>
+            ↓
+        </span>
+
+        МАГАЗИН
+
+    </a>
+
+
+</section>
+
+
+
+<!-- ============================================================
+     NICKNAME
+============================================================ -->
+
+<section
+    class="player-section"
+    id="shop"
+>
+
+
+    <div class="container">
+
+
+        <div class="player-card">
+
+
+            <div class="player-icon">
+                S
+            </div>
+
+
+            <div class="player-info">
+
+
+                <span>
+                    ПОКУПКА НА АККАУНТ
+                </span>
+
+
+                <h3>
+                    Введи Minecraft ник
+                </h3>
+
+
+                <p>
+                    На этот аккаунт будет оформлена покупка.
+                </p>
+
+
+            </div>
+
+
+
+            <div class="nickname-wrap">
+
+
+                <span class="nickname-prefix">
+                    MC
+                </span>
+
+
+                <input
+                    type="text"
+                    id="nickname"
+                    placeholder="Например: Steve"
+                    maxlength="16"
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+
+
+                <span class="nickname-check">
+                    ✓
+                </span>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ============================================================
+     DONATE
+============================================================ -->
+
+<section
+    class="shop-section"
+    id="donate"
+>
+
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+
+            <div class="section-number">
+                01
+            </div>
+
+
+            <div>
+
+
+                <span class="section-small">
+                    ПРИВИЛЕГИИ
+                </span>
+
+
+                <h2>
+                    ДОНАТ
+                </h2>
+
+
+                <p>
+                    Выбери привилегию для своего аккаунта.
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="donate-grid">
+
+
+            <!-- SILVER -->
+
+            <article class="donate-card silver-card">
+
+
+                <div class="card-light"></div>
+
+
+                <div class="rank-top">
+
+
+                    <span class="rank silver">
+                        SILVER
+                    </span>
+
+
+                    <span class="price">
+                        20 ₽
+                    </span>
+
+
+                </div>
+
+
+                <div class="rank-symbol silver-symbol">
+                    S
+                </div>
+
+
+                <h3>
+                    Silver
+                </h3>
+
+
+                <p>
+                    Базовая привилегия ShadowLand
+                </p>
+
+
+                <button
+                    onclick="buy('Silver', 20)"
+                >
+
+                    Купить
+
+                    <span>→</span>
+
+                </button>
+
+
+            </article>
+
+
+
+            <!-- WITHER -->
+
+            <article class="donate-card wither-card">
+
+
+                <div class="card-light"></div>
+
+
+                <div class="rank-top">
+
+
+                    <span class="rank wither">
+                        WITHER
+                    </span>
+
+
+                    <span class="price">
+                        70 ₽
+                    </span>
+
+
+                </div>
+
+
+                <div class="rank-symbol wither-symbol">
+                    W
+                </div>
+
+
+                <h3>
+                    Wither
+                </h3>
+
+
+                <p>
+                    Расширенные возможности
+                </p>
+
+
+                <button
+                    onclick="buy('Wither', 70)"
+                >
+
+                    Купить
+
+                    <span>→</span>
+
+                </button>
+
+
+            </article>
+
+
+
+            <!-- LEGEND -->
+
+            <article class="donate-card legend-card">
+
+
+                <div class="card-light"></div>
+
+
+                <div class="rank-top">
+
+
+                    <span class="rank legend">
+                        LEGEND
+                    </span>
+
+
+                    <span class="price">
+                        140 ₽
+                    </span>
+
+
+                </div>
+
+
+                <div class="rank-symbol legend-symbol">
+                    L
+                </div>
+
+
+                <h3>
+                    Legend
+                </h3>
+
+
+                <p>
+                    Привилегия высокого уровня
+                </p>
+
+
+                <button
+                    onclick="buy('Legend', 140)"
+                >
+
+                    Купить
+
+                    <span>→</span>
+
+                </button>
+
+
+            </article>
+
+
+
+            <!-- IMPERATOR -->
+
+            <article class="donate-card imperator-card featured">
+
+
+                <div class="popular">
+                    ПОПУЛЯРНО
+                </div>
+
+
+                <div class="card-light"></div>
+
+
+                <div class="rank-top">
+
+
+                    <span class="rank imperator">
+                        IMPERATOR
+                    </span>
+
+
+                    <span class="price">
+                        249 ₽
+                    </span>
+
+
+                </div>
+
+
+                <div class="rank-symbol imperator-symbol">
+                    I
+                </div>
+
+
+                <h3>
+                    Imperator
+                </h3>
+
+
+                <p>
+                    Максимум возможностей для игрока
+                </p>
+
+
+                <button
+                    onclick="buy('Imperator', 249)"
+                >
+
+                    Купить
+
+                    <span>→</span>
+
+                </button>
+
+
+            </article>
+
+
+
+            <!-- GOD -->
+
+            <article class="donate-card god-card">
+
+
+                <div class="card-light"></div>
+
+
+                <div class="rank-top">
+
+
+                    <span class="rank god">
+                        GOD
+                    </span>
+
+
+                    <span class="price">
+                        599 ₽
+                    </span>
+
+
+                </div>
+
+
+                <div class="rank-symbol god-symbol">
+                    G
+                </div>
+
+
+                <h3>
+                    God
+                </h3>
+
+
+                <p>
+                    Главная привилегия ShadowLand
+                </p>
+
+
+                <button
+                    onclick="buy('God', 599)"
+                >
+
+                    Купить
+
+                    <span>→</span>
+
+                </button>
+
+
+            </article>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ============================================================
+     COINS
+============================================================ -->
+
+<section
+    class="shop-section dark-section"
+    id="coins"
+>
+
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+
+            <div class="section-number">
+                02
+            </div>
+
+
+            <div>
+
+
+                <span class="section-small">
+                    ВАЛЮТА СЕРВЕРА
+                </span>
+
+
+                <h2>
+                    КОИНЫ
+                </h2>
+
+
+                <p>
+                    Пополняй баланс и покупай уникальные товары.
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="coins-grid">
+
+
+            <article class="coin-card">
+
+
+                <div class="coin-icon">
+                    ◈
+                </div>
+
+
+                <div>
+
+
+                    <span class="coin-count">
+                        20 COINS
+                    </span>
+
+
+                    <h3>
+                        20 коинов
+                    </h3>
+
+
+                    <p>
+                        Получишь 20 коинов
+                    </p>
+
+
+                </div>
+
+
+                <strong>
+                    20 ₽
+                </strong>
+
+
+                <button
+                    onclick="buy('20 коинов', 20)"
+                >
+                    Купить →
+                </button>
+
+
+            </article>
+
+
+
+            <article class="coin-card">
+
+
+                <div class="coin-icon">
+                    ◈
+                </div>
+
+
+                <div>
+
+
+                    <span class="coin-count">
+                        60 COINS
+                    </span>
+
+
+                    <h3>
+                        50 + 10 коинов
+                    </h3>
+
+
+                    <p>
+                        Всего 60 коинов
+                    </p>
+
+
+                </div>
+
+
+                <strong>
+                    50 ₽
+                </strong>
+
+
+                <button
+                    onclick="buy('50 + 10 коинов', 50)"
+                >
+                    Купить →
+                </button>
+
+
+            </article>
+
+
+
+            <article class="coin-card">
+
+
+                <div class="coin-icon">
+                    ◈
+                </div>
+
+
+                <div>
+
+
+                    <span class="coin-count">
+                        140 COINS
+                    </span>
+
+
+                    <h3>
+                        100 + 40 коинов
+                    </h3>
+
+
+                    <p>
+                        Всего 140 коинов
+                    </p>
+
+
+                </div>
+
+
+                <strong>
+                    100 ₽
+                </strong>
+
+
+                <button
+                    onclick="buy('100 + 40 коинов', 100)"
+                >
+                    Купить →
+                </button>
+
+
+            </article>
+
+
+
+            <article class="coin-card">
+
+
+                <div class="coin-icon">
+                    ◈
+                </div>
+
+
+                <div>
+
+
+                    <span class="coin-count">
+                        620 COINS
+                    </span>
+
+
+                    <h3>
+                        500 + 120 коинов
+                    </h3>
+
+
+                    <p>
+                        Всего 620 коинов
+                    </p>
+
+
+                </div>
+
+
+                <strong>
+                    469 ₽
+                </strong>
+
+
+                <button
+                    onclick="buy('500 + 120 коинов', 469)"
+                >
+                    Купить →
+                </button>
+
+
+            </article>
+
+
+
+            <article class="coin-card">
+
+
+                <div class="coin-icon">
+                    ◈
+                </div>
+
+
+                <div>
+
+
+                    <span class="coin-count">
+                        1800 COINS
+                    </span>
+
+
+                    <h3>
+                        1000 + 800 коинов
+                    </h3>
+
+
+                    <p>
+                        Всего 1800 коинов
+                    </p>
+
+
+                </div>
+
+
+                <strong>
+                    899 ₽
+                </strong>
+
+
+                <button
+                    onclick="buy('1000 + 800 коинов', 899)"
+                >
+                    Купить →
+                </button>
+
+
+            </article>
+
+
+
+            <article class="coin-card">
+
+
+                <div class="coin-icon">
+                    ◈
+                </div>
+
+
+                <div>
+
+
+                    <span class="coin-count">
+                        5000 COINS
+                    </span>
+
+
+                    <h3>
+                        3000 + 2000 коинов
+                    </h3>
+
+
+                    <p>
+                        Всего 5000 коинов
+                    </p>
+
+
+                </div>
+
+
+                <strong>
+                    2499 ₽
+                </strong>
+
+
+                <button
+                    onclick="buy('3000 + 2000 коинов', 2499)"
+                >
+                    Купить →
+                </button>
+
+
+            </article>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ============================================================
+     CASES
+============================================================ -->
+
+<section
+    class="shop-section"
+    id="cases"
+>
+
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+
+            <div class="section-number">
+                03
+            </div>
+
+
+            <div>
+
+
+                <span class="section-small">
+                    СЛУЧАЙНЫЕ НАГРАДЫ
+                </span>
+
+
+                <h2>
+                    КЕЙСЫ
+                </h2>
+
+
+                <p>
+                    Открывай кейсы и забирай награды.
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- DONATE CASES -->
+
+        <div class="case-block">
+
+
+            <h3>
+                <span class="case-purple">
+                    ◆
+                </span>
+
+                Кейсы с донатом
+            </h3>
+
+
+            <div class="case-grid">
+
+
+                <article class="case-card">
+
+
+                    <div class="case-icon case-purple">
+                        ◆
+                    </div>
+
+
+                    <h4>
+                        3 кейса
+                    </h4>
+
+
+                    <strong>
+                        99 ₽
+                    </strong>
+
+
+                    <button
+                        onclick="buy('3 кейса с донатом', 99)"
+                    >
+                        Купить →
+                    </button>
+
+
+                </article>
+
+
+
+                <article class="case-card">
+
+
+                    <div class="case-icon case-purple">
+                        ◆
+                    </div>
+
+
+                    <h4>
+                        10 кейсов
+                    </h4>
+
+
+                    <strong>
+                        279 ₽
+                    </strong>
+
+
+                    <button
+                        onclick="buy('10 кейсов с донатом', 279)"
+                    >
+                        Купить →
+                    </button>
+
+
+                </article>
+
+
+
+                <article class="case-card">
+
+
+                    <div class="case-icon case-purple">
+                        ◆
+                    </div>
+
+
+                    <h4>
+                        30 кейсов
+                    </h4>
+
+
+                    <strong>
+                        699 ₽
+                    </strong>
+
+
+                    <button
+                        onclick="buy('30 кейсов с донатом', 699)"
+                    >
+                        Купить →
+                    </button>
+
+
+                </article>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- MONEY CASES -->
+
+        <div class="case-block">
+
+
+            <h3>
+                <span class="case-blue">
+                    ●
+                </span>
+
+                Кейсы с монетами
+            </h3>
+
+
+            <div class="case-grid">
+
+
+                <article class="case-card">
+
+
+                    <div class="case-icon case-blue">
+                        ●
+                    </div>
+
+
+                    <h4>
+                        5 кейсов
+                    </h4>
+
+
+                    <strong>
+                        35 ₽
+                    </strong>
+
+
+                    <button
+                        onclick="buy('5 кейсов с монетами', 35)"
+                    >
+                        Купить →
+                    </button>
+
+
+                </article>
+
+
+
+                <article class="case-card">
+
+
+                    <div class="case-icon case-blue">
+                        ●
+                    </div>
+
+
+                    <h4>
+                        10 кейсов
+                    </h4>
+
+
+                    <strong>
+                        65 ₽
+                    </strong>
+
+
+                    <button
+                        onclick="buy('10 кейсов с монетами', 65)"
+                    >
+                        Купить →
+                    </button>
+
+
+                </article>
+
+
+
+                <article class="case-card">
+
+
+                    <div class="case-icon case-blue">
+                        ●
+                    </div>
+
+
+                    <h4>
+                        25 кейсов
+                    </h4>
+
+
+                    <strong>
+                        150 ₽
+                    </strong>
+
+
+                    <button
+                        onclick="buy('25 кейсов с монетами', 150)"
+                    >
+                        Купить →
+                    </button>
+
+
+                </article>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- COIN CASES -->
+
+        <div class="case-block">
+
+
+            <h3>
+                <span class="case-gold">
+                    ✦
+                </span>
+
+                Кейсы с коинами
+            </h3>
+
+
+            <div class="case-grid four">
+
+
+                <article class="case-card">
+
+                    <div class="case-icon case-gold">
+                        ✦
+                    </div>
+
+                    <h4>
+                        1 кейс
+                    </h4>
+
+                    <strong>
+                        40 ₽
+                    </strong>
+
+                    <button
+                        onclick="buy('1 кейс с коинами', 40)"
+                    >
+                        Купить →
+                    </button>
+
+                </article>
+
+
+                <article class="case-card">
+
+                    <div class="case-icon case-gold">
+                        ✦
+                    </div>
+
+                    <h4>
+                        3 кейса
+                    </h4>
+
+                    <strong>
+                        99 ₽
+                    </strong>
+
+                    <button
+                        onclick="buy('3 кейса с коинами', 99)"
+                    >
+                        Купить →
+                    </button>
+
+                </article>
+
+
+                <article class="case-card">
+
+                    <div class="case-icon case-gold">
+                        ✦
+                    </div>
+
+                    <h4>
+                        5 кейсов
+                    </h4>
+
+                    <strong>
+                        165 ₽
+                    </strong>
+
+                    <button
+                        onclick="buy('5 кейсов с коинами', 165)"
+                    >
+                        Купить →
+                    </button>
+
+                </article>
+
+
+                <article class="case-card">
+
+                    <div class="case-icon case-gold">
+                        ✦
+                    </div>
+
+                    <h4>
+                        10 кейсов
+                    </h4>
+
+                    <strong>
+                        289 ₽
+                    </strong>
+
+                    <button
+                        onclick="buy('10 кейсов с коинами', 289)"
+                    >
+                        Купить →
+                    </button>
+
+                </article>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="coming-soon">
+
+            <span>
+                СКОРО
+            </span>
+
+            <h3>
+                Кейсы с вещами
+            </h3>
+
+            <p>
+                Новые уникальные предметы уже готовятся.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ============================================================
+     WHY
+============================================================ -->
+
+<section
+    class="why"
+    id="why"
+>
+
+
+    <div class="container">
+
+
+        <div class="section-heading">
+
+
+            <div class="section-number">
+                04
+            </div>
+
+
+            <div>
+
+
+                <span class="section-small">
+                    SHADOWLAND
+                </span>
+
+
+                <h2>
+                    СОЗДАНО ДЛЯ ИГРОКОВ
+                </h2>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="advantages">
+
+
+            <article>
+
+
+                <span>
+                    01
+                </span>
+
+
+                <div class="advantage-symbol">
+                    ⚡
+                </div>
+
+
+                <h3>
+                    Быстрая выдача
+                </h3>
+
+
+                <p>
+                    Покупки выдаются на указанный Minecraft аккаунт.
+                </p>
+
+
+            </article>
+
+
+
+            <article>
+
+
+                <span>
+                    02
+                </span>
+
+
+                <div class="advantage-symbol">
+                    ◆
+                </div>
+
+
+                <h3>
+                    Безопасная оплата
+                </h3>
+
+
+                <p>
+                    Оплата проходит через подключённую платёжную систему.
+                </p>
+
+
+            </article>
+
+
+
+            <article>
+
+
+                <span>
+                    03
+                </span>
+
+
+                <div class="advantage-symbol">
+                    ✦
+                </div>
+
+
+                <h3>
+                    Уникальный контент
+                </h3>
+
+
+                <p>
+                    Эксклюзивные возможности сервера ShadowLand.
+                </p>
+
+
+            </article>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+</main>
+
+
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+
+<footer>
+
+
+    <div class="container footer-content">
+
+
+        <div>
+
+
+            <div class="footer-logo">
+                SHADOWLAND
+            </div>
+
+
+            <p>
+                Официальный магазин Minecraft сервера ShadowLand.
+            </p>
+
+
+        </div>
+
+
+
+        <div class="footer-links">
+
+
+            <a href="#donate">
+                Донат
+            </a>
+
+
+            <a href="#coins">
+                Коины
+            </a>
+
+
+            <a href="#cases">
+                Кейсы
+            </a>
+
+
+            <button
+                onclick="copyIP()"
+            >
+                shadowland.land
+            </button>
+
+
+        </div>
+
+
+    </div>
+
 
 
     <div class="copyright">
-        © 2026 ShadowLand. Все права защищены.
+
+        © 2026 ShadowLand.
+        Все права защищены.
+
     </div>
+
 
 </footer>
 
 
+
 <script src="script.js"></script>
 
+
 </body>
+
 </html>
