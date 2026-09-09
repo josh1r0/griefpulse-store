@@ -1,9 +1,16 @@
-```javascript
 // ============================================================
-// NOVEXIA STORE
+// SHADOWLAND STORE
 // ============================================================
 
-const SERVER_IP = "play.novexia.ru";
+const SERVER_IP = "shadowland.land";
+
+// ============================================================
+// CRAFTINGSTORE LINKS
+// ============================================================
+
+const PRODUCT_LINKS = {
+    "Silver": "https://shadowlandmc.craftingstore.net/package/1592426"
+};
 
 // ============================================================
 // COPY SERVER IP
@@ -40,22 +47,24 @@ function buy(product, price) {
         return;
     }
 
-    /*
-        Сейчас здесь находится демонстрационная покупка.
+    const productLink = PRODUCT_LINKS[product];
 
-        Когда будет подключён Tebex,
-        эту функцию заменим на реальную ссылку
-        оплаты конкретного товара.
-    */
+    if (!productLink) {
+        showMessage("Этот товар пока ещё не подключён к оплате.");
+        return;
+    }
 
     showMessage(
-        "Покупка: " +
+        "Переходим к покупке " +
         product +
-        " | " +
+        " за " +
         price +
-        " ₽ | Игрок: " +
-        nickname
+        " ₽"
     );
+
+    setTimeout(() => {
+        window.location.href = productLink;
+    }, 500);
 }
 
 // ============================================================
@@ -90,7 +99,8 @@ function showMessage(text) {
         boxShadow: "0 15px 40px rgba(0,0,0,.4)",
         fontSize: "14px",
         fontWeight: "700",
-        textAlign: "center"
+        textAlign: "center",
+        opacity: "1"
     });
 
     document.body.appendChild(message);
@@ -170,4 +180,3 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 });
-```
