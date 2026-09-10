@@ -618,3 +618,32 @@ document.addEventListener(
 
     }
 );
+function showShopTab(tabId, button) {
+    const tabs = ["donate-tab", "coins-tab", "cases-tab"];
+
+    tabs.forEach(id => {
+        const section = document.getElementById(id);
+
+        if (section) {
+            section.style.display = id === tabId ? "block" : "none";
+        }
+    });
+
+    document.querySelectorAll(".shop-tab").forEach(tab => {
+        tab.classList.remove("active");
+    });
+
+    if (button) {
+        button.classList.add("active");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const donate = document.getElementById("donate-tab");
+    const coins = document.getElementById("coins-tab");
+    const cases = document.getElementById("cases-tab");
+
+    if (donate) donate.style.display = "block";
+    if (coins) coins.style.display = "none";
+    if (cases) cases.style.display = "none";
+});
