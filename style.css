@@ -4041,3 +4041,63 @@ footer {
         padding: 20px;
     }
 }
+/* ================================
+   SHOP TABS
+================================ */
+
+.shop-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 0 0 34px;
+    flex-wrap: wrap;
+}
+
+.shop-tab {
+    min-width: 140px;
+    padding: 14px 24px;
+
+    border: 1px solid rgba(66, 255, 138, 0.22);
+    border-radius: 12px;
+
+    background: rgba(10, 18, 15, 0.75);
+    color: #8b949e;
+
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.shop-tab:hover {
+    color: #ffffff;
+    border-color: rgba(66, 255, 138, 0.55);
+    background: rgba(66, 255, 138, 0.08);
+    transform: translateY(-2px);
+}
+
+.shop-tab.active {
+    color: #07110b;
+    background: #42ff8a;
+    border-color: #42ff8a;
+
+    box-shadow:
+        0 0 18px rgba(66, 255, 138, 0.28),
+        0 0 40px rgba(66, 255, 138, 0.10);
+}
+
+@media (max-width: 650px) {
+    .shop-tabs {
+        gap: 8px;
+        margin-bottom: 24px;
+    }
+
+    .shop-tab {
+        min-width: 0;
+        flex: 1 1 30%;
+        padding: 12px 10px;
+        font-size: 11px;
+    }
+}
