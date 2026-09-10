@@ -4,17 +4,7 @@
 
 const SERVER_IP = "shadowland.land";
 
-
-// ============================================================
-// CRAFTINGSTORE LINKS
-// ============================================================
-
-const PRODUCT_LINKS = {
-
-    "Silver":
-        "https://shadowlandmc.craftingstore.net/package/1592426"
-
-};
+const DONATEPAY_URL = "https://donatepay.ru/don/1531880";
 
 
 // ============================================================
@@ -29,21 +19,17 @@ async function copyIP() {
             SERVER_IP
         );
 
-
         showMessage(
             "IP скопирован: " +
             SERVER_IP
         );
 
-
     } catch (error) {
-
 
         showMessage(
             "IP сервера: " +
             SERVER_IP
         );
-
 
     }
 
@@ -56,19 +42,14 @@ async function copyIP() {
 
 function buy(product, price) {
 
-
     const nicknameInput =
         document.getElementById(
             "nickname"
         );
 
-
     if (!nicknameInput) {
-
         return;
-
     }
-
 
     const nickname =
         nicknameInput.value.trim();
@@ -80,17 +61,13 @@ function buy(product, price) {
 
     if (!nickname) {
 
-
         nicknameInput.focus();
-
 
         showMessage(
             "Сначала введи свой Minecraft ник!"
         );
 
-
         return;
-
     }
 
 
@@ -104,17 +81,13 @@ function buy(product, price) {
         )
     ) {
 
-
         nicknameInput.focus();
-
 
         showMessage(
             "Проверь Minecraft ник. Допустимо 3–16 символов."
         );
 
-
         return;
-
     }
 
 
@@ -127,57 +100,49 @@ function buy(product, price) {
         nickname
     );
 
+    localStorage.setItem(
+        "shadowland_product",
+        product
+    );
+
+    localStorage.setItem(
+        "shadowland_price",
+        String(price)
+    );
+
 
     // ========================================================
-    // LINK
+    // CONFIRM
     // ========================================================
 
-    const productLink =
-        PRODUCT_LINKS[product];
+    const confirmed = confirm(
+        "Покупка: " + product +
+        "\nMinecraft ник: " + nickname +
+        "\nСумма: " + price + " RUB" +
+        "\n\nНа DonatePay введи ТОТ ЖЕ ник и ТОЧНО эту сумму."
+    );
 
-
-    if (!productLink) {
-
-
-        showMessage(
-            "Этот товар пока ещё не подключён к оплате."
-        );
-
-
+    if (!confirmed) {
         return;
-
     }
 
 
     // ========================================================
-    // REDIRECT
+    // REDIRECT TO DONATEPAY
     // ========================================================
 
     showMessage(
-
-        "Переходим к покупке " +
-
-        product +
-
-        " за " +
-
-        price +
-
-        " ₽"
-
+        "Открываем DonatePay..."
     );
-
 
     setTimeout(
         () => {
 
-
             window.location.href =
-                productLink;
-
+                DONATEPAY_URL;
 
         },
-        500
+        400
     );
 
 }
@@ -189,33 +154,25 @@ function buy(product, price) {
 
 function showMessage(text) {
 
-
     const old =
         document.querySelector(
             ".site-message"
         );
 
-
     if (old) {
-
         old.remove();
-
     }
-
 
     const message =
         document.createElement(
             "div"
         );
 
-
     message.className =
         "site-message";
 
-
     message.textContent =
         text;
-
 
     Object.assign(
         message.style,
@@ -272,19 +229,15 @@ function showMessage(text) {
         }
     );
 
-
     document.body.appendChild(
         message
     );
 
-
     setTimeout(
         () => {
 
-
             message.style.opacity =
                 "0";
-
 
             setTimeout(
                 () => {
@@ -294,7 +247,6 @@ function showMessage(text) {
                 },
                 260
             );
-
 
         },
         2800
@@ -309,31 +261,24 @@ function showMessage(text) {
 
 function setupNickname() {
 
-
     const input =
         document.getElementById(
             "nickname"
         );
-
 
     const wrapper =
         document.querySelector(
             ".nickname-wrap"
         );
 
-
     if (!input) {
-
         return;
-
     }
-
 
     const saved =
         localStorage.getItem(
             "shadowland_nickname"
         );
-
 
     if (
         saved &&
@@ -342,68 +287,53 @@ function setupNickname() {
         )
     ) {
 
-
         input.value =
             saved;
 
-
     }
-
 
     function update() {
 
-
         input.value =
             input.value
-
                 .replace(
                     /[^A-Za-z0-9_]/g,
                     ""
                 )
-
                 .slice(
                     0,
                     16
                 );
-
 
         const valid =
             /^[A-Za-z0-9_]{3,16}$/.test(
                 input.value
             );
 
-
         if (wrapper) {
-
 
             wrapper.classList.toggle(
                 "valid",
                 valid
             );
 
-
         }
 
-
         if (valid) {
-
 
             localStorage.setItem(
                 "shadowland_nickname",
                 input.value
             );
 
-
         }
 
     }
-
 
     input.addEventListener(
         "input",
         update
     );
-
 
     update();
 
@@ -416,52 +346,39 @@ function setupNickname() {
 
 function setupReveal() {
 
-
     const elements =
         document.querySelectorAll(
 
             ".donate-card, " +
-
             ".coin-card, " +
-
             ".case-card, " +
-
             ".advantages article, " +
-
             ".section-heading, " +
-
             ".player-card"
 
         );
 
-
     elements.forEach(
         element => {
-
 
             element.classList.add(
                 "reveal"
             );
 
-
         }
     );
-
 
     const observer =
         new IntersectionObserver(
 
             entries => {
 
-
                 entries.forEach(
                     entry => {
-
 
                         if (
                             entry.isIntersecting
                         ) {
-
 
                             entry.target
                                 .classList
@@ -469,18 +386,14 @@ function setupReveal() {
                                     "visible"
                                 );
 
-
                             observer.unobserve(
                                 entry.target
                             );
 
-
                         }
-
 
                     }
                 );
-
 
             },
 
@@ -493,15 +406,12 @@ function setupReveal() {
 
         );
 
-
     elements.forEach(
         element => {
-
 
             observer.observe(
                 element
             );
-
 
         }
     );
@@ -515,43 +425,32 @@ function setupReveal() {
 
 function setupHeader() {
 
-
     const header =
         document.querySelector(
             ".header"
         );
 
-
     if (!header) {
-
         return;
-
     }
 
-
     function updateHeader() {
-
 
         if (
             window.scrollY > 20
         ) {
 
-
             header.style.background =
                 "rgba(3,5,8,.96)";
 
-
         } else {
-
 
             header.style.background =
                 "rgba(3,5,8,.88)";
 
-
         }
 
     }
-
 
     window.addEventListener(
         "scroll",
@@ -561,7 +460,6 @@ function setupHeader() {
                 true
         }
     );
-
 
     updateHeader();
 
@@ -574,11 +472,9 @@ function setupHeader() {
 
 function fixInitialPosition() {
 
-
     if (
         window.location.hash === "#shop"
     ) {
-
 
         history.replaceState(
             null,
@@ -586,12 +482,59 @@ function fixInitialPosition() {
             window.location.pathname
         );
 
-
         window.scrollTo(
             0,
             0
         );
 
+    }
+
+}
+
+
+// ============================================================
+// SHOP TABS
+// ============================================================
+
+function showShopTab(tabId, button) {
+
+    const tabs = [
+        "donate-tab",
+        "coins-tab",
+        "cases-tab"
+    ];
+
+    tabs.forEach(id => {
+
+        const section =
+            document.getElementById(id);
+
+        if (section) {
+
+            section.style.display =
+                id === tabId
+                    ? "block"
+                    : "none";
+
+        }
+
+    });
+
+    document
+        .querySelectorAll(".shop-tab")
+        .forEach(tab => {
+
+            tab.classList.remove(
+                "active"
+            );
+
+        });
+
+    if (button) {
+
+        button.classList.add(
+            "active"
+        );
 
     }
 
@@ -606,7 +549,6 @@ document.addEventListener(
     "DOMContentLoaded",
     () => {
 
-
         fixInitialPosition();
 
         setupNickname();
@@ -615,35 +557,35 @@ document.addEventListener(
 
         setupHeader();
 
+        const donate =
+            document.getElementById(
+                "donate-tab"
+            );
+
+        const coins =
+            document.getElementById(
+                "coins-tab"
+            );
+
+        const cases =
+            document.getElementById(
+                "cases-tab"
+            );
+
+        if (donate) {
+            donate.style.display =
+                "block";
+        }
+
+        if (coins) {
+            coins.style.display =
+                "none";
+        }
+
+        if (cases) {
+            cases.style.display =
+                "none";
+        }
 
     }
 );
-function showShopTab(tabId, button) {
-    const tabs = ["donate-tab", "coins-tab", "cases-tab"];
-
-    tabs.forEach(id => {
-        const section = document.getElementById(id);
-
-        if (section) {
-            section.style.display = id === tabId ? "block" : "none";
-        }
-    });
-
-    document.querySelectorAll(".shop-tab").forEach(tab => {
-        tab.classList.remove("active");
-    });
-
-    if (button) {
-        button.classList.add("active");
-    }
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-    const donate = document.getElementById("donate-tab");
-    const coins = document.getElementById("coins-tab");
-    const cases = document.getElementById("cases-tab");
-
-    if (donate) donate.style.display = "block";
-    if (coins) coins.style.display = "none";
-    if (cases) cases.style.display = "none";
-});
