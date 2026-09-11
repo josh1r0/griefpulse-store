@@ -11,12 +11,12 @@
     >
 
     <title>
-        ShadowLand — Магазин сервера
+        ShadowLand — Официальный магазин
     </title>
 
     <meta
         name="description"
-        content="Магазин независимого Minecraft-сервера ShadowLand: привилегии и внутриигровая валюта"
+        content="Официальный магазин Minecraft сервера ShadowLand"
     >
 
     <link
@@ -66,7 +66,7 @@
         <nav>
 
             <a href="#donate-tab">
-                Привилегии
+                Донат
             </a>
 
             <a href="#coins-tab">
@@ -199,13 +199,13 @@
 
 
         <h2>
-            Магазин сервера
+            Официальный магазин сервера
         </h2>
 
 
         <p class="hero-description">
 
-            Привилегии, коины и игровые возможности
+            Донат, коины, кейсы и уникальные возможности
             для игроков ShadowLand.
 
         </p>
@@ -377,19 +377,6 @@
 
         </div>
 
-        <div class="purchase-legal-note">
-            Перед оплатой ознакомьтесь с
-            <a href="rules.html#purchase-rules">условиями покупки</a>,
-            <a href="rules.html#refunds">условиями возврата</a> и
-            <a href="rules.html#privacy">политикой конфиденциальности</a>.
-            ShadowLand — независимый сервер и не связан с Mojang или Microsoft.
-        </div>
-
-        <label class="terms-consent" for="termsAccepted">
-            <input type="checkbox" id="termsAccepted">
-            <span>Я ознакомился и принимаю условия покупки, возврата и обработки данных.</span>
-        </label>
-
 
     </div>
 
@@ -407,7 +394,7 @@
 ============================================================ -->
 
 <div class="shop-tabs">
-    <button class="shop-tab active" onclick="showShopTab('donate-tab', this)">ПРИВИЛЕГИИ</button>
+    <button class="shop-tab active" onclick="showShopTab('donate-tab', this)">ДОНАТ</button>
     <button class="shop-tab" onclick="showShopTab('coins-tab', this)">КОИНЫ</button>
     <button class="shop-tab" onclick="showShopTab('cases-tab', this)">КЕЙСЫ</button>
 </div>
@@ -443,12 +430,12 @@
 
 
                 <h2>
-                    ПРИВИЛЕГИИ
+                    ДОНАТ
                 </h2>
 
 
                 <p>
-                    Выбери привилегию для своего аккаунта. Полный состав возможностей указан в правилах магазина.
+                    Выбери привилегию для своего аккаунта.
                 </p>
 
 
@@ -499,8 +486,6 @@
                 <p>
                     Базовая привилегия ShadowLand
                 </p>
-
-                <a class="details-link" href="rules.html#privileges">Полный состав →</a>
 
 
                 <button
@@ -556,8 +541,6 @@
                     Расширенные возможности
                 </p>
 
-                <a class="details-link" href="rules.html#privileges">Полный состав →</a>
-
 
                 <button
                     onclick="buy('Wither', 70)"
@@ -611,8 +594,6 @@
                 <p>
                     Привилегия высокого уровня
                 </p>
-
-                <a class="details-link" href="rules.html#privileges">Полный состав →</a>
 
 
                 <button
@@ -673,8 +654,6 @@
                     Максимум возможностей для игрока
                 </p>
 
-                <a class="details-link" href="rules.html#privileges">Полный состав →</a>
-
 
                 <button
                     onclick="buy('Imperator', 249)"
@@ -728,8 +707,6 @@
                 <p>
                     Главная привилегия ShadowLand
                 </p>
-
-                <a class="details-link" href="rules.html#privileges">Полный состав →</a>
 
 
                 <button
@@ -792,10 +769,6 @@
 
                 <p>
                     Пополняй баланс и покупай уникальные товары.
-                </p>
-                <p class="section-policy-note">
-                    Коины — внутриигровая валюта ShadowLand. Они не являются Minecoins, не имеют реальной денежной стоимости,
-                    не выводятся и не обмениваются обратно на реальные деньги.
                 </p>
 
 
@@ -1123,12 +1096,8 @@
 
 
                 <p>
-                    Платные случайные кейсы временно недоступны до завершения проверки механики и правил монетизации.
+                    Открывай кейсы и забирай награды.
                 </p>
-                <div class="case-safety-note">
-                    Чтобы сохранить магазин безопасным для игроков любого возраста, оплату случайных наград мы временно отключили.
-                    Фиксированные наборы с заранее известным содержимым можно будет продавать отдельно.
-                </div>
 
             </div>
 
@@ -1172,7 +1141,11 @@
                     </strong>
 
 
-                    <button class="disabled-buy" type="button" disabled>Временно недоступно</button>
+                    <button
+                        onclick="buy('3 кейса с донатом', 99)"
+                    >
+                        Купить →
+                    </button>
 
 
                 </article>
@@ -1197,7 +1170,11 @@
                     </strong>
 
 
-                    <button class="disabled-buy" type="button" disabled>Временно недоступно</button>
+                    <button
+                        onclick="buy('10 кейсов с донатом', 279)"
+                    >
+                        Купить →
+                    </button>
 
 
                 </article>
@@ -1222,7 +1199,11 @@
                     </strong>
 
 
-                    <button class="disabled-buy" type="button" disabled>Временно недоступно</button>
+                    <button
+                        onclick="buy('30 кейсов с донатом', 699)"
+                    >
+                        Купить →
+                    </button>
 
 
                 </article>
@@ -1270,7 +1251,11 @@
                     </strong>
 
 
-                    <button class="disabled-buy" type="button" disabled>Временно недоступно</button>
+                    <button
+                        onclick="buy('5 кейсов с монетами', 35)"
+                    >
+                        Купить →
+                    </button>
 
 
                 </article>
@@ -1295,7 +1280,11 @@
                     </strong>
 
 
-                    <button class="disabled-buy" type="button" disabled>Временно недоступно</button>
+                    <button
+                        onclick="buy('10 кейсов с монетами', 65)"
+                    >
+                        Купить →
+                    </button>
 
 
                 </article>
@@ -1320,7 +1309,11 @@
                     </strong>
 
 
-                    <button class="disabled-buy" type="button" disabled>Временно недоступно</button>
+                    <button
+                        onclick="buy('25 кейсов с монетами', 150)"
+                    >
+                        Купить →
+                    </button>
 
 
                 </article>
@@ -1364,7 +1357,11 @@
                         40 ₽
                     </strong>
 
-                    <button class="disabled-buy" type="button" disabled>Временно недоступно</button>
+                    <button
+                        onclick="buy('1 кейс с коинами', 40)"
+                    >
+                        Купить →
+                    </button>
 
                 </article>
 
@@ -1383,7 +1380,11 @@
                         98 ₽
                     </strong>
 
-                    <button class="disabled-buy" type="button" disabled>Временно недоступно</button>
+                    <button
+                        onclick="buy('3 кейса с коинами', 98)"
+                    >
+                        Купить →
+                    </button>
 
                 </article>
 
@@ -1402,7 +1403,11 @@
                         165 ₽
                     </strong>
 
-                    <button class="disabled-buy" type="button" disabled>Временно недоступно</button>
+                    <button
+                        onclick="buy('5 кейсов с коинами', 165)"
+                    >
+                        Купить →
+                    </button>
 
                 </article>
 
@@ -1421,7 +1426,11 @@
                         289 ₽
                     </strong>
 
-                    <button class="disabled-buy" type="button" disabled>Временно недоступно</button>
+                    <button
+                        onclick="buy('10 кейсов с коинами', 289)"
+                    >
+                        Купить →
+                    </button>
 
                 </article>
 
@@ -1613,18 +1622,13 @@
 
 
             <p>
-                Магазин Minecraft-сервера ShadowLand.
+                Официальный магазин Minecraft сервера ShadowLand.
             </p>
-
-            <p class="support-contacts">
-                Discord поддержки:
-                <a href="https://discord.gg/bQCVnVvgg" target="_blank" rel="noopener noreferrer">discord.gg/bQCVnVvgg</a><br>
-                Telegram:
-                <a href="https://t.me/josh1r0" target="_blank" rel="noopener noreferrer">@josh1r0</a>
-                •
+            <p>
+                Discord поддержки: <a href="https://discord.gg/bQCVnVvgg" target="_blank" rel="noopener noreferrer">discord.gg/bQCVnVvgg</a><br>
+                Telegram: <a href="https://t.me/josh1r0" target="_blank" rel="noopener noreferrer">@josh1r0</a> •
                 <a href="https://t.me/Niktatg" target="_blank" rel="noopener noreferrer">@Niktatg</a><br>
-                E-mail:
-                <a href="mailto:shadowland.land@gmail.com">shadowland.land@gmail.com</a>
+                E-mail: <a href="mailto:shadowland.land@gmail.com">shadowland.land@gmail.com</a>
             </p>
 
 
@@ -1636,7 +1640,7 @@
 
 
             <a href="#donate-tab">
-                Привилегии
+                Донат
             </a>
 
 
@@ -1654,7 +1658,7 @@
                 Правила и документы
             </a>
 
-            <a href="rules.html#purchase-rules">
+            <a href="rules.html#donate-rules">
     Условия покупок
 </a>
 
@@ -1684,19 +1688,15 @@
 
 
 
-    <div class="minecraft-disclaimer">
-        <strong>НЕОФИЦИАЛЬНЫЙ СЕРВИС.</strong>
-        ShadowLand — независимый сервер. За сайт, сервер, товары и поддержку отвечает администрация ShadowLand; сервис не одобрен и не связан с Mojang или Microsoft.
-        <span>NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.</span>
-    </div>
-
     <div class="copyright">
 
-        © 2026 ShadowLand. Все права защищены.
+        © 2026 ShadowLand. Все права защищены.<br>
         Покупая цифровые товары, пользователь соглашается с
-        <a href="rules.html#purchase-rules">условиями покупок</a>,
+        <a href="rules.html#donate-rules">условиями покупок</a>,
         <a href="rules.html#refunds">правилами возврата</a> и
-        <a href="rules.html#privacy">политикой конфиденциальности</a>.
+        <a href="rules.html#privacy">политикой конфиденциальности</a>.<br>
+        ShadowLand — независимый сервер. NOT AN OFFICIAL MINECRAFT SERVICE.
+        NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
 
     </div>
 
