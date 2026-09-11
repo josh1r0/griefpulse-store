@@ -3,589 +3,195 @@
 // ============================================================
 
 const SERVER_IP = "shadowland.land";
-
 const DONATEPAY_URL = "https://donatepay.ru/don/1531880";
 
-
-// ============================================================
-// COPY IP
-// ============================================================
-
 async function copyIP() {
-
     try {
-
-        await navigator.clipboard.writeText(
-            SERVER_IP
-        );
-
-        showMessage(
-            "IP скопирован: " +
-            SERVER_IP
-        );
-
+        await navigator.clipboard.writeText(SERVER_IP);
+        showMessage("IP скопирован: " + SERVER_IP);
     } catch (error) {
-
-        showMessage(
-            "IP сервера: " +
-            SERVER_IP
-        );
-
+        showMessage("IP сервера: " + SERVER_IP);
     }
-
 }
 
-
-// ============================================================
-// BUY
-// ============================================================
-
 function buy(product, price) {
+    const nicknameInput = document.getElementById("nickname");
+    if (!nicknameInput) return;
 
-    const nicknameInput =
-        document.getElementById(
-            "nickname"
-        );
-
-    if (!nicknameInput) {
-        return;
-    }
-
-    const nickname =
-        nicknameInput.value.trim();
-
-
-    // ========================================================
-    // EMPTY
-    // ========================================================
+    const nickname = nicknameInput.value.trim();
 
     if (!nickname) {
-
         nicknameInput.focus();
-
-        showMessage(
-            "Сначала введи свой Minecraft ник!"
-        );
-
+        showMessage("Сначала введи свой Minecraft ник!");
         return;
     }
 
-
-    // ========================================================
-    // VALIDATE
-    // ========================================================
-
-    if (
-        !/^[A-Za-z0-9_]{3,16}$/.test(
-            nickname
-        )
-    ) {
-
+    if (!/^[A-Za-z0-9_]{3,16}$/.test(nickname)) {
         nicknameInput.focus();
-
-        showMessage(
-            "Проверь Minecraft ник. Допустимо 3–16 символов."
-        );
-
+        showMessage("Проверь Minecraft ник. Допустимо 3–16 символов.");
         return;
     }
 
-
-    // ========================================================
-    // SAVE
-    // ========================================================
-
-    localStorage.setItem(
-        "shadowland_nickname",
-        nickname
-    );
-
-    localStorage.setItem(
-        "shadowland_product",
-        product
-    );
-
-    localStorage.setItem(
-        "shadowland_price",
-        String(price)
-    );
-
-
-    // ========================================================
-    // CONFIRM
-    // ========================================================
+    localStorage.setItem("shadowland_nickname", nickname);
+    localStorage.setItem("shadowland_product", product);
+    localStorage.setItem("shadowland_price", String(price));
 
     const confirmed = confirm(
         "Покупка: " + product +
         "\nMinecraft ник: " + nickname +
-        "\nСумма: " + price + " RUB" +
-        "\n\nНа DonatePay введи ТОТ ЖЕ ник и ТОЧНО эту сумму."
+        "\nТочная сумма: " + price + " ₽" +
+        "\n\nВАЖНО: на DonatePay введи ТОТ ЖЕ ник и ТОЧНО эту сумму. Не меняй сумму."
     );
 
-    if (!confirmed) {
-        return;
-    }
+    if (!confirmed) return;
 
+    showMessage("Открываем DonatePay...");
 
-    // ========================================================
-    // REDIRECT TO DONATEPAY
-    // ========================================================
-
-    showMessage(
-        "Открываем DonatePay..."
-    );
-
-    setTimeout(
-        () => {
-
-            window.location.href =
-                DONATEPAY_URL;
-
-        },
-        400
-    );
-
+    setTimeout(() => {
+        window.location.href = DONATEPAY_URL;
+    }, 300);
 }
-
-
-// ============================================================
-// MESSAGE
-// ============================================================
 
 function showMessage(text) {
+    const old = document.querySelector(".site-message");
+    if (old) old.remove();
 
-    const old =
-        document.querySelector(
-            ".site-message"
-        );
+    const message = document.createElement("div");
+    message.className = "site-message";
+    message.textContent = text;
 
-    if (old) {
-        old.remove();
-    }
+    Object.assign(message.style, {
+        position: "fixed",
+        left: "50%",
+        bottom: "24px",
+        transform: "translateX(-50%)",
+        zIndex: "99999",
+        maxWidth: "calc(100% - 30px)",
+        padding: "12px 18px",
+        borderRadius: "9px",
+        background: "rgba(7,10,15,.97)",
+        border: "1px solid rgba(66,255,138,.28)",
+        boxShadow: "0 15px 45px rgba(0,0,0,.5)",
+        color: "#ffffff",
+        fontSize: "11px",
+        fontWeight: "800",
+        textAlign: "center",
+        transition: "opacity .25s"
+    });
 
-    const message =
-        document.createElement(
-            "div"
-        );
+    document.body.appendChild(message);
 
-    message.className =
-        "site-message";
-
-    message.textContent =
-        text;
-
-    Object.assign(
-        message.style,
-        {
-
-            position:
-                "fixed",
-
-            left:
-                "50%",
-
-            bottom:
-                "24px",
-
-            transform:
-                "translateX(-50%)",
-
-            zIndex:
-                "99999",
-
-            maxWidth:
-                "calc(100% - 30px)",
-
-            padding:
-                "12px 18px",
-
-            borderRadius:
-                "9px",
-
-            background:
-                "rgba(7,10,15,.97)",
-
-            border:
-                "1px solid rgba(66,255,138,.28)",
-
-            boxShadow:
-                "0 15px 45px rgba(0,0,0,.5)",
-
-            color:
-                "#ffffff",
-
-            fontSize:
-                "11px",
-
-            fontWeight:
-                "800",
-
-            textAlign:
-                "center",
-
-            transition:
-                "opacity .25s"
-
-        }
-    );
-
-    document.body.appendChild(
-        message
-    );
-
-    setTimeout(
-        () => {
-
-            message.style.opacity =
-                "0";
-
-            setTimeout(
-                () => {
-
-                    message.remove();
-
-                },
-                260
-            );
-
-        },
-        2800
-    );
-
+    setTimeout(() => {
+        message.style.opacity = "0";
+        setTimeout(() => message.remove(), 260);
+    }, 2800);
 }
 
-
-// ============================================================
-// NICKNAME
-// ============================================================
-
 function setupNickname() {
+    const input = document.getElementById("nickname");
+    const wrapper = document.querySelector(".nickname-wrap");
+    if (!input) return;
 
-    const input =
-        document.getElementById(
-            "nickname"
-        );
+    const saved = localStorage.getItem("shadowland_nickname");
 
-    const wrapper =
-        document.querySelector(
-            ".nickname-wrap"
-        );
-
-    if (!input) {
-        return;
-    }
-
-    const saved =
-        localStorage.getItem(
-            "shadowland_nickname"
-        );
-
-    if (
-        saved &&
-        /^[A-Za-z0-9_]{3,16}$/.test(
-            saved
-        )
-    ) {
-
-        input.value =
-            saved;
-
+    if (saved && /^[A-Za-z0-9_]{3,16}$/.test(saved)) {
+        input.value = saved;
     }
 
     function update() {
+        input.value = input.value
+            .replace(/[^A-Za-z0-9_]/g, "")
+            .slice(0, 16);
 
-        input.value =
-            input.value
-                .replace(
-                    /[^A-Za-z0-9_]/g,
-                    ""
-                )
-                .slice(
-                    0,
-                    16
-                );
-
-        const valid =
-            /^[A-Za-z0-9_]{3,16}$/.test(
-                input.value
-            );
+        const valid = /^[A-Za-z0-9_]{3,16}$/.test(input.value);
 
         if (wrapper) {
-
-            wrapper.classList.toggle(
-                "valid",
-                valid
-            );
-
+            wrapper.classList.toggle("valid", valid);
         }
 
         if (valid) {
-
-            localStorage.setItem(
-                "shadowland_nickname",
-                input.value
-            );
-
+            localStorage.setItem("shadowland_nickname", input.value);
         }
-
     }
 
-    input.addEventListener(
-        "input",
-        update
-    );
-
+    input.addEventListener("input", update);
     update();
-
 }
-
-
-// ============================================================
-// SCROLL REVEAL
-// ============================================================
 
 function setupReveal() {
-
-    const elements =
-        document.querySelectorAll(
-
-            ".donate-card, " +
-            ".coin-card, " +
-            ".case-card, " +
-            ".advantages article, " +
-            ".section-heading, " +
-            ".player-card"
-
-        );
-
-    elements.forEach(
-        element => {
-
-            element.classList.add(
-                "reveal"
-            );
-
-        }
+    const elements = document.querySelectorAll(
+        ".donate-card, .coin-card, .case-card, .advantages article, .section-heading, .player-card"
     );
 
-    const observer =
-        new IntersectionObserver(
+    elements.forEach(element => element.classList.add("reveal"));
 
-            entries => {
-
-                entries.forEach(
-                    entry => {
-
-                        if (
-                            entry.isIntersecting
-                        ) {
-
-                            entry.target
-                                .classList
-                                .add(
-                                    "visible"
-                                );
-
-                            observer.unobserve(
-                                entry.target
-                            );
-
-                        }
-
-                    }
-                );
-
-            },
-
-            {
-
-                threshold:
-                    0.08
-
-            }
-
-        );
-
-    elements.forEach(
-        element => {
-
-            observer.observe(
-                element
-            );
-
-        }
+    const observer = new IntersectionObserver(
+        entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.08 }
     );
 
+    elements.forEach(element => observer.observe(element));
 }
-
-
-// ============================================================
-// HEADER
-// ============================================================
 
 function setupHeader() {
-
-    const header =
-        document.querySelector(
-            ".header"
-        );
-
-    if (!header) {
-        return;
-    }
+    const header = document.querySelector(".header");
+    if (!header) return;
 
     function updateHeader() {
-
-        if (
+        header.style.background =
             window.scrollY > 20
-        ) {
-
-            header.style.background =
-                "rgba(3,5,8,.96)";
-
-        } else {
-
-            header.style.background =
-                "rgba(3,5,8,.88)";
-
-        }
-
+                ? "rgba(3,5,8,.96)"
+                : "rgba(3,5,8,.88)";
     }
 
-    window.addEventListener(
-        "scroll",
-        updateHeader,
-        {
-            passive:
-                true
-        }
-    );
-
+    window.addEventListener("scroll", updateHeader, { passive: true });
     updateHeader();
-
 }
-
-
-// ============================================================
-// FIX HASH POSITION
-// ============================================================
 
 function fixInitialPosition() {
-
-    if (
-        window.location.hash === "#shop"
-    ) {
-
-        history.replaceState(
-            null,
-            "",
-            window.location.pathname
-        );
-
-        window.scrollTo(
-            0,
-            0
-        );
-
+    if (window.location.hash === "#shop") {
+        history.replaceState(null, "", window.location.pathname);
+        window.scrollTo(0, 0);
     }
-
 }
-
-
-// ============================================================
-// SHOP TABS
-// ============================================================
 
 function showShopTab(tabId, button) {
-
-    const tabs = [
-        "donate-tab",
-        "coins-tab",
-        "cases-tab"
-    ];
+    const tabs = ["donate-tab", "coins-tab", "cases-tab"];
 
     tabs.forEach(id => {
-
-        const section =
-            document.getElementById(id);
-
+        const section = document.getElementById(id);
         if (section) {
-
-            section.style.display =
-                id === tabId
-                    ? "block"
-                    : "none";
-
+            section.style.display = id === tabId ? "block" : "none";
         }
-
     });
 
-    document
-        .querySelectorAll(".shop-tab")
-        .forEach(tab => {
-
-            tab.classList.remove(
-                "active"
-            );
-
-        });
+    document.querySelectorAll(".shop-tab").forEach(tab => {
+        tab.classList.remove("active");
+    });
 
     if (button) {
-
-        button.classList.add(
-            "active"
-        );
-
+        button.classList.add("active");
     }
-
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+    fixInitialPosition();
+    setupNickname();
+    setupReveal();
+    setupHeader();
 
-// ============================================================
-// START
-// ============================================================
+    const donate = document.getElementById("donate-tab");
+    const coins = document.getElementById("coins-tab");
+    const cases = document.getElementById("cases-tab");
 
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        fixInitialPosition();
-
-        setupNickname();
-
-        setupReveal();
-
-        setupHeader();
-
-        const donate =
-            document.getElementById(
-                "donate-tab"
-            );
-
-        const coins =
-            document.getElementById(
-                "coins-tab"
-            );
-
-        const cases =
-            document.getElementById(
-                "cases-tab"
-            );
-
-        if (donate) {
-            donate.style.display =
-                "block";
-        }
-
-        if (coins) {
-            coins.style.display =
-                "none";
-        }
-
-        if (cases) {
-            cases.style.display =
-                "none";
-        }
-
-    }
-);
+    if (donate) donate.style.display = "block";
+    if (coins) coins.style.display = "none";
+    if (cases) cases.style.display = "none";
+});
