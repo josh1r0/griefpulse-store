@@ -4,7 +4,7 @@
 
 const SERVER_IP = "shadowland.land";
 const DONATEPAY_URL = "https://donatepay.ru/don/1531880";
-const SHADOWLAND_WORKER_URL = "https://shadowland-payments.josh1r0gh.workers.dev";
+const SHADOWLAND_WORKER_URL = "https://pay.shadowland.land";
 
 async function copyIP() {
     try {
