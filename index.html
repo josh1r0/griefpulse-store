@@ -65,15 +65,15 @@
 
         <nav>
 
-            <a href="#donate">
+            <a href="#donate-tab">
                 Донат
             </a>
 
-            <a href="#coins">
+            <a href="#coins-tab">
                 Коины
             </a>
 
-            <a href="#cases">
+            <a href="#cases-tab">
                 Кейсы
             </a>
 
@@ -95,7 +95,6 @@
             МАГАЗИН
             <span>→</span>
         </a>
-
 
     </div>
 
@@ -390,9 +389,24 @@
      DONATE
 ============================================================ -->
 
+<!-- ============================================================
+     SHOP TABS
+============================================================ -->
+
+<div class="shop-tabs">
+    <button class="shop-tab active" onclick="showShopTab('donate-tab', this)">ДОНАТ</button>
+    <button class="shop-tab" onclick="showShopTab('coins-tab', this)">КОИНЫ</button>
+    <button class="shop-tab" onclick="showShopTab('cases-tab', this)">КЕЙСЫ</button>
+</div>
+
+
+<!-- ============================================================
+     DONATE
+============================================================ -->
+
 <section
     class="shop-section"
-    id="donate"
+    id="donate-tab"
 >
 
 
@@ -452,7 +466,7 @@
 
 
                     <span class="price">
-                        20 ₽
+                        25 ₽
                     </span>
 
 
@@ -475,7 +489,7 @@
 
 
                 <button
-                    onclick="buy('Silver', 20)"
+                    onclick="buy('Silver', 25)"
                 >
 
                     Купить
@@ -529,7 +543,7 @@
 
 
                 <button
-                    onclick="buy('Wither', 70)"
+                    onclick="buyWither()"
                 >
 
                     Купить
@@ -656,9 +670,9 @@
 
 
 
-            <!-- GOD -->
+            <!-- SHADOW -->
 
-            <article class="donate-card god-card">
+            <article class="donate-card shadow-card">
 
 
                 <div class="card-light"></div>
@@ -667,8 +681,8 @@
                 <div class="rank-top">
 
 
-                    <span class="rank god">
-                        GOD
+                    <span class="rank shadow">
+                        SHADOW
                     </span>
 
 
@@ -680,13 +694,13 @@
                 </div>
 
 
-                <div class="rank-symbol god-symbol">
-                    G
+                <div class="rank-symbol shadow-symbol">
+                    S
                 </div>
 
 
                 <h3>
-                    God
+                    Shadow
                 </h3>
 
 
@@ -696,7 +710,7 @@
 
 
                 <button
-                    onclick="buy('God', 599)"
+                    onclick="buy('Shadow', 599)"
                 >
 
                     Купить
@@ -725,7 +739,7 @@
 
 <section
     class="shop-section dark-section"
-    id="coins"
+    id="coins-tab"
 >
 
 
@@ -780,17 +794,17 @@
 
 
                     <span class="coin-count">
-                        20 COINS
+                        30 COINS
                     </span>
 
 
                     <h3>
-                        20 коинов
+                        30 коинов
                     </h3>
 
 
                     <p>
-                        Получишь 20 коинов
+                        Получишь 30 коинов
                     </p>
 
 
@@ -798,12 +812,12 @@
 
 
                 <strong>
-                    20 ₽
+                    30 ₽
                 </strong>
 
 
                 <button
-                    onclick="buy('20 коинов', 20)"
+                    onclick="buy('30 коинов', 30)"
                 >
                     Купить →
                 </button>
@@ -1053,7 +1067,7 @@
 
 <section
     class="shop-section"
-    id="cases"
+    id="cases-tab"
 >
 
 
@@ -1084,7 +1098,6 @@
                 <p>
                     Открывай кейсы и забирай награды.
                 </p>
-
 
             </div>
 
@@ -1239,7 +1252,7 @@
 
 
                     <button
-                        onclick="buy('8 кейсов с монетами', 50)"
+                        onclick="buy('5 кейсов с монетами', 50)"
                     >
                         Купить →
                     </button>
@@ -1268,7 +1281,7 @@
 
 
                     <button
-                        onclick="buy('16 кейсов с монетами', 95)"
+                        onclick="buy('10 кейсов с монетами', 95)"
                     >
                         Купить →
                     </button>
@@ -1297,7 +1310,7 @@
 
 
                     <button
-                        onclick="buy('40 кейсов с монетами', 220)"
+                        onclick="buy('25 кейсов с монетами', 220)"
                     >
                         Купить →
                     </button>
@@ -1611,6 +1624,12 @@
             <p>
                 Официальный магазин Minecraft сервера ShadowLand.
             </p>
+            <p>
+                Discord поддержки: <a href="https://discord.gg/bQCVnVvgg" target="_blank" rel="noopener noreferrer">discord.gg/bQCVnVvgg</a><br>
+                Telegram: <a href="https://t.me/josh1r0" target="_blank" rel="noopener noreferrer">@josh1r0</a> •
+                <a href="https://t.me/Niktatg" target="_blank" rel="noopener noreferrer">@Niktatg</a><br>
+                E-mail: <a href="mailto:shadowland.land@gmail.com">shadowland.land@gmail.com</a>
+            </p>
 
 
         </div>
@@ -1620,17 +1639,17 @@
         <div class="footer-links">
 
 
-            <a href="#donate">
+            <a href="#donate-tab">
                 Донат
             </a>
 
 
-            <a href="#coins">
+            <a href="#coins-tab">
                 Коины
             </a>
 
 
-            <a href="#cases">
+            <a href="#cases-tab">
                 Кейсы
             </a>
 
@@ -1638,6 +1657,18 @@
             <a href="rules.html">
                 Правила и документы
             </a>
+
+            <a href="rules.html#donate-rules">
+    Условия покупок
+</a>
+
+<a href="rules.html#refunds">
+    Возвраты
+</a>
+
+<a href="rules.html#privacy">
+    Конфиденциальность
+</a>
 
             <a href="rules.html#support">
                 Поддержка
@@ -1659,8 +1690,13 @@
 
     <div class="copyright">
 
-        © 2026 ShadowLand. Все права защищены.
-        Покупая цифровые товары, пользователь соглашается с правилами и условиями сервиса.
+        © 2026 ShadowLand. Все права защищены.<br>
+        Покупая цифровые товары, пользователь соглашается с
+        <a href="rules.html#donate-rules">условиями покупок</a>,
+        <a href="rules.html#refunds">правилами возврата</a> и
+        <a href="rules.html#privacy">политикой конфиденциальности</a>.<br>
+        ShadowLand — независимый сервер. NOT AN OFFICIAL MINECRAFT SERVICE.
+        NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.
 
     </div>
 
