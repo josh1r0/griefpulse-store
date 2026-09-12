@@ -81,6 +81,19 @@ async function copyIP() {
 function buy(product, price) {
     const normalizedProduct = String(product || "").trim().toLowerCase();
 
+    // Товары дешевле 50 ₽ сейчас недоступны в Lava.top.
+    // SILVER и 30 COINS не отправляем в старый DonatePay.
+    if (
+        normalizedProduct === "silver" ||
+        (
+            Number(price) === 30 &&
+            (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))
+        )
+    ) {
+        showMessage("⛔ Покупка сейчас недоступна. Минимальная сумма оплаты — 50 ₽. Выбери товар от 50 ₽.");
+        return;
+    }
+
     // Все кейсы — Lava.top.
     const caseConfig = LAVA_CASES[normalizedProduct];
     if (caseConfig) {
