@@ -6,6 +6,69 @@ const SERVER_IP = "shadowland.land";
 const DONATEPAY_URL = "https://donatepay.ru/don/1531880";
 const SHADOWLAND_WORKER_URL = "https://pay.shadowland.land";
 
+const LAVA_CASES = {
+    "3 кейса с донатом": {
+        title: "3 DONATE CASES",
+        route: "/lava/create-donatecase3",
+        rub: 99,
+        usd: 1.18
+    },
+    "10 кейсов с донатом": {
+        title: "10 DONATE CASES",
+        route: "/lava/create-donatecase10",
+        rub: 279,
+        usd: 3.32
+    },
+    "30 кейсов с донатом": {
+        title: "30 DONATE CASES",
+        route: "/lava/create-donatecase30",
+        rub: 745,
+        usd: 8.87
+    },
+    "1 кейс с коинами": {
+        title: "1 COIN CASE",
+        route: "/lava/create-coincase1",
+        rub: 50,
+        usd: 0.60
+    },
+    "3 кейса с коинами": {
+        title: "3 COIN CASES",
+        route: "/lava/create-coincase3",
+        rub: 140,
+        usd: 1.67
+    },
+    "5 кейсов с коинами": {
+        title: "5 COIN CASES",
+        route: "/lava/create-coincase5",
+        rub: 220,
+        usd: 2.62
+    },
+    "10 кейсов с коинами": {
+        title: "10 COIN CASES",
+        route: "/lava/create-coincase10",
+        rub: 399,
+        usd: 4.75
+    },
+    "8 кейсов с монетами": {
+        title: "8 MONEY CASES",
+        route: "/lava/create-moneycase8",
+        rub: 50,
+        usd: 0.60
+    },
+    "15 кейсов с монетами": {
+        title: "15 MONEY CASES",
+        route: "/lava/create-moneycase15",
+        rub: 95,
+        usd: 1.13
+    },
+    "40 кейсов с монетами": {
+        title: "40 MONEY CASES",
+        route: "/lava/create-moneycase40",
+        rub: 220,
+        usd: 2.62
+    }
+};
+
 async function copyIP() {
     try {
         await navigator.clipboard.writeText(SERVER_IP);
@@ -18,20 +81,10 @@ async function copyIP() {
 function buy(product, price) {
     const normalizedProduct = String(product || "").trim().toLowerCase();
 
-    // 3 DONATE CASES — уже подключён к Lava.top
-    if (
-        Number(price) === 99 &&
-        normalizedProduct.includes("3 кейса") &&
-        normalizedProduct.includes("донат")
-    ) {
-        buyDonateCase3();
-        return;
-    }
-
-    // Остальные кейсы переводим на Lava.top по очереди.
-    // Пока конкретный кейс ещё не подключён — не отправляем его в старый DonatePay.
-    if (normalizedProduct.includes("кейс")) {
-        showMessage("Этот кейс сейчас подключается к новой оплате Lava.top. Попробуй чуть позже.");
+    // Все кейсы — Lava.top.
+    const caseConfig = LAVA_CASES[normalizedProduct];
+    if (caseConfig) {
+        buyCase(caseConfig);
         return;
     }
 
@@ -915,6 +968,99 @@ async function buyCoins5000() {
 
     } catch (error) {
         console.error("Lava 5000 COINS network error:", error);
+        showMessage("Не удалось подключиться к оплате Lava.top. Попробуй ещё раз.");
+    }
+}
+
+// ============================================================
+// КЕЙСЫ — ОПЛАТА ЧЕРЕЗ LAVA.TOP
+// ============================================================
+
+async function buyCase(config) {
+    const nicknameInput = document.getElementById("nickname");
+    if (!nicknameInput) return;
+
+    const nickname = nicknameInput.value.trim();
+
+    if (!nickname) {
+        nicknameInput.focus();
+        showMessage("Сначала введи свой Minecraft ник!");
+        return;
+    }
+
+    if (!/^[A-Za-z0-9_]{3,16}$/.test(nickname)) {
+        nicknameInput.focus();
+        showMessage("Проверь Minecraft ник. Допустимо 3–16 символов.");
+        return;
+    }
+
+    const email = await requestBuyerEmail(config.title);
+    if (!email) return;
+
+    const paymentCurrency = await requestPaymentCurrency(config.rub, config.usd);
+    if (!paymentCurrency) return;
+
+    localStorage.setItem("shadowland_nickname", nickname);
+    localStorage.setItem("shadowland_email", email);
+    localStorage.setItem("shadowland_product", config.title);
+    localStorage.setItem("shadowland_price", String(config.rub));
+
+    const usdText = Number(config.usd).toFixed(2);
+
+    const confirmed = confirm(
+        "Покупка: " + config.title +
+        "\nMinecraft ник: " + nickname +
+        "\nE-mail: " + email +
+        "\nОплата: " + (
+            paymentCurrency === "USD"
+                ? "Украина / другие страны — $" + usdText
+                : "Россия — " + config.rub + " ₽"
+        ) +
+        "\n\nПосле подтверждения откроется безопасная страница оплаты Lava.top." +
+        "\n\nНажимая OK, ты подтверждаешь, что ознакомился с условиями покупки, возвратов и политикой конфиденциальности на shadowland.land/rules.html."
+    );
+
+    if (!confirmed) return;
+
+    showMessage("Создаём оплату " + config.title + "...");
+
+    try {
+        const response = await fetch(
+            SHADOWLAND_WORKER_URL + config.route,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nickname: nickname,
+                    email: email,
+                    currency: paymentCurrency
+                })
+            }
+        );
+
+        let data = null;
+
+        try {
+            data = await response.json();
+        } catch (error) {
+        }
+
+        if (!response.ok || !data || data.ok !== true || !data.paymentUrl) {
+            console.error("Lava CASE create invoice error:", data);
+            showMessage("Не удалось создать оплату. Попробуй ещё раз или напиши в поддержку.");
+            return;
+        }
+
+        showMessage("Открываем Lava.top...");
+
+        setTimeout(() => {
+            window.location.href = data.paymentUrl;
+        }, 250);
+
+    } catch (error) {
+        console.error("Lava CASE network error:", error);
         showMessage("Не удалось подключиться к оплате Lava.top. Попробуй ещё раз.");
     }
 }
