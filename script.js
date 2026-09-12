@@ -62,6 +62,14 @@ function buy(product, price) {
         return;
     }
 
+    if (
+        Number(price) === 899 &&
+        (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))
+    ) {
+        buyCoins1800();
+        return;
+    }
+
     const nicknameInput = document.getElementById("nickname");
     if (!nicknameInput) return;
 
@@ -708,6 +716,93 @@ async function buyCoins620() {
 
     } catch (error) {
         console.error("Lava 620 COINS network error:", error);
+        showMessage("Не удалось подключиться к оплате Lava.top. Попробуй ещё раз.");
+    }
+}
+
+// ============================================================
+// 1800 COINS — ОПЛАТА ЧЕРЕЗ LAVA.TOP
+// ============================================================
+
+async function buyCoins1800() {
+    const nicknameInput = document.getElementById("nickname");
+    if (!nicknameInput) return;
+
+    const nickname = nicknameInput.value.trim();
+
+    if (!nickname) {
+        nicknameInput.focus();
+        showMessage("Сначала введи свой Minecraft ник!");
+        return;
+    }
+
+    if (!/^[A-Za-z0-9_]{3,16}$/.test(nickname)) {
+        nicknameInput.focus();
+        showMessage("Проверь Minecraft ник. Допустимо 3–16 символов.");
+        return;
+    }
+
+    const email = await requestBuyerEmail("1800 COINS");
+    if (!email) return;
+
+    const paymentCurrency = await requestPaymentCurrency(899, 10.70);
+    if (!paymentCurrency) return;
+
+    localStorage.setItem("shadowland_nickname", nickname);
+    localStorage.setItem("shadowland_email", email);
+    localStorage.setItem("shadowland_product", "1800 COINS");
+    localStorage.setItem("shadowland_price", "899");
+
+    const confirmed = confirm(
+        "Покупка: 1800 COINS" +
+        "\nMinecraft ник: " + nickname +
+        "\nE-mail: " + email +
+        "\nОплата: " + (paymentCurrency === "USD" ? "Украина / другие страны — $10.70" : "Россия — 899 ₽") +
+        "\n\nПосле подтверждения откроется безопасная страница оплаты Lava.top." +
+        "\n\nНажимая OK, ты подтверждаешь, что ознакомился с условиями покупки, возвратов и политикой конфиденциальности на shadowland.land/rules.html."
+    );
+
+    if (!confirmed) return;
+
+    showMessage("Создаём оплату 1800 COINS...");
+
+    try {
+        const response = await fetch(
+            SHADOWLAND_WORKER_URL + "/lava/create-coins1800",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nickname: nickname,
+                    email: email,
+                    currency: paymentCurrency
+                })
+            }
+        );
+
+        let data = null;
+
+        try {
+            data = await response.json();
+        } catch (error) {
+        }
+
+        if (!response.ok || !data || data.ok !== true || !data.paymentUrl) {
+            console.error("Lava 1800 COINS create invoice error:", data);
+            showMessage("Не удалось создать оплату 1800 COINS. Попробуй ещё раз или напиши в поддержку.");
+            return;
+        }
+
+        showMessage("Открываем Lava.top...");
+
+        setTimeout(() => {
+            window.location.href = data.paymentUrl;
+        }, 250);
+
+    } catch (error) {
+        console.error("Lava 1800 COINS network error:", error);
         showMessage("Не удалось подключиться к оплате Lava.top. Попробуй ещё раз.");
     }
 }
