@@ -33,6 +33,11 @@ function buy(product, price) {
         return;
     }
 
+    if (normalizedProduct === "shadow") {
+        buyShadow();
+        return;
+    }
+
     const nicknameInput = document.getElementById("nickname");
     if (!nicknameInput) return;
 
@@ -331,6 +336,93 @@ async function buyImperator() {
 
     } catch (error) {
         console.error("Lava IMPERATOR network error:", error);
+        showMessage("Не удалось подключиться к оплате Lava.top. Попробуй ещё раз.");
+    }
+}
+
+// ============================================================
+// SHADOW — ОПЛАТА ЧЕРЕЗ LAVA.TOP
+// ============================================================
+
+async function buyShadow() {
+    const nicknameInput = document.getElementById("nickname");
+    if (!nicknameInput) return;
+
+    const nickname = nicknameInput.value.trim();
+
+    if (!nickname) {
+        nicknameInput.focus();
+        showMessage("Сначала введи свой Minecraft ник!");
+        return;
+    }
+
+    if (!/^[A-Za-z0-9_]{3,16}$/.test(nickname)) {
+        nicknameInput.focus();
+        showMessage("Проверь Minecraft ник. Допустимо 3–16 символов.");
+        return;
+    }
+
+    const email = await requestBuyerEmail("SHADOW");
+    if (!email) return;
+
+    const paymentCurrency = await requestPaymentCurrency(599, 7.13);
+    if (!paymentCurrency) return;
+
+    localStorage.setItem("shadowland_nickname", nickname);
+    localStorage.setItem("shadowland_email", email);
+    localStorage.setItem("shadowland_product", "Shadow");
+    localStorage.setItem("shadowland_price", "599");
+
+    const confirmed = confirm(
+        "Покупка: SHADOW" +
+        "\nMinecraft ник: " + nickname +
+        "\nE-mail: " + email +
+        "\nОплата: " + (paymentCurrency === "USD" ? "Украина / другие страны — $7.13" : "Россия — 599 ₽") +
+        "\n\nПосле подтверждения откроется безопасная страница оплаты Lava.top." +
+        "\n\nНажимая OK, ты подтверждаешь, что ознакомился с условиями покупки, возвратов и политикой конфиденциальности на shadowland.land/rules.html."
+    );
+
+    if (!confirmed) return;
+
+    showMessage("Создаём оплату SHADOW...");
+
+    try {
+        const response = await fetch(
+            SHADOWLAND_WORKER_URL + "/lava/create-shadow",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nickname: nickname,
+                    email: email,
+                    currency: paymentCurrency
+                })
+            }
+        );
+
+        let data = null;
+
+        try {
+            data = await response.json();
+        } catch (error) {
+        }
+
+        if (!response.ok || !data || data.ok !== true || !data.paymentUrl) {
+            console.error("Lava SHADOW create invoice error:", data);
+            showMessage("Не удалось создать оплату SHADOW. Попробуй ещё раз или напиши в поддержку.");
+            return;
+        }
+
+        showMessage("Открываем Lava.top...");
+
+        setTimeout(() => {
+            window.location.href = data.paymentUrl;
+        }, 250);
+
+    } catch (error) {
+        console.error("Lava SHADOW network error:", error);
         showMessage("Не удалось подключиться к оплате Lava.top. Попробуй ещё раз.");
     }
 }
