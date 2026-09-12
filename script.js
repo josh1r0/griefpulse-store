@@ -79,6 +79,9 @@ async function buyWither() {
     const email = await requestBuyerEmail();
     if (!email) return;
 
+    const paymentCurrency = await requestPaymentCurrency();
+    if (!paymentCurrency) return;
+
     localStorage.setItem("shadowland_nickname", nickname);
     localStorage.setItem("shadowland_email", email);
     localStorage.setItem("shadowland_product", "Wither");
@@ -88,7 +91,7 @@ async function buyWither() {
         "Покупка: WITHER" +
         "\nMinecraft ник: " + nickname +
         "\nE-mail: " + email +
-        "\nСумма: 70 ₽" +
+        "\nОплата: " + (paymentCurrency === "USD" ? "Украина / другие страны — $0.83" : "Россия — 70 ₽") +
         "\n\nПосле подтверждения откроется безопасная страница оплаты Lava.top." +
         "\n\nНажимая OK, ты подтверждаешь, что ознакомился с условиями покупки, возвратов и политикой конфиденциальности на shadowland.land/rules.html."
     );
@@ -107,7 +110,8 @@ async function buyWither() {
                 },
                 body: JSON.stringify({
                     nickname: nickname,
-                    email: email
+                    email: email,
+                    currency: paymentCurrency
                 })
             }
         );
@@ -137,6 +141,135 @@ async function buyWither() {
         showMessage("Не удалось подключиться к оплате Lava.top. Попробуй ещё раз.");
     }
 }
+
+// ============================================================
+// ВЫБОР ВАЛЮТЫ ДЛЯ LAVA.TOP
+// Россия -> RUB, Украина / другие страны -> USD
+// ============================================================
+
+function requestPaymentCurrency() {
+    return new Promise(resolve => {
+        const oldModal = document.querySelector(".shadowland-currency-modal");
+        if (oldModal) oldModal.remove();
+
+        const overlay = document.createElement("div");
+        overlay.className = "shadowland-currency-modal";
+
+        Object.assign(overlay.style, {
+            position: "fixed",
+            inset: "0",
+            zIndex: "100000",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "20px",
+            background: "rgba(0,0,0,.76)",
+            backdropFilter: "blur(8px)"
+        });
+
+        const box = document.createElement("div");
+
+        Object.assign(box.style, {
+            width: "min(420px, 100%)",
+            padding: "22px",
+            borderRadius: "14px",
+            border: "1px solid rgba(66,255,138,.20)",
+            background: "#090d13",
+            boxShadow: "0 25px 80px rgba(0,0,0,.55)",
+            color: "#ffffff",
+            fontFamily: '"Inter", Arial, sans-serif'
+        });
+
+        const title = document.createElement("div");
+        title.textContent = "Выбери способ оплаты";
+
+        Object.assign(title.style, {
+            fontSize: "16px",
+            fontWeight: "900",
+            marginBottom: "8px"
+        });
+
+        const description = document.createElement("div");
+        description.textContent = "Для России — рубли. Для Украины и других стран — доллары.";
+
+        Object.assign(description.style, {
+            color: "#7d8795",
+            fontSize: "11px",
+            lineHeight: "1.5",
+            marginBottom: "15px"
+        });
+
+        const buttons = document.createElement("div");
+
+        Object.assign(buttons.style, {
+            display: "grid",
+            gap: "10px"
+        });
+
+        const rubButton = document.createElement("button");
+        rubButton.type = "button";
+        rubButton.textContent = "🇷🇺 Россия — 70 ₽";
+
+        const usdButton = document.createElement("button");
+        usdButton.type = "button";
+        usdButton.textContent = "🇺🇦 Украина / другие страны — $0.83";
+
+        [rubButton, usdButton].forEach(button => {
+            Object.assign(button.style, {
+                width: "100%",
+                height: "44px",
+                border: "1px solid rgba(66,255,138,.22)",
+                borderRadius: "9px",
+                background: "#0d141c",
+                color: "#ffffff",
+                cursor: "pointer",
+                fontSize: "11px",
+                fontWeight: "900"
+            });
+        });
+
+        usdButton.style.background = "#42ff8a";
+        usdButton.style.color = "#031008";
+
+        const cancel = document.createElement("button");
+        cancel.type = "button";
+        cancel.textContent = "Отмена";
+
+        Object.assign(cancel.style, {
+            width: "100%",
+            height: "40px",
+            marginTop: "10px",
+            border: "1px solid rgba(255,255,255,.09)",
+            borderRadius: "9px",
+            background: "rgba(255,255,255,.04)",
+            color: "#ffffff",
+            cursor: "pointer",
+            fontSize: "11px",
+            fontWeight: "800"
+        });
+
+        const close = value => {
+            overlay.remove();
+            resolve(value);
+        };
+
+        rubButton.addEventListener("click", () => close("RUB"));
+        usdButton.addEventListener("click", () => close("USD"));
+        cancel.addEventListener("click", () => close(null));
+
+        overlay.addEventListener("click", event => {
+            if (event.target === overlay) {
+                close(null);
+            }
+        });
+
+        buttons.append(rubButton, usdButton);
+        box.append(title, description, buttons, cancel);
+        overlay.appendChild(box);
+        document.body.appendChild(overlay);
+    });
+}
+
 
 // ============================================================
 // E-MAIL ПОКУПАТЕЛЯ — ТЁМНОЕ ОКНО БЕЗ ИЗМЕНЕНИЯ STYLE.CSS
