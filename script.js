@@ -38,7 +38,10 @@ function buy(product, price) {
         return;
     }
 
-    if (normalizedProduct === "50 + 10 коинов" || normalizedProduct === "60 coins") {
+    if (
+        Number(price) === 50 &&
+        (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))
+    ) {
         buyCoins60();
         return;
     }
