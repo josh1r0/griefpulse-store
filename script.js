@@ -18,6 +18,23 @@ async function copyIP() {
 function buy(product, price) {
     const normalizedProduct = String(product || "").trim().toLowerCase();
 
+    // 3 DONATE CASES — уже подключён к Lava.top
+    if (
+        Number(price) === 99 &&
+        normalizedProduct.includes("3 кейса") &&
+        normalizedProduct.includes("донат")
+    ) {
+        buyDonateCase3();
+        return;
+    }
+
+    // Остальные кейсы переводим на Lava.top по очереди.
+    // Пока конкретный кейс ещё не подключён — не отправляем его в старый DonatePay.
+    if (normalizedProduct.includes("кейс")) {
+        showMessage("Этот кейс сейчас подключается к новой оплате Lava.top. Попробуй чуть позже.");
+        return;
+    }
+
     if (normalizedProduct === "wither") {
         buyWither();
         return;
@@ -898,6 +915,95 @@ async function buyCoins5000() {
 
     } catch (error) {
         console.error("Lava 5000 COINS network error:", error);
+        showMessage("Не удалось подключиться к оплате Lava.top. Попробуй ещё раз.");
+    }
+}
+
+// ============================================================
+// 3 DONATE CASES — ОПЛАТА ЧЕРЕЗ LAVA.TOP
+// ============================================================
+
+async function buyDonateCase3() {
+    const nicknameInput = document.getElementById("nickname");
+    if (!nicknameInput) return;
+
+    const nickname = nicknameInput.value.trim();
+
+    if (!nickname) {
+        nicknameInput.focus();
+        showMessage("Сначала введи свой Minecraft ник!");
+        return;
+    }
+
+    if (!/^[A-Za-z0-9_]{3,16}$/.test(nickname)) {
+        nicknameInput.focus();
+        showMessage("Проверь Minecraft ник. Допустимо 3–16 символов.");
+        return;
+    }
+
+    const email = await requestBuyerEmail("3 DONATE CASES");
+    if (!email) return;
+
+    const paymentCurrency = await requestPaymentCurrency(99, 1.18);
+    if (!paymentCurrency) return;
+
+    localStorage.setItem("shadowland_nickname", nickname);
+    localStorage.setItem("shadowland_email", email);
+    localStorage.setItem("shadowland_product", "3 DONATE CASES");
+    localStorage.setItem("shadowland_price", "99");
+
+    const confirmed = confirm(
+        "Покупка: 3 DONATE CASES" +
+        "\nMinecraft ник: " + nickname +
+        "\nE-mail: " + email +
+        "\nОплата: " + (paymentCurrency === "USD"
+            ? "Украина / другие страны — $1.18"
+            : "Россия — 99 ₽") +
+        "\n\nПосле подтверждения откроется безопасная страница оплаты Lava.top." +
+        "\n\nНажимая OK, ты подтверждаешь, что ознакомился с условиями покупки, возвратов и политикой конфиденциальности на shadowland.land/rules.html."
+    );
+
+    if (!confirmed) return;
+
+    showMessage("Создаём оплату 3 DONATE CASES...");
+
+    try {
+        const response = await fetch(
+            SHADOWLAND_WORKER_URL + "/lava/create-donatecase3",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nickname: nickname,
+                    email: email,
+                    currency: paymentCurrency
+                })
+            }
+        );
+
+        let data = null;
+
+        try {
+            data = await response.json();
+        } catch (error) {
+        }
+
+        if (!response.ok || !data || data.ok !== true || !data.paymentUrl) {
+            console.error("Lava 3 DONATE CASES create invoice error:", data);
+            showMessage("Не удалось создать оплату 3 DONATE CASES. Попробуй ещё раз или напиши в поддержку.");
+            return;
+        }
+
+        showMessage("Открываем Lava.top...");
+
+        setTimeout(() => {
+            window.location.href = data.paymentUrl;
+        }, 250);
+
+    } catch (error) {
+        console.error("Lava 3 DONATE CASES network error:", error);
         showMessage("Не удалось подключиться к оплате Lava.top. Попробуй ещё раз.");
     }
 }
