@@ -16,6 +16,18 @@ async function copyIP() {
 }
 
 function buy(product, price) {
+    const normalizedProduct = String(product || "").trim().toLowerCase();
+
+    if (normalizedProduct === "wither") {
+        buyWither();
+        return;
+    }
+
+    if (normalizedProduct === "legend") {
+        buyLegend();
+        return;
+    }
+
     const nicknameInput = document.getElementById("nickname");
     if (!nicknameInput) return;
 
@@ -76,10 +88,10 @@ async function buyWither() {
         return;
     }
 
-    const email = await requestBuyerEmail();
+    const email = await requestBuyerEmail("WITHER");
     if (!email) return;
 
-    const paymentCurrency = await requestPaymentCurrency();
+    const paymentCurrency = await requestPaymentCurrency(70, 0.83);
     if (!paymentCurrency) return;
 
     localStorage.setItem("shadowland_nickname", nickname);
@@ -143,11 +155,99 @@ async function buyWither() {
 }
 
 // ============================================================
+// LEGEND — ОПЛАТА ЧЕРЕЗ LAVA.TOP
+// ============================================================
+
+async function buyLegend() {
+    const nicknameInput = document.getElementById("nickname");
+    if (!nicknameInput) return;
+
+    const nickname = nicknameInput.value.trim();
+
+    if (!nickname) {
+        nicknameInput.focus();
+        showMessage("Сначала введи свой Minecraft ник!");
+        return;
+    }
+
+    if (!/^[A-Za-z0-9_]{3,16}$/.test(nickname)) {
+        nicknameInput.focus();
+        showMessage("Проверь Minecraft ник. Допустимо 3–16 символов.");
+        return;
+    }
+
+    const email = await requestBuyerEmail("LEGEND");
+    if (!email) return;
+
+    const paymentCurrency = await requestPaymentCurrency(140, 1.67);
+    if (!paymentCurrency) return;
+
+    localStorage.setItem("shadowland_nickname", nickname);
+    localStorage.setItem("shadowland_email", email);
+    localStorage.setItem("shadowland_product", "Legend");
+    localStorage.setItem("shadowland_price", "140");
+
+    const confirmed = confirm(
+        "Покупка: LEGEND" +
+        "\nMinecraft ник: " + nickname +
+        "\nE-mail: " + email +
+        "\nОплата: " + (paymentCurrency === "USD" ? "Украина / другие страны — $1.67" : "Россия — 140 ₽") +
+        "\n\nПосле подтверждения откроется безопасная страница оплаты Lava.top." +
+        "\n\nНажимая OK, ты подтверждаешь, что ознакомился с условиями покупки, возвратов и политикой конфиденциальности на shadowland.land/rules.html."
+    );
+
+    if (!confirmed) return;
+
+    showMessage("Создаём оплату LEGEND...");
+
+    try {
+        const response = await fetch(
+            SHADOWLAND_WORKER_URL + "/lava/create-legend",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nickname: nickname,
+                    email: email,
+                    currency: paymentCurrency
+                })
+            }
+        );
+
+        let data = null;
+
+        try {
+            data = await response.json();
+        } catch (error) {
+            // Ниже покажем нормальную ошибку пользователю.
+        }
+
+        if (!response.ok || !data || data.ok !== true || !data.paymentUrl) {
+            console.error("Lava LEGEND create invoice error:", data);
+            showMessage("Не удалось создать оплату LEGEND. Попробуй ещё раз или напиши в поддержку.");
+            return;
+        }
+
+        showMessage("Открываем Lava.top...");
+
+        setTimeout(() => {
+            window.location.href = data.paymentUrl;
+        }, 250);
+
+    } catch (error) {
+        console.error("Lava LEGEND network error:", error);
+        showMessage("Не удалось подключиться к оплате Lava.top. Попробуй ещё раз.");
+    }
+}
+
+// ============================================================
 // ВЫБОР ВАЛЮТЫ ДЛЯ LAVA.TOP
 // Россия -> RUB, Украина / другие страны -> USD
 // ============================================================
 
-function requestPaymentCurrency() {
+function requestPaymentCurrency(rubPrice = 70, usdPrice = 0.83) {
     return new Promise(resolve => {
         const oldModal = document.querySelector(".shadowland-currency-modal");
         if (oldModal) oldModal.remove();
@@ -208,11 +308,11 @@ function requestPaymentCurrency() {
 
         const rubButton = document.createElement("button");
         rubButton.type = "button";
-        rubButton.textContent = "🇷🇺 Россия — 70 ₽";
+        rubButton.textContent = "🇷🇺 Россия — " + rubPrice + " ₽";
 
         const usdButton = document.createElement("button");
         usdButton.type = "button";
-        usdButton.textContent = "🇺🇦 Украина / другие страны — $0.83";
+        usdButton.textContent = "🇺🇦 Украина / другие страны — $" + usdPrice;
 
         [rubButton, usdButton].forEach(button => {
             Object.assign(button.style, {
@@ -275,7 +375,7 @@ function requestPaymentCurrency() {
 // E-MAIL ПОКУПАТЕЛЯ — ТЁМНОЕ ОКНО БЕЗ ИЗМЕНЕНИЯ STYLE.CSS
 // ============================================================
 
-function requestBuyerEmail() {
+function requestBuyerEmail(productName = "покупки") {
     return new Promise(resolve => {
         const oldModal = document.querySelector(".shadowland-email-modal");
         if (oldModal) oldModal.remove();
@@ -309,7 +409,7 @@ function requestBuyerEmail() {
         });
 
         const title = document.createElement("div");
-        title.textContent = "E-mail для покупки WITHER";
+        title.textContent = "E-mail для покупки " + productName;
 
         Object.assign(title.style, {
             fontSize: "16px",
