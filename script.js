@@ -3,7 +3,6 @@
 // ============================================================
 
 const SERVER_IP = "shadowland.land";
-const DONATEPAY_URL = "https://donatepay.ru/don/1531880";
 const SHADOWLAND_WORKER_URL = "https://pay.shadowland.land";
 
 const LAVA_CASES = {
@@ -80,124 +79,44 @@ async function copyIP() {
 
 function buy(product, price) {
     const normalizedProduct = String(product || "").trim().toLowerCase();
+    const numericPrice = Number(price);
 
-    // Товары дешевле 50 ₽ сейчас недоступны в Lava.top.
-    // SILVER и 30 COINS не отправляем в старый DonatePay.
-    if (
-        normalizedProduct === "silver" ||
-        (
-            Number(price) === 30 &&
-            (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))
-        )
-    ) {
-        showMessage("⛔ Покупка сейчас недоступна. Минимальная сумма оплаты — 50 ₽. Выбери товар от 50 ₽.");
+    // Товар остаётся на сайте. Lava.top не принимает оплату дешевле 50 ₽.
+    if (numericPrice < 50) {
+        showMessage("⛔ Минимальная сумма оплаты — 50 ₽. Этот товар стоит " + numericPrice + " ₽, поэтому отдельно оплатить его через Lava.top нельзя. Выбери товар от 50 ₽.");
         return;
     }
 
-    // Все кейсы — Lava.top.
     const caseConfig = LAVA_CASES[normalizedProduct];
     if (caseConfig) {
         buyCase(caseConfig);
         return;
     }
 
-    if (normalizedProduct === "wither") {
-        buyWither();
-        return;
+    if (normalizedProduct === "wither") { buyWither(); return; }
+    if (normalizedProduct === "legend") { buyLegend(); return; }
+    if (normalizedProduct === "imperator") { buyImperator(); return; }
+    if (normalizedProduct === "shadow") { buyShadow(); return; }
+
+    if (numericPrice === 50 && (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))) {
+        buyCoins60(); return;
+    }
+    if (numericPrice === 100 && (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))) {
+        buyCoins140(); return;
+    }
+    if (numericPrice === 469 && (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))) {
+        buyCoins620(); return;
+    }
+    if (numericPrice === 899 && (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))) {
+        buyCoins1800(); return;
+    }
+    if (numericPrice === 2499 && (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))) {
+        buyCoins5000(); return;
     }
 
-    if (normalizedProduct === "legend") {
-        buyLegend();
-        return;
-    }
-
-    if (normalizedProduct === "imperator") {
-        buyImperator();
-        return;
-    }
-
-    if (normalizedProduct === "shadow") {
-        buyShadow();
-        return;
-    }
-
-    if (
-        Number(price) === 50 &&
-        (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))
-    ) {
-        buyCoins60();
-        return;
-    }
-
-    if (
-        Number(price) === 100 &&
-        (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))
-    ) {
-        buyCoins140();
-        return;
-    }
-
-    if (
-        Number(price) === 469 &&
-        (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))
-    ) {
-        buyCoins620();
-        return;
-    }
-
-    if (
-        Number(price) === 899 &&
-        (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))
-    ) {
-        buyCoins1800();
-        return;
-    }
-
-    if (
-        Number(price) === 2499 &&
-        (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))
-    ) {
-        buyCoins5000();
-        return;
-    }
-
-    const nicknameInput = document.getElementById("nickname");
-    if (!nicknameInput) return;
-
-    const nickname = nicknameInput.value.trim();
-
-    if (!nickname) {
-        nicknameInput.focus();
-        showMessage("Сначала введи свой Minecraft ник!");
-        return;
-    }
-
-    if (!/^[A-Za-z0-9_]{3,16}$/.test(nickname)) {
-        nicknameInput.focus();
-        showMessage("Проверь Minecraft ник. Допустимо 3–16 символов.");
-        return;
-    }
-
-    localStorage.setItem("shadowland_nickname", nickname);
-    localStorage.setItem("shadowland_product", product);
-    localStorage.setItem("shadowland_price", String(price));
-
-    const confirmed = confirm(
-        "Покупка: " + product +
-        "\nMinecraft ник: " + nickname +
-        "\nТочная сумма: " + price + " ₽" +
-        "\n\nВАЖНО: на DonatePay введи ТОТ ЖЕ ник и ТОЧНО эту сумму. Не меняй сумму." +
-        "\n\nНажимая OK, ты подтверждаешь, что ознакомился с условиями покупки, возвратов и политикой конфиденциальности на shadowland.land/rules.html."
-    );
-
-    if (!confirmed) return;
-
-    showMessage("Открываем DonatePay...");
-
-    setTimeout(() => {
-        window.location.href = DONATEPAY_URL;
-    }, 300);
+    showMessage("Этот товар пока нельзя оплатить автоматически. Напиши в поддержку ShadowLand.");
 }
+
 
 // ============================================================
 // WITHER — ОПЛАТА ЧЕРЕЗ LAVA.TOP
