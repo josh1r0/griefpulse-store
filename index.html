@@ -438,7 +438,7 @@
 
 
                 <p>
-                    Выбери привилегию для своего аккаунта.
+                    Выбери привилегию для своего аккаунта. Перед покупкой укажи Minecraft-ник выше.
                 </p>
 
 
@@ -477,7 +477,7 @@
                 <h3>REAPER</h3>
                 <p>Эпический ранг</p>
                 <p class="rank-benefit">До 10 активных лотов на /ah</p>
-                <button type="button" onclick="buyNewRank('reaper')" disabled title="Покупка будет включена после проверки автоматической выдачи">Оплата настраивается <span>⌛</span></button>
+                <button type="button" class="rank-buy" onclick="buyNewRank('reaper')" aria-label="Купить REAPER за 75 рублей">Купить за 75 ₽ <span aria-hidden="true">→</span></button>
             </article>
 
             <article class="donate-card titan-card" style="--rank-color:#54d9ef">
@@ -487,7 +487,7 @@
                 <h3>TITAN</h3>
                 <p>Мифический ранг</p>
                 <p class="rank-benefit">До 15 активных лотов на /ah</p>
-                <button type="button" onclick="buyNewRank('titan')" disabled title="Покупка будет включена после проверки автоматической выдачи">Оплата настраивается <span>⌛</span></button>
+                <button type="button" class="rank-buy" onclick="buyNewRank('titan')" aria-label="Купить TITAN за 110 рублей">Купить за 110 ₽ <span aria-hidden="true">→</span></button>
             </article>
 
             <article class="donate-card legend-card" style="--rank-color:#e8bc56">
@@ -507,7 +507,7 @@
                 <h3>OVERLORD</h3>
                 <p>Высший ранг</p>
                 <p class="rank-benefit">До 30 активных лотов на /ah</p>
-                <button type="button" onclick="buyNewRank('overlord')" disabled title="Покупка будет включена после проверки автоматической выдачи">Оплата настраивается <span>⌛</span></button>
+                <button type="button" class="rank-buy" onclick="buyNewRank('overlord')" aria-label="Купить OVERLORD за 199 рублей">Купить за 199 ₽ <span aria-hidden="true">→</span></button>
             </article>
 
             <article class="donate-card imperator-card" style="--rank-color:#fa7171">
@@ -530,6 +530,7 @@
                 <button type="button" disabled title="Оплата будет включена после синхронизации Lava.top и Cloudflare">Оплата настраивается <span>⌛</span></button>
             </article>
         </div>
+        <p class="rank-shop-note">Оплата REAPER, TITAN и OVERLORD открывается через Lava.top. Остальные привилегии временно недоступны для покупки по указанным ценам.</p>
 
 
     </div>
