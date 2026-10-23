@@ -5046,3 +5046,41 @@ button, a { -webkit-tap-highlight-color: transparent; }
 @media (max-width:900px) {
   .header .nav nav {display:none;}
 }
+
+
+/* SHADOWLAND ORBIT — transparent logo shared by the shop and the rules page. */
+.header .logo-icon {
+    width: 55px;
+    height: 55px;
+    min-width: 55px;
+    display: grid;
+    place-items: center;
+    border: 0;
+    border-radius: 0;
+    background: none !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    color: inherit;
+    overflow: visible;
+}
+.header .logo-icon img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: contain;
+    filter: drop-shadow(0 0 8px rgba(176, 66, 255, .60));
+    transition: transform .28s ease, filter .28s ease;
+}
+.header a.logo:hover .logo-icon img {
+    transform: rotate(-7deg) scale(1.09);
+    filter: drop-shadow(0 0 14px rgba(190, 83, 255, .85));
+}
+.header .logo-icon svg { display: none; }
+@media (max-width: 650px) {
+    .header .logo-icon { width: 44px; height: 44px; min-width: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .header .logo-icon img { transition: none; }
+    .header a.logo:hover .logo-icon img { transform: none; }
+}
