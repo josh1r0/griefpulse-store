@@ -93,10 +93,12 @@ function buy(product, price) {
         return;
     }
 
-    if (normalizedProduct === "wither") { buyWither(); return; }
-    if (normalizedProduct === "legend") { buyLegend(); return; }
-    if (normalizedProduct === "imperator") { buyImperator(); return; }
-    if (normalizedProduct === "shadow") { buyShadow(); return; }
+    if (STORE_RANKS[normalizedProduct]) { buyRank(normalizedProduct); return; }
+    // The old WITHER/IMPERATOR offers have different prices from the current shop.
+    if (normalizedProduct === "wither" || normalizedProduct === "imperator" || normalizedProduct === "silver") {
+        showMessage("Покупка этого ранга недоступна до обновления цены в Lava.top.");
+        return;
+    }
 
     if (numericPrice === 50 && (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))) {
         buyCoins60(); return;
@@ -119,24 +121,33 @@ function buy(product, price) {
 
 
 // ============================================================
-// REAPER / TITAN / OVERLORD
-// Кнопки доступны; полная цепочка Webhook -> Minecraft ещё требует тестовой оплаты.
+// SHADOWLAND — SINGLE RANK CHECKOUT
+// Only ranks whose displayed prices match configured Worker prices.
 // ============================================================
-const NEW_DONATE_RANKS = Object.freeze({
+const STORE_RANKS = Object.freeze({
     reaper: Object.freeze({ name: "REAPER", rub: 75, usd: 0.92, path: "/lava/create-reaper" }),
     titan: Object.freeze({ name: "TITAN", rub: 110, usd: 1.34, path: "/lava/create-titan" }),
-    overlord: Object.freeze({ name: "OVERLORD", rub: 199, usd: 2.43, path: "/lava/create-overlord" })
+    legend: Object.freeze({ name: "LEGEND", rub: 140, usd: 1.65, path: "/lava/create-legend" }),
+    overlord: Object.freeze({ name: "OVERLORD", rub: 199, usd: 2.43, path: "/lava/create-overlord" }),
+    shadow: Object.freeze({ name: "SHADOW", rub: 599, usd: 7.07, path: "/lava/create-shadow" })
 });
 
-async function buyNewRank(rank) {
-    const item = NEW_DONATE_RANKS[String(rank || "").toLowerCase()];
-    if (!item) { showMessage("Привилегия не найдена."); return; }
+let rankCheckoutInProgress = false;
+
+async function buyRank(rank) {
+    const rankKey = String(rank || "").toLowerCase();
+    const item = STORE_RANKS[rankKey];
+    if (!item) {
+        showMessage("Покупка этого ранга временно недоступна.");
+        return;
+    }
+    if (rankCheckoutInProgress) return;
 
     const nicknameInput = document.getElementById("nickname");
     const nickname = nicknameInput?.value.trim() || "";
     if (!/^[A-Za-z0-9_]{3,16}$/.test(nickname)) {
         nicknameInput?.focus();
-        showMessage("Сначала введи правильный Minecraft ник (3–16 символов).");
+        showMessage("Сначала укажи Minecraft-ник (3–16 символов) вверху магазина.");
         return;
     }
 
@@ -146,14 +157,15 @@ async function buyNewRank(rank) {
     const currency = await requestPaymentCurrency(item.rub, item.usd);
     if (!currency) return;
 
-    const cost = currency === "USD" ? "$" + item.usd : item.rub + " ₽";
+    const cost = currency === "USD" ? "$" + item.usd.toFixed(2) : item.rub + " ₽";
     if (!confirm("Привилегия: " + item.name +
-        "\nMinecraft ник: " + nickname +
+        "\nMinecraft-ник: " + nickname +
         "\nE-mail: " + email +
         "\nСтоимость: " + cost +
-        "\n\nОплачивая, ты соглашаешься с условиями покупки на shadowland.land/rules.html." +
-        "\nОткрыть страницу оплаты Lava.top?")) return;
+        "\n\nПроверь данные. Продолжая, ты соглашаешься с условиями покупки на shadowland.land/rules.html." +
+        "\n\nОткрыть страницу оплаты Lava.top?")) return;
 
+    rankCheckoutInProgress = true;
     showMessage("Создаём счёт Lava.top...");
     try {
         const response = await fetch(SHADOWLAND_WORKER_URL + item.path, {
@@ -161,16 +173,23 @@ async function buyNewRank(rank) {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nickname, email, currency })
         });
-        const data = await response.json();
+        let data = null;
+        try {
+            data = await response.json();
+        } catch (error) {
+            throw new Error("Payment server returned invalid JSON");
+        }
+        // Block checkout if the backend returns a different item or amount.
+        const expectedAmount = currency === "USD" ? item.usd : item.rub;
         if (!response.ok || !data?.ok || !data?.paymentUrl ||
-            String(data.product).toLowerCase() !== rank ||
-            Number(data.amount) !== Number(currency === "USD" ? item.usd : item.rub)) {
-            console.error("ShadowLand checkout validation failed:", data);
-            showMessage("Ошибка создания счёта. Оплата не открыта. Обратись в поддержку.");
+            String(data.product).toLowerCase() !== rankKey ||
+            data.currency !== currency ||
+            Math.abs(Number(data.amount) - expectedAmount) > 0.001) {
+            console.error("Rank checkout failed validation:", data?.error || data);
+            showMessage("Не удалось открыть оплату по указанной цене. Попробуй позже.");
             return;
         }
 
-        // Redirect only to the expected HTTPS Lava.top checkout origin.
         const paymentUrl = new URL(data.paymentUrl);
         if (paymentUrl.protocol !== "https:" || paymentUrl.hostname !== "app.lava.top") {
             throw new Error("Unexpected payment URL origin");
@@ -182,13 +201,20 @@ async function buyNewRank(rank) {
             localStorage.setItem("shadowland_product", item.name);
             localStorage.setItem("shadowland_price", String(item.rub));
         } catch (storageError) {
-            console.warn("Unable to save checkout preferences:", storageError);
+            console.warn("Checkout preferences were not stored.");
         }
-        window.location.href = paymentUrl.href;
+        window.location.assign(paymentUrl.href);
     } catch (error) {
-        console.error("New donation checkout error:", error);
-        showMessage("Не удалось связаться с оплатой Lava.top.");
+        console.error("Rank checkout error:", error);
+        showMessage("Не удалось подключиться к Lava.top. Попробуй позже.");
+    } finally {
+        rankCheckoutInProgress = false;
     }
+}
+
+// Keep backwards compatibility with older links/handlers.
+function buyNewRank(rank) {
+    return buyRank(rank);
 }
 
 // ============================================================
@@ -1599,6 +1625,15 @@ document.addEventListener("DOMContentLoaded", () => {
     setupNickname();
     setupReveal();
     setupHeader();
+
+    const status = new URLSearchParams(window.location.search).get("payment");
+    if (status === "success") {
+        showMessage("Спасибо! Ожидаем подтверждение Lava.top. Выдача ранга произойдёт после уведомления сервера.");
+    } else if (status === "failed") {
+        showMessage("Оплата не прошла. Деньги и статус проверь в Lava.top.");
+    } else if (status === "cancelled") {
+        showMessage("Оплата отменена. Донат не оформлен.");
+    }
 
     const donate = document.getElementById("donate-tab");
     const coins = document.getElementById("coins-tab");

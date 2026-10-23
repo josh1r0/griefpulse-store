@@ -24,7 +24,7 @@
     <link rel="apple-touch-icon" href="shadowland_favicon.png?v=7">
 <link
         rel="stylesheet"
-        href="style.css"
+        href="style.css?v=nightfall-20261024"
     >
 
 </head>
@@ -47,9 +47,7 @@
             class="logo"
         >
 
-            <span class="logo-icon">
-                S
-            </span>
+            <span class="logo-icon" aria-hidden="true"><svg viewBox="0 0 48 48" width="30" height="30"><path d="M27 5a19 19 0 1 0 16 30A15 15 0 1 1 27 5Z" fill="currentColor"/><path d="M16 25 25 14 33 25 25 35Z" fill="none" stroke="currentColor" stroke-width="2.1"/></svg></span>
 
             <span class="logo-text">
 
@@ -438,7 +436,7 @@
 
 
                 <p>
-                    Выбери привилегию для своего аккаунта. Перед покупкой укажи Minecraft-ник выше.
+                    Выбери свой ранг. Один стиль, восемь ступеней могущества.
                 </p>
 
 
@@ -449,88 +447,198 @@
 
 
 
+        <div class="rank-shop-intro"><span class="rank-section-eyebrow">SHADOWLAND / ПРИВИЛЕГИИ</span><span class="rank-secure"><span class="rank-secure-dot"></span> ЗАЩИЩЁННАЯ ОПЛАТА ЧЕРЕЗ LAVA.TOP</span></div>
         <div class="donate-grid">
-            <article class="donate-card silver-card" style="--rank-color:#c6cedb">
-                <div class="card-light"></div>
-                <div class="rank-top"><span class="rank">SILVER</span><span class="price">25 ₽</span></div>
-                <div class="rank-symbol">S</div>
-                <h3>SILVER</h3>
-                <p>Базовые возможности</p>
-                <p class="rank-benefit">До 4 активных лотов на /ah</p>
-                <button type="button" disabled title="Оплата будет включена после синхронизации Lava.top и Cloudflare">Оплата настраивается <span>⌛</span></button>
-            </article>
-
-            <article class="donate-card wither-card" style="--rank-color:#ad88f5">
-                <div class="card-light"></div>
-                <div class="rank-top"><span class="rank">WITHER</span><span class="price">50 ₽</span></div>
-                <div class="rank-symbol">W</div>
-                <h3>WITHER</h3>
-                <p>Расширенные возможности</p>
-                <p class="rank-benefit">До 7 активных лотов на /ah</p>
-                <button type="button" disabled title="Оплата будет включена после синхронизации Lava.top и Cloudflare">Оплата настраивается <span>⌛</span></button>
-            </article>
-
-            <article class="donate-card reaper-card" style="--rank-color:#d279f7">
-                <div class="card-light"></div>
-                <div class="rank-top"><span class="rank">REAPER</span><span class="price">75 ₽</span></div>
-                <div class="rank-symbol">R</div>
-                <h3>REAPER</h3>
-                <p>Эпический ранг</p>
-                <p class="rank-benefit">До 10 активных лотов на /ah</p>
-                <button type="button" class="rank-buy" onclick="buyNewRank('reaper')" aria-label="Купить REAPER за 75 рублей">Купить за 75 ₽ <span aria-hidden="true">→</span></button>
-            </article>
-
-            <article class="donate-card titan-card" style="--rank-color:#54d9ef">
-                <div class="card-light"></div>
-                <div class="rank-top"><span class="rank">TITAN</span><span class="price">110 ₽</span></div>
-                <div class="rank-symbol">T</div>
-                <h3>TITAN</h3>
-                <p>Мифический ранг</p>
-                <p class="rank-benefit">До 15 активных лотов на /ah</p>
-                <button type="button" class="rank-buy" onclick="buyNewRank('titan')" aria-label="Купить TITAN за 110 рублей">Купить за 110 ₽ <span aria-hidden="true">→</span></button>
-            </article>
-
-            <article class="donate-card legend-card" style="--rank-color:#e8bc56">
-                <div class="card-light"></div>
-                <div class="rank-top"><span class="rank">LEGEND</span><span class="price">140 ₽</span></div>
-                <div class="rank-symbol">L</div>
-                <h3>LEGEND</h3>
-                <p>Легендарный ранг</p>
-                <p class="rank-benefit">До 20 активных лотов на /ah</p>
-                <button type="button" disabled title="Оплата будет включена после синхронизации Lava.top и Cloudflare">Оплата настраивается <span>⌛</span></button>
-            </article>
-
-            <article class="donate-card overlord-card" style="--rank-color:#ffa14d">
-                <div class="card-light"></div>
-                <div class="rank-top"><span class="rank">OVERLORD</span><span class="price">199 ₽</span></div>
-                <div class="rank-symbol">O</div>
-                <h3>OVERLORD</h3>
-                <p>Высший ранг</p>
-                <p class="rank-benefit">До 30 активных лотов на /ah</p>
-                <button type="button" class="rank-buy" onclick="buyNewRank('overlord')" aria-label="Купить OVERLORD за 199 рублей">Купить за 199 ₽ <span aria-hidden="true">→</span></button>
-            </article>
-
-            <article class="donate-card imperator-card" style="--rank-color:#fa7171">
-                <div class="card-light"></div>
-                <div class="rank-top"><span class="rank">IMPERATOR</span><span class="price">349 ₽</span></div>
-                <div class="rank-symbol">I</div>
-                <h3>IMPERATOR</h3>
-                <p>Императорский ранг</p>
-                <p class="rank-benefit">До 50 активных лотов на /ah</p>
-                <button type="button" disabled title="Оплата будет включена после синхронизации Lava.top и Cloudflare">Оплата настраивается <span>⌛</span></button>
-            </article>
-
-            <article class="donate-card shadow-card" style="--rank-color:#c26cff">
-                <div class="card-light"></div>
-                <div class="rank-top"><span class="rank">SHADOW</span><span class="price">599 ₽</span></div>
-                <div class="rank-symbol">S</div>
-                <h3>SHADOW</h3>
-                <p>Максимальный ранг</p>
-                <p class="rank-benefit">До 100 активных лотов на /ah</p>
-                <button type="button" disabled title="Оплата будет включена после синхронизации Lava.top и Cloudflare">Оплата настраивается <span>⌛</span></button>
-            </article>
+<article class="donate-card silver-card is-unavailable" style="--rank-color:#c8d8ea;--rank-shadow:#6a849c">
+    <span class="card-light" aria-hidden="true"></span>
+    <div class="rank-top"><span class="rank-tier">ПРИВИЛЕГИЯ <b>01</b></span><span class="rank-state rank-state-locked">СКОРО</span></div>
+    <div class="rank-emblem-wrap"><svg class="rank-emblem" viewBox="0 0 128 128" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+ <defs><linearGradient id="emblem-silver" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#ffffff"/><stop offset=".32" stop-color="#c8d8ea"/><stop offset="1" stop-color="#6a849c"/></linearGradient></defs>
+ <circle cx="64" cy="64" r="57" fill="none" stroke="currentColor" stroke-width="1.2" stroke-opacity=".23" stroke-dasharray="4 6"/>
+ <circle cx="64" cy="64" r="49" fill="none" stroke="currentColor" stroke-width=".8" stroke-opacity=".10"/>
+ 
+ <path d="M64 15 99 30 96 73Q93 94 64 113Q35 94 32 73L29 30Z" fill="url(#emblem-silver)" stroke="#fff" stroke-width="2.5" stroke-opacity=".85"/>
+ <path d="M64 27 88 38 86 72Q82 86 64 100Q46 86 42 72L40 38Z" fill="#132436" fill-opacity=".72" stroke="#ecf6ff" stroke-opacity=".7" stroke-width="1.5"/>
+ <path d="M64 34 70 44 67 65 76 73 64 87 52 73 61 65 58 44Z" fill="#f7fcff" stroke="#9dbed7" stroke-width="2"/>
+ <path d="M46 55 64 61 82 55" stroke="#c8e3ff" stroke-width="3" stroke-linecap="round"/>
+ <path d="M64 35V82" stroke="#4a759d" stroke-width="2" stroke-linecap="round"/>
+ 
+ </svg></div>
+    <h3>SILVER</h3>
+    <p class="rank-tagline">Первый шаг к новым возможностям</p>
+    <div class="rank-perk"><span class="rank-perk-star" aria-hidden="true">✦</span><span>До <strong>4</strong> активных лотов на <b>/ah</b></span></div>
+    <div class="rank-card-footer">
+      <div class="rank-price-group"><span>СТОИМОСТЬ</span><strong>25<small> ₽</small></strong></div>
+      <button type="button" class="rank-buy rank-unavailable" disabled title="Недоступно отдельно">НЕДОСТУПНО</button>
+    </div>
+  </article>
+<article class="donate-card wither-card is-unavailable" style="--rank-color:#a981fa;--rank-shadow:#4e3198">
+    <span class="card-light" aria-hidden="true"></span>
+    <div class="rank-top"><span class="rank-tier">ПРИВИЛЕГИЯ <b>02</b></span><span class="rank-state rank-state-locked">СКОРО</span></div>
+    <div class="rank-emblem-wrap"><svg class="rank-emblem" viewBox="0 0 128 128" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+ <defs><linearGradient id="emblem-wither" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#ffffff"/><stop offset=".32" stop-color="#a981fa"/><stop offset="1" stop-color="#4e3198"/></linearGradient></defs>
+ <circle cx="64" cy="64" r="57" fill="none" stroke="currentColor" stroke-width="1.2" stroke-opacity=".23" stroke-dasharray="4 6"/>
+ <circle cx="64" cy="64" r="49" fill="none" stroke="currentColor" stroke-width=".8" stroke-opacity=".10"/>
+ 
+ <path d="M33 89 33 66 26 56 29 40 46 32 54 38 64 22 74 38 82 32 99 40 102 56 95 66 95 89 83 98 73 91 64 101 55 91 45 98Z" fill="url(#emblem-wither)" stroke="#e9d2ff" stroke-width="2.4"/>
+ <path d="M39 65 47 53 55 65 49 71Z M73 65 81 53 89 65 79 71Z" fill="#180b2b"/>
+ <path d="M56 77 64 66 72 77Z" fill="#241137"/>
+ <path d="M47 84 81 84M52 84V95M61 84V98M69 84V98M78 84V95" stroke="#e9d2ff" stroke-width="3" stroke-linecap="round"/>
+ <path d="M45 39 30 19 41 45 M83 39 98 19 87 45" fill="none" stroke="#dfb9ff" stroke-width="4" stroke-linecap="round"/>
+ 
+ </svg></div>
+    <h3>WITHER</h3>
+    <p class="rank-tagline">Мощь из Нижнего мира</p>
+    <div class="rank-perk"><span class="rank-perk-star" aria-hidden="true">✦</span><span>До <strong>7</strong> активных лотов на <b>/ah</b></span></div>
+    <div class="rank-card-footer">
+      <div class="rank-price-group"><span>СТОИМОСТЬ</span><strong>50<small> ₽</small></strong></div>
+      <button type="button" class="rank-buy rank-unavailable" disabled title="Обновление цены">НЕДОСТУПНО</button>
+    </div>
+  </article>
+<article class="donate-card reaper-card is-buyable" style="--rank-color:#da75f4;--rank-shadow:#773295">
+    <span class="card-light" aria-hidden="true"></span>
+    <div class="rank-top"><span class="rank-tier">ПРИВИЛЕГИЯ <b>03</b></span><span class="rank-state rank-state-live">ДОСТУПНО</span></div>
+    <div class="rank-emblem-wrap"><svg class="rank-emblem" viewBox="0 0 128 128" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+ <defs><linearGradient id="emblem-reaper" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#ffffff"/><stop offset=".32" stop-color="#da75f4"/><stop offset="1" stop-color="#773295"/></linearGradient></defs>
+ <circle cx="64" cy="64" r="57" fill="none" stroke="currentColor" stroke-width="1.2" stroke-opacity=".23" stroke-dasharray="4 6"/>
+ <circle cx="64" cy="64" r="49" fill="none" stroke="currentColor" stroke-width=".8" stroke-opacity=".10"/>
+ 
+ <path d="M26 96Q32 55 58 32L64 13 70 32Q95 55 101 96L78 107 64 94 50 107Z" fill="url(#emblem-reaper)" stroke="#ffd6ff" stroke-opacity=".9" stroke-width="2.2"/>
+ <path d="M43 75Q43 47 64 38Q85 47 85 75L70 91 58 91Z" fill="#200b30" stroke="#dd9ef3" stroke-width="2"/>
+ <path d="M50 63 61 67 54 73M78 63 67 67 74 73" fill="none" stroke="#ffbbfc" stroke-width="4.6" stroke-linecap="round"/>
+ <path d="M57 83 64 75 71 83 64 89Z" fill="#e59bfa"/>
+ <path d="M18 30Q53 7 56 27Q35 28 22 45L37 49 47 102" fill="none" stroke="#f7d3fe" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+ <path d="M110 30Q75 7 72 27Q93 28 106 45L91 49 81 102" fill="none" stroke="#a75fc8" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/>
+ 
+ </svg></div>
+    <h3>REAPER</h3>
+    <p class="rank-tagline">Властелин теней</p>
+    <div class="rank-perk"><span class="rank-perk-star" aria-hidden="true">✦</span><span>До <strong>10</strong> активных лотов на <b>/ah</b></span></div>
+    <div class="rank-card-footer">
+      <div class="rank-price-group"><span>СТОИМОСТЬ</span><strong>75<small> ₽</small></strong></div>
+      <button type="button" class="rank-buy" onclick="buyRank('reaper')" aria-label="Купить REAPER за 75 рублей">КУПИТЬ <span aria-hidden="true">↗</span></button>
+    </div>
+  </article>
+<article class="donate-card titan-card is-buyable" style="--rank-color:#59dcf2;--rank-shadow:#196b91">
+    <span class="card-light" aria-hidden="true"></span>
+    <div class="rank-top"><span class="rank-tier">ПРИВИЛЕГИЯ <b>04</b></span><span class="rank-state rank-state-live">ДОСТУПНО</span></div>
+    <div class="rank-emblem-wrap"><svg class="rank-emblem" viewBox="0 0 128 128" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+ <defs><linearGradient id="emblem-titan" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#ffffff"/><stop offset=".32" stop-color="#59dcf2"/><stop offset="1" stop-color="#196b91"/></linearGradient></defs>
+ <circle cx="64" cy="64" r="57" fill="none" stroke="currentColor" stroke-width="1.2" stroke-opacity=".23" stroke-dasharray="4 6"/>
+ <circle cx="64" cy="64" r="49" fill="none" stroke="currentColor" stroke-width=".8" stroke-opacity=".10"/>
+ 
+ <path d="M23 37 51 17 64 26 77 17 105 37 96 59 95 88 79 103 64 93 49 103 33 88 32 59Z" fill="url(#emblem-titan)" stroke="#b6f7ff" stroke-width="2.4"/>
+ <path d="M38 48 50 43 64 55 78 43 90 48 84 75 76 86 64 76 52 86 44 75Z" fill="#0b2b40" stroke="#b8f6ff" stroke-opacity=".75" stroke-width="2"/>
+ <path d="M45 61 57 67 49 73 M83 61 71 67 79 73" fill="none" stroke="#93eeff" stroke-width="5.5" stroke-linecap="round"/>
+ <path d="M64 32 69 47 64 62 59 47Z" fill="#e5fbff"/>
+ <path d="M25 45 15 31 34 35 M103 45 113 31 94 35" fill="none" stroke="#8ff2ff" stroke-width="3.8" stroke-linecap="round"/>
+ <path d="M64 80 56 92 64 111 72 92Z" fill="#b5f7ff"/>
+ 
+ </svg></div>
+    <h3>TITAN</h3>
+    <p class="rank-tagline">Сила древних титанов</p>
+    <div class="rank-perk"><span class="rank-perk-star" aria-hidden="true">✦</span><span>До <strong>15</strong> активных лотов на <b>/ah</b></span></div>
+    <div class="rank-card-footer">
+      <div class="rank-price-group"><span>СТОИМОСТЬ</span><strong>110<small> ₽</small></strong></div>
+      <button type="button" class="rank-buy" onclick="buyRank('titan')" aria-label="Купить TITAN за 110 рублей">КУПИТЬ <span aria-hidden="true">↗</span></button>
+    </div>
+  </article>
+<article class="donate-card legend-card is-buyable" style="--rank-color:#f5cb66;--rank-shadow:#ac7523">
+    <span class="card-light" aria-hidden="true"></span>
+    <div class="rank-top"><span class="rank-tier">ПРИВИЛЕГИЯ <b>05</b></span><span class="rank-state rank-state-live">ДОСТУПНО</span></div>
+    <div class="rank-emblem-wrap"><svg class="rank-emblem" viewBox="0 0 128 128" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+ <defs><linearGradient id="emblem-legend" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#ffffff"/><stop offset=".32" stop-color="#f5cb66"/><stop offset="1" stop-color="#ac7523"/></linearGradient></defs>
+ <circle cx="64" cy="64" r="57" fill="none" stroke="currentColor" stroke-width="1.2" stroke-opacity=".23" stroke-dasharray="4 6"/>
+ <circle cx="64" cy="64" r="49" fill="none" stroke="currentColor" stroke-width=".8" stroke-opacity=".10"/>
+ 
+ <path d="M64 14 74 46 108 45 81 66 91 98 64 79 37 98 47 66 20 45 54 46Z" fill="url(#emblem-legend)" stroke="#fff0bc" stroke-width="2.7" stroke-linejoin="round"/>
+ <path d="M64 29 71 52 95 52 76 66 83 88 64 75 45 88 52 66 33 52 57 52Z" fill="#583914" fill-opacity=".75" stroke="#ffeba4" stroke-width="1.5"/>
+ <path d="M64 43 70 58 64 72 58 58Z" fill="#fff4cc"/>
+ <path d="M23 79 11 70 18 90 39 104M105 79 117 70 110 90 89 104" fill="none" stroke="#ffd981" stroke-width="4" stroke-linecap="round"/>
+ <path d="M35 25 30 12 M94 25 99 12 M64 11V5" stroke="#fff0bb" stroke-width="4" stroke-linecap="round"/>
+ 
+ </svg></div>
+    <h3>LEGEND</h3>
+    <p class="rank-tagline">Ранг настоящей легенды</p>
+    <div class="rank-perk"><span class="rank-perk-star" aria-hidden="true">✦</span><span>До <strong>20</strong> активных лотов на <b>/ah</b></span></div>
+    <div class="rank-card-footer">
+      <div class="rank-price-group"><span>СТОИМОСТЬ</span><strong>140<small> ₽</small></strong></div>
+      <button type="button" class="rank-buy" onclick="buyRank('legend')" aria-label="Купить LEGEND за 140 рублей">КУПИТЬ <span aria-hidden="true">↗</span></button>
+    </div>
+  </article>
+<article class="donate-card overlord-card is-buyable" style="--rank-color:#ff9f59;--rank-shadow:#b15125">
+    <span class="card-light" aria-hidden="true"></span>
+    <div class="rank-top"><span class="rank-tier">ПРИВИЛЕГИЯ <b>06</b></span><span class="rank-state rank-state-live">ДОСТУПНО</span></div>
+    <div class="rank-emblem-wrap"><svg class="rank-emblem" viewBox="0 0 128 128" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+ <defs><linearGradient id="emblem-overlord" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#ffffff"/><stop offset=".32" stop-color="#ff9f59"/><stop offset="1" stop-color="#b15125"/></linearGradient></defs>
+ <circle cx="64" cy="64" r="57" fill="none" stroke="currentColor" stroke-width="1.2" stroke-opacity=".23" stroke-dasharray="4 6"/>
+ <circle cx="64" cy="64" r="49" fill="none" stroke="currentColor" stroke-width=".8" stroke-opacity=".10"/>
+ 
+ <path d="M23 43 37 58 41 21 59 51 64 13 69 51 87 21 91 58 105 43 98 92 30 92Z" fill="url(#emblem-overlord)" stroke="#ffe1c1" stroke-width="2.5" stroke-linejoin="round"/>
+ <path d="M36 70 92 70 86 88 42 88Z" fill="#57250f" fill-opacity=".66" stroke="#ffd8aa" stroke-width="2"/>
+ <path d="M64 54 72 65 64 76 56 65Z" fill="#fff2d7" stroke="#ffc378" stroke-width="1.6"/>
+ <path d="M42 52 47 62 40 67 33 56Z M86 52 95 56 88 67 81 62Z" fill="#ffebb9"/>
+ <path d="M32 97 96 97M44 106 84 106" stroke="#fbb477" stroke-width="4" stroke-linecap="round"/>
+ 
+ </svg></div>
+    <h3>OVERLORD</h3>
+    <p class="rank-tagline">Воля повелителя миров</p>
+    <div class="rank-perk"><span class="rank-perk-star" aria-hidden="true">✦</span><span>До <strong>30</strong> активных лотов на <b>/ah</b></span></div>
+    <div class="rank-card-footer">
+      <div class="rank-price-group"><span>СТОИМОСТЬ</span><strong>199<small> ₽</small></strong></div>
+      <button type="button" class="rank-buy" onclick="buyRank('overlord')" aria-label="Купить OVERLORD за 199 рублей">КУПИТЬ <span aria-hidden="true">↗</span></button>
+    </div>
+  </article>
+<article class="donate-card imperator-card is-unavailable" style="--rank-color:#ff697a;--rank-shadow:#95283e">
+    <span class="card-light" aria-hidden="true"></span>
+    <div class="rank-top"><span class="rank-tier">ПРИВИЛЕГИЯ <b>07</b></span><span class="rank-state rank-state-locked">СКОРО</span></div>
+    <div class="rank-emblem-wrap"><svg class="rank-emblem" viewBox="0 0 128 128" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+ <defs><linearGradient id="emblem-imperator" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#ffffff"/><stop offset=".32" stop-color="#ff697a"/><stop offset="1" stop-color="#95283e"/></linearGradient></defs>
+ <circle cx="64" cy="64" r="57" fill="none" stroke="currentColor" stroke-width="1.2" stroke-opacity=".23" stroke-dasharray="4 6"/>
+ <circle cx="64" cy="64" r="49" fill="none" stroke="currentColor" stroke-width=".8" stroke-opacity=".10"/>
+ 
+ <path d="M64 10 74 39 96 24 98 57 113 49 105 95 23 95 15 49 30 57 32 24 54 39Z" fill="url(#emblem-imperator)" stroke="#ffe0e5" stroke-width="2.5" stroke-linejoin="round"/>
+ <path d="M31 69 97 69 92 90 36 90Z" fill="#4d0f22" fill-opacity=".68" stroke="#ffd1d7" stroke-width="2"/>
+ <path d="M64 33 76 55 64 76 52 55Z" fill="#fff2f4" stroke="#f6a3ae" stroke-width="2"/>
+ <path d="M37 53 43 63 36 69 29 58ZM91 53 99 58 92 69 85 63Z" fill="#ffd9df"/>
+ <path d="M27 104H101" stroke="#fcd0d6" stroke-width="5" stroke-linecap="round"/>
+ <path d="M64 10V5M35 21 29 14M93 21 99 14" stroke="#fff2f2" stroke-width="3" stroke-linecap="round"/>
+ 
+ </svg></div>
+    <h3>IMPERATOR</h3>
+    <p class="rank-tagline">Вершина имперской власти</p>
+    <div class="rank-perk"><span class="rank-perk-star" aria-hidden="true">✦</span><span>До <strong>50</strong> активных лотов на <b>/ah</b></span></div>
+    <div class="rank-card-footer">
+      <div class="rank-price-group"><span>СТОИМОСТЬ</span><strong>349<small> ₽</small></strong></div>
+      <button type="button" class="rank-buy rank-unavailable" disabled title="Обновление цены">НЕДОСТУПНО</button>
+    </div>
+  </article>
+<article class="donate-card shadow-card is-buyable" style="--rank-color:#bb83ff;--rank-shadow:#5630ab">
+    <span class="card-light" aria-hidden="true"></span>
+    <div class="rank-top"><span class="rank-tier">ПРИВИЛЕГИЯ <b>08</b></span><span class="rank-state rank-state-live">ДОСТУПНО</span></div>
+    <div class="rank-emblem-wrap"><svg class="rank-emblem" viewBox="0 0 128 128" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+ <defs><linearGradient id="emblem-shadow" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#ffffff"/><stop offset=".32" stop-color="#bb83ff"/><stop offset="1" stop-color="#5630ab"/></linearGradient></defs>
+ <circle cx="64" cy="64" r="57" fill="none" stroke="currentColor" stroke-width="1.2" stroke-opacity=".23" stroke-dasharray="4 6"/>
+ <circle cx="64" cy="64" r="49" fill="none" stroke="currentColor" stroke-width=".8" stroke-opacity=".10"/>
+ 
+ <path d="M64 14A50 50 0 1 0 114 64A37 37 0 1 1 64 14Z" fill="url(#emblem-shadow)" stroke="#f0deff" stroke-opacity=".8" stroke-width="2.5"/>
+ <path d="M24 67Q64 25 104 67Q64 109 24 67Z" fill="#24103d" stroke="#e4b4ff" stroke-width="3.4"/>
+ <ellipse cx="64" cy="67" rx="19" ry="21" fill="#a46cef" stroke="#f6e7ff" stroke-width="2.5"/>
+ <circle cx="64" cy="67" r="9" fill="#0b091f"/>
+ <circle cx="59" cy="60" r="4" fill="#fff"/>
+ <path d="M24 28 13 16M104 28 115 16M19 100 9 113M109 100 119 113" stroke="#c79dff" stroke-width="3" stroke-linecap="round"/>
+ 
+ </svg></div>
+    <h3>SHADOW</h3>
+    <p class="rank-tagline">Абсолютная власть тьмы</p>
+    <div class="rank-perk"><span class="rank-perk-star" aria-hidden="true">✦</span><span>До <strong>100</strong> активных лотов на <b>/ah</b></span></div>
+    <div class="rank-card-footer">
+      <div class="rank-price-group"><span>СТОИМОСТЬ</span><strong>599<small> ₽</small></strong></div>
+      <button type="button" class="rank-buy" onclick="buyRank('shadow')" aria-label="Купить SHADOW за 599 рублей">КУПИТЬ <span aria-hidden="true">↗</span></button>
+    </div>
+  </article>
         </div>
-        <p class="rank-shop-note">Оплата REAPER, TITAN и OVERLORD открывается через Lava.top. Остальные привилегии временно недоступны для покупки по указанным ценам.</p>
+        <p class="rank-shop-note">Перед покупкой проверь Minecraft-ник. REAPER, TITAN, LEGEND, OVERLORD и SHADOW доступны через Lava.top. Цена остальных рангов обновляется — кнопки пока неактивны.</p>
 
 
     </div>
@@ -1512,7 +1620,7 @@
 
 
 
-<script src="script.js?v=20260912-3"></script>
+<script src="script.js?v=nightfall-20261024"></script>
 
 
 </body>
