@@ -4364,7 +4364,7 @@ footer {
     }
 }
 
-/* SHADOWLAND — all eight rank cards, staged pending payment setup */
+/* SHADOWLAND — eight donation ranks and verified checkout routes */
 .donate-grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
 .donate-card { --rank-color: #e8bc56; }
 .donate-card .card-light { background: var(--rank-color); }
@@ -4374,3 +4374,29 @@ footer {
 .donate-card button:disabled:hover { background:#262b35; color:#d7dce4; }
 @media (max-width:1100px) { .donate-grid {grid-template-columns:repeat(2,minmax(0,1fr));} }
 @media (max-width:620px) { .donate-grid {grid-template-columns:1fr;} }
+
+/* Emphasize ranks with a configured invoice route. */
+.donate-card .rank-buy {
+    background: var(--rank-color);
+    color: #071017;
+    font-size: 11px;
+    font-weight: 900;
+    box-shadow: 0 8px 24px rgba(0,0,0,.25);
+}
+.donate-card .rank-buy:hover,
+.donate-card .rank-buy:focus-visible {
+    background: #f4f6fa;
+    color: #071017;
+    transform: translateY(-2px);
+}
+.donate-card .rank-buy:focus-visible {
+    outline: 2px solid var(--rank-color);
+    outline-offset: 3px;
+}
+.rank-shop-note {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: #8f99aa;
+    line-height: 1.6;
+}
