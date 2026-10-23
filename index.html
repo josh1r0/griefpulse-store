@@ -472,9 +472,9 @@
       <button type="button" class="rank-buy rank-unavailable" disabled title="Недоступно отдельно">НЕДОСТУПНО</button>
     </div>
   </article>
-<article class="donate-card wither-card is-unavailable" style="--rank-color:#a981fa;--rank-shadow:#4e3198">
+<article class="donate-card wither-card is-buyable" style="--rank-color:#a981fa;--rank-shadow:#4e3198">
     <span class="card-light" aria-hidden="true"></span>
-    <div class="rank-top"><span class="rank-tier">ПРИВИЛЕГИЯ <b>02</b></span><span class="rank-state rank-state-locked">СКОРО</span></div>
+    <div class="rank-top"><span class="rank-tier">ПРИВИЛЕГИЯ <b>02</b></span><span class="rank-state rank-state-live">ДОСТУПНО</span></div>
     <div class="rank-emblem-wrap"><svg class="rank-emblem" viewBox="0 0 128 128" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
  <defs><linearGradient id="emblem-wither" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#ffffff"/><stop offset=".32" stop-color="#a981fa"/><stop offset="1" stop-color="#4e3198"/></linearGradient></defs>
  <circle cx="64" cy="64" r="57" fill="none" stroke="currentColor" stroke-width="1.2" stroke-opacity=".23" stroke-dasharray="4 6"/>
@@ -492,7 +492,7 @@
     <div class="rank-perk"><span class="rank-perk-star" aria-hidden="true">✦</span><span>До <strong>7</strong> активных лотов на <b>/ah</b></span></div>
     <div class="rank-card-footer">
       <div class="rank-price-group"><span>СТОИМОСТЬ</span><strong>50<small> ₽</small></strong></div>
-      <button type="button" class="rank-buy rank-unavailable" disabled title="Обновление цены">НЕДОСТУПНО</button>
+      <button type="button" class="rank-buy" onclick="buyRank('wither')" aria-label="Купить WITHER за 50 рублей">КУПИТЬ <span aria-hidden="true">↗</span></button>
     </div>
   </article>
 <article class="donate-card reaper-card is-buyable" style="--rank-color:#da75f4;--rank-shadow:#773295">
@@ -589,9 +589,9 @@
       <button type="button" class="rank-buy" onclick="buyRank('overlord')" aria-label="Купить OVERLORD за 199 рублей">КУПИТЬ <span aria-hidden="true">↗</span></button>
     </div>
   </article>
-<article class="donate-card imperator-card is-unavailable" style="--rank-color:#ff697a;--rank-shadow:#95283e">
+<article class="donate-card imperator-card is-buyable" style="--rank-color:#ff697a;--rank-shadow:#95283e">
     <span class="card-light" aria-hidden="true"></span>
-    <div class="rank-top"><span class="rank-tier">ПРИВИЛЕГИЯ <b>07</b></span><span class="rank-state rank-state-locked">СКОРО</span></div>
+    <div class="rank-top"><span class="rank-tier">ПРИВИЛЕГИЯ <b>07</b></span><span class="rank-state rank-state-live">ДОСТУПНО</span></div>
     <div class="rank-emblem-wrap"><svg class="rank-emblem" viewBox="0 0 128 128" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
  <defs><linearGradient id="emblem-imperator" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0" stop-color="#ffffff"/><stop offset=".32" stop-color="#ff697a"/><stop offset="1" stop-color="#95283e"/></linearGradient></defs>
  <circle cx="64" cy="64" r="57" fill="none" stroke="currentColor" stroke-width="1.2" stroke-opacity=".23" stroke-dasharray="4 6"/>
@@ -610,7 +610,7 @@
     <div class="rank-perk"><span class="rank-perk-star" aria-hidden="true">✦</span><span>До <strong>50</strong> активных лотов на <b>/ah</b></span></div>
     <div class="rank-card-footer">
       <div class="rank-price-group"><span>СТОИМОСТЬ</span><strong>349<small> ₽</small></strong></div>
-      <button type="button" class="rank-buy rank-unavailable" disabled title="Обновление цены">НЕДОСТУПНО</button>
+      <button type="button" class="rank-buy" onclick="buyRank('imperator')" aria-label="Купить IMPERATOR за 349 рублей">КУПИТЬ <span aria-hidden="true">↗</span></button>
     </div>
   </article>
 <article class="donate-card shadow-card is-buyable" style="--rank-color:#bb83ff;--rank-shadow:#5630ab">
@@ -638,7 +638,7 @@
     </div>
   </article>
         </div>
-        <p class="rank-shop-note">Перед покупкой проверь Minecraft-ник. REAPER, TITAN, LEGEND, OVERLORD и SHADOW доступны через Lava.top. Цена остальных рангов обновляется — кнопки пока неактивны.</p>
+        <p class="rank-shop-note">Перед покупкой проверь Minecraft-ник. WITHER, REAPER, TITAN, LEGEND, OVERLORD, IMPERATOR и SHADOW доступны через Lava.top. SILVER за 25 ₽ пока нельзя купить отдельно из-за минимальной суммы оплаты 50 ₽.</p>
 
 
     </div>
@@ -1308,7 +1308,7 @@
 
 
 
-<script src="script.js?v=nightfall-20261024"></script>
+<script src="script.js?v=nightfall-20261024-7ranks"></script>
 
 
 </body>

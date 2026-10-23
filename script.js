@@ -94,9 +94,9 @@ function buy(product, price) {
     }
 
     if (STORE_RANKS[normalizedProduct]) { buyRank(normalizedProduct); return; }
-    // The old WITHER/IMPERATOR offers have different prices from the current shop.
-    if (normalizedProduct === "wither" || normalizedProduct === "imperator" || normalizedProduct === "silver") {
-        showMessage("Покупка этого ранга недоступна до обновления цены в Lava.top.");
+    // SILVER cannot be purchased separately while Lava.top requires a 50 ₽ minimum.
+    if (normalizedProduct === "silver") {
+        showMessage("SILVER стоит 25 ₽ — пока недоступен для отдельной оплаты через Lava.top.");
         return;
     }
 
@@ -125,10 +125,12 @@ function buy(product, price) {
 // Only ranks whose displayed prices match configured Worker prices.
 // ============================================================
 const STORE_RANKS = Object.freeze({
+    wither: Object.freeze({ name: "WITHER", rub: 50, usd: 0.83, path: "/lava/create-wither" }),
     reaper: Object.freeze({ name: "REAPER", rub: 75, usd: 0.92, path: "/lava/create-reaper" }),
     titan: Object.freeze({ name: "TITAN", rub: 110, usd: 1.34, path: "/lava/create-titan" }),
     legend: Object.freeze({ name: "LEGEND", rub: 140, usd: 1.65, path: "/lava/create-legend" }),
     overlord: Object.freeze({ name: "OVERLORD", rub: 199, usd: 2.43, path: "/lava/create-overlord" }),
+    imperator: Object.freeze({ name: "IMPERATOR", rub: 349, usd: 2.94, path: "/lava/create-imperator" }),
     shadow: Object.freeze({ name: "SHADOW", rub: 599, usd: 7.07, path: "/lava/create-shadow" })
 });
 
@@ -218,92 +220,9 @@ function buyNewRank(rank) {
 }
 
 // ============================================================
-// WITHER — ОПЛАТА ЧЕРЕЗ LAVA.TOP
+// WITHER — shared checkout to prevent stale price/offer routing.
 // ============================================================
-
-async function buyWither() {
-    const nicknameInput = document.getElementById("nickname");
-    if (!nicknameInput) return;
-
-    const nickname = nicknameInput.value.trim();
-
-    if (!nickname) {
-        nicknameInput.focus();
-        showMessage("Сначала введи свой Minecraft ник!");
-        return;
-    }
-
-    if (!/^[A-Za-z0-9_]{3,16}$/.test(nickname)) {
-        nicknameInput.focus();
-        showMessage("Проверь Minecraft ник. Допустимо 3–16 символов.");
-        return;
-    }
-
-    const email = await requestBuyerEmail("WITHER");
-    if (!email) return;
-
-    const paymentCurrency = await requestPaymentCurrency(70, 0.83);
-    if (!paymentCurrency) return;
-
-    localStorage.setItem("shadowland_nickname", nickname);
-    localStorage.setItem("shadowland_email", email);
-    localStorage.setItem("shadowland_product", "Wither");
-    localStorage.setItem("shadowland_price", "70");
-
-    const confirmed = confirm(
-        "Покупка: WITHER" +
-        "\nMinecraft ник: " + nickname +
-        "\nE-mail: " + email +
-        "\nОплата: " + (paymentCurrency === "USD" ? "Украина / другие страны — $0.83" : "Россия — 70 ₽") +
-        "\n\nПосле подтверждения откроется безопасная страница оплаты Lava.top." +
-        "\n\nНажимая OK, ты подтверждаешь, что ознакомился с условиями покупки, возвратов и политикой конфиденциальности на shadowland.land/rules.html."
-    );
-
-    if (!confirmed) return;
-
-    showMessage("Создаём оплату WITHER...");
-
-    try {
-        const response = await fetch(
-            SHADOWLAND_WORKER_URL + "/lava/create-wither",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    nickname: nickname,
-                    email: email,
-                    currency: paymentCurrency
-                })
-            }
-        );
-
-        let data = null;
-
-        try {
-            data = await response.json();
-        } catch (error) {
-            // Ниже покажем нормальную ошибку пользователю.
-        }
-
-        if (!response.ok || !data || data.ok !== true || !data.paymentUrl) {
-            console.error("Lava create invoice error:", data);
-            showMessage("Не удалось создать оплату. Попробуй ещё раз или напиши в поддержку.");
-            return;
-        }
-
-        showMessage("Открываем Lava.top...");
-
-        setTimeout(() => {
-            window.location.href = data.paymentUrl;
-        }, 250);
-
-    } catch (error) {
-        console.error("Lava network error:", error);
-        showMessage("Не удалось подключиться к оплате Lava.top. Попробуй ещё раз.");
-    }
-}
+function buyWither() { return buyRank("wither"); }
 
 // ============================================================
 // LEGEND — ОПЛАТА ЧЕРЕЗ LAVA.TOP
@@ -394,92 +313,9 @@ async function buyLegend() {
 }
 
 // ============================================================
-// IMPERATOR — ОПЛАТА ЧЕРЕЗ LAVA.TOP
+// IMPERATOR — shared checkout to prevent stale price/offer routing.
 // ============================================================
-
-async function buyImperator() {
-    const nicknameInput = document.getElementById("nickname");
-    if (!nicknameInput) return;
-
-    const nickname = nicknameInput.value.trim();
-
-    if (!nickname) {
-        nicknameInput.focus();
-        showMessage("Сначала введи свой Minecraft ник!");
-        return;
-    }
-
-    if (!/^[A-Za-z0-9_]{3,16}$/.test(nickname)) {
-        nicknameInput.focus();
-        showMessage("Проверь Minecraft ник. Допустимо 3–16 символов.");
-        return;
-    }
-
-    const email = await requestBuyerEmail("IMPERATOR");
-    if (!email) return;
-
-    const paymentCurrency = await requestPaymentCurrency(249, 2.96);
-    if (!paymentCurrency) return;
-
-    localStorage.setItem("shadowland_nickname", nickname);
-    localStorage.setItem("shadowland_email", email);
-    localStorage.setItem("shadowland_product", "Imperator");
-    localStorage.setItem("shadowland_price", "249");
-
-    const confirmed = confirm(
-        "Покупка: IMPERATOR" +
-        "\nMinecraft ник: " + nickname +
-        "\nE-mail: " + email +
-        "\nОплата: " + (paymentCurrency === "USD" ? "Украина / другие страны — $2.96" : "Россия — 249 ₽") +
-        "\n\nПосле подтверждения откроется безопасная страница оплаты Lava.top." +
-        "\n\nНажимая OK, ты подтверждаешь, что ознакомился с условиями покупки, возвратов и политикой конфиденциальности на shadowland.land/rules.html."
-    );
-
-    if (!confirmed) return;
-
-    showMessage("Создаём оплату IMPERATOR...");
-
-    try {
-        const response = await fetch(
-            SHADOWLAND_WORKER_URL + "/lava/create-imperator",
-            {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    nickname: nickname,
-                    email: email,
-                    currency: paymentCurrency
-                })
-            }
-        );
-
-        let data = null;
-
-        try {
-            data = await response.json();
-        } catch (error) {
-            // Ниже покажем нормальную ошибку пользователю.
-        }
-
-        if (!response.ok || !data || data.ok !== true || !data.paymentUrl) {
-            console.error("Lava IMPERATOR create invoice error:", data);
-            showMessage("Не удалось создать оплату IMPERATOR. Попробуй ещё раз или напиши в поддержку.");
-            return;
-        }
-
-        showMessage("Открываем Lava.top...");
-
-        setTimeout(() => {
-            window.location.href = data.paymentUrl;
-        }, 250);
-
-    } catch (error) {
-        console.error("Lava IMPERATOR network error:", error);
-        showMessage("Не удалось подключиться к оплате Lava.top. Попробуй ещё раз.");
-    }
-}
+function buyImperator() { return buyRank("imperator"); }
 
 // ============================================================
 // SHADOW — ОПЛАТА ЧЕРЕЗ LAVA.TOP
