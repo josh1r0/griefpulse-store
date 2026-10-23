@@ -120,7 +120,7 @@ function buy(product, price) {
 
 // ============================================================
 // REAPER / TITAN / OVERLORD
-// ВНИМАНИЕ: кнопки неактивны до проверки автоматической выдачи.
+// Кнопки доступны; полная цепочка Webhook -> Minecraft ещё требует тестовой оплаты.
 // ============================================================
 const NEW_DONATE_RANKS = Object.freeze({
     reaper: Object.freeze({ name: "REAPER", rub: 75, usd: 0.92, path: "/lava/create-reaper" }),
@@ -151,7 +151,8 @@ async function buyNewRank(rank) {
         "\nMinecraft ник: " + nickname +
         "\nE-mail: " + email +
         "\nСтоимость: " + cost +
-        "\n\nОткрыть страницу оплаты Lava.top?")) return;
+        "\n\nОплачивая, ты соглашаешься с условиями покупки на shadowland.land/rules.html." +
+        "\nОткрыть страницу оплаты Lava.top?")) return;
 
     showMessage("Создаём счёт Lava.top...");
     try {
@@ -169,11 +170,21 @@ async function buyNewRank(rank) {
             return;
         }
 
-        localStorage.setItem("shadowland_nickname", nickname);
-        localStorage.setItem("shadowland_email", email);
-        localStorage.setItem("shadowland_product", item.name);
-        localStorage.setItem("shadowland_price", String(item.rub));
-        window.location.href = data.paymentUrl;
+        // Redirect only to the expected HTTPS Lava.top checkout origin.
+        const paymentUrl = new URL(data.paymentUrl);
+        if (paymentUrl.protocol !== "https:" || paymentUrl.hostname !== "app.lava.top") {
+            throw new Error("Unexpected payment URL origin");
+        }
+
+        try {
+            localStorage.setItem("shadowland_nickname", nickname);
+            localStorage.setItem("shadowland_email", email);
+            localStorage.setItem("shadowland_product", item.name);
+            localStorage.setItem("shadowland_price", String(item.rub));
+        } catch (storageError) {
+            console.warn("Unable to save checkout preferences:", storageError);
+        }
+        window.location.href = paymentUrl.href;
     } catch (error) {
         console.error("New donation checkout error:", error);
         showMessage("Не удалось связаться с оплатой Lava.top.");
