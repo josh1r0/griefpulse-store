@@ -4363,3 +4363,14 @@ footer {
         font-size: 9px;
     }
 }
+
+/* SHADOWLAND — all eight rank cards, staged pending payment setup */
+.donate-grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
+.donate-card { --rank-color: #e8bc56; }
+.donate-card .card-light { background: var(--rank-color); }
+.donate-card .rank,.donate-card .rank-symbol { color: var(--rank-color); }
+.donate-card .rank-benefit { margin-top: 12px; color: #b6bdc8; font-size: 11px; }
+.donate-card button:disabled { opacity: .68; cursor: not-allowed; background:#262b35; color:#d7dce4; }
+.donate-card button:disabled:hover { background:#262b35; color:#d7dce4; }
+@media (max-width:1100px) { .donate-grid {grid-template-columns:repeat(2,minmax(0,1fr));} }
+@media (max-width:620px) { .donate-grid {grid-template-columns:1fr;} }
