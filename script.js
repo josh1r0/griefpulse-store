@@ -1431,14 +1431,12 @@ function setupHeader() {
 }
 
 function fixInitialPosition() {
-    if (window.location.hash === "#shop") {
-        history.replaceState(null, "", window.location.pathname);
-        window.scrollTo(0, 0);
-    }
+    // Keep URL fragments intact so navigation works when coming from rules.html.
 }
 
 function showShopTab(tabId, button) {
     const tabs = ["donate-tab", "coins-tab", "cases-tab"];
+    if (!tabs.includes(tabId)) return;
 
     tabs.forEach(id => {
         const section = document.getElementById(id);
@@ -1447,13 +1445,51 @@ function showShopTab(tabId, button) {
         }
     });
 
-    document.querySelectorAll(".shop-tab").forEach(tab => {
-        tab.classList.remove("active");
+    document.querySelectorAll(".shop-tab").forEach((tab, index) => {
+        const active = tabs[index] === tabId;
+        tab.classList.toggle("active", active);
+        tab.setAttribute("aria-selected", active ? "true" : "false");
+    });
+}
+
+// Main menu / footer links and links returning from the rules page share the same shop tabs.
+function setupShopNavigation() {
+    const tabs = ["donate-tab", "coins-tab", "cases-tab"];
+    const scrollToShop = (smooth) => {
+        const bar = document.querySelector(".shop-tabs");
+        if (bar) bar.scrollIntoView({ behavior: smooth ? "smooth" : "auto", block: "start" });
+    };
+    const open = (id, smooth) => {
+        if (!tabs.includes(id)) return;
+        showShopTab(id);
+        scrollToShop(smooth);
+    };
+
+    document.querySelectorAll('a[href="#donate-tab"],a[href="#coins-tab"],a[href="#cases-tab"]').forEach(link => {
+        link.addEventListener("click", event => {
+            event.preventDefault();
+            const id = link.getAttribute("href").slice(1);
+            history.replaceState(null, "", "#" + id);
+            open(id, true);
+        });
     });
 
-    if (button) {
-        button.classList.add("active");
+    // Clicking another tab changes the visible section without changing the document location.
+    document.querySelectorAll(".shop-tab").forEach((tab, index) => {
+        tab.addEventListener("click", () => {
+            history.replaceState(null, "", "#" + tabs[index]);
+        });
+    });
+
+    const initial = window.location.hash.slice(1);
+    if (tabs.includes(initial)) {
+        requestAnimationFrame(() => open(initial, false));
     }
+
+    window.addEventListener("hashchange", () => {
+        const id = window.location.hash.slice(1);
+        if (tabs.includes(id)) open(id, false);
+    });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -1478,4 +1514,5 @@ document.addEventListener("DOMContentLoaded", () => {
     if (donate) donate.style.display = "block";
     if (coins) coins.style.display = "none";
     if (cases) cases.style.display = "none";
+    setupShopNavigation();
 });
