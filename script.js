@@ -119,6 +119,79 @@ function buy(product, price) {
 
 
 // ============================================================
+// REAPER / TITAN / OVERLORD
+// Кнопки доступны; полная цепочка Webhook -> Minecraft ещё требует тестовой оплаты.
+// ============================================================
+const NEW_DONATE_RANKS = Object.freeze({
+    reaper: Object.freeze({ name: "REAPER", rub: 75, usd: 0.92, path: "/lava/create-reaper" }),
+    titan: Object.freeze({ name: "TITAN", rub: 110, usd: 1.34, path: "/lava/create-titan" }),
+    overlord: Object.freeze({ name: "OVERLORD", rub: 199, usd: 2.43, path: "/lava/create-overlord" })
+});
+
+async function buyNewRank(rank) {
+    const item = NEW_DONATE_RANKS[String(rank || "").toLowerCase()];
+    if (!item) { showMessage("Привилегия не найдена."); return; }
+
+    const nicknameInput = document.getElementById("nickname");
+    const nickname = nicknameInput?.value.trim() || "";
+    if (!/^[A-Za-z0-9_]{3,16}$/.test(nickname)) {
+        nicknameInput?.focus();
+        showMessage("Сначала введи правильный Minecraft ник (3–16 символов).");
+        return;
+    }
+
+    const email = await requestBuyerEmail(item.name);
+    if (!email) return;
+
+    const currency = await requestPaymentCurrency(item.rub, item.usd);
+    if (!currency) return;
+
+    const cost = currency === "USD" ? "$" + item.usd : item.rub + " ₽";
+    if (!confirm("Привилегия: " + item.name +
+        "\nMinecraft ник: " + nickname +
+        "\nE-mail: " + email +
+        "\nСтоимость: " + cost +
+        "\n\nОплачивая, ты соглашаешься с условиями покупки на shadowland.land/rules.html." +
+        "\nОткрыть страницу оплаты Lava.top?")) return;
+
+    showMessage("Создаём счёт Lava.top...");
+    try {
+        const response = await fetch(SHADOWLAND_WORKER_URL + item.path, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ nickname, email, currency })
+        });
+        const data = await response.json();
+        if (!response.ok || !data?.ok || !data?.paymentUrl ||
+            String(data.product).toLowerCase() !== rank ||
+            Number(data.amount) !== Number(currency === "USD" ? item.usd : item.rub)) {
+            console.error("ShadowLand checkout validation failed:", data);
+            showMessage("Ошибка создания счёта. Оплата не открыта. Обратись в поддержку.");
+            return;
+        }
+
+        // Redirect only to the expected HTTPS Lava.top checkout origin.
+        const paymentUrl = new URL(data.paymentUrl);
+        if (paymentUrl.protocol !== "https:" || paymentUrl.hostname !== "app.lava.top") {
+            throw new Error("Unexpected payment URL origin");
+        }
+
+        try {
+            localStorage.setItem("shadowland_nickname", nickname);
+            localStorage.setItem("shadowland_email", email);
+            localStorage.setItem("shadowland_product", item.name);
+            localStorage.setItem("shadowland_price", String(item.rub));
+        } catch (storageError) {
+            console.warn("Unable to save checkout preferences:", storageError);
+        }
+        window.location.href = paymentUrl.href;
+    } catch (error) {
+        console.error("New donation checkout error:", error);
+        showMessage("Не удалось связаться с оплатой Lava.top.");
+    }
+}
+
+// ============================================================
 // WITHER — ОПЛАТА ЧЕРЕЗ LAVA.TOP
 // ============================================================
 

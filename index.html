@@ -438,7 +438,7 @@
 
 
                 <p>
-                    Выбери привилегию для своего аккаунта.
+                    Выбери привилегию для своего аккаунта. Перед покупкой укажи Minecraft-ник выше.
                 </p>
 
 
@@ -450,283 +450,87 @@
 
 
         <div class="donate-grid">
-
-
-            <!-- SILVER -->
-
-            <article class="donate-card silver-card">
-
-
+            <article class="donate-card silver-card" style="--rank-color:#c6cedb">
                 <div class="card-light"></div>
-
-
-                <div class="rank-top">
-
-
-                    <span class="rank silver">
-                        SILVER
-                    </span>
-
-
-                    <span class="price">
-                        25 ₽
-                    </span>
-
-
-                </div>
-
-
-                <div class="rank-symbol silver-symbol">
-                    S
-                </div>
-
-
-                <h3>
-                    Silver
-                </h3>
-
-
-                <p>
-                    Базовая привилегия ShadowLand
-                </p>
-
-
-                <button
-                    onclick="buy('Silver', 25)"
-                >
-
-                    Купить
-
-                    <span>→</span>
-
-                </button>
-
-
+                <div class="rank-top"><span class="rank">SILVER</span><span class="price">25 ₽</span></div>
+                <div class="rank-symbol">S</div>
+                <h3>SILVER</h3>
+                <p>Базовые возможности</p>
+                <p class="rank-benefit">До 4 активных лотов на /ah</p>
+                <button type="button" disabled title="Оплата будет включена после синхронизации Lava.top и Cloudflare">Оплата настраивается <span>⌛</span></button>
             </article>
 
-
-
-            <!-- WITHER -->
-
-            <article class="donate-card wither-card">
-
-
+            <article class="donate-card wither-card" style="--rank-color:#ad88f5">
                 <div class="card-light"></div>
-
-
-                <div class="rank-top">
-
-
-                    <span class="rank wither">
-                        WITHER
-                    </span>
-
-
-                    <span class="price">
-                        70 ₽
-                    </span>
-
-
-                </div>
-
-
-                <div class="rank-symbol wither-symbol">
-                    W
-                </div>
-
-
-                <h3>
-                    Wither
-                </h3>
-
-
-                <p>
-                    Расширенные возможности
-                </p>
-
-
-                <button
-                    onclick="buyWither()"
-                >
-
-                    Купить
-
-                    <span>→</span>
-
-                </button>
-
-
+                <div class="rank-top"><span class="rank">WITHER</span><span class="price">50 ₽</span></div>
+                <div class="rank-symbol">W</div>
+                <h3>WITHER</h3>
+                <p>Расширенные возможности</p>
+                <p class="rank-benefit">До 7 активных лотов на /ah</p>
+                <button type="button" disabled title="Оплата будет включена после синхронизации Lava.top и Cloudflare">Оплата настраивается <span>⌛</span></button>
             </article>
 
-
-
-            <!-- LEGEND -->
-
-            <article class="donate-card legend-card">
-
-
+            <article class="donate-card reaper-card" style="--rank-color:#d279f7">
                 <div class="card-light"></div>
-
-
-                <div class="rank-top">
-
-
-                    <span class="rank legend">
-                        LEGEND
-                    </span>
-
-
-                    <span class="price">
-                        140 ₽
-                    </span>
-
-
-                </div>
-
-
-                <div class="rank-symbol legend-symbol">
-                    L
-                </div>
-
-
-                <h3>
-                    Legend
-                </h3>
-
-
-                <p>
-                    Привилегия высокого уровня
-                </p>
-
-
-                <button
-                    onclick="buy('Legend', 140)"
-                >
-
-                    Купить
-
-                    <span>→</span>
-
-                </button>
-
-
+                <div class="rank-top"><span class="rank">REAPER</span><span class="price">75 ₽</span></div>
+                <div class="rank-symbol">R</div>
+                <h3>REAPER</h3>
+                <p>Эпический ранг</p>
+                <p class="rank-benefit">До 10 активных лотов на /ah</p>
+                <button type="button" class="rank-buy" onclick="buyNewRank('reaper')" aria-label="Купить REAPER за 75 рублей">Купить за 75 ₽ <span aria-hidden="true">→</span></button>
             </article>
 
-
-
-            <!-- IMPERATOR -->
-
-            <article class="donate-card imperator-card featured">
-
-
-                <div class="popular">
-                    ПОПУЛЯРНО
-                </div>
-
-
+            <article class="donate-card titan-card" style="--rank-color:#54d9ef">
                 <div class="card-light"></div>
-
-
-                <div class="rank-top">
-
-
-                    <span class="rank imperator">
-                        IMPERATOR
-                    </span>
-
-
-                    <span class="price">
-                        249 ₽
-                    </span>
-
-
-                </div>
-
-
-                <div class="rank-symbol imperator-symbol">
-                    I
-                </div>
-
-
-                <h3>
-                    Imperator
-                </h3>
-
-
-                <p>
-                    Максимум возможностей для игрока
-                </p>
-
-
-                <button
-                    onclick="buy('Imperator', 249)"
-                >
-
-                    Купить
-
-                    <span>→</span>
-
-                </button>
-
-
+                <div class="rank-top"><span class="rank">TITAN</span><span class="price">110 ₽</span></div>
+                <div class="rank-symbol">T</div>
+                <h3>TITAN</h3>
+                <p>Мифический ранг</p>
+                <p class="rank-benefit">До 15 активных лотов на /ah</p>
+                <button type="button" class="rank-buy" onclick="buyNewRank('titan')" aria-label="Купить TITAN за 110 рублей">Купить за 110 ₽ <span aria-hidden="true">→</span></button>
             </article>
 
-
-
-            <!-- SHADOW -->
-
-            <article class="donate-card shadow-card">
-
-
+            <article class="donate-card legend-card" style="--rank-color:#e8bc56">
                 <div class="card-light"></div>
-
-
-                <div class="rank-top">
-
-
-                    <span class="rank shadow">
-                        SHADOW
-                    </span>
-
-
-                    <span class="price">
-                        599 ₽
-                    </span>
-
-
-                </div>
-
-
-                <div class="rank-symbol shadow-symbol">
-                    S
-                </div>
-
-
-                <h3>
-                    Shadow
-                </h3>
-
-
-                <p>
-                    Главная привилегия ShadowLand
-                </p>
-
-
-                <button
-                    onclick="buy('Shadow', 599)"
-                >
-
-                    Купить
-
-                    <span>→</span>
-
-                </button>
-
-
+                <div class="rank-top"><span class="rank">LEGEND</span><span class="price">140 ₽</span></div>
+                <div class="rank-symbol">L</div>
+                <h3>LEGEND</h3>
+                <p>Легендарный ранг</p>
+                <p class="rank-benefit">До 20 активных лотов на /ah</p>
+                <button type="button" disabled title="Оплата будет включена после синхронизации Lava.top и Cloudflare">Оплата настраивается <span>⌛</span></button>
             </article>
 
+            <article class="donate-card overlord-card" style="--rank-color:#ffa14d">
+                <div class="card-light"></div>
+                <div class="rank-top"><span class="rank">OVERLORD</span><span class="price">199 ₽</span></div>
+                <div class="rank-symbol">O</div>
+                <h3>OVERLORD</h3>
+                <p>Высший ранг</p>
+                <p class="rank-benefit">До 30 активных лотов на /ah</p>
+                <button type="button" class="rank-buy" onclick="buyNewRank('overlord')" aria-label="Купить OVERLORD за 199 рублей">Купить за 199 ₽ <span aria-hidden="true">→</span></button>
+            </article>
 
+            <article class="donate-card imperator-card" style="--rank-color:#fa7171">
+                <div class="card-light"></div>
+                <div class="rank-top"><span class="rank">IMPERATOR</span><span class="price">349 ₽</span></div>
+                <div class="rank-symbol">I</div>
+                <h3>IMPERATOR</h3>
+                <p>Императорский ранг</p>
+                <p class="rank-benefit">До 50 активных лотов на /ah</p>
+                <button type="button" disabled title="Оплата будет включена после синхронизации Lava.top и Cloudflare">Оплата настраивается <span>⌛</span></button>
+            </article>
+
+            <article class="donate-card shadow-card" style="--rank-color:#c26cff">
+                <div class="card-light"></div>
+                <div class="rank-top"><span class="rank">SHADOW</span><span class="price">599 ₽</span></div>
+                <div class="rank-symbol">S</div>
+                <h3>SHADOW</h3>
+                <p>Максимальный ранг</p>
+                <p class="rank-benefit">До 100 активных лотов на /ah</p>
+                <button type="button" disabled title="Оплата будет включена после синхронизации Lava.top и Cloudflare">Оплата настраивается <span>⌛</span></button>
+            </article>
         </div>
+        <p class="rank-shop-note">Оплата REAPER, TITAN и OVERLORD открывается через Lava.top. Остальные привилегии временно недоступны для покупки по указанным ценам.</p>
 
 
     </div>
