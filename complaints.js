@@ -84,8 +84,7 @@
       const p = textNode("p","","Сохрани код: он нужен для просмотра статуса. Не передавай его посторонним.");
       const code = textNode("code","sl-receipt-code",out.code);
       const url = new URL(location.href);
-      url.searchParams.set("ticket",out.id);
-      url.searchParams.set("code",out.code);
+      url.hash = new URLSearchParams({ticket:String(out.id),code:out.code}).toString();
       const a = textNode("a","","Сохранить ссылку на статус →");
       a.href = url.toString();
       a.rel = "noopener noreferrer";
@@ -105,7 +104,7 @@
       if(item.reply)lookupResult.append(textNode("p","", "Ответ администрации: " + item.reply));
     } catch (error){lookupResult.textContent=error.message||"Обращение не найдено.";}
   });
-  const q = new URLSearchParams(location.search);
+  const q = new URLSearchParams(location.hash.replace(/^#/, ""));
   if(q.has("ticket") && q.has("code")){
     lookup.elements.id.value=q.get("ticket");
     lookup.elements.code.value=q.get("code");
