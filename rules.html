@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Правила сервера ShadowLand, цифровые покупки, возвраты, доставка, данные покупателей и контакты поддержки">
   <meta name="theme-color" content="#090b16">
-  <title>SHADOWLAND — Правила и условия</title>
+  <title>SHADOWLAND — Правила сервера и условия</title>
   <link rel="icon" href="favicon.ico?v=7">
   <link rel="stylesheet" href="style.css?v=nightfall-nav-about-20261024">
 <link rel="stylesheet" href="nebula-theme.css?v=1">
+  <link rel="stylesheet" href="community.css?v=20261031">
 </head>
 <body>
 <header class="header">
@@ -23,6 +24,7 @@
       <a href="index.html#cases-tab">Кейсы</a>
       <a href="index.html#why">О сервере</a>
       <a href="#server-rules">Правила</a>
+      <a href="complaints.html">Жалобы</a>
     </nav>
     <a class="nav-button" href="index.html#shop">МАГАЗИН <span aria-hidden="true">→</span></a>
   </div>
@@ -43,6 +45,7 @@
     <nav class="legal-tabs" aria-label="Разделы правил">
       <a href="#about-store">О магазине</a>
       <a href="#server-rules">Правила игры</a>
+      <a href="complaints.html">Форум жалоб</a>
       <a href="#privileges">Донаты</a>
       <a href="#coins-policy">Коины</a>
       <a href="#cases-policy">Кейсы</a>
@@ -61,18 +64,216 @@
       <div class="legal-note">Подтверждение оплаты — не гарантия мгновенной выдачи: необходимо получение и обработка платёжного уведомления. Если товар не поступил, обратитесь в поддержку с идентификатором заказа.</div>
     </section>
 
-    <section class="legal-card" id="server-rules">
-      <span class="sl-legal-number">02 / СООБЩЕСТВО</span><h2>ПРАВИЛА СЕРВЕРА</h2>
-      <ol>
-        <li><strong>Честная игра.</strong> Запрещены читы, запрещённые модификации, дюпы, вредоносные эксплойты и их распространение. Об обнаруженной ошибке сообщайте администрации.</li>
-        <li><strong>Стабильность.</strong> Запрещены намеренные лаг-машины, DDoS-атаки, перегрузка сервера, попытки доступа к чужим аккаунтам и обход технических ограничений.</li>
-        <li><strong>Общение.</strong> Запрещены угрозы, травля, дискриминационные оскорбления, публикация чужих персональных данных, спам, выдача себя за администрацию, мошенничество и фишинг.</li>
-        <li><strong>Торговля и аккаунты.</strong> Запрещены обман при внутриигровых сделках, продажа доступа к чужим аккаунтам, поддельные чеки и использование чужих платёжных средств без разрешения.</li>
-        <li><strong>Постройки и PvP.</strong> Следуйте правилам конкретного игрового режима, региона и события. Возможности гриферского режима, если они предусмотрены настройками, не разрешают обходить техническую защиту сервера.</li>
-        <li><strong>Нарушения.</strong> С учётом тяжести и повторяемости нарушения возможны предупреждение, мут, кик, временная или постоянная блокировка. При ошибке решения можно обратиться в поддержку.</li>
-        <li><strong>Платный статус.</strong> Привилегия не освобождает от правил и не даёт иммунитета от санкций; наказания не отменяют законные требования по ранее оплаченным товарам.</li>
-      </ol>
-      <p>Администрация может уточнять игровые правила на будущее. Существенные изменения в купленных услугах и правах покупателей не применяются задним числом вопреки обязательным нормам закона.</p>
+    <section class="legal-card sl-server-rulebook" id="server-rules">
+      <span class="sl-legal-number">02 / СООБЩЕСТВО</span><h2>⚖️ ПРАВИЛА СЕРВЕРА</h2>
+      <p class="sl-rules-intro">Добро пожаловать на <strong>ShadowLand</strong> — сервер, где выживает сильнейший. Гриферство, PvP и рейды приватов разрешены игровыми механиками. Читы, дюпы и вредоносные эксплойты запрещены.</p>
+      <ul class="sl-rules-basics">
+        <li>Незнание правил не освобождает от ответственности.</li>
+        <li>Правила действуют на всех игроков независимо от привилегии.</li>
+        <li>Администрация вправе пересматривать наказания при наличии доказательств.</li>
+        <li>Попытка нарушения правил также может повлечь наказание.</li>
+      </ul>
+      <div class="sl-rules-actionbar">
+        <a class="sl-rules-action sl-rules-action-primary" href="complaints.html">🚨 Форум жалоб <span aria-hidden="true">→</span></a>
+        <a class="sl-rules-action" href="https://discord.gg/bQCVnVvgg" target="_blank" rel="noopener noreferrer">Discord для обжалований <span aria-hidden="true">↗</span></a>
+      </div>
+      <nav class="sl-rules-toc" aria-label="Разделы правил"><a href="#rule-general">1. ОБЩИЕ ПРАВИЛА</a>
+<a href="#rule-chat">2. ПРАВИЛА ЧАТА</a>
+<a href="#rule-pvp">3. ПРАВИЛА ГРИФА И PvP</a>
+<a href="#rule-check">4. ПРОВЕРКИ НА ЧИТЫ</a>
+<a href="#rule-donate">5. ДОНАТ И ЭКОНОМИКА</a>
+<a href="#rule-staff">6. МОДЕРАЦИЯ И АДМИНИСТРАЦИЯ</a>
+<a href="#rule-appeals">7. НАКАЗАНИЯ И ОБЖАЛОВАНИЯ</a></nav>
+      <section class="sl-rule-group" id="rule-general" aria-labelledby="heading-general">
+  <h3 id="heading-general"><span aria-hidden="true">📜</span> 1. ОБЩИЕ ПРАВИЛА</h3>
+  <div class="sl-rule-list"><div class="sl-rule-entry">
+    <span class="sl-rule-index">1.1</span>
+    <div class="sl-rule-copy"><p>Запрещено использование чит-клиентов, X-Ray, KillAura, Reach, ESP, Fly и других модификаций, дающих нечестное преимущество.</p><p class="sl-rule-penalty"><span>Наказание:</span> Бан на 30 дней.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">1.2</span>
+    <div class="sl-rule-copy"><p>Запрещено использование стороннего ПО для автоматизации игрового процесса: запрещённых макросов, автокликеров, ботов и скриптов.</p><p class="sl-rule-penalty"><span>Наказание:</span> Бан на 7–30 дней.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">1.3</span>
+    <div class="sl-rule-copy"><p>Запрещено использование багов, дюпов и уязвимостей сервера для получения преимущества.</p><p class="sl-rule-penalty"><span>Наказание:</span> Бан на 14–30 дней, при серьёзных нарушениях — навсегда.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">1.4</span>
+    <div class="sl-rule-copy"><p>Запрещено создание лаг-машин, краш-механизмов и намеренная перегрузка сервера.</p><p class="sl-rule-penalty"><span>Наказание:</span> Бан навсегда.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">1.5</span>
+    <div class="sl-rule-copy"><p>Запрещён обход блокировки с использованием других аккаунтов.</p><p class="sl-rule-penalty"><span>Наказание:</span> Блокировка дополнительных аккаунтов, возможное продление основного наказания.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">1.6</span>
+    <div class="sl-rule-copy"><p>Запрещено выдавать себя за администрацию или официальных представителей проекта.</p><p class="sl-rule-penalty"><span>Наказание:</span> Бан на 7–30 дней.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">1.7</span>
+    <div class="sl-rule-copy"><p>Запрещена продажа аккаунтов, игровой валюты и предметов за реальные деньги вне официально разрешённых способов.</p><p class="sl-rule-penalty"><span>Наказание:</span> Бан на 14–30 дней.</p></div>
+  </div></div>
+</section>
+<section class="sl-rule-group" id="rule-chat" aria-labelledby="heading-chat">
+  <h3 id="heading-chat"><span aria-hidden="true">💬</span> 2. ПРАВИЛА ЧАТА</h3>
+  <div class="sl-rule-list"><div class="sl-rule-entry">
+    <span class="sl-rule-index">2.1</span>
+    <div class="sl-rule-copy"><p>Запрещены чрезмерный флуд, спам, повторение одинаковых сообщений и злоупотребление CAPS LOCK.</p><p class="sl-rule-penalty"><span>Наказание:</span> Мут на 15–60 минут.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">2.2</span>
+    <div class="sl-rule-copy"><p>Запрещены чрезмерные оскорбления игроков, систематическая травля и оскорбления родственников.</p><p class="sl-rule-penalty"><span>Наказание:</span> Мут на 30 минут – 3 часа.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">2.3</span>
+    <div class="sl-rule-copy"><p>Запрещена реклама сторонних Minecraft-серверов, Discord-сообществ и сторонних проектов без разрешения администрации.</p><p class="sl-rule-penalty"><span>Наказание:</span> Бан на 7–30 дней.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">2.4</span>
+    <div class="sl-rule-copy"><p>Запрещены угрозы расправы в реальной жизни, распространение личных данных и попытки шантажа.</p><p class="sl-rule-penalty"><span>Наказание:</span> Бан на 30 дней или навсегда.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">2.5</span>
+    <div class="sl-rule-copy"><p>Запрещены сообщения, направленные на разжигание ненависти по национальному, расовому или религиозному признаку.</p><p class="sl-rule-penalty"><span>Наказание:</span> Мут на 1–24 часа, при повторении — бан.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">2.6</span>
+    <div class="sl-rule-copy"><p>Запрещено намеренно распространять вредоносные ссылки и мошеннические сайты.</p><p class="sl-rule-penalty"><span>Наказание:</span> Бан навсегда.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">2.7</span>
+    <div class="sl-rule-copy"><p>Умеренный мат, игровые провокации и треш-ток разрешены, если они не нарушают перечисленные выше пункты.</p></div>
+  </div></div>
+</section>
+<section class="sl-rule-group" id="rule-pvp" aria-labelledby="heading-pvp">
+  <h3 id="heading-pvp"><span aria-hidden="true">⚔️</span> 3. ПРАВИЛА ГРИФА И PvP</h3>
+  <div class="sl-rule-list"><div class="sl-rule-entry">
+    <span class="sl-rule-index">3.1</span>
+    <div class="sl-rule-copy"><p>Разрешены гриферство, рейды, взрывы, ограбления и разрушение чужих построек.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">3.2</span>
+    <div class="sl-rule-copy"><p>Разрешено рейдить базы даже внутри чужих регионов (приватов), используя доступные игровые механики.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">3.3</span>
+    <div class="sl-rule-copy"><p>Разрешены PvP, засады, ловушки, предательство союзников и кража ресурсов.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">3.4</span>
+    <div class="sl-rule-copy"><p>Разрешён игровой обман при обменах и сделках за внутриигровые предметы или валюту. Администрация не обязана возвращать потерянные вещи.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">3.5</span>
+    <div class="sl-rule-copy"><p>Запрещено использование читов, багов и дюпов при гриферстве или PvP.</p><p class="sl-rule-penalty"><span>Наказание:</span> Согласно пунктам 1.1–1.3.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">3.6</span>
+    <div class="sl-rule-copy"><p>Запрещён обход защиты спавна, хаба и других административных зон с помощью ошибок сервера.</p><p class="sl-rule-penalty"><span>Наказание:</span> Бан на 7–30 дней.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">3.7</span>
+    <div class="sl-rule-copy"><p>Запрещено использование механизмов, намеренно вызывающих просадки TPS, зависания или отключение сервера.</p><p class="sl-rule-penalty"><span>Наказание:</span> Бан на 30 дней или навсегда.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">3.8</span>
+    <div class="sl-rule-copy"><p>Запрещено препятствовать проведению официальных ивентов с помощью читов, багов и уязвимостей. Обычные PvP-сражения на ивентах разрешены, если организаторы не установили специальные условия.</p><p class="sl-rule-penalty"><span>Наказание:</span> Бан на 3–14 дней.</p></div>
+  </div></div>
+</section>
+<section class="sl-rule-group" id="rule-check" aria-labelledby="heading-check">
+  <h3 id="heading-check"><span aria-hidden="true">🛡️</span> 4. ПРОВЕРКИ НА ЧИТЫ</h3>
+  <div class="sl-rule-list"><div class="sl-rule-entry">
+    <span class="sl-rule-index">4.1</span>
+    <div class="sl-rule-copy"><p>Игрок обязан выполнять законные требования MODER и GLMODER при официальной проверке на запрещённое ПО.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">4.2</span>
+    <div class="sl-rule-copy"><p>Запрещены намеренный выход с сервера во время проверки, отказ от проверки и препятствование её проведению.</p><p class="sl-rule-penalty"><span>Наказание:</span> Бан на 30 дней.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">4.3</span>
+    <div class="sl-rule-copy"><p>Запрещено намеренно удалять или скрывать запрещённые программы и файлы во время проверки.</p><p class="sl-rule-penalty"><span>Наказание:</span> Бан на 30 дней.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">4.4</span>
+    <div class="sl-rule-copy"><p>Модератор обязан объяснить порядок проверки и предоставить игроку разумную возможность её пройти.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">4.5</span>
+    <div class="sl-rule-copy"><p>Проверки проводятся только уполномоченными представителями администрации. Администрация никогда не требует пароли от аккаунтов и платёжные данные.</p></div>
+  </div></div>
+</section>
+<section class="sl-rule-group" id="rule-donate" aria-labelledby="heading-donate">
+  <h3 id="heading-donate"><span aria-hidden="true">💎</span> 5. ДОНАТ И ЭКОНОМИКА</h3>
+  <div class="sl-rule-list"><div class="sl-rule-entry">
+    <span class="sl-rule-index">5.1</span>
+    <div class="sl-rule-copy"><p>Донатные привилегии не освобождают от соблюдения правил сервера.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">5.2</span>
+    <div class="sl-rule-copy"><p>Запрещено использование ошибок экономики для незаконного получения игровой валюты, доната и других ресурсов.</p><p class="sl-rule-penalty"><span>Наказание:</span> Бан на 14–30 дней.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">5.3</span>
+    <div class="sl-rule-copy"><p>Запрещено мошенничество с реальными деньгами под видом продажи официальных привилегий ShadowLand.</p><p class="sl-rule-penalty"><span>Наказание:</span> Бан навсегда.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">5.4</span>
+    <div class="sl-rule-copy"><p>Потеря игровых ресурсов в результате PvP, рейдов, разрешённого гриферства и игрового обмана не является основанием для компенсации.</p></div>
+  </div></div>
+</section>
+<section class="sl-rule-group" id="rule-staff" aria-labelledby="heading-staff">
+  <h3 id="heading-staff"><span aria-hidden="true">👑</span> 6. МОДЕРАЦИЯ И АДМИНИСТРАЦИЯ</h3>
+  <div class="sl-rule-list"><div class="sl-rule-entry">
+    <span class="sl-rule-index">6.1</span>
+    <div class="sl-rule-copy"><p>MODER и GLMODER запрещено использовать служебные команды ради личной выгоды.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">6.2</span>
+    <div class="sl-rule-copy"><p>Запрещено выдавать наказания без достаточных оснований или подделывать доказательства.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">6.3</span>
+    <div class="sl-rule-copy"><p>Запрещено передавать служебные возможности посторонним игрокам.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">6.4</span>
+    <div class="sl-rule-copy"><p>Модерация обязана соблюдать установленные сроки наказаний и фиксировать серьёзные нарушения.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">6.5</span>
+    <div class="sl-rule-copy"><p>Игрок имеет право подать обжалование наказания через официальный Discord проекта.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">6.6</span>
+    <div class="sl-rule-copy"><p>Злоупотребление служебными полномочиями может повлечь снятие с должности и блокировку аккаунта.</p></div>
+  </div></div>
+</section>
+<section class="sl-rule-group" id="rule-appeals" aria-labelledby="heading-appeals">
+  <h3 id="heading-appeals"><span aria-hidden="true">⚠️</span> 7. НАКАЗАНИЯ И ОБЖАЛОВАНИЯ</h3>
+  <div class="sl-rule-list"><div class="sl-rule-entry">
+    <span class="sl-rule-index">7.1</span>
+    <div class="sl-rule-copy"><p>За повторные нарушения срок наказания может увеличиваться.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">7.2</span>
+    <div class="sl-rule-copy"><p>При рассмотрении жалоб учитываются доказательства, история нарушений и обстоятельства произошедшего.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">7.3</span>
+    <div class="sl-rule-copy"><p>Администрация может сократить или отменить ошибочно выданное наказание.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">7.4</span>
+    <div class="sl-rule-copy"><p>Игрок имеет право запросить причину наказания и подать апелляцию.</p></div>
+  </div>
+<div class="sl-rule-entry">
+    <span class="sl-rule-index">7.5</span>
+    <div class="sl-rule-copy"><p>Актуальная редакция правил публикуется в официальных каналах проекта.</p></div>
+  </div></div>
+</section>
+      <div class="sl-rules-ending"><strong>⚔️ SHADOWLAND — ГРИФЬ, РЕЙДИ, ВЫЖИВАЙ!</strong><span>Уважай правила, но не жди пощады от соперников.</span></div>
     </section>
 
     <section class="legal-card" id="privileges">
@@ -178,19 +379,20 @@
       <p>По вопросам заказа, недоставленного товара, блокировки, игровых правил или обработки персональных данных обращайтесь к администрации. Для платёжных обращений предпочтителен e-mail: он позволяет сохранить историю переписки.</p>
       <div class="sl-legal-support-links">
         <a href="mailto:shadowland.land@gmail.com"><b>E-MAIL</b><span>shadowland.land@gmail.com ↗</span></a>
+        <a href="complaints.html"><b>ФОРУМ ЖАЛОБ</b><span>Подать жалобу или обжаловать наказание ↗</span></a>
         <a href="https://discord.gg/bQCVnVvgg" target="_blank" rel="noopener noreferrer"><b>DISCORD</b><span>Сервер поддержки ↗</span></a>
         <a href="https://t.me/josh1r0" target="_blank" rel="noopener noreferrer"><b>TELEGRAM</b><span>@josh1r0 ↗</span></a>
         <a href="https://t.me/Niktatg" target="_blank" rel="noopener noreferrer"><b>TELEGRAM</b><span>@Niktatg ↗</span></a>
       </div>
     </section>
 
-    <div class="sl-legal-footer-row"><span>Последняя редакция: 24 октября 2026 г.</span><a class="legal-back" href="index.html">← Вернуться в магазин</a></div>
+    <div class="sl-legal-footer-row"><span>Игровые правила: 31 октября 2026 г. · Остальные условия: 24 октября 2026 г.</span><a class="legal-back" href="index.html">← Вернуться в магазин</a></div>
   </div>
 </main>
 <footer>
   <div class="container footer-content">
     <div><div class="footer-logo">SHADOWLAND</div><p>Магазин цифровых товаров независимого Minecraft-сервера.</p></div>
-    <div class="footer-links"><a href="index.html#donate-tab">Донат</a><a href="index.html#coins-tab">Коины</a><a href="index.html#cases-tab">Кейсы</a><a href="#server-rules">Правила</a><a href="#support">Контакты</a></div>
+    <div class="footer-links"><a href="index.html#donate-tab">Донат</a><a href="index.html#coins-tab">Коины</a><a href="index.html#cases-tab">Кейсы</a><a href="#server-rules">Правила</a><a href="complaints.html">Жалобы</a><a href="#support">Контакты</a></div>
   </div>
   <div class="minecraft-disclaimer"><strong>НЕОФИЦИАЛЬНЫЙ СЕРВИС.</strong> ShadowLand — независимый проект, не связанный с Mojang или Microsoft.<span>NOT AN OFFICIAL MINECRAFT SERVICE. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT.</span></div>
   <div class="copyright">© 2026 ShadowLand. <a href="#privacy">Конфиденциальность</a> · <a href="#purchase-rules">Условия покупки</a> · <a href="#refunds">Возвраты</a></div>

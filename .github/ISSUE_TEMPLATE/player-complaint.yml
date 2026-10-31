@@ -1,0 +1,42 @@
+# ShadowLand: GitHub Issues — публичный форум жалоб
+# Не включать поля для паролей, IP-адресов и персональных данных.
+name: "Жалоба на игрока"
+description: "Нарушения правил игроками ShadowLand"
+title: "[Жалоба на игрока] "
+body:
+  - type: markdown
+    attributes:
+      value: "Спасибо за обращение! Форма публичная: не публикуй пароли, IP-адреса, чужие личные данные или приватную переписку. Приложи ссылки на игровые скриншоты или видео. Для конфиденциальных случаев используй Discord поддержки."
+  - type: input
+    id: nickname
+    attributes:
+      label: "Твой Minecraft-ник"
+      placeholder: "Твой ник на ShadowLand"
+    validations:
+      required: true
+  - type: input
+    id: offender
+    attributes:
+      label: "Ник нарушителя"
+      placeholder: "Ник игрока"
+    validations:
+      required: true
+  - type: input
+    id: rule
+    attributes:
+      label: "Пункт правил"
+      placeholder: "Например, 1.1 или 2.3"
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: "Что произошло?"
+      placeholder: "Мир, примерное время, подробное описание ситуации."
+    validations:
+      required: true
+  - type: textarea
+    id: proof
+    attributes:
+      label: "Доказательства"
+      placeholder: "Ссылки на скриншоты / видео (при наличии)."

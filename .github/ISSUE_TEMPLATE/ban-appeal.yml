@@ -1,0 +1,42 @@
+# ShadowLand: GitHub Issues — публичный форум жалоб
+# Не включать поля для паролей, IP-адресов и персональных данных.
+name: "Обжалование наказания"
+description: "Запрос на пересмотр бана или мута"
+title: "[Обжалование] "
+body:
+  - type: markdown
+    attributes:
+      value: "Спасибо за обращение! Форма публичная: не публикуй пароли, IP-адреса, чужие личные данные или приватную переписку. Приложи ссылки на игровые скриншоты или видео. Для конфиденциальных случаев используй Discord поддержки."
+  - type: input
+    id: nickname
+    attributes:
+      label: "Minecraft-ник заблокированного игрока"
+      placeholder: "Твой ник"
+    validations:
+      required: true
+  - type: input
+    id: punishment
+    attributes:
+      label: "Вид наказания и срок"
+      placeholder: "Например, бан на 30 дней"
+    validations:
+      required: true
+  - type: input
+    id: reason
+    attributes:
+      label: "Указанная причина наказания"
+      placeholder: "Текст причины, если известен"
+    validations:
+      required: true
+  - type: textarea
+    id: details
+    attributes:
+      label: "Почему решение нужно пересмотреть?"
+      placeholder: "Опиши обстоятельства спокойно и по существу."
+    validations:
+      required: true
+  - type: textarea
+    id: proof
+    attributes:
+      label: "Дополнительные доказательства"
+      placeholder: "Ссылки на скриншоты и видео (при наличии)."

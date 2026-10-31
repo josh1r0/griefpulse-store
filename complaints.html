@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Форум жалоб ShadowLand: обращения на игроков и модерацию, обжалование наказаний, статус рассмотрения.">
+  <meta name="theme-color" content="#090b16">
+  <title>SHADOWLAND — Форум жалоб</title>
+  <link rel="icon" href="favicon.ico?v=7">
+  <link rel="stylesheet" href="style.css?v=nightfall-nav-about-20261024">
+  <link rel="stylesheet" href="nebula-theme.css?v=1">
+  <link rel="stylesheet" href="community.css?v=20261031">
+  <script defer src="complaints.js?v=20261031"></script>
+</head>
+<body>
+<header class="header">
+  <div class="container nav">
+    <a href="index.html" class="logo" aria-label="SHADOWLAND — на главную">
+      <span class="logo-icon" aria-hidden="true"><img src="shadowland-planet.svg" width="30" height="30" alt=""></span>
+      <span class="logo-text"><strong>SHADOWLAND</strong><small>MINECRAFT SERVER</small></span>
+    </a>
+    <nav aria-label="Главная навигация">
+      <a href="index.html#donate-tab">Донат</a>
+      <a href="index.html#coins-tab">Коины</a>
+      <a href="index.html#cases-tab">Кейсы</a>
+      <a href="index.html#why">О сервере</a>
+      <a href="rules.html#server-rules">Правила</a>
+      <a href="complaints.html" aria-current="page">Жалобы</a>
+    </nav>
+    <a class="nav-button" href="index.html#shop">МАГАЗИН <span aria-hidden="true">→</span></a>
+  </div>
+</header>
+<main class="legal-page sl-legal sl-forum" id="forum">
+  <div class="container">
+    <div class="legal-hero sl-forum-hero">
+      <span class="legal-kicker">SHADOWLAND / ПОДДЕРЖКА ИГРОКОВ</span>
+      <h1>ФОРУМ <span>ЖАЛОБ</span></h1>
+      <p>Нарушили правила? Не согласен с наказанием? Создай обращение с доказательствами, следи за статусом и обсуждай решение с администрацией.</p>
+      <div class="sl-legal-highlights">
+        <span><i aria-hidden="true"></i> ОТКРЫТЫЕ ОБРАЩЕНИЯ</span>
+        <span><i aria-hidden="true"></i> ОТВЕТЫ МОДЕРАЦИИ</span>
+        <span><i aria-hidden="true"></i> ПРОЗРАЧНЫЕ СТАТУСЫ</span>
+      </div>
+    </div>
+    <div class="sl-forum-alert" role="note"><strong>Важно:</strong> жалобы публикуются открыто через GitHub Issues. Для подачи потребуется бесплатная учётная запись GitHub. Не публикуй пароли, IP-адреса игроков, личные данные и приватную переписку. Для конфиденциальных обращений используй <a href="https://discord.gg/bQCVnVvgg" target="_blank" rel="noopener noreferrer">Discord поддержки</a>.</div>
+    <section class="sl-forum-choices" aria-label="Создать обращение">
+      <a class="sl-forum-choice" href="https://github.com/josh1r0/griefpulse-store/issues/new?template=player-complaint.yml" target="_blank" rel="noopener noreferrer">
+        <span class="sl-forum-choice-icon" aria-hidden="true">⚔️</span>
+        <span class="sl-forum-choice-type">ИГРОВОЕ НАРУШЕНИЕ</span>
+        <strong>Жалоба на игрока</strong><small>Читы, запрещённые механики, нарушения правил чата и другое</small>
+        <span class="sl-forum-choice-go">Подать жалобу ↗</span>
+      </a>
+      <a class="sl-forum-choice" href="https://github.com/josh1r0/griefpulse-store/issues/new?template=staff-complaint.yml" target="_blank" rel="noopener noreferrer">
+        <span class="sl-forum-choice-icon" aria-hidden="true">🛡️</span>
+        <span class="sl-forum-choice-type">ДЕЙСТВИЯ ПЕРСОНАЛА</span>
+        <strong>Жалоба на модератора</strong><small>Неверное наказание, злоупотребление полномочиями, спорные действия</small>
+        <span class="sl-forum-choice-go">Создать обращение ↗</span>
+      </a>
+      <a class="sl-forum-choice" href="https://github.com/josh1r0/griefpulse-store/issues/new?template=ban-appeal.yml" target="_blank" rel="noopener noreferrer">
+        <span class="sl-forum-choice-icon" aria-hidden="true">⚖️</span>
+        <span class="sl-forum-choice-type">ПЕРЕСМОТР РЕШЕНИЯ</span>
+        <strong>Обжалование наказания</strong><small>Объясни ситуацию и приложи доказательства для пересмотра</small>
+        <span class="sl-forum-choice-go">Подать апелляцию ↗</span>
+      </a>
+    </section>
+    <section class="sl-forum-board" aria-labelledby="board-title">
+      <div class="sl-forum-board-heading">
+        <div>
+          <span class="sl-legal-number">ФОРУМ / ОБРАЩЕНИЯ</span>
+          <h2 id="board-title">Последние жалобы</h2>
+          <p>Статусы обновляются по данным GitHub: «На рассмотрении» — открыта, «Закрыта» — закрыта.</p>
+        </div>
+        <a class="sl-forum-external" href="https://github.com/josh1r0/griefpulse-store/issues" target="_blank" rel="noopener noreferrer">Все обращения ↗</a>
+      </div>
+      <div class="sl-forum-filters">
+        <label class="sl-forum-search"><span class="sr-only">Поиск обращения</span><input id="complaints-search" type="search" placeholder="Поиск по номеру или названию..." maxlength="120" autocomplete="off"></label>
+        <label class="sl-forum-select"><span class="sr-only">Фильтр по статусу</span><select id="complaints-status"><option value="all">Все статусы</option><option value="open">На рассмотрении</option><option value="closed">Закрытые</option></select></label>
+        <button type="button" id="complaints-refresh" class="sl-forum-refresh">Обновить ↻</button>
+      </div>
+      <p id="complaints-feedback" class="sl-forum-feedback" role="status" aria-live="polite">Загружаем обращения...</p>
+      <div id="complaints-list" class="sl-forum-list" aria-live="polite"></div>
+      <p class="sl-forum-footnote">Публикация и ответы проходят на GitHub. Внешние ссылки открываются в новой вкладке. Данные списка могут обновляться с небольшой задержкой.</p>
+    </section>
+    <div class="sl-forum-bottom"><div><strong>Перед жалобой проверь правила</strong><p>Гриф, PvP, рейды приватов и игровой обман на ShadowLand разрешены, если не нарушены другие пункты.</p></div><a href="rules.html#server-rules">Читать правила →</a></div>
+  </div>
+</main>
+<footer>
+  <div class="container footer-content">
+    <div><div class="footer-logo">SHADOWLAND</div><p>Независимый Minecraft-сервер · Форум обращений игроков.</p></div>
+    <div class="footer-links"><a href="index.html">Главная</a><a href="rules.html#server-rules">Правила</a><a href="complaints.html">Жалобы</a><a href="https://discord.gg/bQCVnVvgg" target="_blank" rel="noopener noreferrer">Discord</a><a href="mailto:shadowland.land@gmail.com">Поддержка</a></div>
+  </div>
+  <div class="copyright">© 2026 ShadowLand · <a href="rules.html#privacy">Конфиденциальность</a> · <a href="rules.html#purchase-rules">Условия покупки</a></div>
+</footer>
+</body>
+</html>
