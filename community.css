@@ -61,3 +61,34 @@
 @media(max-width:950px){.sl-forum-choices {grid-template-columns:1fr 1fr;}.sl-rules-toc {grid-template-columns:repeat(2,minmax(0,1fr));}}
 @media(max-width:660px){.sl-rules-toc,.sl-forum-choices {grid-template-columns:1fr;}.sl-forum-board {padding:20px 16px;}.sl-forum-filters {grid-template-columns:1fr 1fr;}.sl-forum-search {grid-column:1/-1;}.sl-forum-choice small {min-height:0;}.sl-forum-item {flex-direction:column;}.sl-forum-bottom {flex-direction:column;align-items:flex-start;}.sl-forum .sl-legal .legal-hero {padding:25px;}.sl-rule-entry {padding:12px;gap:8px;}.sl-rule-index {min-width:33px;}}
 @media(prefers-reduced-motion:reduce){.sl-forum-choice,.sl-forum-item {transition:none;}}
+
+
+/* On-site ShadowLand complaint forms (API is separate from GitHub Pages). */
+.sl-complaint-layout{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(265px,1fr);gap:17px;margin:20px 0 24px;align-items:start;}
+.sl-complaint-panel{padding:26px 28px;border:1px solid rgba(172,148,235,.2);background:linear-gradient(140deg,#16192f,#0f1325);border-radius:19px;min-width:0;}
+.sl-complaint-panel h2{font-family:"Space Grotesk",sans-serif;font-size:26px;color:#f0e8ff;letter-spacing:-.7px;margin:0 0 9px;}
+.sl-complaint-sub{font-size:12px;line-height:1.7;color:#adb7d2;margin:0 0 20px;}
+.sl-complaint-panel form{display:grid;gap:13px;}
+.sl-complaint-panel label{display:flex;flex-direction:column;gap:8px;font-size:12px;font-weight:800;color:#c7c5df;min-width:0;}
+.sl-complaint-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.sl-complaint-panel input,.sl-complaint-panel textarea,.sl-complaint-panel select{display:block;min-width:0;width:100%;padding:12px 14px;resize:vertical;background:#0d1325;border:1px solid rgba(158,139,211,.3);border-radius:10px;color:#f9f4ff;font:inherit;font-weight:500;font-size:13px;line-height:1.5;outline:none;}
+.sl-complaint-panel input:focus,.sl-complaint-panel textarea:focus,.sl-complaint-panel select:focus{border-color:#b59aff;box-shadow:0 0 0 3px rgba(180,139,255,.13);}
+.sl-complaint-panel input::placeholder,.sl-complaint-panel textarea::placeholder{color:#7783a0;}
+.sl-complaint-panel button{padding:13px 18px;border:1px solid rgba(226,190,255,.23);border-radius:11px;background:linear-gradient(115deg,#7850d1,#a167ed);color:white;font:inherit;font-size:12px;font-weight:850;cursor:pointer;}
+.sl-complaint-panel button:hover{filter:brightness(1.14);}
+.sl-complaint-panel button:disabled{opacity:.47;cursor:not-allowed;}
+.sl-complaint-panel .sl-secondary-action{background:#202442;border-color:rgba(174,143,237,.24);}
+.sl-complaint-panel .sl-form-status{margin:0;font-size:12px;color:#a8deb9;line-height:1.65;}
+.sl-complaint-panel .sl-form-status.sl-error{color:#ffc2b8;}
+.sl-complaint-receipt{margin-top:15px;padding:15px;border-radius:11px;border:1px solid rgba(124,210,163,.3);background:rgba(31,117,67,.14);display:grid;gap:9px;font-size:12px;line-height:1.6;color:#d9eadd;overflow-wrap:anywhere;}
+.sl-complaint-receipt[hidden]{display:none;}
+.sl-complaint-receipt strong{font-size:14px;}
+.sl-complaint-receipt code{padding:9px;background:#0c1b1a;border-radius:8px;user-select:all;overflow-wrap:anywhere;}
+.sl-complaint-receipt a{color:#e3baff;text-decoration:underline;}
+.sl-status-result{margin:16px 0;display:grid;gap:8px;color:#c7c7d5;font-size:12px;line-height:1.65;}
+.sl-support-mini{margin-top:18px;padding:15px;background:#12182b;border:1px solid rgba(161,143,218,.18);border-radius:11px;}
+.sl-support-mini strong{color:#e5ddf7;font-size:13px;}.sl-support-mini p{font-size:12px;color:#a7acc6;margin:8px 0;}.sl-support-mini a{color:#c9abfb;font-weight:800;font-size:12px;}
+.sl-admin-list{display:grid;gap:12px;margin-top:17px;}.sl-admin-list .sl-complaint-panel p{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;color:#abb3cf;margin:12px 0;line-height:1.7;}
+.sl-admin-editor label input[type=checkbox]{width:auto;display:inline;min-width:0;}
+@media(max-width:850px){.sl-complaint-layout{grid-template-columns:1fr;}}
+@media(max-width:620px){.sl-complaint-panel{padding:20px 17px;}.sl-complaint-row{grid-template-columns:1fr;}}
