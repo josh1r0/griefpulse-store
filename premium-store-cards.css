@@ -1,0 +1,279 @@
+/* SHADOWLAND / PREMIUM STORE CARDS V2 / 2026-11-12
+   Replaces only the look of shop cards and inline artworks. No purchase logic. */
+#donate-tab .donate-grid{
+ display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:20px!important;align-items:stretch!important;
+}
+#donate-tab .donate-card{
+ position:relative!important;isolation:isolate!important;box-sizing:border-box!important;
+ display:flex!important;flex-direction:column!important;min-width:0!important;
+ min-height:438px!important;padding:20px!important;overflow:hidden!important;
+ border-radius:25px!important;border:1px solid rgba(170,145,214,.3)!important;
+ background:
+  radial-gradient(ellipse 110% 53% at 50% -7%,color-mix(in srgb,var(--rank-color) 19%,transparent),transparent 72%),
+  linear-gradient(154deg,#231e31 0%,#171323 43%,#100e1b 100%)!important;
+ box-shadow:0 12px 31px rgba(32,20,52,.1),inset 0 1px rgba(255,255,255,.095)!important;
+ color:#fff!important;
+ transition:transform .3s cubic-bezier(.2,.75,.25,1),border-color .3s,box-shadow .3s!important;
+}
+#donate-tab .donate-card:hover{
+ transform:translateY(-6px)!important;
+ border-color:color-mix(in srgb,var(--rank-color) 66%,#2d223a)!important;
+ box-shadow:0 27px 56px rgba(43,24,75,.23),0 0 34px color-mix(in srgb,var(--rank-color) 9%,transparent)!important;
+}
+#donate-tab .donate-card::before{
+ content:"";pointer-events:none;position:absolute;z-index:-1;
+ top:0;left:0;right:0;height:5px;
+ background:linear-gradient(90deg,transparent,var(--rank-color),transparent);
+ opacity:.76;
+}
+#donate-tab .donate-card::after{content:none!important;display:none!important}
+#donate-tab .donate-card .card-light{
+ position:absolute;top:-140px!important;left:40%!important;right:auto!important;
+ width:280px!important;height:250px!important;filter:blur(58px)!important;
+ opacity:.12!important;background:var(--rank-color)!important;pointer-events:none;
+}
+#donate-tab .rank-top{
+ position:relative!important;z-index:2!important;display:flex!important;
+ align-items:center!important;justify-content:space-between!important;gap:12px!important;
+ min-height:32px!important;flex-wrap:nowrap!important;
+}
+#donate-tab .rank-tier{
+ font-family:'DM Sans',sans-serif!important;color:#BEB5CE!important;
+ font-size:10px!important;font-weight:800!important;letter-spacing:.12em!important;
+}
+#donate-tab .rank-tier b{color:var(--rank-color)!important;font-size:10px!important;margin-left:6px!important}
+#donate-tab .rank-state{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;
+ padding:8px 10px!important;border-radius:100px!important;
+ font-size:9px!important;letter-spacing:.06em!important;font-weight:850!important;
+}
+#donate-tab .rank-state-live{
+ color:color-mix(in srgb,var(--rank-color) 73%,white)!important;
+ background:color-mix(in srgb,var(--rank-color) 13%,transparent)!important;
+ border:1px solid color-mix(in srgb,var(--rank-color) 36%,transparent)!important;
+}
+#donate-tab .rank-state-locked{
+ color:#b7adc7!important;border:1px solid rgba(186,171,212,.24)!important;
+ background:rgba(178,157,209,.09)!important;
+}
+/* The illustration now has an intentional, polished art stage. */
+#donate-tab .rank-emblem-wrap{
+ position:relative!important;flex:0 0 auto!important;
+ display:grid!important;place-items:center!important;
+ width:100%!important;height:198px!important;margin:13px 0 13px!important;
+ padding:0!important;overflow:hidden!important;
+ border-radius:19px!important;
+ border:1px solid color-mix(in srgb,var(--rank-color) 21%,transparent)!important;
+ background:
+  radial-gradient(circle at 50% 47%,color-mix(in srgb,var(--rank-color) 13%,transparent),transparent 54%),
+  linear-gradient(145deg,rgba(32,28,50,.9),rgba(13,11,23,.97))!important;
+ box-shadow:inset 0 1px rgba(255,255,255,.08),inset 0 -24px 45px rgba(0,0,0,.19)!important;
+ filter:none!important;
+ color:var(--rank-color)!important;
+}
+#donate-tab .rank-emblem-wrap::before{
+ content:"";display:block!important;pointer-events:none;
+ position:absolute!important;inset:11px!important;border:1px solid rgba(255,255,255,.05)!important;
+ border-radius:15px!important;background:none!important;box-shadow:none!important;
+}
+#donate-tab .rank-emblem-wrap::after{
+ content:"";display:block!important;pointer-events:none;
+ position:absolute!important;inset:auto!important;bottom:-73px!important;left:50%!important;
+ width:170px!important;height:85px!important;transform:translateX(-50%)!important;border:0!important;
+ border-radius:50%!important;opacity:.32!important;
+ background:var(--rank-color)!important;filter:blur(48px)!important;
+}
+#donate-tab .rank-emblem{
+ position:relative!important;z-index:2!important;
+ display:block!important;width:min(100%,226px)!important;height:190px!important;
+ margin:0!important;overflow:visible!important;object-fit:contain!important;
+ filter:drop-shadow(0 11px 10px rgba(0,0,0,.26))!important;
+ transform:translateY(0) scale(1)!important;
+ transition:transform .36s ease,filter .36s ease!important;
+}
+#donate-tab .donate-card:hover .rank-emblem{
+ transform:translateY(-5px) scale(1.055)!important;
+ filter:drop-shadow(0 18px 15px rgba(0,0,0,.33)) drop-shadow(0 0 13px color-mix(in srgb,var(--rank-color) 25%,transparent))!important;
+}
+#donate-tab .donate-card h3{
+ position:relative!important;z-index:2!important;
+ margin:0 0 12px!important;padding:0 1px!important;
+ color:#FBF9FF!important;text-align:left!important;
+ font-family:'Space Grotesk',sans-serif!important;
+ font-size:clamp(25px,2vw,31px)!important;font-weight:750!important;
+ line-height:1.12!important;letter-spacing:-.055em!important;
+ text-shadow:none!important;
+}
+#donate-tab .rank-perk{
+ position:relative!important;z-index:2!important;
+ display:flex!important;align-items:center!important;gap:10px!important;
+ margin:0 0 18px!important;min-height:40px!important;padding:10px 14px!important;
+ color:#EEE6F6!important;font-size:12px!important;font-weight:650!important;line-height:1.35!important;
+ border:1px solid rgba(199,177,228,.14)!important;border-radius:11px!important;
+ background:rgba(11,8,23,.39)!important;
+}
+#donate-tab .rank-perk-star{
+ color:var(--rank-color)!important;font-size:17px!important;line-height:1!important;
+}
+#donate-tab .rank-card-footer{
+ position:relative!important;z-index:2!important;
+ display:flex!important;align-items:end!important;justify-content:space-between!important;
+ flex-wrap:wrap!important;gap:14px!important;
+ margin-top:auto!important;padding:17px 0 0!important;
+ border-top:1px solid rgba(209,188,237,.17)!important;
+}
+#donate-tab .rank-price-group{display:flex!important;flex-direction:column!important;gap:5px!important}
+#donate-tab .rank-price-group>span{
+ color:#A8A0BA!important;font-size:10px!important;letter-spacing:.115em!important;font-weight:800!important;
+}
+#donate-tab .rank-price-group>strong{
+ color:#fff!important;font-family:'Space Grotesk',sans-serif!important;font-weight:800!important;
+ font-size:33px!important;letter-spacing:-.06em!important;line-height:1!important;
+}
+#donate-tab .rank-price-group>strong small{
+ color:var(--rank-color)!important;font-size:18px!important;margin-left:3px!important;
+}
+#donate-tab .donate-card .rank-buy{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:9px!important;
+ flex:0 0 auto!important;min-width:115px!important;width:auto!important;
+ height:46px!important;min-height:46px!important;margin:0!important;padding:0 17px!important;
+ border-radius:12px!important;
+ background:linear-gradient(125deg,#BC75FF,#7935D9)!important;color:#fff!important;
+ border:1px solid rgba(236,203,255,.3)!important;box-shadow:0 8px 19px rgba(136,63,220,.24)!important;
+ font-size:12px!important;letter-spacing:.025em!important;font-weight:850!important;
+ cursor:pointer!important;
+}
+#donate-tab .donate-card .rank-buy:hover{
+ background:linear-gradient(125deg,#D69FFF,#9450E9)!important;
+ transform:translateY(-2px)!important;
+}
+#donate-tab .donate-card .rank-buy:focus-visible{outline:2px solid #ECD1FF!important;outline-offset:3px!important}
+#donate-tab .donate-card .rank-buy:disabled,
+#donate-tab .donate-card .rank-unavailable{
+ cursor:not-allowed!important;transform:none!important;
+ color:#B3AABE!important;background:#332E40!important;
+ border:1px solid rgba(197,173,219,.13)!important;box-shadow:none!important;
+}
+#donate-tab .donate-card .rank-buy:disabled:hover{transform:none!important;background:#332E40!important}
+#donate-tab .donate-card.silver-card .rank-emblem-wrap{background:radial-gradient(circle at 50% 40%,rgba(153,197,230,.09),transparent 65%),#11131D!important}
+#donate-tab .donate-card.shadow-card{
+ grid-column:span 2!important;
+ display:grid!important;grid-template-columns:minmax(180px,.92fr) minmax(0,1.08fr)!important;
+ grid-template-rows:min-content 1fr auto auto!important;
+ align-items:center!important;column-gap:25px!important;row-gap:8px!important;
+ min-height:365px!important;padding:24px 26px!important;
+ border-color:rgba(199,151,255,.49)!important;
+ background:
+  radial-gradient(ellipse 74% 122% at 20% 43%,rgba(130,68,212,.24),transparent 80%),
+  linear-gradient(130deg,#281B43,#100D1D 71%)!important;
+}
+#donate-tab .donate-card.shadow-card .rank-top{grid-column:1/-1!important;grid-row:1!important;align-self:start!important}
+#donate-tab .donate-card.shadow-card .rank-emblem-wrap{
+ grid-column:1!important;grid-row:2/5!important;
+ height:252px!important;margin:0!important;align-self:stretch!important
+}
+#donate-tab .donate-card.shadow-card .rank-emblem{
+ height:236px!important;width:min(100%,270px)!important
+}
+#donate-tab .donate-card.shadow-card h3{
+ grid-column:2!important;grid-row:2!important;align-self:end!important;
+ font-size:clamp(31px,3vw,44px)!important;letter-spacing:-.055em!important;
+}
+#donate-tab .donate-card.shadow-card .rank-perk{
+ grid-column:2!important;grid-row:3!important;margin-bottom:4px!important
+}
+#donate-tab .donate-card.shadow-card .rank-card-footer{
+ grid-column:2!important;grid-row:4!important;align-self:stretch!important
+}
+#donate-tab .rank-shop-note{max-width:840px!important;color:#70657e!important;font-size:12px!important}
+
+/* Coins & cases receive the same visual refinement without touching product choices or prices. */
+#coins-tab .sl-store-grid,#cases-tab .sl-store-grid{gap:20px!important;align-items:stretch!important}
+#coins-tab .sl-store-card,#cases-tab .sl-store-card{
+ position:relative!important;min-height:415px!important;min-width:0!important;
+ display:flex!important;flex-direction:column!important;
+ padding:20px!important;border-radius:24px!important;
+ background:
+  radial-gradient(ellipse 80% 46% at 52% 0%,color-mix(in srgb,var(--item-color) 16%,transparent),transparent 75%),
+  linear-gradient(154deg,#241D32,#151221 68%,#100D1A)!important;
+ border:1px solid rgba(186,150,219,.27)!important;
+ box-shadow:0 12px 30px rgba(37,22,63,.11),inset 0 1px rgba(255,255,255,.075)!important;
+ transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease!important;
+}
+#coins-tab .sl-store-card:hover,#cases-tab .sl-store-card:hover{
+ transform:translateY(-5px)!important;
+ border-color:color-mix(in srgb,var(--item-color) 65%,#4B3265)!important;
+ box-shadow:0 22px 46px rgba(37,19,68,.22)!important;
+}
+#coins-tab .sl-store-art,#cases-tab .sl-store-art{
+ display:grid!important;place-items:center!important;
+ width:100%!important;max-width:none!important;height:178px!important;
+ margin:11px auto 16px!important;padding:0!important;
+ border-radius:18px!important;
+ border:1px solid color-mix(in srgb,var(--item-color) 22%,transparent)!important;
+ background:radial-gradient(ellipse at 50% 42%,color-mix(in srgb,var(--item-color) 10%,transparent),transparent 69%),#141121!important;
+ box-shadow:inset 0 1px rgba(255,255,255,.07)!important;
+}
+#coins-tab .sl-store-art::after,#cases-tab .sl-store-art::after{display:none!important}
+#coins-tab .sl-store-art svg,#cases-tab .sl-store-art svg{
+ position:relative!important;width:min(100%,235px)!important;height:165px!important;
+ max-height:none!important;max-width:100%!important;
+ filter:drop-shadow(0 7px 10px rgba(0,0,0,.22))!important;
+ transform:none!important;transition:transform .3s ease!important;
+}
+#coins-tab .sl-store-card:hover .sl-store-art svg,#cases-tab .sl-store-card:hover .sl-store-art svg{transform:translateY(-4px) scale(1.04)!important}
+#coins-tab .sl-store-card h3,#cases-tab .sl-store-card h3,#cases-tab .sl-store-card h4{
+ color:#fff!important;text-align:left!important;font-size:26px!important;
+ font-family:'Space Grotesk',sans-serif!important;letter-spacing:-.045em!important;
+}
+#coins-tab .sl-store-card p,#cases-tab .sl-store-card p{color:#BFB4D0!important}
+#coins-tab .sl-store-bottom,#cases-tab .sl-store-bottom{
+ margin-top:auto!important;border-top:1px solid rgba(195,170,227,.17)!important;
+ padding-top:17px!important;display:flex!important;align-items:end!important;
+}
+#coins-tab .sl-store-cost strong,#cases-tab .sl-store-cost strong{
+ color:#fff!important;font-size:29px!important;font-family:'Space Grotesk',sans-serif!important;
+}
+#coins-tab .sl-store-buy:not(:disabled),#cases-tab .sl-store-buy:not(:disabled){
+ color:#fff!important;border-radius:12px!important;
+ background:linear-gradient(130deg,#B46CF4,#7834D6)!important;
+ box-shadow:0 8px 16px rgba(125,55,204,.19)!important;
+}
+#coins-tab .sl-store-buy:disabled,#cases-tab .sl-store-buy:disabled{
+ background:#312B3D!important;color:#B1A8BB!important;
+ box-shadow:none!important;cursor:not-allowed!important;
+}
+@media(max-width:1040px){
+ #donate-tab .donate-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+ #donate-tab .donate-card.shadow-card{grid-column:span 2!important}
+ #coins-tab .sl-store-grid,#cases-tab .sl-store-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:660px){
+ #donate-tab .donate-grid{grid-template-columns:1fr!important;gap:16px!important}
+ #donate-tab .donate-card{padding:18px!important;min-height:414px!important}
+ #donate-tab .rank-emblem-wrap{height:190px!important}
+ #donate-tab .rank-emblem{height:182px!important}
+ #donate-tab .donate-card h3{font-size:28px!important}
+ #donate-tab .donate-card.shadow-card{
+  grid-column:auto!important;display:flex!important;flex-direction:column!important;
+  align-items:stretch!important;min-height:430px!important;padding:20px!important
+ }
+ #donate-tab .donate-card.shadow-card .rank-top,
+ #donate-tab .donate-card.shadow-card .rank-emblem-wrap,
+ #donate-tab .donate-card.shadow-card h3,
+ #donate-tab .donate-card.shadow-card .rank-perk,
+ #donate-tab .donate-card.shadow-card .rank-card-footer{
+  grid-column:auto!important;grid-row:auto!important;
+ }
+ #donate-tab .donate-card.shadow-card .rank-emblem-wrap{height:190px!important}
+ #donate-tab .donate-card.shadow-card .rank-emblem{height:183px!important}
+ #donate-tab .donate-card.shadow-card h3{font-size:30px!important}
+ #donate-tab .donate-card.shadow-card .rank-perk{margin-bottom:17px!important}
+ #coins-tab .sl-store-grid,#cases-tab .sl-store-grid{grid-template-columns:1fr!important;gap:16px!important}
+ #coins-tab .sl-store-card,#cases-tab .sl-store-card{min-height:398px!important;padding:18px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ #donate-tab .donate-card,#donate-tab .rank-emblem,
+ #coins-tab .sl-store-card,#cases-tab .sl-store-card,
+ #coins-tab .sl-store-art svg,#cases-tab .sl-store-art svg{transition:none!important}
+}
