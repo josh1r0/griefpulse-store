@@ -59,7 +59,7 @@ body::before{display:none!important}
  grid-template-rows:repeat(7,min-content)!important;column-gap:42px!important;row-gap:0!important;
  align-items:start!important;align-content:start!important;justify-items:start!important;
  max-width:1170px!important;width:calc(100% - 72px)!important;
- margin:0 auto!important;padding:133px 0 112px!important;min-height:590px!important;text-align:left!important;transform:none!important}
+ margin:0 auto!important;padding:133px 0 63px!important;min-height:590px!important;text-align:left!important;transform:none!important}
 .hero-content>.online,.hero-content>h1,.hero-content>.showcase-subbrand,.hero-content>h2,.hero-content>.hero-description,
 .hero-content>.hero-buttons,.hero-content>.showcase-perks{grid-column:1!important;justify-self:start!important}
 .hero-content>.hero-mini,.hero-content>.hero-divider{display:none!important}
@@ -185,7 +185,7 @@ body::before{display:none!important}
 .player-card .nickname-wrap.valid .nickname-check{background:linear-gradient(130deg,#b863f7,#7733d6)!important}
 
 /* Categories replace tiny pills with three clickable cards from the approved screenshot */
-.showcase-categories-title{position:relative;z-index:2;text-align:center;max-width:1200px;margin:41px auto 23px!important}
+.showcase-categories-title{position:relative;z-index:2;text-align:center;max-width:1200px;margin:28px auto 20px!important}
 .showcase-categories-title>span{display:block!important;color:#6e477f!important;font-size:11px!important;font-weight:850!important;
  letter-spacing:.18em!important;margin-bottom:7px!important}
 .showcase-categories-title h2{display:flex;align-items:center;justify-content:center;gap:27px!important;
