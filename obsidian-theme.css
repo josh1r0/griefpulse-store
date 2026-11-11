@@ -441,3 +441,7 @@ footer,.footer{
 @media(prefers-reduced-motion:reduce){
  .server-box::before,.server-box::after{animation:none!important}
 }
+
+/* Bottom navigation must be viewport-fixed, not relative to transformed desktop header. */
+@media(max-width:950px){.header{left:14px!important;right:14px!important;transform:none!important;width:calc(100% - 28px)!important}}
+@media(max-width:700px){.header{left:10px!important;right:10px!important;width:calc(100% - 20px)!important}}
