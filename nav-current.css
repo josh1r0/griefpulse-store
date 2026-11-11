@@ -1,0 +1,94 @@
+/* Navigation active state — all public SHADOWLAND pages.
+   This stylesheet is intentionally limited to the header navigation. */
+.header .nav nav.showcase-nav a.is-current,
+.header .nav nav.showcase-nav a.is-current:hover{
+  color:#fff!important;
+  background:linear-gradient(120deg,#a14cf1,#742bd6)!important;
+  box-shadow:0 6px 19px rgba(126,55,225,.27)!important;
+}
+.header .nav nav.showcase-nav a.nav-home:not(.is-current){
+  color:#272232!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+.header .nav nav.showcase-nav a.nav-home:not(.is-current):hover{
+  color:#fff!important;
+  background:linear-gradient(120deg,#a14cf1,#742bd6)!important;
+  box-shadow:0 6px 19px rgba(126,55,225,.27)!important;
+}
+body.nav-secondary-page .header .nav nav.showcase-nav{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  position:static!important;
+  left:auto!important;right:auto!important;bottom:auto!important;
+  transform:none!important;
+  width:auto!important;
+  flex:0 1 auto!important;
+  gap:3px!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:13px!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+body.nav-secondary-page .header .nav nav.showcase-nav a{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  flex:0 0 auto!important;
+  gap:7px!important;
+  white-space:nowrap!important;
+  padding:10px 10px!important;
+  min-height:40px!important;
+  border-radius:11px!important;
+  color:#272232!important;
+  background:transparent!important;
+  font-size:12px!important;
+  font-weight:800!important;
+  letter-spacing:0!important;
+}
+body.nav-secondary-page .header .nav nav.showcase-nav a svg{
+  width:19px!important;height:19px!important;
+  flex:none!important;
+  stroke-width:1.85!important;
+}
+body.nav-secondary-page .header .nav nav.showcase-nav a.is-current,
+body.nav-secondary-page .header .nav nav.showcase-nav a:hover{
+  color:#fff!important;
+  background:linear-gradient(120deg,#a14cf1,#742bd6)!important;
+  box-shadow:0 6px 19px rgba(126,55,225,.27)!important;
+}
+body.nav-secondary-page .header .nav nav.showcase-nav a::after{display:none!important}
+body.nav-secondary-page .header .nav{gap:13px!important}
+body.nav-secondary-page .header .logo{flex:none!important}
+body.nav-secondary-page .header .nav-button{flex:none!important}
+@media(max-width:1270px){
+  body.nav-secondary-page .header .nav nav.showcase-nav a{
+    gap:5px!important;padding:9px 7px!important;font-size:11px!important
+  }
+  body.nav-secondary-page .header .nav nav.showcase-nav a svg{width:17px!important;height:17px!important}
+}
+@media(max-width:950px){
+  body.nav-secondary-page .header{
+    backdrop-filter:none!important;-webkit-backdrop-filter:none!important;
+  }
+  body.nav-secondary-page .header .nav nav.showcase-nav{
+    position:fixed!important;
+    top:auto!important;
+    bottom:max(10px,env(safe-area-inset-bottom))!important;
+    left:10px!important;right:10px!important;
+    width:auto!important;
+    justify-content:flex-start!important;
+    overflow-x:auto!important;
+    scrollbar-width:none!important;
+    gap:3px!important;
+    padding:7px!important;
+    background:rgba(255,255,255,.98)!important;
+    border:1px solid #e6def0!important;
+    border-radius:17px!important;
+    box-shadow:0 10px 35px rgba(24,12,46,.28)!important;
+    z-index:1002!important;
+  }
+  body.nav-secondary-page .header .nav nav.showcase-nav a{font-size:11px!important;padding:9px 10px!important}
+}
