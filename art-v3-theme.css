@@ -1,0 +1,353 @@
+/* SHADOWLAND / ART V3 — generated cinematic Minecraft-fantasy collectibles.
+   Images are actual WebP assets, never CSS-drawn imitations.
+   Presentation only: keep data, prices, disabled states and payment actions untouched. */
+#donate-tab .donate-grid{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:16px!important;
+  align-items:stretch!important;
+}
+#donate-tab .donate-card,
+#donate-tab .donate-card.shadow-card{
+  position:relative!important;
+  isolation:isolate!important;
+  display:flex!important;
+  flex-direction:column!important;
+  grid-column:auto!important;
+  min-width:0!important;
+  min-height:390px!important;
+  padding:13px!important;
+  overflow:hidden!important;
+  border-radius:20px!important;
+  border:1px solid rgba(194,142,245,.37)!important;
+  background:
+    radial-gradient(ellipse at 50% -18%,rgba(156,74,255,.24),transparent 55%),
+    linear-gradient(153deg,#281a42 0%,#191229 56%,#100d1d 100%)!important;
+  box-shadow:0 13px 30px rgba(36,19,66,.18),inset 0 1px rgba(255,255,255,.08)!important;
+  color:#fff!important;
+  transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease!important;
+}
+#donate-tab .donate-card:hover{
+  transform:translateY(-6px)!important;
+  border-color:rgba(224,171,255,.85)!important;
+  box-shadow:0 24px 45px rgba(58,25,107,.3),0 0 24px rgba(167,78,242,.09)!important;
+}
+#donate-tab .donate-card.shadow-card{
+  border:1.5px solid #BE79FB!important;
+  background:radial-gradient(ellipse at 50% 0%,rgba(188,94,255,.33),transparent 62%),linear-gradient(135deg,#301747,#110b20)!important;
+  box-shadow:0 13px 35px rgba(97,38,171,.27),0 0 19px rgba(174,72,248,.15)!important;
+}
+#donate-tab .donate-card::before,
+#donate-tab .donate-card.shadow-card::before{
+  content:"";position:absolute;inset:0 12% auto;height:2px;width:auto;left:12%;right:12%;
+  background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--rank-color) 77%,white),transparent)!important;
+  pointer-events:none;opacity:.9;
+}
+#donate-tab .donate-card::after,
+#donate-tab .donate-card.shadow-card::after{
+  display:none!important;content:none!important;
+}
+#donate-tab .donate-card .card-light{display:none!important}
+#donate-tab .rank-top,
+#donate-tab .donate-card.shadow-card .rank-top{
+  order:0!important;position:relative!important;grid-area:auto!important;
+  display:flex!important;align-items:center!important;justify-content:space-between!important;
+  flex-wrap:nowrap!important;gap:6px!important;
+  min-height:29px!important;margin:0 0 9px!important;
+  align-self:stretch!important;
+}
+#donate-tab .rank-tier,
+#donate-tab .donate-card.shadow-card .rank-tier{
+  color:#D2C2E7!important;
+  font-family:'DM Sans',sans-serif!important;
+  font-size:9px!important;letter-spacing:.095em!important;font-weight:850!important;
+}
+#donate-tab .rank-tier b,
+#donate-tab .donate-card.shadow-card .rank-tier b{
+  color:var(--rank-color)!important;font-size:9px!important;margin-left:3px!important;
+}
+#donate-tab .rank-state,
+#donate-tab .donate-card.shadow-card .rank-state{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  padding:6px 7px!important;white-space:nowrap!important;border-radius:100px!important;
+  font-size:8px!important;letter-spacing:.02em!important;font-weight:900!important;
+}
+#donate-tab .rank-state-live,
+#donate-tab .donate-card.shadow-card .rank-state-live{
+  color:#EBD2FF!important;
+  background:rgba(158,80,233,.18)!important;border:1px solid rgba(211,158,255,.3)!important;
+}
+#donate-tab .rank-state-locked{
+  color:#B6A7C7!important;background:rgba(172,151,192,.1)!important;border:1px solid rgba(182,169,199,.2)!important;
+}
+#donate-tab .rank-emblem-wrap,
+#donate-tab .donate-card.shadow-card .rank-emblem-wrap{
+  order:1!important;
+  position:relative!important;
+  display:block!important;
+  flex:0 0 auto!important;
+  grid-area:auto!important;
+  width:100%!important;max-width:none!important;
+  height:auto!important;min-height:0!important;
+  aspect-ratio:320/230!important;
+  margin:0!important;padding:0!important;
+  overflow:hidden!important;
+  border:1px solid rgba(216,165,250,.23)!important;
+  border-radius:13px!important;
+  background:#140D27!important;
+  box-shadow:inset 0 0 16px rgba(39,18,65,.2)!important;
+  filter:none!important;
+}
+#donate-tab .rank-emblem-wrap::before,
+#donate-tab .rank-emblem-wrap::after{
+  display:none!important;content:none!important;
+}
+#donate-tab .rank-emblem,
+#donate-tab .donate-card.shadow-card .rank-emblem{
+  display:block!important;
+  position:relative!important;
+  width:100%!important;height:100%!important;
+  max-width:none!important;max-height:none!important;
+  margin:0!important;
+  object-fit:cover!important;
+  object-position:center 43%!important;
+  filter:none!important;
+  transform:none!important;
+  border-radius:12px!important;
+  transition:transform .35s ease!important;
+}
+#donate-tab .donate-card:hover .rank-emblem{
+  transform:scale(1.055)!important;filter:none!important;
+}
+#donate-tab .donate-card h3,
+#donate-tab .donate-card.shadow-card h3{
+  order:2!important;position:relative!important;grid-area:auto!important;
+  align-self:stretch!important;
+  margin:13px 0 8px!important;
+  color:#FBF7FF!important;
+  text-align:center!important;text-shadow:none!important;
+  font-family:'Space Grotesk',sans-serif!important;
+  font-size:clamp(21px,2vw,28px)!important;
+  line-height:1.05!important;letter-spacing:-.04em!important;font-weight:800!important;
+}
+#donate-tab .rank-perk,
+#donate-tab .donate-card.shadow-card .rank-perk{
+  order:3!important;grid-area:auto!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  align-self:stretch!important;
+  width:100%!important;max-width:100%!important;
+  min-height:34px!important;padding:7px 9px!important;margin:0 0 14px!important;
+  font-size:11px!important;line-height:1.2!important;font-weight:700!important;
+  border:1px solid rgba(206,161,249,.22)!important;
+  border-radius:9px!important;
+  color:#E6D4FA!important;background:rgba(100,45,150,.16)!important;
+}
+#donate-tab .rank-perk-star{color:#CF91FF!important;font-size:15px!important}
+#donate-tab .rank-card-footer,
+#donate-tab .donate-card.shadow-card .rank-card-footer{
+  order:4!important;grid-area:auto!important;
+  display:flex!important;align-items:end!important;justify-content:space-between!important;
+  flex-wrap:wrap!important;gap:8px!important;align-self:stretch!important;
+  margin-top:auto!important;padding:11px 0 0!important;
+  border-top:1px solid rgba(194,157,230,.17)!important;
+}
+#donate-tab .rank-price-group{
+  display:flex!important;flex-direction:column!important;gap:2px!important;min-width:0!important;
+}
+#donate-tab .rank-price-group>span,
+#donate-tab .donate-card.shadow-card .rank-price-group>span{
+  color:#B7A6CC!important;font-size:8px!important;font-weight:900!important;letter-spacing:.08em!important;
+}
+#donate-tab .rank-price-group>strong,
+#donate-tab .donate-card.shadow-card .rank-price-group>strong{
+  color:#fff!important;font-size:29px!important;line-height:1!important;
+  font-weight:900!important;letter-spacing:-.05em!important;
+}
+#donate-tab .rank-price-group>strong small{
+  color:#D2A2FF!important;font-size:15px!important;margin-left:1px!important;
+}
+#donate-tab .donate-card .rank-buy,
+#donate-tab .donate-card.shadow-card .rank-buy{
+  display:inline-flex!important;align-items:center!important;justify-content:center!important;
+  width:auto!important;min-width:89px!important;
+  height:39px!important;min-height:39px!important;
+  margin:0!important;padding:0 12px!important;
+  border:1px solid rgba(244,204,255,.34)!important;
+  border-radius:10px!important;
+  font-size:11px!important;font-weight:850!important;letter-spacing:0!important;
+  background:linear-gradient(130deg,#B761F8,#7A32D6)!important;
+  box-shadow:0 6px 18px rgba(150,69,235,.28)!important;
+  color:#fff!important;cursor:pointer!important;
+}
+#donate-tab .donate-card .rank-buy:hover,
+#donate-tab .donate-card.shadow-card .rank-buy:hover{
+  transform:translateY(-2px)!important;background:linear-gradient(130deg,#CD91FF,#9452E7)!important;color:#fff!important;
+}
+#donate-tab .donate-card .rank-buy:disabled,
+#donate-tab .donate-card .rank-buy.rank-unavailable{
+  color:#B7A9C7!important;background:#342B43!important;
+  border:1px solid rgba(180,164,196,.16)!important;
+  box-shadow:none!important;cursor:not-allowed!important;transform:none!important;
+  font-size:9px!important;
+}
+#donate-tab .donate-card .rank-buy:disabled:hover{background:#342B43!important;transform:none!important}
+#donate-tab .donate-card.silver-card{opacity:.92}
+#donate-tab .rank-shop-note{font-size:12px!important;color:#83788D!important}
+
+/* Coins and cases: two different 3D product series, same visual language */
+#coins-tab .sl-store-grid,
+#cases-tab .sl-store-grid,
+#cases-tab .sl-store-grid.four{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:18px!important;align-items:stretch!important;
+}
+#coins-tab .sl-store-card,
+#cases-tab .sl-store-card{
+  position:relative!important;
+  display:flex!important;flex-direction:column!important;
+  min-width:0!important;min-height:358px!important;
+  padding:15px!important;overflow:hidden!important;
+  border-radius:19px!important;
+  border:1px solid rgba(204,153,245,.34)!important;
+  background:radial-gradient(circle at 50% -15%,rgba(177,89,255,.2),transparent 62%),linear-gradient(155deg,#281a40,#141021)!important;
+  color:#fff!important;
+  box-shadow:0 12px 29px rgba(36,17,67,.16),inset 0 1px rgba(255,255,255,.085)!important;
+  transition:transform .28s ease,border-color .28s ease,box-shadow .28s ease!important;
+}
+#coins-tab .sl-store-card:hover,
+#cases-tab .sl-store-card:hover{
+  border-color:#C57AFB!important;transform:translateY(-5px)!important;
+  box-shadow:0 22px 45px rgba(51,20,107,.24)!important;
+}
+#coins-tab .sl-store-card::before,
+#cases-tab .sl-store-card::before{
+  content:"";position:absolute;left:15%;right:15%;top:0;height:2px;z-index:2;
+  background:linear-gradient(90deg,transparent,var(--item-color),transparent);
+  pointer-events:none;
+}
+#coins-tab .sl-store-top,
+#cases-tab .sl-store-top{
+  order:0!important;display:flex!important;align-items:center!important;justify-content:space-between!important;
+  gap:8px!important;min-width:0!important;margin:0 0 10px!important;
+}
+#coins-tab .sl-item-type,
+#cases-tab .sl-item-type{
+  color:#CDBADA!important;font-size:9px!important;font-weight:850!important;letter-spacing:.08em!important;
+}
+#coins-tab .sl-item-badge,
+#cases-tab .sl-item-badge{
+  background:rgba(154,86,224,.19)!important;
+  border:1px solid rgba(205,146,246,.23)!important;
+  border-radius:100px!important;color:#E9D4FA!important;
+  font-size:9px!important;font-weight:800!important;
+}
+#coins-tab .sl-store-art,
+#cases-tab .sl-store-art{
+  order:1!important;
+  flex:0 0 auto!important;display:block!important;
+  width:100%!important;max-width:none!important;height:auto!important;
+  aspect-ratio:320/231!important;min-height:0!important;
+  padding:0!important;margin:0 0 12px!important;
+  border:1px solid rgba(213,163,245,.21)!important;border-radius:13px!important;
+  overflow:hidden!important;background:#160E28!important;
+  box-shadow:none!important;
+}
+#coins-tab .sl-store-art::before,#coins-tab .sl-store-art::after,
+#cases-tab .sl-store-art::before,#cases-tab .sl-store-art::after{
+  display:none!important;content:none!important;
+}
+#coins-tab .sl-store-art img,
+#cases-tab .sl-store-art img{
+  display:block!important;
+  width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;
+  object-fit:cover!important;object-position:center 50%!important;
+  filter:none!important;transform:none!important;
+  transition:transform .35s ease!important;
+}
+#coins-tab .sl-store-card:hover .sl-store-art img,
+#cases-tab .sl-store-card:hover .sl-store-art img{
+  transform:scale(1.05)!important;
+}
+#coins-tab .coin-count{
+  order:2!important;margin:0 0 4px!important;color:#C89BFB!important;font-size:10px!important;font-weight:850!important;
+}
+#coins-tab .sl-store-card h3,
+#cases-tab .sl-store-card h4{
+  order:3!important;margin:0 0 5px!important;align-self:stretch!important;
+  font-family:'Space Grotesk',sans-serif!important;font-size:25px!important;font-weight:800!important;
+  line-height:1.12!important;letter-spacing:-.045em!important;color:#fff!important;text-align:left!important;
+}
+#coins-tab .sl-store-card p,
+#cases-tab .sl-store-card p{
+  order:4!important;margin:0 0 12px!important;
+  color:#C8B6D5!important;font-size:12px!important;line-height:1.4!important;
+}
+#coins-tab .sl-store-bottom,
+#cases-tab .sl-store-bottom{
+  order:5!important;display:flex!important;justify-content:space-between!important;align-items:end!important;
+  margin-top:auto!important;padding-top:12px!important;gap:8px!important;flex-wrap:wrap!important;
+  border-top:1px solid rgba(206,159,255,.19)!important;
+}
+#coins-tab .sl-store-cost small,#cases-tab .sl-store-cost small{
+  color:#BDA7C9!important;font-size:9px!important;
+}
+#coins-tab .sl-store-cost strong,#cases-tab .sl-store-cost strong{
+  color:#fff!important;font-size:29px!important;font-weight:800!important;
+}
+#coins-tab .sl-store-cost em,#cases-tab .sl-store-cost em{
+  color:#D5A3FF!important;
+}
+#coins-tab .sl-store-buy:not(:disabled),#cases-tab .sl-store-buy:not(:disabled){
+  color:#fff!important;border:1px solid rgba(232,181,255,.35)!important;
+  background:linear-gradient(130deg,#B663F4,#7C34D4)!important;
+  box-shadow:0 7px 16px rgba(117,45,213,.25)!important;
+  border-radius:10px!important;
+}
+#coins-tab .sl-store-buy:disabled,#cases-tab .sl-store-buy:disabled{
+  color:#B9AEC5!important;background:#322B3E!important;
+  box-shadow:none!important;border-color:rgba(188,170,205,.12)!important;
+}
+@media(max-width:1190px){
+ #donate-tab .donate-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+ #coins-tab .sl-store-grid,#cases-tab .sl-store-grid,#cases-tab .sl-store-grid.four{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:840px){
+ #donate-tab .donate-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:560px){
+ #donate-tab .donate-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px!important}
+ #donate-tab .donate-card,#donate-tab .donate-card.shadow-card{min-height:310px!important;padding:9px!important;border-radius:14px!important}
+ #donate-tab .rank-top{margin:0 0 6px!important}
+ #donate-tab .rank-tier{font-size:7px!important;letter-spacing:0!important}
+ #donate-tab .rank-tier b{font-size:7px!important}
+ #donate-tab .rank-state{font-size:7px!important;padding:4px!important}
+ #donate-tab .rank-emblem-wrap{border-radius:9px!important}
+ #donate-tab .donate-card h3,#donate-tab .donate-card.shadow-card h3{font-size:clamp(18px,5vw,24px)!important;margin:9px 0 7px!important}
+ #donate-tab .rank-perk{min-height:31px!important;padding:5px!important;font-size:9px!important;margin-bottom:10px!important}
+ #donate-tab .rank-price-group>strong{font-size:24px!important}
+ #donate-tab .rank-price-group>strong small{font-size:12px!important}
+ #donate-tab .rank-price-group>span{font-size:7px!important}
+ #donate-tab .rank-card-footer{gap:5px!important;padding-top:8px!important}
+ #donate-tab .donate-card .rank-buy{min-width:0!important;height:34px!important;min-height:34px!important;padding:0 8px!important;font-size:9px!important}
+ #donate-tab .donate-card .rank-buy:disabled{font-size:7px!important;padding:0 5px!important}
+ #coins-tab .sl-store-grid,#cases-tab .sl-store-grid,#cases-tab .sl-store-grid.four{grid-template-columns:1fr!important;gap:12px!important}
+ #coins-tab .sl-store-card,#cases-tab .sl-store-card{min-height:340px!important}
+}
+@media(max-width:375px){
+ #donate-tab .donate-grid{grid-template-columns:1fr!important}
+ #donate-tab .donate-card,#donate-tab .donate-card.shadow-card{padding:13px!important;min-height:390px!important}
+ #donate-tab .rank-emblem-wrap{aspect-ratio:320/230!important}
+ #donate-tab .donate-card h3{font-size:27px!important}
+ #donate-tab .rank-tier,#donate-tab .rank-tier b{font-size:9px!important}
+ #donate-tab .rank-state{font-size:9px!important}
+ #donate-tab .rank-perk{font-size:11px!important}
+ #donate-tab .donate-card .rank-buy{font-size:11px!important;height:39px!important}
+}
+@media(prefers-reduced-motion:reduce){
+ #donate-tab .donate-card,#donate-tab .rank-emblem,
+ #coins-tab .sl-store-card,#cases-tab .sl-store-card,
+ #coins-tab .sl-store-art img,#cases-tab .sl-store-art img{
+  transition:none!important;
+ }
+}
