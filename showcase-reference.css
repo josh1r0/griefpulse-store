@@ -347,3 +347,41 @@ footer{margin-top:0!important}
  .showcase-category-info strong{font-size:19px!important}
 }
 @media(prefers-reduced-motion:reduce){.server-box::before{animation:none!important}}
+
+/* SHADOWLAND / 2026-11-12 / precise follow-up refinements
+   Remove numbers from the three store headings, keep all other sections intact. */
+#donate-tab .section-heading,
+#coins-tab .section-heading,
+#cases-tab .section-heading{
+  display:block!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  padding-left:0!important;
+  gap:0!important;
+}
+#donate-tab .section-heading>div,
+#coins-tab .section-heading>div,
+#cases-tab .section-heading>div{min-width:0!important}
+
+/* Keep all three server benefits above the snowy edge and fully in the dark hero. */
+.hero .hero-content{
+  position:relative!important;
+  z-index:8!important;
+  padding-bottom:123px!important;
+}
+.hero .showcase-perks{position:relative!important;z-index:10!important}
+.hero .showcase-perks span{position:relative!important;z-index:10!important}
+.hero .showcase-snow-wave{z-index:4!important;pointer-events:none!important}
+@media(max-width:950px){
+ .hero .hero-content{padding-bottom:125px!important}
+}
+@media(max-width:720px){
+ .hero .hero-content{padding-bottom:145px!important}
+}
+
+/* Display only the kit name in each donate card; no obsolete description lines. */
+.donate-card .rank-perk{
+  margin-top:auto!important;
+  margin-bottom:17px!important;
+  white-space:normal!important;
+  overflow-wrap:anywhere!important;
+}
