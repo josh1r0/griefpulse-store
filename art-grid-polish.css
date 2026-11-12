@@ -1,0 +1,352 @@
+/* SHADOWLAND 2026-11-12 — symmetrical store / no crop / clean artwork
+   This last stylesheet intentionally overrides legacy card layouts. No product data changes. */
+#donate-tab .donate-grid,
+#coins-tab .sl-store-grid,
+#cases-tab .sl-store-grid {
+  width:100%!important;
+  max-width:1200px!important;
+  margin-inline:auto!important;
+  justify-items:stretch!important;
+  align-items:stretch!important;
+  gap:18px!important;
+}
+#donate-tab .donate-grid{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+}
+#coins-tab .sl-store-grid{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+}
+#cases-tab .case-grid.sl-store-grid{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+}
+#cases-tab .case-grid.sl-store-grid.four{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+}
+/* All eight ranks: identical measured rows, artwork frame and price/button baseline. */
+#donate-tab .donate-card,
+#donate-tab .donate-card.shadow-card{
+  box-sizing:border-box!important;
+  grid-column:auto!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:27px 183px 35px 37px minmax(69px,1fr)!important;
+  row-gap:9px!important;
+  align-content:stretch!important;
+  align-items:stretch!important;
+  width:100%!important;
+  min-width:0!important;
+  height:426px!important;
+  min-height:426px!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:14px!important;
+  border-radius:19px!important;
+}
+#donate-tab .donate-card .card-light{display:none!important}
+#donate-tab .donate-card .rank-top,
+#donate-tab .donate-card.shadow-card .rank-top{
+  grid-column:1!important;grid-row:1!important;
+  order:initial!important;
+  align-self:center!important;
+  min-height:0!important;
+  height:27px!important;
+  margin:0!important;
+  padding:0!important;
+}
+#donate-tab .donate-card .rank-emblem-wrap,
+#donate-tab .donate-card.shadow-card .rank-emblem-wrap{
+  grid-column:1!important;grid-row:2!important;
+  order:initial!important;
+  box-sizing:border-box!important;
+  align-self:stretch!important;
+  justify-self:stretch!important;
+  width:100%!important;
+  max-width:100%!important;
+  height:183px!important;
+  min-height:183px!important;
+  max-height:183px!important;
+  aspect-ratio:auto!important;
+  margin:0!important;
+  padding:0!important;
+  border-radius:12px!important;
+  overflow:hidden!important;
+  display:grid!important;
+  place-items:center!important;
+  background:#140D27!important;
+}
+#donate-tab .donate-card .rank-emblem,
+#donate-tab .donate-card.shadow-card .rank-emblem{
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  display:block!important;
+  object-fit:contain!important;
+  object-position:50% 50%!important;
+  image-rendering:auto!important;
+  transform:none!important;
+  filter:contrast(1.09) saturate(1.07)!important;
+  transition:filter .2s ease!important;
+  backface-visibility:visible!important;
+  border-radius:0!important;
+}
+#donate-tab .donate-card:hover .rank-emblem,
+#donate-tab .donate-card.shadow-card:hover .rank-emblem{
+  transform:none!important;
+  filter:contrast(1.12) saturate(1.1)!important;
+}
+#donate-tab .donate-card h3,
+#donate-tab .donate-card.shadow-card h3{
+  grid-column:1!important;grid-row:3!important;
+  order:initial!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  align-self:stretch!important;
+  text-align:center!important;
+  min-height:0!important;
+  height:35px!important;
+  margin:0!important;
+  padding:0!important;
+  font-size:clamp(21px,1.65vw,26px)!important;
+  line-height:1.12!important;
+}
+#donate-tab .donate-card .rank-perk,
+#donate-tab .donate-card.shadow-card .rank-perk{
+  grid-column:1!important;grid-row:4!important;
+  order:initial!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:100%!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+  min-height:37px!important;
+  height:37px!important;
+  padding:5px 8px!important;
+  margin:0!important;
+  align-self:stretch!important;
+  text-align:center!important;
+}
+#donate-tab .donate-card .rank-card-footer,
+#donate-tab .donate-card.shadow-card .rank-card-footer{
+  grid-column:1!important;grid-row:5!important;
+  order:initial!important;
+  box-sizing:border-box!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  align-items:end!important;
+  justify-content:stretch!important;
+  align-self:stretch!important;
+  width:100%!important;
+  min-height:69px!important;
+  height:100%!important;
+  margin:0!important;
+  padding:10px 0 0!important;
+  column-gap:7px!important;
+}
+#donate-tab .rank-card-footer .rank-price-group{
+  align-self:end!important;
+  justify-self:start!important;
+  min-width:0!important;
+  margin:0!important;
+  gap:4px!important;
+}
+#donate-tab .rank-price-group>strong{font-size:29px!important;line-height:1!important}
+#donate-tab .donate-card .rank-buy,
+#donate-tab .donate-card.shadow-card .rank-buy{
+  align-self:end!important;
+  justify-self:end!important;
+  min-height:39px!important;
+  height:39px!important;
+  padding-inline:10px!important;
+  margin:0!important;
+  white-space:nowrap!important;
+}
+#donate-tab .rank-shop-intro,
+#coins-tab .sl-store-intro,
+#cases-tab .sl-store-intro{
+  max-width:1200px!important;
+  margin-inline:auto!important;
+}
+/* Coin products: two exact rows of three, with centered sharp artwork. */
+#coins-tab .sl-store-card{
+  box-sizing:border-box!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:25px 190px 19px 32px minmax(33px,auto) minmax(68px,1fr)!important;
+  row-gap:7px!important;
+  height:437px!important;
+  min-height:437px!important;
+  max-height:none!important;
+  padding:14px!important;
+  margin:0!important;
+  width:100%!important;
+  align-items:stretch!important;
+  border-radius:19px!important;
+}
+#coins-tab .sl-store-top{grid-column:1!important;grid-row:1!important;order:initial!important;height:25px!important;margin:0!important;align-self:center!important}
+#coins-tab .sl-store-art{
+  grid-column:1!important;grid-row:2!important;order:initial!important;
+  box-sizing:border-box!important;display:grid!important;place-items:center!important;
+  width:100%!important;max-width:100%!important;
+  height:190px!important;min-height:190px!important;max-height:190px!important;
+  margin:0!important;padding:0!important;
+  aspect-ratio:auto!important;
+  background:#160E28!important;
+  border-radius:12px!important;
+  overflow:hidden!important;
+}
+#coins-tab .sl-store-art img{
+  width:100%!important;height:100%!important;
+  max-width:100%!important;max-height:100%!important;
+  object-fit:contain!important;object-position:50% 50%!important;
+  image-rendering:auto!important;
+  filter:contrast(1.09) saturate(1.08)!important;
+  transform:none!important;
+  border-radius:0!important;
+  transition:filter .2s ease!important;
+}
+#coins-tab .sl-store-card:hover .sl-store-art img{
+  transform:none!important;filter:contrast(1.12) saturate(1.1)!important;
+}
+#coins-tab .coin-count{
+  grid-column:1!important;grid-row:3!important;order:initial!important;
+  align-self:center!important;justify-self:center!important;
+  height:19px!important;
+  margin:0!important;padding:0!important;text-align:center!important;
+}
+#coins-tab .sl-store-card h3{
+  grid-column:1!important;grid-row:4!important;order:initial!important;
+  min-height:0!important;height:32px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  margin:0!important;text-align:center!important;font-size:23px!important;
+}
+#coins-tab .sl-store-card p{
+  grid-column:1!important;grid-row:5!important;order:initial!important;
+  margin:0!important;min-height:33px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  text-align:center!important;font-size:12px!important;
+}
+#coins-tab .sl-store-bottom{
+  grid-column:1!important;grid-row:6!important;order:initial!important;
+  align-self:stretch!important;
+  display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;
+  align-items:end!important;gap:8px!important;
+  min-height:68px!important;margin:0!important;padding:10px 0 0!important;
+}
+/* Case collections: 3 rank cases, 4 coin cases, 3 money cases, all centered and complete. */
+#cases-tab .sl-store-card{
+  box-sizing:border-box!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:25px 190px 34px minmax(36px,auto) minmax(68px,1fr)!important;
+  row-gap:9px!important;
+  height:415px!important;
+  min-height:415px!important;
+  max-height:none!important;
+  padding:14px!important;
+  margin:0!important;
+  width:100%!important;
+  border-radius:19px!important;
+  align-items:stretch!important;
+}
+#cases-tab .sl-store-top{
+  grid-column:1!important;grid-row:1!important;order:initial!important;
+  align-self:center!important;height:25px!important;margin:0!important;
+}
+#cases-tab .sl-store-art{
+  grid-column:1!important;grid-row:2!important;order:initial!important;
+  box-sizing:border-box!important;display:grid!important;place-items:center!important;
+  width:100%!important;max-width:100%!important;
+  height:190px!important;min-height:190px!important;max-height:190px!important;
+  margin:0!important;padding:0!important;
+  aspect-ratio:auto!important;
+  background:#160E28!important;
+  border-radius:12px!important;
+  overflow:hidden!important;
+}
+#cases-tab .sl-store-art img{
+  width:100%!important;height:100%!important;
+  max-width:100%!important;max-height:100%!important;
+  object-fit:contain!important;object-position:50% 50%!important;
+  image-rendering:auto!important;
+  filter:contrast(1.09) saturate(1.08)!important;
+  transform:none!important;
+  border-radius:0!important;
+  transition:filter .2s ease!important;
+}
+#cases-tab .sl-store-card:hover .sl-store-art img{
+  transform:none!important;filter:contrast(1.12) saturate(1.1)!important;
+}
+#cases-tab .sl-store-card h4{
+  grid-column:1!important;grid-row:3!important;order:initial!important;
+  min-height:34px!important;height:34px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  text-align:center!important;font-size:24px!important;margin:0!important;padding:0!important;
+}
+#cases-tab .sl-store-card p{
+  grid-column:1!important;grid-row:4!important;order:initial!important;
+  min-height:36px!important;margin:0!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  text-align:center!important;font-size:12px!important;line-height:1.4!important;
+}
+#cases-tab .sl-store-bottom{
+  grid-column:1!important;grid-row:5!important;order:initial!important;
+  align-self:stretch!important;
+  display:grid!important;grid-template-columns:minmax(0,1fr) auto!important;
+  align-items:end!important;gap:8px!important;
+  min-height:68px!important;margin:0!important;padding:10px 0 0!important;
+}
+#coins-tab .sl-store-cost,#cases-tab .sl-store-cost{
+  min-width:0!important;align-self:end!important;justify-self:start!important;
+}
+#coins-tab .sl-store-buy,#cases-tab .sl-store-buy{
+  align-self:end!important;justify-self:end!important;
+  height:39px!important;min-height:39px!important;
+  width:auto!important;min-width:95px!important;
+  padding:0 10px!important;margin:0!important;
+  white-space:nowrap!important;
+}
+/* Balanced responsive grids — no trailing one-card row. */
+@media(max-width:1099px){
+  #donate-tab .donate-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #coins-tab .sl-store-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #cases-tab .case-grid.sl-store-grid.four{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+}
+@media(max-width:800px){
+  #cases-tab .case-grid.sl-store-grid:not(.four){grid-template-columns:1fr!important;max-width:520px!important}
+}
+@media(max-width:570px){
+  #donate-tab .donate-grid,
+  #coins-tab .sl-store-grid,
+  #cases-tab .case-grid.sl-store-grid,
+  #cases-tab .case-grid.sl-store-grid.four{
+    grid-template-columns:1fr!important;
+    max-width:430px!important;
+    gap:16px!important;
+  }
+  #donate-tab .donate-card,
+  #donate-tab .donate-card.shadow-card{
+    grid-template-columns:minmax(0,1fr)!important;
+    grid-template-rows:27px minmax(182px,1fr) 35px 37px minmax(69px,auto)!important;
+    height:428px!important;min-height:428px!important;
+    padding:14px!important;
+  }
+  #donate-tab .donate-card .rank-emblem-wrap,
+  #donate-tab .donate-card.shadow-card .rank-emblem-wrap{
+    height:184px!important;min-height:184px!important;max-height:184px!important;
+  }
+  #donate-tab .donate-card h3,#donate-tab .donate-card.shadow-card h3{font-size:27px!important}
+  #coins-tab .sl-store-card{height:440px!important;min-height:440px!important}
+  #cases-tab .sl-store-card{height:417px!important;min-height:417px!important}
+  #coins-tab .sl-store-art,#cases-tab .sl-store-art{height:192px!important;min-height:192px!important;max-height:192px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #donate-tab .donate-card .rank-emblem,
+  #coins-tab .sl-store-art img,
+  #cases-tab .sl-store-art img{transition:none!important}
+}
