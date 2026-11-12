@@ -1,0 +1,224 @@
+/* SHADOWLAND — RELIC STORE CLEAN (2026-11-12)
+   Single, conflict-free card layout. Image frames clipped to a shaped silhouette.
+   Actual product name, kits, price, status and purchase button stay in HTML.
+*/
+:root{--relic-text:#f9f0ff;--relic-accent:#ca83ff}
+#donate-tab .donate-grid,
+#coins-tab .sl-store-grid,
+#cases-tab .sl-store-grid{
+ display:grid!important;width:100%!important;max-width:1110px!important;margin:0 auto!important;
+ align-items:start!important;justify-items:stretch!important;justify-content:center!important;gap:20px!important
+}
+#donate-tab .donate-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+#coins-tab .sl-store-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+#cases-tab .case-grid.sl-store-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+#cases-tab .case-grid.sl-store-grid.four{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+#donate-tab .donate-card,#donate-tab .donate-card.shadow-card,
+#coins-tab .sl-store-card,#cases-tab .sl-store-card{
+ position:relative!important;isolation:isolate!important;box-sizing:border-box!important;
+ display:block!important;float:none!important;flex:none!important;
+ grid-column:auto!important;grid-row:auto!important;
+ width:100%!important;height:auto!important;min-height:0!important;max-height:none!important;
+ min-width:0!important;aspect-ratio:693/1159!important;
+ margin:0!important;padding:0!important;
+ border:0!important;border-radius:0!important;background:none!important;background-image:none!important;
+ box-shadow:none!important;filter:none!important;overflow:visible!important;
+ color:#fff!important;text-align:center!important;
+ transform:none!important;transition:transform .24s ease!important
+}
+/* The exterior is genuinely cut to a decorative silhouette instead of a full rectangle. */
+#donate-tab .donate-card::before,#donate-tab .donate-card.shadow-card::before,
+#coins-tab .sl-store-card::before,#cases-tab .sl-store-card::before{
+ content:""!important;display:block!important;position:absolute!important;inset:0!important;
+ width:100%!important;height:100%!important;z-index:0!important;
+ background-size:100% 100%!important;background-position:center!important;background-repeat:no-repeat!important;
+ clip-path:polygon(50% 0%,59% 3%,84% 4%,94% 6%,100% 12%,100% 86%,95% 93%,60% 96%,50% 100%,40% 96%,5% 93%,0 86%,0 12%,6% 6%,16% 4%,41% 3%)!important;
+ border:0!important;border-radius:0!important;pointer-events:none!important;
+ filter:none!important
+}
+#donate-tab .donate-card::before,#donate-tab .donate-card.shadow-card::before{background-image:url('assets/relic-v5/rank-frame.webp')!important}
+#coins-tab .sl-store-card::before{background-image:url('assets/relic-v5/coin-frame.webp')!important}
+#cases-tab .sl-store-card::before{background-image:url('assets/relic-v5/case-frame.webp')!important}
+#donate-tab .donate-card::after,#coins-tab .sl-store-card::after,#cases-tab .sl-store-card::after{
+ content:""!important;display:block!important;position:absolute!important;z-index:-1!important;
+ inset:5% 8% 6%!important;width:auto!important;height:auto!important;
+ background:radial-gradient(ellipse at center,rgba(139,61,237,.21),transparent 66%)!important;
+ border:0!important;pointer-events:none!important;filter:blur(18px)!important
+}
+#donate-tab .donate-card:hover,#coins-tab .sl-store-card:hover,#cases-tab .sl-store-card:hover{
+ transform:translateY(-5px)!important;filter:none!important
+}
+#donate-tab .donate-card .card-light{display:none!important}
+#donate-tab .donate-card>*,
+#coins-tab .sl-store-card>*,
+#cases-tab .sl-store-card>*{box-sizing:border-box!important}
+#donate-tab .rank-top,#donate-tab .donate-card.shadow-card .rank-top,
+#coins-tab .sl-store-top,#cases-tab .sl-store-top{
+ position:absolute!important;z-index:4!important;top:10.3%!important;left:11%!important;
+ right:auto!important;bottom:auto!important;width:78%!important;height:5.5%!important;
+ min-height:0!important;max-height:none!important;
+ display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:space-between!important;
+ gap:5px!important;padding:0!important;margin:0!important;border:0!important;
+ background:none!important;box-shadow:none!important;transform:none!important;
+ grid-column:auto!important;grid-row:auto!important
+}
+#donate-tab .rank-tier,#donate-tab .rank-tier b,#coins-tab .sl-item-type,#cases-tab .sl-item-type{
+ display:inline!important;font-family:'DM Sans',sans-serif!important;
+ font-size:clamp(7px,.66vw,9px)!important;line-height:1.1!important;letter-spacing:.015em!important;
+ color:#ead3ff!important;font-weight:850!important;white-space:nowrap!important
+}
+#donate-tab .rank-tier b{color:#f2c9ff!important}
+#donate-tab .rank-state,#coins-tab .sl-item-badge,#cases-tab .sl-item-badge{
+ display:inline-flex!important;align-items:center!important;justify-content:center!important;flex:0 0 auto!important;
+ white-space:nowrap!important;min-height:0!important;
+ padding:4px 7px!important;border-radius:999px!important;border:1px solid rgba(225,171,255,.32)!important;
+ background:rgba(25,10,45,.86)!important;color:#f6deff!important;
+ font-size:clamp(7px,.66vw,9px)!important;line-height:1.1!important;letter-spacing:0!important;
+ font-weight:800!important;box-shadow:none!important
+}
+/* The product art lives IN the round window; no square image backing is visible. */
+#donate-tab .rank-emblem-wrap,#donate-tab .donate-card.shadow-card .rank-emblem-wrap,
+#coins-tab .sl-store-card .sl-full-art,#cases-tab .sl-store-card .sl-full-art{
+ position:absolute!important;z-index:2!important;top:15.3%!important;left:14%!important;right:auto!important;bottom:auto!important;
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ box-sizing:border-box!important;width:72%!important;height:32.8%!important;
+ min-width:0!important;min-height:0!important;max-width:72%!important;max-height:32.8%!important;
+ aspect-ratio:auto!important;margin:0!important;padding:0!important;
+ background:radial-gradient(circle at 50% 48%,rgba(120,47,190,.23),rgba(19,7,35,.1) 73%)!important;
+ border:0!important;border-radius:50%!important;box-shadow:none!important;
+ clip-path:ellipse(50% 50% at 50% 50%)!important;overflow:hidden!important;
+ filter:none!important;transform:none!important
+}
+#donate-tab .rank-emblem-wrap::before,#donate-tab .rank-emblem-wrap::after,
+#coins-tab .sl-full-art::before,#coins-tab .sl-full-art::after,
+#cases-tab .sl-full-art::before,#cases-tab .sl-full-art::after{display:none!important;content:none!important}
+#donate-tab .rank-emblem,#donate-tab .donate-card.shadow-card .rank-emblem,
+#coins-tab .sl-full-art-image,#cases-tab .sl-full-art-image{
+ position:static!important;z-index:auto!important;float:none!important;flex:none!important;
+ display:block!important;box-sizing:border-box!important;
+ width:100%!important;height:100%!important;max-width:100%!important;max-height:100%!important;
+ min-width:0!important;min-height:0!important;aspect-ratio:auto!important;
+ padding:0!important;margin:0!important;object-fit:contain!important;object-position:center!important;
+ transform:none!important;filter:none!important;clip-path:none!important;
+ border:0!important;border-radius:0!important;box-shadow:none!important;
+ image-rendering:auto!important;mix-blend-mode:normal!important;transition:none!important
+}
+#donate-tab .donate-card:hover .rank-emblem,#coins-tab .sl-store-card:hover .sl-full-art-image,
+#cases-tab .sl-store-card:hover .sl-full-art-image{transform:none!important;filter:none!important}
+#donate-tab .donate-card h3,#donate-tab .donate-card.shadow-card h3,
+#coins-tab .sl-store-card h3,#cases-tab .sl-store-card h4{
+ position:absolute!important;z-index:4!important;
+ top:50.5%!important;left:11%!important;right:auto!important;bottom:auto!important;
+ width:78%!important;height:8.4%!important;min-height:0!important;
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ grid-column:auto!important;grid-row:auto!important;
+ box-sizing:border-box!important;margin:0!important;padding:0 6px!important;
+ color:#fff!important;text-align:center!important;font-family:'Space Grotesk','DM Sans',sans-serif!important;
+ font-weight:850!important;font-size:clamp(17px,1.47vw,24px)!important;line-height:1.08!important;
+ letter-spacing:-.04em!important;white-space:normal!important;overflow-wrap:anywhere!important;
+ background:none!important;text-shadow:0 2px 8px rgba(0,0,0,.55)!important
+}
+/* Kit and product descriptions are fixed-width badges, never full-width strips. */
+#donate-tab .rank-perk,#donate-tab .donate-card.shadow-card .rank-perk,
+#coins-tab .coin-count,#cases-tab .sl-store-card p{
+ position:absolute!important;z-index:4!important;box-sizing:border-box!important;
+ top:61.2%!important;left:15%!important;right:auto!important;bottom:auto!important;
+ width:70%!important;max-width:70%!important;height:7.2%!important;min-height:0!important;
+ margin:0!important;padding:0 7px!important;
+ display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:5px!important;
+ border:1px solid rgba(194,117,255,.38)!important;border-radius:9px!important;
+ background:rgba(68,23,95,.63)!important;box-shadow:none!important;
+ color:#f6ddff!important;text-align:center!important;line-height:1.15!important;
+ font-size:clamp(9px,.85vw,12px)!important;font-weight:750!important;
+ white-space:nowrap!important;transform:none!important
+}
+#donate-tab .rank-perk-star{color:#d9a4ff!important;line-height:1!important;font-size:13px!important}
+#coins-tab .coin-count{letter-spacing:.01em!important}
+#coins-tab .sl-store-card p{
+ top:69.7%!important;left:14%!important;width:72%!important;max-width:72%!important;
+ height:5.2%!important;background:transparent!important;border:0!important;
+ font-weight:500!important;white-space:normal!important;font-size:clamp(9px,.73vw,11px)!important
+}
+#cases-tab .sl-store-card p{
+ top:61.4%!important;left:14%!important;width:72%!important;max-width:72%!important;
+ height:11.5%!important;padding:3px 6px!important;white-space:normal!important;
+ font-size:clamp(9px,.75vw,11px)!important
+}
+/* Price & button: one compact vertical stack inside the lower plaque. */
+#donate-tab .rank-card-footer,#donate-tab .donate-card.shadow-card .rank-card-footer,
+#coins-tab .sl-store-bottom,#cases-tab .sl-store-bottom{
+ position:absolute!important;z-index:5!important;box-sizing:border-box!important;
+ top:76.5%!important;left:15%!important;right:auto!important;bottom:auto!important;
+ display:grid!important;grid-template-columns:minmax(0,1fr)!important;
+ grid-template-rows:36% 57%!important;row-gap:7%!important;
+ align-items:stretch!important;justify-items:stretch!important;
+ width:70%!important;height:18.7%!important;min-height:0!important;max-height:none!important;
+ margin:0!important;padding:0!important;border:0!important;
+ background:none!important;box-shadow:none!important;transform:none!important;
+ grid-column:auto!important;grid-row:auto!important
+}
+#donate-tab .rank-price-group,#donate-tab .donate-card.shadow-card .rank-price-group,
+#coins-tab .sl-store-cost,#cases-tab .sl-store-cost{
+ grid-column:1!important;grid-row:1!important;align-self:stretch!important;justify-self:stretch!important;
+ display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:3px!important;
+ box-sizing:border-box!important;width:100%!important;height:100%!important;min-height:0!important;
+ margin:0!important;padding:0!important;border:0!important;background:none!important
+}
+#donate-tab .rank-price-group>span,#coins-tab .sl-store-cost>small,#cases-tab .sl-store-cost>small{display:none!important}
+#donate-tab .rank-price-group>strong,#coins-tab .sl-store-cost>strong,#cases-tab .sl-store-cost>strong{
+ display:inline-block!important;align-self:center!important;
+ margin:0!important;padding:0!important;color:#fff!important;
+ font-family:'Space Grotesk',sans-serif!important;font-size:clamp(21px,2vw,30px)!important;
+ line-height:1!important;letter-spacing:-.04em!important;font-weight:800!important;
+ text-shadow:0 0 12px rgba(201,111,255,.55)!important
+}
+#donate-tab .rank-price-group strong small,#coins-tab .sl-store-cost strong em,#cases-tab .sl-store-cost strong em{
+ font-size:.6em!important;color:#eed4ff!important;font-style:normal!important;white-space:nowrap!important
+}
+#donate-tab .donate-card .rank-buy,#donate-tab .donate-card.shadow-card .rank-buy,
+#coins-tab .sl-store-card .sl-store-buy,#cases-tab .sl-store-card .sl-store-buy{
+ position:static!important;grid-column:1!important;grid-row:2!important;
+ align-self:stretch!important;justify-self:stretch!important;
+ display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:center!important;gap:8px!important;
+ box-sizing:border-box!important;width:100%!important;min-width:0!important;max-width:100%!important;
+ height:100%!important;min-height:0!important;max-height:100%!important;
+ margin:0!important;padding:0 10px!important;
+ border:1px solid #dfb8ff!important;border-radius:5px!important;
+ clip-path:polygon(8% 0%,92% 0%,100% 50%,92% 100%,8% 100%,0 50%)!important;
+ background:linear-gradient(180deg,#fffaff 0%,#e4c9ff 42%,#a77adf 100%)!important;
+ box-shadow:inset 0 1px rgba(255,255,255,.8)!important;color:#2b153d!important;
+ font-family:'DM Sans',sans-serif!important;font-size:clamp(10px,1.1vw,14px)!important;
+ line-height:1.1!important;font-weight:900!important;letter-spacing:.02em!important;
+ text-align:center!important;text-transform:uppercase!important;white-space:nowrap!important;
+ cursor:pointer!important;transform:none!important;filter:none!important;transition:filter .2s ease!important
+}
+#donate-tab .rank-buy:hover:not(:disabled),#coins-tab .sl-store-buy:hover:not(:disabled),#cases-tab .sl-store-buy:hover:not(:disabled){
+ filter:brightness(1.12)!important;transform:none!important
+}
+#donate-tab .rank-buy:disabled,#coins-tab .sl-store-buy:disabled,#cases-tab .sl-store-buy:disabled{
+ cursor:not-allowed!important;opacity:.66!important;
+ background:linear-gradient(180deg,#b2a4c1,#766385)!important;color:#302139!important;
+ box-shadow:none!important;border-color:#9883ab!important;filter:none!important
+}
+#donate-tab .rank-buy:focus-visible,#coins-tab .sl-store-buy:focus-visible,#cases-tab .sl-store-buy:focus-visible{
+ outline:3px solid #e7c5ff!important;outline-offset:4px!important
+}
+#donate-tab .rank-shop-note{margin:24px auto!important;max-width:900px!important}
+@media(max-width:1100px){
+ #donate-tab .donate-grid,#cases-tab .case-grid.sl-store-grid.four{grid-template-columns:repeat(2,minmax(0,1fr))!important;max-width:650px!important}
+ #coins-tab .sl-store-grid,#cases-tab .case-grid.sl-store-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;max-width:650px!important}
+ #donate-tab .donate-card h3,#coins-tab .sl-store-card h3,#cases-tab .sl-store-card h4{font-size:clamp(18px,2.5vw,27px)!important}
+ #donate-tab .rank-price-group>strong,#coins-tab .sl-store-cost>strong,#cases-tab .sl-store-cost>strong{font-size:clamp(22px,2.7vw,32px)!important}
+}
+@media(max-width:640px){
+ #donate-tab .donate-grid,#coins-tab .sl-store-grid,#cases-tab .case-grid.sl-store-grid,#cases-tab .case-grid.sl-store-grid.four{
+   grid-template-columns:1fr!important;max-width:350px!important;gap:18px!important
+ }
+ #donate-tab .donate-card h3,#coins-tab .sl-store-card h3,#cases-tab .sl-store-card h4{font-size:clamp(20px,5vw,27px)!important}
+ #donate-tab .rank-price-group>strong,#coins-tab .sl-store-cost>strong,#cases-tab .sl-store-cost>strong{font-size:clamp(23px,6vw,33px)!important}
+ #donate-tab .rank-perk,#coins-tab .coin-count,#cases-tab .sl-store-card p{font-size:clamp(10px,2.8vw,13px)!important}
+ #donate-tab .rank-buy,#coins-tab .sl-store-buy,#cases-tab .sl-store-buy{font-size:clamp(11px,3vw,15px)!important}
+}
+@media(prefers-reduced-motion:reduce){
+ #donate-tab .donate-card,#coins-tab .sl-store-card,#cases-tab .sl-store-card{transition:none!important}
+}
