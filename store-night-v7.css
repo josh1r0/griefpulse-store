@@ -1,0 +1,146 @@
+/* SHADOWLAND | 2026-11-12 | Cosmic 3D Store
+   Only page presentation and coin artwork. No prices or payment logic.
+   Relic card layout continues to use the existing functioning markup. */
+:root{--cosmic-bg:#11071f;--cosmic-text:#f8f2ff;--cosmic-muted:#bbabd2}
+html{background:#0b0716!important}
+body{
+ color:var(--cosmic-text)!important;
+ background-color:#10071c!important;
+ background-image:
+   radial-gradient(ellipse 42% 28% at 5% 24%,rgba(116,36,181,.27),transparent 83%),
+   radial-gradient(ellipse 55% 23% at 98% 42%,rgba(136,30,199,.22),transparent 78%),
+   radial-gradient(ellipse 44% 27% at 5% 75%,rgba(104,24,164,.20),transparent 85%),
+   radial-gradient(ellipse 60% 34% at 83% 92%,rgba(77,27,145,.23),transparent 86%),
+   linear-gradient(180deg,#150920 0%,#10061f 54%,#090515 100%)!important;
+ background-repeat:no-repeat!important;
+ background-attachment:fixed!important;
+}
+body::before{display:none!important}
+/* The snowy white divider had been leaving an obvious bright stripe in a dark storefront. */
+.hero .showcase-snow-wave svg path{
+ fill:#140922!important;
+}
+.hero .showcase-snow-wave svg path:last-child{fill:#120820!important;opacity:.92!important}
+.hero{border-bottom:0!important}
+/* Shop and supporting sections now sit on one continuous deep-purple canvas. */
+#donate-tab,#coins-tab,#cases-tab,
+.shop-section,.shop-section.dark-section,
+#why.why,.sl-about,
+.player-section,.showcase-categories-title{
+ background:transparent!important;
+ background-image:none!important;
+}
+#donate-tab .container,#coins-tab .container,#cases-tab .container{
+ background:transparent!important;
+}
+#donate-tab .section-heading,#coins-tab .section-heading,#cases-tab .section-heading,
+#why .section-heading{
+ border-color:rgba(211,154,255,.19)!important;
+}
+#donate-tab .section-heading h2,#coins-tab .section-heading h2,#cases-tab .section-heading h2,
+#why .section-heading h2,.showcase-categories-title h2{
+ color:#fff!important;
+ text-shadow:0 0 28px rgba(186,98,250,.10)!important;
+}
+#donate-tab .section-heading p,#coins-tab .section-heading p,#cases-tab .section-heading p,
+#why .section-heading p{
+ color:#baacd0!important;
+}
+#donate-tab .section-small,#coins-tab .section-small,#cases-tab .section-small,
+#why .section-small,.showcase-categories-title>span{
+ color:#c285ff!important;
+}
+#donate-tab .rank-shop-intro,#coins-tab .sl-store-intro,#cases-tab .sl-store-intro{
+ color:#c8b7db!important;
+ border-color:rgba(209,154,248,.21)!important;
+}
+#donate-tab .rank-secure,#coins-tab .sl-intro-secure,#cases-tab .sl-intro-secure{
+ color:#dbabff!important;
+ background:rgba(115,50,171,.16)!important;
+ border-color:rgba(190,109,255,.27)!important;
+}
+#donate-tab .rank-shop-note,#coins-tab .sl-store-note,#cases-tab .sl-store-note,
+#coins-tab .sl-store-footnote,#cases-tab .sl-store-footnote{
+ color:#aa9ac4!important;
+}
+.showcase-categories-title h2 i{
+ background:linear-gradient(90deg,transparent,#bd61f4)!important;
+}
+.showcase-categories-title h2 i:last-child{
+ background:linear-gradient(90deg,#bd61f4,transparent)!important;
+}
+/* Keep the Minecraft nickname box legible but avoid the solid-white page behind it. */
+.player-section .player-card{
+ border-color:rgba(224,201,255,.59)!important;
+ box-shadow:0 18px 55px rgba(4,1,17,.34)!important;
+}
+/* Replace the original icon-looking planet with the supplied detailed cubic planet. */
+.hero .server-box::before{
+ content:""!important;
+ top:10px!important;
+ left:7%!important;
+ right:7%!important;
+ height:330px!important;
+ background-image:url('assets/art-v7/planet-3d.webp')!important;
+ background-position:50% 50%!important;
+ background-size:contain!important;
+ background-repeat:no-repeat!important;
+ opacity:1!important;
+ filter:drop-shadow(0 0 18px rgba(212,66,255,.40))!important;
+ animation:slCosmicFloat 8s ease-in-out infinite!important;
+}
+.hero .server-box{
+ background:radial-gradient(circle at 50% 32%,rgba(90,33,145,.22),transparent 60%),linear-gradient(155deg,#241233,#100a1e 79%)!important;
+ border-color:rgba(207,134,250,.59)!important;
+ box-shadow:0 18px 52px rgba(11,2,29,.48),inset 0 1px rgba(255,255,255,.07)!important;
+}
+@keyframes slCosmicFloat{
+ 0%,100%{transform:translateY(-3px) scale(.97)}
+ 50%{transform:translateY(4px) scale(1.02)}
+}
+/* 3D donor currency: every product displays a dedicated token/stack/pouch/chest illustration. */
+#coins-tab .sl-full-art[data-art-type="coin"]{
+ background:radial-gradient(circle at 50% 49%,rgba(100,46,165,.3),rgba(9,3,21,.22) 76%)!important;
+ overflow:hidden!important;
+}
+#coins-tab .sl-full-art img.sl-full-art-image,
+#coins-tab .sl-store-card:hover .sl-full-art img.sl-full-art-image{
+ width:100%!important;
+ height:100%!important;
+ max-width:100%!important;
+ max-height:100%!important;
+ object-fit:contain!important;
+ object-position:50% 50%!important;
+ filter:contrast(1.08) saturate(1.07)!important;
+ transform:none!important;
+ margin:0!important;
+}
+/* Lock all store items to stable symmetric columns and footer positions. */
+#donate-tab .donate-grid,#coins-tab .sl-store-grid,#cases-tab .sl-store-grid{
+ justify-content:center!important;align-items:start!important;justify-items:stretch!important;
+ column-gap:22px!important;row-gap:24px!important;
+}
+#donate-tab .donate-card,#donate-tab .donate-card.shadow-card,
+#coins-tab .sl-store-card,#cases-tab .sl-store-card{
+ justify-self:stretch!important;align-self:start!important;
+ width:100%!important;transform-origin:50% 50%!important;
+}
+#coins-tab .sl-store-card .sl-store-bottom,#cases-tab .sl-store-card .sl-store-bottom,
+#donate-tab .donate-card .rank-card-footer{
+ z-index:7!important;
+}
+#donate-tab .rank-price-group,#coins-tab .sl-store-cost,#cases-tab .sl-store-cost{
+ text-align:center!important;
+}
+/* About copy stays readable once the background is dark. */
+#why .sl-about-hero{background:rgba(39,19,66,.68)!important;border-color:rgba(192,128,255,.28)!important}
+#why .sl-about-hero h3{color:#fff!important}
+#why .sl-about-hero p,#why .sl-about-hero .sl-about-text{color:#c9bada!important}
+@media(max-width:700px){
+ body{background-attachment:scroll!important}
+ .hero .server-box::before{top:12px!important;left:5%!important;right:5%!important;height:248px!important}
+ #donate-tab .donate-grid,#coins-tab .sl-store-grid,#cases-tab .sl-store-grid{
+  column-gap:13px!important;row-gap:18px!important;
+ }
+}
+@media(prefers-reduced-motion:reduce){.hero .server-box::before{animation:none!important}}
