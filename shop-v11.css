@@ -1,0 +1,376 @@
+/* SHADOWLAND · premium gold/violet showcase cards · 2026-11-12
+ * Decorative imagery is rasterized from the user-approved design.
+ * Product names, kits, RUB prices, availability and checkout handlers remain real DOM elements.
+ */
+#donate-tab .donate-grid,
+#coins-tab .coins-grid.sl-store-grid,
+#cases-tab .case-grid.sl-store-grid{
+  box-sizing:border-box!important;
+  display:grid!important;
+  width:100%!important;
+  max-width:1180px!important;
+  margin:0 auto!important;
+  align-items:start!important;
+  justify-items:stretch!important;
+  justify-content:center!important;
+  column-gap:18px!important;
+  row-gap:26px!important;
+}
+#donate-tab .donate-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+#coins-tab .coins-grid.sl-store-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;max-width:1080px!important;column-gap:24px!important}
+#cases-tab .case-grid.sl-store-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;max-width:1080px!important;column-gap:24px!important}
+#cases-tab .case-grid.sl-store-grid.four{grid-template-columns:repeat(4,minmax(0,1fr))!important;max-width:1180px!important;column-gap:18px!important}
+
+#donate-tab .donate-grid > article.relic-v11-card,
+#coins-tab .coins-grid > article.relic-v11-card,
+#cases-tab .case-grid > article.relic-v11-card{
+  box-sizing:border-box!important;
+  isolation:isolate!important;
+  position:relative!important;
+  display:block!important;
+  float:none!important;
+  grid-column:auto!important;
+  grid-row:auto!important;
+  flex:none!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  min-width:0!important;
+  aspect-ratio:350/480!important;
+  padding:0!important;
+  margin:0!important;
+  background:none!important;
+  background-image:none!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:0 10px 23px rgba(6,0,17,.19)!important;
+  overflow:hidden!important;
+  color:#fff!important;
+  text-align:center!important;
+  transform:none!important;
+  transition:transform .24s ease,filter .24s ease!important;
+  filter:none!important;
+}
+#donate-tab .donate-grid > article.relic-v11-card:hover,
+#coins-tab .coins-grid > article.relic-v11-card:hover,
+#cases-tab .case-grid > article.relic-v11-card:hover{
+  transform:translateY(-5px)!important;
+  filter:drop-shadow(0 8px 12px rgba(149,56,212,.22))!important;
+}
+/* One clean artwork layer: no previous circle mask, cover crop, or shifted images. */
+#donate-tab article.relic-v11-card::before,
+#coins-tab article.relic-v11-card::before,
+#cases-tab article.relic-v11-card::before{
+  content:""!important;
+  pointer-events:none!important;
+  display:block!important;
+  position:absolute!important;
+  z-index:0!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  background-image:var(--v11-bg)!important;
+  background-position:50% 50%!important;
+  background-repeat:no-repeat!important;
+  background-size:100% 100%!important;
+  border:0!important;
+  border-radius:0!important;
+  clip-path:none!important;
+  box-shadow:none!important;
+  opacity:1!important;
+  transform:none!important;
+  filter:none!important;
+}
+#donate-tab article.relic-v11-card::after,
+#coins-tab article.relic-v11-card::after,
+#cases-tab article.relic-v11-card::after{display:none!important;content:none!important}
+#donate-tab article.relic-v11-card .card-light,
+#donate-tab article.relic-v11-card .rank-emblem-wrap,
+#coins-tab article.relic-v11-card .sl-full-art,
+#cases-tab article.relic-v11-card .sl-full-art{display:none!important}
+
+/* Top left metadata and top right stock/bonus badges. */
+#donate-tab article.relic-v11-card .rank-top,
+#coins-tab article.relic-v11-card .sl-store-top,
+#cases-tab article.relic-v11-card .sl-store-top{
+  position:absolute!important;
+  z-index:3!important;
+  top:9%!important;
+  left:11%!important;
+  right:auto!important;
+  bottom:auto!important;
+  display:flex!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:4px!important;
+  box-sizing:border-box!important;
+  width:78%!important;
+  height:6%!important;
+  min-height:0!important;
+  padding:0!important;
+  margin:0!important;
+  background:none!important;
+  border:0!important;
+  box-shadow:none!important;
+  transform:none!important;
+  grid-column:auto!important;
+  grid-row:auto!important;
+}
+#donate-tab article.relic-v11-card .rank-tier,
+#donate-tab article.relic-v11-card .rank-tier b,
+#coins-tab article.relic-v11-card .sl-item-type,
+#cases-tab article.relic-v11-card .sl-item-type{
+  color:#f7e8ff!important;
+  font-size:clamp(8px,.68vw,11px)!important;
+  font-weight:850!important;
+  line-height:1.1!important;
+  letter-spacing:.01em!important;
+  white-space:nowrap!important;
+  text-shadow:0 1px 3px rgba(5,0,12,.9)!important;
+}
+#donate-tab article.relic-v11-card .rank-state,
+#coins-tab article.relic-v11-card .sl-item-badge,
+#cases-tab article.relic-v11-card .sl-item-badge{
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  flex:0 0 auto!important;
+  padding:5px 7px!important;
+  font-size:clamp(8px,.7vw,10px)!important;
+  font-weight:800!important;
+  line-height:1!important;
+  white-space:nowrap!important;
+  background:rgba(23,6,43,.89)!important;
+  border:1px solid rgba(227,172,255,.45)!important;
+  border-radius:999px!important;
+  box-shadow:0 1px 5px rgba(0,0,0,.33)!important;
+  color:#fff1ff!important;
+}
+
+/* Real titles and kits sit on the clean purple lower plaque. */
+#donate-tab article.relic-v11-card h3,
+#coins-tab article.relic-v11-card h3,
+#cases-tab article.relic-v11-card h4{
+  box-sizing:border-box!important;
+  position:absolute!important;
+  z-index:4!important;
+  top:65.5%!important;
+  left:50%!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:74%!important;
+  height:7.2%!important;
+  min-height:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  margin:0!important;
+  padding:0 5px!important;
+  background:none!important;
+  border:0!important;
+  color:#fff8ff!important;
+  font-family:'Space Grotesk','DM Sans',sans-serif!important;
+  font-size:clamp(17px,1.6vw,22px)!important;
+  font-weight:850!important;
+  line-height:1.08!important;
+  letter-spacing:-.045em!important;
+  text-align:center!important;
+  text-shadow:0 2px 7px rgba(0,0,0,.7)!important;
+  white-space:normal!important;
+  transform:translateX(-50%)!important;
+  grid-column:auto!important;
+  grid-row:auto!important;
+}
+#donate-tab article.relic-v11-card .rank-perk,
+#coins-tab article.relic-v11-card p,
+#cases-tab article.relic-v11-card p{
+  box-sizing:border-box!important;
+  position:absolute!important;
+  z-index:4!important;
+  top:73.5%!important;
+  left:50%!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:72%!important;
+  max-width:72%!important;
+  height:6.4%!important;
+  min-height:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:5px!important;
+  padding:0 5px!important;
+  margin:0!important;
+  color:#e7d0fa!important;
+  border:1px solid rgba(208,145,255,.30)!important;
+  border-radius:8px!important;
+  background:rgba(70,20,101,.34)!important;
+  box-shadow:none!important;
+  font-size:clamp(10px,.85vw,12px)!important;
+  font-weight:700!important;
+  line-height:1.16!important;
+  text-align:center!important;
+  white-space:normal!important;
+  transform:translateX(-50%)!important;
+  grid-column:auto!important;
+  grid-row:auto!important;
+}
+#donate-tab article.relic-v11-card .rank-perk-star{color:#d99cff!important;font-size:13px!important}
+/* The total-amount line is redundant with the existing Russian description; keep the data in DOM. */
+#coins-tab article.relic-v11-card .coin-count{display:none!important}
+#cases-tab article.relic-v11-card p{font-size:clamp(9px,.78vw,11px)!important}
+
+#donate-tab article.relic-v11-card .rank-card-footer,
+#coins-tab article.relic-v11-card .sl-store-bottom,
+#cases-tab article.relic-v11-card .sl-store-bottom{
+  box-sizing:border-box!important;
+  position:absolute!important;
+  z-index:6!important;
+  top:81.2%!important;
+  left:50%!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:72%!important;
+  height:16.8%!important;
+  min-height:0!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:40% 52%!important;
+  row-gap:8%!important;
+  align-items:stretch!important;
+  justify-items:stretch!important;
+  margin:0!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  transform:translateX(-50%)!important;
+  grid-column:auto!important;
+  grid-row:auto!important;
+}
+#donate-tab article.relic-v11-card .rank-price-group,
+#coins-tab article.relic-v11-card .sl-store-cost,
+#cases-tab article.relic-v11-card .sl-store-cost{
+  box-sizing:border-box!important;
+  grid-column:1!important;
+  grid-row:1!important;
+  display:flex!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:0!important;
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  background:none!important;
+  text-align:center!important;
+  align-self:stretch!important;
+  justify-self:stretch!important;
+}
+#donate-tab article.relic-v11-card .rank-price-group>span,
+#coins-tab article.relic-v11-card .sl-store-cost>small,
+#cases-tab article.relic-v11-card .sl-store-cost>small{display:none!important}
+#donate-tab article.relic-v11-card .rank-price-group>strong,
+#coins-tab article.relic-v11-card .sl-store-cost>strong,
+#cases-tab article.relic-v11-card .sl-store-cost>strong{
+  color:#fff5ff!important;
+  font-family:'Space Grotesk',sans-serif!important;
+  font-size:clamp(20px,1.85vw,26px)!important;
+  font-weight:850!important;
+  letter-spacing:-.05em!important;
+  line-height:1!important;
+  text-shadow:0 0 9px rgba(183,69,243,.34)!important;
+}
+#donate-tab article.relic-v11-card .rank-price-group>strong small,
+#coins-tab article.relic-v11-card .sl-store-cost>strong em,
+#cases-tab article.relic-v11-card .sl-store-cost>strong em{
+  color:#f8d7ff!important;
+  font-size:.66em!important;
+  font-style:normal!important;
+  white-space:nowrap!important;
+}
+#donate-tab article.relic-v11-card .rank-buy,
+#coins-tab article.relic-v11-card .sl-store-buy,
+#cases-tab article.relic-v11-card .sl-store-buy{
+  box-sizing:border-box!important;
+  position:static!important;
+  grid-column:1!important;
+  grid-row:2!important;
+  display:flex!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:6px!important;
+  align-self:stretch!important;
+  justify-self:stretch!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  padding:0 8px!important;
+  margin:0!important;
+  border:1px solid #dfb6ff!important;
+  border-radius:8px!important;
+  clip-path:polygon(7% 0%,93% 0%,100% 50%,93% 100%,7% 100%,0% 50%)!important;
+  background:linear-gradient(180deg,#f7e6ff 0%,#d59dff 52%,#9d4de3 100%)!important;
+  color:#261235!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.75),0 3px 7px rgba(101,32,145,.28)!important;
+  font-family:'DM Sans',sans-serif!important;
+  font-size:clamp(11px,.92vw,14px)!important;
+  font-weight:900!important;
+  line-height:1!important;
+  letter-spacing:.02em!important;
+  text-align:center!important;
+  text-transform:uppercase!important;
+  white-space:nowrap!important;
+  cursor:pointer!important;
+  transform:none!important;
+  transition:filter .2s ease!important;
+}
+#donate-tab article.relic-v11-card .rank-buy:hover:not(:disabled),
+#coins-tab article.relic-v11-card .sl-store-buy:hover:not(:disabled),
+#cases-tab article.relic-v11-card .sl-store-buy:hover:not(:disabled){filter:brightness(1.10)!important;transform:none!important}
+#donate-tab article.relic-v11-card .rank-buy:disabled,
+#coins-tab article.relic-v11-card .sl-store-buy:disabled,
+#cases-tab article.relic-v11-card .sl-store-buy:disabled{
+  background:linear-gradient(180deg,#9e89ac,#55445f)!important;
+  color:#ebd9ef!important;
+  border-color:#9173ac!important;
+  box-shadow:none!important;
+  opacity:.85!important;
+  cursor:not-allowed!important;
+}
+#donate-tab article.relic-v11-card .rank-buy:focus-visible,
+#coins-tab article.relic-v11-card .sl-store-buy:focus-visible,
+#cases-tab article.relic-v11-card .sl-store-buy:focus-visible{outline:2px solid #f1dcff!important;outline-offset:2px!important}
+
+@media(max-width:1060px){
+ #donate-tab .donate-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;max-width:720px!important}
+ #coins-tab .coins-grid.sl-store-grid,#cases-tab .case-grid.sl-store-grid,#cases-tab .case-grid.sl-store-grid.four{
+   grid-template-columns:repeat(2,minmax(0,1fr))!important;max-width:720px!important
+ }
+ #donate-tab article.relic-v11-card h3,#coins-tab article.relic-v11-card h3,#cases-tab article.relic-v11-card h4{
+   font-size:clamp(18px,2.6vw,24px)!important
+ }
+}
+@media(max-width:620px){
+ #donate-tab .donate-grid,#coins-tab .coins-grid.sl-store-grid,#cases-tab .case-grid.sl-store-grid,#cases-tab .case-grid.sl-store-grid.four{
+   grid-template-columns:1fr!important;max-width:360px!important;gap:16px!important
+ }
+ #donate-tab article.relic-v11-card h3,#coins-tab article.relic-v11-card h3,#cases-tab article.relic-v11-card h4{
+   font-size:clamp(17px,5.5vw,25px)!important
+ }
+ #donate-tab article.relic-v11-card .rank-price-group>strong,#coins-tab article.relic-v11-card .sl-store-cost>strong,#cases-tab article.relic-v11-card .sl-store-cost>strong{
+   font-size:clamp(23px,6vw,30px)!important
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ #donate-tab article.relic-v11-card,#coins-tab article.relic-v11-card,#cases-tab article.relic-v11-card{transition:none!important}
+}
