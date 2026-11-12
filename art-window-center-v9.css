@@ -1,0 +1,235 @@
+/* SHADOWLAND — Artwork window correction / 2026-11-12.
+   The art is now truly centered in the ornamental medallion, with a full
+   circular backdrop and soft image edges. Products, prices, labels, buttons
+   and server logic remain untouched. */
+#donate-tab .donate-grid,
+#coins-tab .coins-grid.sl-store-grid,
+#cases-tab .case-grid.sl-store-grid{
+  justify-content:center!important;
+  justify-items:stretch!important;
+  align-items:start!important;
+  margin-inline:auto!important;
+  transform:none!important;
+}
+#donate-tab .donate-card,
+#coins-tab .sl-store-card,
+#cases-tab .sl-store-card{
+  justify-self:stretch!important;
+  align-self:start!important;
+  min-width:0!important;
+  transform-origin:center!important;
+}
+/* Shared medallion. The whole round aperture is filled with artwork, never
+   a rectangular image against a differently coloured background. */
+#donate-tab .donate-card .rank-emblem-wrap,
+#donate-tab .donate-card.shadow-card .rank-emblem-wrap,
+#coins-tab .sl-store-card .sl-full-art,
+#cases-tab .sl-store-card .sl-full-art{
+  box-sizing:border-box!important;
+  position:absolute!important;
+  z-index:2!important;
+  top:15.3%!important;
+  left:50%!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:72%!important;
+  height:32.8%!important;
+  min-width:0!important;
+  min-height:0!important;
+  max-width:72%!important;
+  max-height:32.8%!important;
+  padding:0!important;
+  margin:0!important;
+  display:grid!important;
+  place-items:center!important;
+  border:0!important;
+  border-radius:50%!important;
+  overflow:hidden!important;
+  clip-path:ellipse(49.8% 49.8% at 50% 50%)!important;
+  background:#160b29!important;
+  box-shadow:none!important;
+  filter:none!important;
+  isolation:isolate!important;
+  transform:translate3d(-50%,0,0)!important;
+  transform-origin:50% 50%!important;
+  -webkit-mask-image:none!important;
+  mask-image:none!important;
+}
+/* Cover fills 100% of the circular space. Blur hides the square boundary
+   baked into some old source images, without cropping the foreground art. */
+#donate-tab .donate-card .rank-emblem-wrap::before,
+#donate-tab .donate-card.shadow-card .rank-emblem-wrap::before,
+#coins-tab .sl-store-card .sl-full-art::before,
+#cases-tab .sl-store-card .sl-full-art::before{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  z-index:0!important;
+  inset:-12%!important;
+  width:auto!important;
+  height:auto!important;
+  border:0!important;
+  border-radius:0!important;
+  clip-path:none!important;
+  pointer-events:none!important;
+  background-image:var(--shop-art)!important;
+  background-size:cover!important;
+  background-repeat:no-repeat!important;
+  background-position:center center!important;
+  filter:blur(12px) brightness(.72) saturate(1.16)!important;
+  opacity:.95!important;
+  transform:scale(1.08)!important;
+}
+/* The last few pixels softly blend into the dark ring instead of ending
+   in a hard vertical, horizontal, or diagonal rectangular seam. */
+#donate-tab .donate-card .rank-emblem-wrap::after,
+#donate-tab .donate-card.shadow-card .rank-emblem-wrap::after,
+#coins-tab .sl-store-card .sl-full-art::after,
+#cases-tab .sl-store-card .sl-full-art::after{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  z-index:2!important;
+  inset:0!important;
+  width:auto!important;
+  height:auto!important;
+  border:0!important;
+  border-radius:0!important;
+  clip-path:none!important;
+  background:radial-gradient(ellipse at 50% 50%,transparent 45%,rgba(18,7,36,.04) 67%,rgba(18,7,36,.35) 93%,rgba(18,7,36,.57) 100%)!important;
+  box-shadow:none!important;
+  filter:none!important;
+  opacity:1!important;
+  pointer-events:none!important;
+  transform:none!important;
+}
+#donate-tab .donate-card .rank-emblem-wrap img.rank-emblem,
+#donate-tab .donate-card.shadow-card .rank-emblem-wrap img.rank-emblem,
+#donate-tab .donate-card:hover .rank-emblem-wrap img.rank-emblem,
+#donate-tab .donate-card.shadow-card:hover .rank-emblem-wrap img.rank-emblem,
+#coins-tab .sl-store-card .sl-full-art img.sl-full-art-image,
+#coins-tab .sl-store-card:hover .sl-full-art img.sl-full-art-image,
+#cases-tab .sl-store-card .sl-full-art img.sl-full-art-image,
+#cases-tab .sl-store-card:hover .sl-full-art img.sl-full-art-image{
+  display:block!important;
+  box-sizing:border-box!important;
+  position:relative!important;
+  z-index:1!important;
+  float:none!important;
+  flex:none!important;
+  grid-area:1 / 1!important;
+  width:100%!important;
+  height:100%!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  aspect-ratio:auto!important;
+  padding:0!important;
+  margin:0!important;
+  border:0!important;
+  border-radius:0!important;
+  object-position:center!important;
+  image-rendering:auto!important;
+  box-shadow:none!important;
+  background:transparent!important;
+  mix-blend-mode:normal!important;
+  clip-path:none!important;
+  filter:none!important;
+  opacity:1!important;
+  transform:none!important;
+  transition:none!important;
+}
+/* Wider rank illustrations stay fully in view, with the blurred copy filling
+   the empty space at the top and bottom of the round aperture. */
+#donate-tab .donate-card .rank-emblem-wrap img.rank-emblem,
+#donate-tab .donate-card.shadow-card .rank-emblem-wrap img.rank-emblem,
+#donate-tab .donate-card:hover .rank-emblem-wrap img.rank-emblem,
+#donate-tab .donate-card.shadow-card:hover .rank-emblem-wrap img.rank-emblem{
+  object-fit:contain!important;
+  -webkit-mask-image:radial-gradient(ellipse 51% 52% at 50% 50%,#000 35%,rgba(0,0,0,.95) 53%,rgba(0,0,0,.6) 66%,transparent 96%)!important;
+  mask-image:radial-gradient(ellipse 51% 52% at 50% 50%,#000 35%,rgba(0,0,0,.95) 53%,rgba(0,0,0,.6) 66%,transparent 96%)!important;
+}
+/* SILVER's illustration has unequal art weight: correct it slightly left. */
+#donate-tab .donate-card.silver-card .rank-emblem-wrap img.rank-emblem,
+#donate-tab .donate-card.silver-card:hover .rank-emblem-wrap img.rank-emblem{
+  transform:translateX(-3.7%)!important;
+}
+/* The coin and chest scenes use a full-window crop inside the medallion. The
+   circular vignette removes their original rectangular scene boundaries. */
+#coins-tab .sl-store-card .sl-full-art img.sl-full-art-image,
+#coins-tab .sl-store-card:hover .sl-full-art img.sl-full-art-image,
+#cases-tab .sl-store-card .sl-full-art img.sl-full-art-image,
+#cases-tab .sl-store-card:hover .sl-full-art img.sl-full-art-image{
+  object-fit:cover!important;
+  -webkit-mask-image:radial-gradient(ellipse 51% 51% at center,#000 58%,rgba(0,0,0,.97) 71%,rgba(0,0,0,.62) 87%,transparent 100%)!important;
+  mask-image:radial-gradient(ellipse 51% 51% at center,#000 58%,rgba(0,0,0,.97) 71%,rgba(0,0,0,.62) 87%,transparent 100%)!important;
+}
+/* All labels and controls share the frame's center axis. */
+#donate-tab .donate-card .rank-top,
+#coins-tab .sl-store-card .sl-store-top,
+#cases-tab .sl-store-card .sl-store-top{
+  left:11%!important;
+  right:auto!important;
+  width:78%!important;
+}
+#donate-tab .donate-card h3,
+#coins-tab .sl-store-card h3,
+#cases-tab .sl-store-card h4{
+  left:50%!important;
+  right:auto!important;
+  width:78%!important;
+  transform:translateX(-50%)!important;
+  text-align:center!important;
+  justify-content:center!important;
+}
+#donate-tab .donate-card .rank-perk,
+#coins-tab .sl-store-card .coin-count,
+#cases-tab .sl-store-card p{
+  left:50%!important;
+  right:auto!important;
+  width:70%!important;
+  max-width:70%!important;
+  transform:translateX(-50%)!important;
+  justify-content:center!important;
+  text-align:center!important;
+}
+#coins-tab .sl-store-card p{
+  width:72%!important;
+  max-width:72%!important;
+}
+#donate-tab .donate-card .rank-card-footer,
+#coins-tab .sl-store-card .sl-store-bottom,
+#cases-tab .sl-store-card .sl-store-bottom{
+  left:50%!important;
+  right:auto!important;
+  width:70%!important;
+  max-width:70%!important;
+  transform:translateX(-50%)!important;
+}
+#donate-tab .donate-card .rank-price-group,
+#coins-tab .sl-store-card .sl-store-cost,
+#cases-tab .sl-store-card .sl-store-cost{
+  text-align:center!important;
+  justify-content:center!important;
+}
+#donate-tab .donate-card .rank-buy,
+#coins-tab .sl-store-card .sl-store-buy,
+#cases-tab .sl-store-card .sl-store-buy{
+  transform:none!important;
+  justify-self:stretch!important;
+  width:100%!important;
+}
+/* This never changes the 4x2 donor, 3x2 currency or case-group counts. */
+#coins-tab .coins-grid.sl-store-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  max-width:1110px!important;
+  column-gap:24px!important;
+  row-gap:28px!important;
+}
+@media(max-width:1100px){
+ #coins-tab .coins-grid.sl-store-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;max-width:650px!important}
+}
+@media(max-width:640px){
+ #coins-tab .coins-grid.sl-store-grid{grid-template-columns:1fr!important;max-width:350px!important;gap:18px!important}
+}
