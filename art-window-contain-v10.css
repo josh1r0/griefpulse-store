@@ -1,0 +1,129 @@
+/* SHADOWLAND · true-centred medallions · 2026-11-12
+   No cover crop, no duplicated background artwork. The foreground is fully visible.
+   Rank names, kits, amounts, states and purchase handlers are untouched. */
+#donate-tab .donate-grid,
+#coins-tab .coins-grid.sl-store-grid,
+#cases-tab .case-grid.sl-store-grid {
+  justify-content: center !important;
+  justify-items: stretch !important;
+  align-items: start !important;
+  margin-inline: auto !important;
+}
+#donate-tab .donate-card,
+#coins-tab .sl-store-card,
+#cases-tab .sl-store-card {
+  justify-self: stretch !important;
+  width: 100% !important;
+  transform-origin: 50% 50% !important;
+}
+#donate-tab .donate-card .rank-emblem-wrap,
+#donate-tab .donate-card.shadow-card .rank-emblem-wrap,
+#coins-tab .sl-store-card .sl-full-art,
+#cases-tab .sl-store-card .sl-full-art {
+  position: absolute !important;
+  display: grid !important;
+  place-items: center !important;
+  box-sizing: border-box !important;
+  top: 15.3% !important;
+  left: 50% !important;
+  right: auto !important;
+  width: 72% !important;
+  max-width: 72% !important;
+  height: 32.8% !important;
+  max-height: 32.8% !important;
+  min-height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  clip-path: ellipse(49.9% 49.9% at 50% 50%) !important;
+  overflow: hidden !important;
+  background: radial-gradient(ellipse at center, #3a185b 0%, #210d3a 48%, #140822 84%, #10061c 100%) !important;
+  transform: translateX(-50%) !important;
+  transform-origin: center !important;
+  box-shadow: none !important;
+  filter: none !important;
+  isolation: isolate !important;
+}
+/* Never paint a second, cropped copy of the product behind the main image. */
+#donate-tab .rank-emblem-wrap::before,
+#donate-tab .rank-emblem-wrap::after,
+#coins-tab .sl-full-art::before,
+#coins-tab .sl-full-art::after,
+#cases-tab .sl-full-art::before,
+#cases-tab .sl-full-art::after {
+  content: none !important;
+  display: none !important;
+  background-image: none !important;
+}
+#donate-tab .donate-card .rank-emblem-wrap img.rank-emblem,
+#donate-tab .donate-card.shadow-card .rank-emblem-wrap img.rank-emblem,
+#donate-tab .donate-card:hover .rank-emblem-wrap img.rank-emblem,
+#coins-tab .sl-store-card .sl-full-art img.sl-full-art-image,
+#coins-tab .sl-store-card:hover .sl-full-art img.sl-full-art-image,
+#cases-tab .sl-store-card .sl-full-art img.sl-full-art-image,
+#cases-tab .sl-store-card:hover .sl-full-art img.sl-full-art-image {
+  display: block !important;
+  position: relative !important;
+  z-index: 1 !important;
+  grid-area: 1 / 1 !important;
+  float: none !important;
+  flex: none !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  aspect-ratio: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  object-fit: contain !important; /* absolutely no cropping */
+  object-position: 50% 50% !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  clip-path: none !important;
+  box-shadow: none !important;
+  filter: none !important;
+  transform: none !important;
+  transition: none !important;
+  image-rendering: auto !important;
+}
+/* The six currency illustrations were re-centered in their actual image files;
+   preserve their transparent edges without an extra hard CSS mask. */
+#coins-tab .sl-store-card .sl-full-art img.sl-full-art-image,
+#coins-tab .sl-store-card:hover .sl-full-art img.sl-full-art-image {
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  mix-blend-mode: normal !important;
+}
+/* The older wide art still contains a square background. Feather only the outer
+   few pixels of that background without cropping its central object. */
+#donate-tab .donate-card .rank-emblem-wrap img.rank-emblem,
+#donate-tab .donate-card.shadow-card .rank-emblem-wrap img.rank-emblem,
+#donate-tab .donate-card:hover .rank-emblem-wrap img.rank-emblem,
+#cases-tab .sl-store-card .sl-full-art img.sl-full-art-image,
+#cases-tab .sl-store-card:hover .sl-full-art img.sl-full-art-image {
+  -webkit-mask-image: radial-gradient(ellipse 55% 57% at center, black 62%, rgba(0,0,0,.98) 75%, transparent 98%) !important;
+  mask-image: radial-gradient(ellipse 55% 57% at center, black 62%, rgba(0,0,0,.98) 75%, transparent 98%) !important;
+}
+/* SILVER's pre-existing artwork has slightly more visual weight on the right. */
+#donate-tab .donate-card.silver-card .rank-emblem-wrap img.rank-emblem,
+#donate-tab .donate-card.silver-card:hover .rank-emblem-wrap img.rank-emblem {
+  transform: translateX(-2%) !important;
+}
+/* Maintain the intended symmetric 3 × 2 coin layout. */
+#coins-tab .coins-grid.sl-store-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3,minmax(0,1fr)) !important;
+  max-width: 1110px !important;
+  column-gap: 25px !important;
+  row-gap: 28px !important;
+}
+@media (max-width:1100px) {
+  #coins-tab .coins-grid.sl-store-grid {grid-template-columns:repeat(2,minmax(0,1fr)) !important;max-width:650px !important}
+}
+@media (max-width:640px) {
+  #coins-tab .coins-grid.sl-store-grid {grid-template-columns:1fr !important;max-width:350px !important;gap:18px !important}
+}
