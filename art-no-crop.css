@@ -1,0 +1,147 @@
+/* SHADOWLAND / UNCROPPED COINS & CASES / 2026-11-12
+   This dedicated art class intentionally bypasses every legacy .sl-store-art
+   and .sl-coin-art/.sl-case-art rule in older themes. No JS or product changes. */
+
+/* Keep the four coin cases in one balanced row on desktop. */
+#coins-tab .sl-store-grid{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:18px!important;
+}
+#cases-tab .case-grid.sl-store-grid{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:18px!important;
+}
+#cases-tab .case-grid.sl-store-grid.four{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+}
+
+/* Large picture stage at the item's native aspect ratio; never cover/crop. */
+#coins-tab .sl-store-card{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:25px 238px 19px 34px minmax(30px,auto) minmax(68px,1fr)!important;
+  row-gap:7px!important;
+  height:488px!important;
+  min-height:488px!important;
+  max-height:none!important;
+}
+#cases-tab .sl-store-card{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  grid-template-rows:25px 238px 34px minmax(36px,auto) minmax(68px,1fr)!important;
+  row-gap:9px!important;
+  height:466px!important;
+  min-height:466px!important;
+  max-height:none!important;
+}
+#coins-tab .sl-store-card .sl-full-art,
+#cases-tab .sl-store-card .sl-full-art{
+  grid-column:1!important;
+  grid-row:2!important;
+  order:initial!important;
+  position:relative!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  align-self:stretch!important;
+  justify-self:stretch!important;
+  flex:0 0 auto!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  min-width:0!important;
+  max-width:100%!important;
+  height:238px!important;
+  min-height:238px!important;
+  max-height:238px!important;
+  padding:7px!important;
+  margin:0!important;
+  border:1px solid rgba(213,163,245,.27)!important;
+  border-radius:13px!important;
+  background:#140D27!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.08)!important;
+  overflow:hidden!important;
+}
+#coins-tab .sl-store-card .sl-full-art-image,
+#cases-tab .sl-store-card .sl-full-art-image{
+  display:block!important;
+  position:static!important;
+  z-index:auto!important;
+  flex:none!important;
+  float:none!important;
+  box-sizing:content-box!important;
+  width:auto!important;
+  height:auto!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  aspect-ratio:auto!important;
+  object-fit:contain!important;
+  object-position:center center!important;
+  border:none!important;
+  border-radius:0!important;
+  margin:0 auto!important;
+  padding:0!important;
+  filter:none!important;
+  transform:none!important;
+  opacity:1!important;
+  clip-path:none!important;
+  image-rendering:auto!important;
+  mix-blend-mode:normal!important;
+  box-shadow:none!important;
+  transition:none!important;
+}
+#coins-tab .sl-store-card:hover .sl-full-art-image,
+#cases-tab .sl-store-card:hover .sl-full-art-image{
+  width:auto!important;
+  height:auto!important;
+  filter:none!important;
+  transform:none!important;
+  clip-path:none!important;
+}
+/* Preserve identical text and purchase positions in the taller cards. */
+#coins-tab .sl-store-top,
+#cases-tab .sl-store-top{grid-column:1!important;grid-row:1!important}
+#coins-tab .coin-count{grid-column:1!important;grid-row:3!important}
+#coins-tab .sl-store-card h3{grid-column:1!important;grid-row:4!important}
+#coins-tab .sl-store-card p{grid-column:1!important;grid-row:5!important}
+#coins-tab .sl-store-bottom{grid-column:1!important;grid-row:6!important}
+#cases-tab .sl-store-card h4{grid-column:1!important;grid-row:3!important}
+#cases-tab .sl-store-card p{grid-column:1!important;grid-row:4!important}
+#cases-tab .sl-store-bottom{grid-column:1!important;grid-row:5!important}
+
+/* At narrow widths, use the full picture without stretching it. */
+@media(max-width:1099px){
+  #coins-tab .sl-store-grid,
+  #cases-tab .case-grid.sl-store-grid,
+  #cases-tab .case-grid.sl-store-grid.four{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+  }
+}
+@media(max-width:700px){
+  #coins-tab .sl-store-grid,
+  #cases-tab .case-grid.sl-store-grid,
+  #cases-tab .case-grid.sl-store-grid.four{
+    grid-template-columns:1fr!important;
+    max-width:480px!important;
+    margin-inline:auto!important;
+  }
+  #coins-tab .sl-store-card{height:488px!important;min-height:488px!important}
+  #cases-tab .sl-store-card{height:466px!important;min-height:466px!important}
+}
+@media(max-width:380px){
+  #coins-tab .sl-store-card{
+    grid-template-rows:25px 212px 19px 34px minmax(30px,auto) minmax(68px,1fr)!important;
+    height:462px!important;min-height:462px!important;
+  }
+  #cases-tab .sl-store-card{
+    grid-template-rows:25px 212px 34px minmax(36px,auto) minmax(68px,1fr)!important;
+    height:440px!important;min-height:440px!important;
+  }
+  #coins-tab .sl-store-card .sl-full-art,
+  #cases-tab .sl-store-card .sl-full-art{
+    height:212px!important;min-height:212px!important;max-height:212px!important;
+  }
+}
