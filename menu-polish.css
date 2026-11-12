@@ -1,0 +1,48 @@
+/* SHADOWLAND / subtle darkening + 4% left artwork correction.
+   Only the inside of the cards and their images are adjusted.
+   Outer metal frames, labels, kits, prices, and click handlers are unchanged. */
+
+/* Darken the lower inner plaque slightly while leaving ornate edges transparent. */
+#donate-tab .donate-card::after,
+#coins-tab .sl-store-card::after,
+#cases-tab .sl-store-card::after{
+  content:""!important;
+  display:block!important;
+  position:absolute!important;
+  z-index:1!important;
+  top:51%!important;
+  left:14%!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:72%!important;
+  height:38%!important;
+  inset:auto!important;
+  top:51%!important;
+  left:14%!important;
+  border:0!important;
+  border-radius:12px!important;
+  background:linear-gradient(180deg,rgba(7,3,19,.23),rgba(7,3,19,.34))!important;
+  opacity:1!important;
+  box-shadow:none!important;
+  filter:none!important;
+  pointer-events:none!important;
+}
+
+/* Shift artwork within the circular windows, not the metal frames. */
+#donate-tab .donate-card .rank-emblem,
+#donate-tab .donate-card.shadow-card .rank-emblem,
+#coins-tab .sl-store-card .sl-full-art-image,
+#cases-tab .sl-store-card .sl-full-art-image,
+#donate-tab .donate-card:hover .rank-emblem,
+#coins-tab .sl-store-card:hover .sl-full-art-image,
+#cases-tab .sl-store-card:hover .sl-full-art-image{
+  transform:translateX(-4%)!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  filter:none!important;
+}
+
+/* The case pictures remain contained within the same circular artwork windows. */
+#cases-tab .sl-store-card .sl-full-art{
+  background:radial-gradient(circle at 50% 45%,rgba(65,24,107,.18),rgba(5,2,14,.36))!important;
+}
