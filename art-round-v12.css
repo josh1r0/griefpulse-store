@@ -1,0 +1,110 @@
+/* SHADOWLAND V12 — circular centered art, original shop menus retained.
+   No price, payment, kit or navigation changes.
+   Every rank, coin and case uses complete non-erased artwork inside the
+   original metallic frame's medallion; no rectangular image edges. */
+#donate-tab .donate-card .rank-emblem-wrap,
+#donate-tab .donate-card.shadow-card .rank-emblem-wrap,
+#coins-tab .sl-store-card .sl-full-art,
+#cases-tab .sl-store-card .sl-full-art{
+  position:absolute!important;
+  top:12.45%!important;
+  left:50%!important;
+  right:auto!important;
+  bottom:auto!important;
+  display:block!important;
+  box-sizing:border-box!important;
+  width:59.4%!important;
+  height:auto!important;
+  aspect-ratio:1 / 1!important;
+  min-width:0!important;
+  min-height:0!important;
+  max-width:59.4%!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:50%!important;
+  clip-path:circle(50% at 50% 50%)!important;
+  overflow:hidden!important;
+  isolation:isolate!important;
+  background:#160a2c!important;
+  background-image:none!important;
+  box-shadow:0 0 18px rgba(129,48,201,.18)!important;
+  filter:none!important;
+  transform:translateX(-50%)!important;
+  transform-origin:50% 50%!important;
+  -webkit-mask-image:none!important;
+  mask-image:none!important;
+  z-index:2!important;
+}
+#donate-tab .donate-card .rank-emblem-wrap::before,
+#donate-tab .donate-card .rank-emblem-wrap::after,
+#coins-tab .sl-store-card .sl-full-art::before,
+#coins-tab .sl-store-card .sl-full-art::after,
+#cases-tab .sl-store-card .sl-full-art::before,
+#cases-tab .sl-store-card .sl-full-art::after{
+  content:none!important;
+  display:none!important;
+}
+#donate-tab .donate-card .rank-emblem-wrap img.rank-emblem,
+#donate-tab .donate-card.shadow-card .rank-emblem-wrap img.rank-emblem,
+#donate-tab .donate-card:hover .rank-emblem-wrap img.rank-emblem,
+#donate-tab .donate-card.shadow-card:hover .rank-emblem-wrap img.rank-emblem,
+#coins-tab .sl-store-card .sl-full-art img.sl-full-art-image,
+#coins-tab .sl-store-card:hover .sl-full-art img.sl-full-art-image,
+#cases-tab .sl-store-card .sl-full-art img.sl-full-art-image,
+#cases-tab .sl-store-card:hover .sl-full-art img.sl-full-art-image{
+  display:block!important;
+  position:absolute!important;
+  inset:0!important;
+  float:none!important;
+  flex:none!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  aspect-ratio:1 / 1!important;
+  margin:0!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:50%!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  clip-path:none!important;
+  -webkit-mask-image:none!important;
+  mask-image:none!important;
+  mix-blend-mode:normal!important;
+  image-rendering:auto!important;
+  opacity:1!important;
+  transform:none!important;
+  filter:none!important;
+  box-shadow:none!important;
+  transition:none!important;
+}
+/* Remove outdated individual product offsets, including SILVER. */
+#donate-tab .donate-card.silver-card .rank-emblem-wrap img.rank-emblem,
+#donate-tab .donate-card.silver-card:hover .rank-emblem-wrap img.rank-emblem{
+  transform:none!important;
+}
+/* Responsive picture-window positions stay proportional to the unchanged cards. */
+@media(max-width:640px){
+  #donate-tab .donate-card .rank-emblem-wrap,
+  #donate-tab .donate-card.shadow-card .rank-emblem-wrap,
+  #coins-tab .sl-store-card .sl-full-art,
+  #cases-tab .sl-store-card .sl-full-art{
+    top:12.45%!important;
+    width:59.4%!important;
+    max-width:59.4%!important;
+    aspect-ratio:1/1!important;
+  }
+}
+/* The five original storefront areas keep their responsive grids untouched. */
+@media(prefers-reduced-motion:reduce){
+  #donate-tab .donate-card .rank-emblem-wrap img.rank-emblem,
+  #coins-tab .sl-store-card .sl-full-art img,
+  #cases-tab .sl-store-card .sl-full-art img{transition:none!important;}
+}
