@@ -195,7 +195,7 @@
   max-width:100%!important;
   transform:none!important;
 }
-@media(max-width:1050px){
+@media(max-width:780px){
   #donate-tab .donate-grid,
   #coins-tab .coins-grid.sl-store-grid,
   #cases-tab .case-grid.sl-store-grid,
