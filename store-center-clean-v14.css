@@ -1,0 +1,240 @@
+/* SHADOWLAND V14 — single authoritative centering layer.
+   Only visual positioning and crisp artwork rendering are changed.
+   Original frames, card text, prices, checkout and kits remain intact. */
+#donate-tab .donate-grid,
+#coins-tab .coins-grid.sl-store-grid,
+#cases-tab .case-grid.sl-store-grid{
+  display:grid!important;
+  box-sizing:border-box!important;
+  width:100%!important;
+  margin-inline:auto!important;
+  padding:0!important;
+  justify-content:center!important;
+  justify-items:stretch!important;
+  align-items:start!important;
+  column-gap:22px!important;
+  row-gap:26px!important;
+  transform:none!important;
+}
+#donate-tab .donate-grid{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  max-width:1040px!important;
+}
+#coins-tab .coins-grid.sl-store-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  max-width:890px!important;
+}
+#cases-tab .case-grid.sl-store-grid{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  max-width:890px!important;
+}
+#cases-tab .case-grid.sl-store-grid.four{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  max-width:1040px!important;
+}
+#donate-tab .donate-card,
+#donate-tab .donate-card.shadow-card,
+#coins-tab .sl-store-card,
+#cases-tab .sl-store-card{
+  position:relative!important;
+  display:block!important;
+  grid-column:auto!important;
+  grid-row:auto!important;
+  box-sizing:border-box!important;
+  float:none!important;
+  justify-self:stretch!important;
+  align-self:start!important;
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  height:auto!important;
+  min-height:0!important;
+  aspect-ratio:693 / 1159!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:none!important;
+  overflow:visible!important;
+  transform:none!important;
+  transform-origin:50% 50%!important;
+}
+/* Frame and card are always centered on the same exact axis. */
+#donate-tab .donate-card::before,
+#coins-tab .sl-store-card::before,
+#cases-tab .sl-store-card::before{
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  background-position:50% 50%!important;
+  background-size:100% 100%!important;
+  transform:none!important;
+}
+/* Art windows centered at x=50% of each card; 1:1 round aperture.
+   No zoom, blur, image drift, elliptical stretching or cover-cropping. */
+#donate-tab .donate-card .rank-emblem-wrap,
+#donate-tab .donate-card.shadow-card .rank-emblem-wrap,
+#coins-tab .sl-store-card .sl-full-art,
+#cases-tab .sl-store-card .sl-full-art{
+  position:absolute!important;
+  z-index:2!important;
+  top:12.45%!important;
+  left:50%!important;
+  right:auto!important;
+  bottom:auto!important;
+  display:grid!important;
+  place-items:center!important;
+  box-sizing:border-box!important;
+  width:62%!important;
+  max-width:62%!important;
+  height:auto!important;
+  max-height:none!important;
+  min-height:0!important;
+  min-width:0!important;
+  aspect-ratio:1/1!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:50%!important;
+  clip-path:circle(50% at 50% 50%)!important;
+  background:#18092e!important;
+  overflow:hidden!important;
+  isolation:isolate!important;
+  box-shadow:none!important;
+  filter:none!important;
+  -webkit-mask-image:none!important;
+  mask-image:none!important;
+  transform:translateX(-50%)!important;
+  transform-origin:50% 50%!important;
+}
+#donate-tab .donate-card .rank-emblem-wrap::before,
+#donate-tab .donate-card .rank-emblem-wrap::after,
+#coins-tab .sl-store-card .sl-full-art::before,
+#coins-tab .sl-store-card .sl-full-art::after,
+#cases-tab .sl-store-card .sl-full-art::before,
+#cases-tab .sl-store-card .sl-full-art::after{
+  content:none!important;
+  display:none!important;
+}
+/* Strong specificity also overrides historical individual SILVER/coin offsets. */
+#donate-tab .donate-card .rank-emblem-wrap > img.rank-emblem,
+#donate-tab .donate-card.silver-card .rank-emblem-wrap > img.rank-emblem,
+#donate-tab .donate-card.shadow-card .rank-emblem-wrap > img.rank-emblem,
+#donate-tab .donate-card:hover .rank-emblem-wrap > img.rank-emblem,
+#coins-tab .sl-store-card .sl-full-art > img.sl-full-art-image,
+#coins-tab .sl-store-card:hover .sl-full-art > img.sl-full-art-image,
+#cases-tab .sl-store-card .sl-full-art > img.sl-full-art-image,
+#cases-tab .sl-store-card:hover .sl-full-art > img.sl-full-art-image{
+  position:static!important;
+  inset:auto!important;
+  grid-area:1/1!important;
+  display:block!important;
+  box-sizing:border-box!important;
+  float:none!important;
+  flex:none!important;
+  width:100%!important;
+  height:100%!important;
+  min-width:0!important;
+  min-height:0!important;
+  max-width:100%!important;
+  max-height:100%!important;
+  aspect-ratio:1 / 1!important;
+  margin:0!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  object-fit:contain!important;
+  object-position:50% 50%!important;
+  clip-path:none!important;
+  -webkit-mask-image:none!important;
+  mask-image:none!important;
+  image-rendering:auto!important;
+  filter:contrast(1.12) saturate(1.10)!important;
+  box-shadow:none!important;
+  opacity:1!important;
+  transform:none!important;
+  transition:none!important;
+}
+/* Center every card's real DOM content, without replacing it with an image. */
+#donate-tab .donate-card .rank-top,
+#coins-tab .sl-store-card .sl-store-top,
+#cases-tab .sl-store-card .sl-store-top{
+  left:50%!important;
+  right:auto!important;
+  width:78%!important;
+  margin:0!important;
+  transform:translateX(-50%)!important;
+}
+#donate-tab .donate-card h3,
+#coins-tab .sl-store-card h3,
+#cases-tab .sl-store-card h4{
+  left:50%!important;
+  right:auto!important;
+  width:78%!important;
+  margin:0!important;
+  justify-content:center!important;
+  text-align:center!important;
+  transform:translateX(-50%)!important;
+}
+#donate-tab .donate-card .rank-perk,
+#coins-tab .sl-store-card .coin-count,
+#cases-tab .sl-store-card p{
+  left:50%!important;
+  right:auto!important;
+  width:70%!important;
+  max-width:70%!important;
+  margin:0!important;
+  justify-content:center!important;
+  text-align:center!important;
+  transform:translateX(-50%)!important;
+}
+#coins-tab .sl-store-card p{
+  width:72%!important;
+  max-width:72%!important;
+}
+#donate-tab .donate-card .rank-card-footer,
+#coins-tab .sl-store-card .sl-store-bottom,
+#cases-tab .sl-store-card .sl-store-bottom{
+  left:50%!important;
+  right:auto!important;
+  width:70%!important;
+  max-width:70%!important;
+  margin:0!important;
+  justify-items:stretch!important;
+  transform:translateX(-50%)!important;
+}
+#donate-tab .donate-card .rank-price-group,
+#coins-tab .sl-store-card .sl-store-cost,
+#cases-tab .sl-store-card .sl-store-cost{
+  justify-content:center!important;
+  text-align:center!important;
+}
+#donate-tab .donate-card .rank-buy,
+#coins-tab .sl-store-card .sl-store-buy,
+#cases-tab .sl-store-card .sl-store-buy{
+  justify-self:stretch!important;
+  align-self:stretch!important;
+  width:100%!important;
+  max-width:100%!important;
+  transform:none!important;
+}
+@media(max-width:950px){
+  #donate-tab .donate-grid,
+  #coins-tab .coins-grid.sl-store-grid,
+  #cases-tab .case-grid.sl-store-grid,
+  #cases-tab .case-grid.sl-store-grid.four{
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    max-width:570px!important;
+  }
+}
+@media(max-width:600px){
+  #donate-tab .donate-grid,
+  #coins-tab .coins-grid.sl-store-grid,
+  #cases-tab .case-grid.sl-store-grid,
+  #cases-tab .case-grid.sl-store-grid.four{
+    grid-template-columns:minmax(0,1fr)!important;
+    max-width:285px!important;
+    gap:18px!important;
+  }
+}
