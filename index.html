@@ -42,6 +42,7 @@
 <link rel="stylesheet" href="store-center-clean-v14.css?v=20261113-1">
 <link rel="stylesheet" href="sl-rank-portrait-cards.css?v=20261120hq384">
 <link rel="stylesheet" href="coins-aurora-v1.css?v=20261120a">
+<link rel="stylesheet" href="coins-reference-v2.css?v=20261120c2">
 </head>
 
 
@@ -551,7 +552,7 @@
 
 
 <!-- ============================================================
-     COINS — PURPLE AURORA (original coin graphics preserved)
+     COINS — 3x2 REFERENCE DESIGN (flat coin graphics, no circular frames)
 ============================================================ -->
 <section class="shop-section dark-section" id="coins-tab">
   <div class="container sl-coinforge-wrap">
@@ -560,80 +561,74 @@
       <h2>МАГАЗИН <span>КОИНОВ</span></h2>
       <p>Пополняй баланс коинов и получай дополнительные бонусы в больших наборах.</p>
     </div>
-    <div class="sl-coinforge-grid">
-      <article class="sl-coinforge-card" aria-label="30 коинов, 30 рублей">
-        <div class="sl-coinforge-bonus"><span aria-hidden="true">★</span>СТАРТОВЫЙ НАБОР</div>
-        <div class="sl-coinforge-art">
-          <img src="assets/round-v13/coin-1-centered.webp" alt="Фирменные фиолетово-золотые коины ShadowLand" width="500" height="500" loading="lazy" decoding="async">
+    <div class="coin-cut-grid">
+      <article class="coin-cut-card" aria-label="30 коинов, 30 рублей">
+        <div class="coin-cut-inner">
+          <div class="coin-cut-art coin-cut-art--1" role="img" aria-label="30 коинов: золотые монеты с фиолетовой звездой"></div>
+          <h3 class="coin-cut-name">30 КОИНОВ</h3>
+          <span class="coin-cut-total">30 COINS</span>
+          <div class="coin-cut-rule" aria-hidden="true"></div>
+          <div class="coin-cut-price">30 <small>₽</small></div>
+          <button type="button" class="coin-cut-buy" disabled title="Отдельный платёж на 30 ₽ недоступен из-за минимума Lava.top">НЕДОСТУПНО</button>
         </div>
-        <h3>30 КОИНОВ</h3>
-        <div class="sl-coinforge-total">30 COINS</div>
-        <div class="sl-coinforge-separator" aria-hidden="true"><span></span></div>
-        <div class="sl-coinforge-cost"><strong>30 <small>₽</small></strong></div>
-        <button type="button" class="sl-coinforge-buy" disabled title="Минимальная оплата через Lava.top — 50 ₽">НЕДОСТУПНО</button>
       </article>
 
-      <article class="sl-coinforge-card" aria-label="50 + 10 коинов, 50 рублей">
-        <div class="sl-coinforge-bonus"><span aria-hidden="true">✦</span>+10 БОНУС</div>
-        <div class="sl-coinforge-art">
-          <img src="assets/round-v13/coin-2-centered.webp" alt="Фирменные фиолетово-золотые коины ShadowLand" width="500" height="500" loading="lazy" decoding="async">
+      <article class="coin-cut-card" aria-label="50 + 10 коинов, 50 рублей">
+        <div class="coin-cut-inner">
+          <div class="coin-cut-art coin-cut-art--2" role="img" aria-label="50 + 10 коинов: золотые монеты с фиолетовой звездой"></div>
+          <h3 class="coin-cut-name">50 + 10 КОИНОВ</h3>
+          <span class="coin-cut-total">60 COINS</span>
+          <div class="coin-cut-rule" aria-hidden="true"></div>
+          <div class="coin-cut-price">50 <small>₽</small></div>
+          <button type="button" class="coin-cut-buy" onclick="buy('50 + 10 коинов', 50)">КУПИТЬ <span aria-hidden="true">❯</span></button>
         </div>
-        <h3>50 + 10 КОИНОВ</h3>
-        <div class="sl-coinforge-total">60 COINS</div>
-        <div class="sl-coinforge-separator" aria-hidden="true"><span></span></div>
-        <div class="sl-coinforge-cost"><strong>50 <small>₽</small></strong></div>
-        <button type="button" class="sl-coinforge-buy" onclick="buy('50 + 10 коинов', 50)">КУПИТЬ <span aria-hidden="true">❯</span></button>
       </article>
 
-      <article class="sl-coinforge-card" aria-label="100 + 40 коинов, 100 рублей">
-        <div class="sl-coinforge-bonus"><span aria-hidden="true">✦</span>+40 БОНУС</div>
-        <div class="sl-coinforge-art">
-          <img src="assets/round-v13/coin-3-centered.webp" alt="Фирменные фиолетово-золотые коины ShadowLand" width="500" height="500" loading="lazy" decoding="async">
+      <article class="coin-cut-card" aria-label="100 + 40 коинов, 100 рублей">
+        <div class="coin-cut-inner">
+          <div class="coin-cut-art coin-cut-art--3" role="img" aria-label="100 + 40 коинов: золотые монеты с фиолетовой звездой"></div>
+          <h3 class="coin-cut-name">100 + 40 КОИНОВ</h3>
+          <span class="coin-cut-total">140 COINS</span>
+          <div class="coin-cut-rule" aria-hidden="true"></div>
+          <div class="coin-cut-price">100 <small>₽</small></div>
+          <button type="button" class="coin-cut-buy" onclick="buy('100 + 40 коинов', 100)">КУПИТЬ <span aria-hidden="true">❯</span></button>
         </div>
-        <h3>100 + 40 КОИНОВ</h3>
-        <div class="sl-coinforge-total">140 COINS</div>
-        <div class="sl-coinforge-separator" aria-hidden="true"><span></span></div>
-        <div class="sl-coinforge-cost"><strong>100 <small>₽</small></strong></div>
-        <button type="button" class="sl-coinforge-buy" onclick="buy('100 + 40 коинов', 100)">КУПИТЬ <span aria-hidden="true">❯</span></button>
       </article>
 
-      <article class="sl-coinforge-card" aria-label="500 + 120 коинов, 469 рублей">
-        <div class="sl-coinforge-bonus"><span aria-hidden="true">✦</span>+120 БОНУС</div>
-        <div class="sl-coinforge-art">
-          <img src="assets/round-v13/coin-4-centered.webp" alt="Фирменные фиолетово-золотые коины ShadowLand" width="500" height="500" loading="lazy" decoding="async">
+      <article class="coin-cut-card" aria-label="500 + 120 коинов, 469 рублей">
+        <div class="coin-cut-inner">
+          <div class="coin-cut-art coin-cut-art--4" role="img" aria-label="500 + 120 коинов: золотые монеты с фиолетовой звездой"></div>
+          <h3 class="coin-cut-name">500 + 120 КОИНОВ</h3>
+          <span class="coin-cut-total">620 COINS</span>
+          <div class="coin-cut-rule" aria-hidden="true"></div>
+          <div class="coin-cut-price">469 <small>₽</small></div>
+          <button type="button" class="coin-cut-buy" onclick="buy('500 + 120 коинов', 469)">КУПИТЬ <span aria-hidden="true">❯</span></button>
         </div>
-        <h3>500 + 120 КОИНОВ</h3>
-        <div class="sl-coinforge-total">620 COINS</div>
-        <div class="sl-coinforge-separator" aria-hidden="true"><span></span></div>
-        <div class="sl-coinforge-cost"><strong>469 <small>₽</small></strong></div>
-        <button type="button" class="sl-coinforge-buy" onclick="buy('500 + 120 коинов', 469)">КУПИТЬ <span aria-hidden="true">❯</span></button>
       </article>
 
-      <article class="sl-coinforge-card" aria-label="1000 + 800 коинов, 899 рублей">
-        <div class="sl-coinforge-bonus"><span aria-hidden="true">✦</span>+800 БОНУС</div>
-        <div class="sl-coinforge-art">
-          <img src="assets/round-v13/coin-5-centered.webp" alt="Фирменные фиолетово-золотые коины ShadowLand" width="500" height="500" loading="lazy" decoding="async">
+      <article class="coin-cut-card" aria-label="1000 + 800 коинов, 899 рублей">
+        <div class="coin-cut-inner">
+          <div class="coin-cut-art coin-cut-art--5" role="img" aria-label="1000 + 800 коинов: золотые монеты с фиолетовой звездой"></div>
+          <h3 class="coin-cut-name">1000 + 800 КОИНОВ</h3>
+          <span class="coin-cut-total">1800 COINS</span>
+          <div class="coin-cut-rule" aria-hidden="true"></div>
+          <div class="coin-cut-price">899 <small>₽</small></div>
+          <button type="button" class="coin-cut-buy" onclick="buy('1000 + 800 коинов', 899)">КУПИТЬ <span aria-hidden="true">❯</span></button>
         </div>
-        <h3>1000 + 800 КОИНОВ</h3>
-        <div class="sl-coinforge-total">1800 COINS</div>
-        <div class="sl-coinforge-separator" aria-hidden="true"><span></span></div>
-        <div class="sl-coinforge-cost"><strong>899 <small>₽</small></strong></div>
-        <button type="button" class="sl-coinforge-buy" onclick="buy('1000 + 800 коинов', 899)">КУПИТЬ <span aria-hidden="true">❯</span></button>
       </article>
 
-      <article class="sl-coinforge-card" aria-label="3000 + 2000 коинов, 2499 рублей">
-        <div class="sl-coinforge-bonus"><span aria-hidden="true">✦</span>+2000 БОНУС</div>
-        <div class="sl-coinforge-art">
-          <img src="assets/round-v13/coin-6-centered.webp" alt="Фирменные фиолетово-золотые коины ShadowLand" width="500" height="500" loading="lazy" decoding="async">
+      <article class="coin-cut-card" aria-label="3000 + 2000 коинов, 2499 рублей">
+        <div class="coin-cut-inner">
+          <div class="coin-cut-art coin-cut-art--6" role="img" aria-label="3000 + 2000 коинов: золотые монеты с фиолетовой звездой"></div>
+          <h3 class="coin-cut-name">3000 + 2000 КОИНОВ</h3>
+          <span class="coin-cut-total">5000 COINS</span>
+          <div class="coin-cut-rule" aria-hidden="true"></div>
+          <div class="coin-cut-price">2499 <small>₽</small></div>
+          <button type="button" class="coin-cut-buy" onclick="buy('3000 + 2000 коинов', 2499)">КУПИТЬ <span aria-hidden="true">❯</span></button>
         </div>
-        <h3>3000 + 2000 КОИНОВ</h3>
-        <div class="sl-coinforge-total">5000 COINS</div>
-        <div class="sl-coinforge-separator" aria-hidden="true"><span></span></div>
-        <div class="sl-coinforge-cost"><strong>2499 <small>₽</small></strong></div>
-        <button type="button" class="sl-coinforge-buy" onclick="buy('3000 + 2000 коинов', 2499)">КУПИТЬ <span aria-hidden="true">❯</span></button>
       </article>
     </div>
-    <p class="sl-coinforge-note">Покупки от 50 ₽. Пакет на 30 коинов пока недоступен для отдельной оплаты. Коины начисляются после подтверждения платежа.</p>
+    <p class="coin-cut-note">Покупки от 50 ₽. Пакет на 30 коинов пока недоступен для отдельной оплаты. Коины начисляются после подтверждения платежа.</p>
   </div>
 </section>
 
