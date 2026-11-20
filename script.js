@@ -234,7 +234,6 @@ async function buyRank(rank) {
     }
     slRankQuoteBusy = true;
     try {
-        showMessage("Проверяем текущую привилегию на сервере...");
         let response, quote;
         try {
             const params = new URLSearchParams({ nickname, target: key });
@@ -247,9 +246,18 @@ async function buyRank(rank) {
             response = null;
             quote = null;
         }
-        if (response?.status === 409 && quote?.error === "not_an_upgrade") {
-            showMessage("У игрока уже " + String(quote.currentRank||"").toUpperCase() +
-                " — это не улучшение. Выбери ранг выше.");
+        if (quote?.error === "not_an_upgrade") {
+            const currentRank = String(quote.currentRank || "").toLowerCase();
+            if (currentRank === key) {
+                showMessage("У тебя уже есть привилегия " + item.name +
+                    ". Повторная покупка недоступна. Выбери привилегию выше своей.");
+            } else if (SL_RANK_ORDER.includes(currentRank)) {
+                showMessage("Нельзя купить привилегию " + item.name +
+                    ": у тебя уже есть " + currentRank.toUpperCase() +
+                    ". Можно приобрести только привилегию выше своей.");
+            } else {
+                showMessage("Нельзя купить привилегию ниже своей или повторно купить текущую. Выбери привилегию выше.");
+            }
             return;
         }
 
