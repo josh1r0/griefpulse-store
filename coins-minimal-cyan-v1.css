@@ -1,19 +1,19 @@
-/* SHADOWLAND / COINS — MINIMAL CYAN: no ornate coins, gold or purple fantasy.
-   Overrides coin visuals only; pricing and payment JavaScript stay untouched. */
+/* SHADOWLAND / COINS — AMETHYST PURPLE CARD THEME.
+   Card visuals only. Original page background, artwork and payment logic untouched. */
 /* Background intentionally inherits the original purple shop section theme. */
 #coins-tab .sl-coinforge-heading h2 {
- color:#f1f8fc!important;
- text-shadow:none!important;
+ color:#f9f2ff!important;
+ text-shadow:0 0 18px rgba(160,88,235,.13)!important;
 }
 #coins-tab .sl-coinforge-heading h2 span {
- color:#61decf!important;
- -webkit-text-fill-color:#61decf!important;
+ color:#dcb2ff!important;
+ -webkit-text-fill-color:#dcb2ff!important;
  background:none!important;
 }
-#coins-tab .sl-coinforge-kicker {color:#70d8d0!important}
+#coins-tab .sl-coinforge-kicker {color:#b98bdf!important}
 #coins-tab .sl-coinforge-kicker::before,
-#coins-tab .sl-coinforge-kicker::after {background:#31565e!important}
-#coins-tab .sl-coinforge-heading p {color:#9baab9!important}
+#coins-tab .sl-coinforge-kicker::after {background:#7646a2!important}
+#coins-tab .sl-coinforge-heading p {color:#cbb4dc!important}
 #coins-tab .sl-coin-donor-grid {
  width:100%!important;max-width:930px!important;
  display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;
@@ -28,15 +28,15 @@
  min-height:0!important;height:100%!important;
  box-sizing:border-box!important;overflow:hidden!important;
  margin:0!important;padding:12px 15px 16px!important;
- border-radius:16px!important;border:1px solid #2b4654!important;
- background:#172330!important;
- box-shadow:0 10px 24px rgba(2,8,14,.20)!important;
+ border-radius:16px!important;border:1px solid #7b4d9d!important;
+ background:linear-gradient(160deg,#30183f 0%,#241330 50%,#1b1028 100%)!important;
+ box-shadow:inset 0 1px rgba(245,211,255,.09),0 10px 26px rgba(17,5,30,.28),0 0 10px rgba(156,66,222,.09)!important;
  filter:none!important;transform:none;
  transition:border-color .18s ease,transform .18s ease!important;
 }
 #coins-tab .sl-coin-donor-card:hover {
- border-color:#4acbc3!important;
- box-shadow:0 13px 26px rgba(2,8,14,.26)!important;
+ border-color:#c083f3!important;
+ box-shadow:inset 0 1px rgba(245,211,255,.14),0 15px 28px rgba(17,5,30,.37),0 0 18px rgba(171,90,236,.18)!important;
  transform:translateY(-2px)!important;
 }
 #coins-tab .sl-coin-donor-card::before,
@@ -64,21 +64,21 @@
  text-align:center!important;font-size:clamp(16px,1.65vw,20px)!important;
  font-family:'Inter',Arial,sans-serif!important;letter-spacing:-.025em!important;
  line-height:1.1!important;font-weight:900!important;white-space:nowrap!important;
- color:#f1f8fb!important;text-shadow:none!important;
+ color:#fff9ff!important;text-shadow:0 1px 8px rgba(24,8,35,.36)!important;
 }
 #coins-tab .sl-coin-donor-features {
  display:flex!important;flex-direction:column!important;justify-content:center!important;
  gap:6px!important;margin:0!important;padding:4px 7px!important;
  height:83px!important;min-height:83px!important;
  font-family:'Inter',Arial,sans-serif!important;
- font-size:11px!important;font-weight:540!important;color:#b0c1cb!important;
+ font-size:11px!important;font-weight:540!important;color:#e1d1eb!important;
 }
 #coins-tab .sl-coin-donor-feature {
  min-height:17px!important;line-height:1.35!important;gap:7px!important;
  white-space:nowrap!important;
 }
 #coins-tab .sl-coin-donor-feature>span:first-child {
- color:#5fddce!important;text-shadow:none!important;
+ color:#cd8aff!important;text-shadow:0 0 6px rgba(175,97,245,.28)!important;
  font-size:11px!important;
 }
 #coins-tab .sl-coin-donor-price {
@@ -86,12 +86,12 @@
  box-sizing:border-box!important;margin:0!important;
  padding:5px 0!important;
  display:flex!important;align-items:center!important;justify-content:center!important;
- border:0!important;border-top:1px solid #2b3e49!important;
+ border:0!important;border-top:1px solid rgba(202,148,240,.25)!important;
 }
 #coins-tab .sl-coin-donor-price strong {
  display:inline-flex!important;align-items:center!important;gap:4px!important;
  padding:4px 19px!important;
- color:#effbfc!important;background:#243745!important;
+ color:#f8efff!important;background:#3b254e!important;
  border-radius:8px!important;font-size:20px!important;
  font-family:'Inter',Arial,sans-serif!important;text-shadow:none!important;
 }
@@ -101,21 +101,21 @@
  margin:0!important;padding:9px 12px!important;
  display:flex!important;align-items:center!important;justify-content:center!important;
  box-sizing:border-box!important;border-radius:9px!important;
- border:1px solid #68e6d9!important;
- background:#3bcbbe!important;color:#092f39!important;
- box-shadow:none!important;text-shadow:none!important;
+ border:1px solid #ba7ceb!important;
+ background:linear-gradient(180deg,#a45ce3 0%,#813ac4 58%,#6425a0 100%)!important;color:#fff!important;
+ box-shadow:inset 0 1px rgba(255,255,255,.25),0 3px 12px rgba(153,59,222,.21)!important;text-shadow:0 1px 3px rgba(24,5,42,.4)!important;
  font-family:'Inter',Arial,sans-serif!important;letter-spacing:.025em!important;
  font-size:12px!important;font-weight:900!important;
  cursor:pointer!important;transition:background .18s ease!important;
 }
 #coins-tab .sl-coin-donor-buy:hover:not(:disabled) {
- background:#79eee1!important;filter:none!important;transform:none!important
+ background:linear-gradient(180deg,#bd78f4,#9149d5)!important;filter:none!important;transform:none!important
 }
 #coins-tab .sl-coin-donor-buy:disabled {
- background:#2b3945!important;border-color:#41515d!important;
- color:#82939d!important;opacity:1!important;cursor:not-allowed!important;
+ background:linear-gradient(180deg,#44374e,#342b3f)!important;border-color:#655272!important;
+ color:#aa9aaf!important;opacity:1!important;cursor:not-allowed!important;
 }
-#coins-tab .sl-coin-donor-note {color:#8fa7b3!important}
+#coins-tab .sl-coin-donor-note {color:#bda6cf!important}
 @media(max-width:780px){
  #coins-tab .sl-coin-donor-grid {grid-template-columns:repeat(2,minmax(0,1fr))!important;max-width:640px!important;gap:12px!important}
  #coins-tab .sl-coin-donor-card {padding:10px 11px 13px!important;grid-template-rows:150px 35px 80px 41px 40px!important}
