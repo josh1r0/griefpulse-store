@@ -110,9 +110,10 @@
   #coins-tab .coin-cut-art{width:calc(100% + 14px);margin:0 -7px}
   #coins-tab .coin-cut-name{font-size:clamp(13px,2.5vw,19px)!important;letter-spacing:-.04em!important}
   #coins-tab .coin-cut-total{font-size:10px}
-  #coins-tab .coin-cut-rule{margin:7px 0 8px}
-  #coins-tab .coin-cut-price{min-width:90px;width:75%;min-height:28px;font-size:18px;margin-bottom:8px;padding:4px 6px}
-  #coins-tab .coin-cut-buy{min-height:34px;font-size:11px;padding:6px 8px;width:86%}
+  #coins-tab .coin-cut-name{margin-bottom:1px}
+  #coins-tab .coin-cut-rule{margin:4px 0 5px}
+  #coins-tab .coin-cut-price{min-width:90px;width:75%;min-height:26px;font-size:18px;margin-bottom:6px;padding:3px 6px}
+  #coins-tab .coin-cut-buy{min-height:33px;font-size:11px;padding:6px 8px;width:86%}
 }
 @media(max-width:530px){
   #coins-tab .coin-cut-grid{
