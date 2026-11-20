@@ -40,6 +40,7 @@
 
 
 <link rel="stylesheet" href="store-center-clean-v14.css?v=20261113-1">
+<link rel="stylesheet" href="donate-upgrade.css?v=20261120">
 </head>
 
 
@@ -517,6 +518,34 @@
         </div>
         <p class="rank-shop-note">Перед покупкой проверь Minecraft-ник. WITHER, REAPER, TITAN, LEGEND, OVERLORD, IMPERATOR и SHADOW доступны через Lava.top. SILVER за 25 ₽ пока нельзя купить отдельно из-за минимальной суммы оплаты 50 ₽.</p>
 
+        <!-- Отдельный расчёт докупа. Обычные покупки рангов не изменены. -->
+        <section class="sl-upgrade" id="donate-upgrade" aria-labelledby="sl-upgrade-title">
+          <div class="sl-upgrade-heading">
+            <span class="sl-upgrade-kicker">SHADOWLAND / ДОКУП</span>
+            <h3 id="sl-upgrade-title">Улучшить привилегию</h3>
+            <p>Укажи Minecraft-ник выше. Текущий ранг проверяем через сервер, стоимость доплаты считаем автоматически.</p>
+          </div>
+          <div class="sl-upgrade-controls">
+            <div class="sl-upgrade-field">
+              <label for="sl-upgrade-target">Новый ранг</label>
+              <select id="sl-upgrade-target">
+                <option value="silver">SILVER — 25 ₽</option>
+                <option value="wither">WITHER — 50 ₽</option>
+                <option value="reaper">REAPER — 75 ₽</option>
+                <option value="titan">TITAN — 110 ₽</option>
+                <option value="legend">LEGEND — 140 ₽</option>
+                <option value="overlord">OVERLORD — 199 ₽</option>
+                <option value="imperator">IMPERATOR — 349 ₽</option>
+                <option value="shadow" selected>SHADOW — 599 ₽</option>
+              </select>
+            </div>
+            <button type="button" id="sl-upgrade-check" class="sl-upgrade-check" onclick="getUpgradeQuote()">Рассчитать доплату</button>
+          </div>
+          <p id="sl-upgrade-result" class="sl-upgrade-result" role="status" aria-live="polite">Проверка доступна, когда игрок находится на сервере. Это только расчёт — деньги не списываются.</p>
+          <p class="sl-upgrade-note">Докуп дешевле 50 ₽ нельзя оплатить через Lava.top. Оплата докупа появится после проверки автоматической выдачи.</p>
+        </section>
+
+
 
     </div>
 
@@ -837,7 +866,7 @@
 
 
 
-<script src="script.js?v=nightfall-nav-about-20261024"></script>
+<script src="script.js?v=donate-upgrade-20261120"></script>
 
 
 <script defer src="nav-current.js?v=20261112a"></script>
