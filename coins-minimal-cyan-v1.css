@@ -1,10 +1,6 @@
 /* SHADOWLAND / COINS — MINIMAL CYAN: no ornate coins, gold or purple fantasy.
    Overrides coin visuals only; pricing and payment JavaScript stay untouched. */
-#coins-tab {
- background:linear-gradient(180deg,#101923,#0d1520 100%)!important;
- color:#ecf8fb!important;
-}
-#coins-tab::before {display:none!important}
+/* Background intentionally inherits the original purple shop section theme. */
 #coins-tab .sl-coinforge-heading h2 {
  color:#f1f8fc!important;
  text-shadow:none!important;
