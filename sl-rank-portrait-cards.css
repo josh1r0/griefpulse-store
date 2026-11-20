@@ -1,0 +1,168 @@
+
+/* SHADOWLAND donor portrait cards — replicate screenshot's modern slim dark gaming cards.
+   Scoped to donate section only. No JS/price/payment changes. */
+#donate-tab .sl-rank-grid{
+  display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  align-items:stretch!important;justify-items:stretch!important;
+  column-gap:16px!important;row-gap:18px!important;
+  width:100%!important;max-width:1060px!important;margin:26px auto 0!important;
+}
+#donate-tab .sl-rank-card{
+  position:relative!important;isolation:isolate!important;box-sizing:border-box!important;
+  display:flex!important;flex-direction:column!important;align-items:stretch!important;
+  float:none!important;width:100%!important;min-width:0!important;min-height:346px!important;
+  margin:0!important;padding:0 14px 14px!important;overflow:hidden!important;
+  border-radius:16px!important;
+  border:1px solid color-mix(in srgb,var(--sl-rank-accent) 32%,#161526)!important;
+  background:
+    radial-gradient(ellipse 78% 43% at 50% 14%,color-mix(in srgb,var(--sl-rank-accent) 22%,transparent),transparent 100%),
+    linear-gradient(180deg,#161a2c 0%,#0f1425 45%,#101020 100%)!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.1),0 10px 25px rgba(3,1,16,.33),
+    0 0 17px color-mix(in srgb,var(--sl-rank-accent) 10%,transparent)!important;
+  color:#f3f2ff!important;text-align:left!important;
+  transform:none;filter:none!important;
+  transition:border-color .22s ease,box-shadow .22s ease,transform .22s ease!important;
+}
+#donate-tab .sl-rank-card::before{
+  content:""!important;pointer-events:none!important;
+  position:absolute!important;z-index:0!important;inset:0!important;
+  background:
+    linear-gradient(180deg,transparent 0%,transparent 35%,rgba(7,9,23,.55) 63%,rgba(7,9,23,.2) 100%),
+    radial-gradient(ellipse 86% 12% at 50% 0,color-mix(in srgb,var(--sl-rank-accent) 20%,transparent),transparent)!important;
+}
+#donate-tab .sl-rank-card::after{
+  content:""!important;pointer-events:none!important;
+  position:absolute!important;z-index:0!important;
+  left:0!important;right:0!important;bottom:0!important;top:auto!important;
+  width:auto!important;height:2px!important;inset:auto 0 0!important;
+  background:linear-gradient(90deg,transparent,var(--sl-rank-accent),transparent)!important;opacity:.65!important;
+}
+#donate-tab .sl-rank-card:hover{
+  transform:translateY(-4px)!important;
+  border-color:color-mix(in srgb,var(--sl-rank-accent) 72%,#111324)!important;
+  box-shadow:0 16px 30px rgba(2,1,12,.48),
+             0 0 18px color-mix(in srgb,var(--sl-rank-accent) 25%,transparent)!important;
+}
+#donate-tab .sl-rank-card>*{position:relative!important;z-index:1!important;box-sizing:border-box!important;}
+#donate-tab .sl-rank-art{
+  position:relative!important;isolation:isolate!important;
+  display:grid!important;place-items:center!important;
+  width:calc(100% + 28px)!important;height:172px!important;flex:0 0 172px!important;
+  min-width:0!important;margin:0 -14px!important;padding:0!important;
+  overflow:hidden!important;
+  background:radial-gradient(ellipse 55% 60% at 50% 70%,
+    color-mix(in srgb,var(--sl-rank-accent) 22%,transparent),transparent 100%)!important;
+}
+#donate-tab .sl-rank-art::before{
+  position:absolute;content:"";inset:0;
+  background:radial-gradient(ellipse at 50% 42%,color-mix(in srgb,var(--sl-rank-accent) 13%,transparent),transparent 64%);
+  pointer-events:none;z-index:-1;
+}
+#donate-tab .sl-rank-art::after{
+  position:absolute!important;content:"";bottom:0;left:0;right:0;height:38px;
+  background:linear-gradient(0deg,#111425 0%,transparent 100%);z-index:2;pointer-events:none;
+}
+#donate-tab .sl-rank-avatar{
+  display:block!important;position:relative!important;z-index:1!important;
+  flex:none!important;width:190px!important;height:190px!important;
+  background-image:url("assets/shadowland-rank-avatars.avif")!important;
+  background-size:400% 200%!important;background-repeat:no-repeat!important;
+  filter:drop-shadow(0 3px 13px color-mix(in srgb,var(--sl-rank-accent) 26%,transparent));
+  transform:translateY(-4px)!important;
+  transition:transform .25s ease!important;
+}
+#donate-tab .sl-rank-card:hover .sl-rank-avatar{transform:translateY(-6px) scale(1.045)!important;}
+#donate-tab .sl-rank-avatar-silver{background-position:0% 0%!important;}
+#donate-tab .sl-rank-avatar-wither{background-position:33.333% 0%!important;}
+#donate-tab .sl-rank-avatar-reaper{background-position:66.667% 0%!important;}
+#donate-tab .sl-rank-avatar-titan{background-position:100% 0%!important;}
+#donate-tab .sl-rank-avatar-legend{background-position:0% 100%!important;}
+#donate-tab .sl-rank-avatar-overlord{background-position:33.333% 100%!important;}
+#donate-tab .sl-rank-avatar-imperator{background-position:66.667% 100%!important;}
+#donate-tab .sl-rank-avatar-shadow{background-position:100% 100%!important;}
+#donate-tab .sl-rank-title{
+  display:block!important;position:relative!important;
+  font-family:'Space Grotesk','Inter',sans-serif!important;
+  color:#fff!important;font-size:21px!important;line-height:1.16!important;
+  text-transform:uppercase!important;font-weight:900!important;letter-spacing:-.02em!important;
+  text-align:center!important;white-space:nowrap!important;
+  margin:-11px 0 13px!important;padding:0!important;min-height:26px!important;
+  text-shadow:0 2px 12px rgba(0,0,0,.75)!important;
+}
+#donate-tab .sl-rank-features{
+  display:flex!important;flex-direction:column!important;gap:7px!important;
+  margin:0 0 15px!important;padding:0 4px!important;
+  color:#cfd1df!important;font-size:11px!important;line-height:1.38!important;
+  font-family:'Inter',Arial,sans-serif!important;
+}
+#donate-tab .sl-rank-feature{
+  display:flex!important;gap:10px!important;align-items:center!important;
+  width:100%!important;min-width:0!important;font-size:11px!important;
+  font-weight:600!important;text-align:left!important;white-space:nowrap!important;
+}
+#donate-tab .sl-rank-feature-icon{
+  display:inline-grid!important;place-items:center!important;flex:0 0 15px!important;
+  color:var(--sl-rank-accent)!important;font-size:14px!important;line-height:1!important;
+  text-shadow:0 0 11px color-mix(in srgb,var(--sl-rank-accent) 44%,transparent);
+}
+#donate-tab .sl-rank-price{
+  position:relative!important;display:flex!important;align-items:center!important;
+  justify-content:center!important;margin:auto 0 11px!important;
+  padding:7px 12px!important;width:auto!important;min-height:34px!important;
+  border:0!important;border-top:1px solid rgba(232,218,255,.11)!important;
+  color:#fff!important;text-align:center!important;
+}
+#donate-tab .sl-rank-price strong{
+  display:inline-block!important;border-radius:100px!important;
+  background:color-mix(in srgb,var(--sl-rank-accent) 11%,#100f1e)!important;
+  padding:5px 19px!important;white-space:nowrap!important;
+  color:#fff!important;font-family:'Space Grotesk',sans-serif!important;
+  font-size:20px!important;line-height:1.1!important;font-weight:900!important;
+}
+#donate-tab .sl-rank-price small{font-size:.72em!important;color:#fff!important;}
+#donate-tab .sl-rank-button{
+  position:relative!important;display:flex!important;gap:9px!important;
+  align-items:center!important;justify-content:center!important;
+  width:100%!important;min-height:40px!important;height:auto!important;
+  flex:none!important;padding:10px 12px!important;margin:0!important;
+  border:1px solid color-mix(in srgb,var(--sl-rank-accent) 60%,transparent)!important;
+  border-radius:100px!important;cursor:pointer!important;
+  background:linear-gradient(180deg,
+    color-mix(in srgb,var(--sl-rank-accent) 66%,#35264e),
+    color-mix(in srgb,var(--sl-rank-deep) 75%,#090e20))!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.2),0 3px 12px color-mix(in srgb,var(--sl-rank-accent) 17%,transparent)!important;
+  color:#fff!important;text-align:center!important;
+  font-size:13px!important;font-weight:850!important;line-height:1.2!important;letter-spacing:.025em!important;
+  text-shadow:0 1px 4px rgba(0,0,0,.2)!important;
+  transition:transform .2s ease,filter .2s ease!important;
+}
+#donate-tab .sl-rank-button:hover:not(:disabled){filter:brightness(1.18)!important;transform:translateY(-1px)!important;}
+#donate-tab .sl-rank-button:focus-visible{outline:2px solid #fff!important;outline-offset:3px!important;}
+#donate-tab .sl-rank-button:disabled{
+  cursor:not-allowed!important;opacity:.65!important;
+  background:#333b4d!important;border-color:#434b61!important;
+  color:#c6c8d7!important;box-shadow:none!important;transform:none!important;
+}
+#donate-tab .sl-rank-locked .sl-rank-avatar{filter:saturate(.6) brightness(.9)!important;}
+@media(max-width:1000px){
+ #donate-tab .sl-rank-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;max-width:600px!important;}
+}
+@media(max-width:560px){
+ #donate-tab .sl-rank-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:11px!important;}
+ #donate-tab .sl-rank-card{min-height:313px!important;padding:0 9px 10px!important;border-radius:13px!important;}
+ #donate-tab .sl-rank-art{width:calc(100% + 18px)!important;margin:0 -9px!important;height:141px!important;flex-basis:141px!important;}
+ #donate-tab .sl-rank-avatar{width:153px!important;height:153px!important;}
+ #donate-tab .sl-rank-title{font-size:17px!important;margin:-8px 0 10px!important;min-height:22px!important;}
+ #donate-tab .sl-rank-features{font-size:9px!important;gap:7px!important;padding:0 1px!important;margin-bottom:10px!important;}
+ #donate-tab .sl-rank-feature{font-size:9px!important;gap:5px!important;}
+ #donate-tab .sl-rank-feature-icon{font-size:11px!important;flex-basis:12px!important;}
+ #donate-tab .sl-rank-price{min-height:28px!important;margin-bottom:8px!important;}
+ #donate-tab .sl-rank-price strong{font-size:17px!important;padding:5px 14px!important;}
+ #donate-tab .sl-rank-button{min-height:35px!important;font-size:11px!important;padding:8px 7px!important;}
+}
+@media(max-width:350px){
+ #donate-tab .sl-rank-grid{grid-template-columns:minmax(0,1fr)!important;max-width:220px!important;}
+}
+@media(prefers-reduced-motion:reduce){
+ #donate-tab .sl-rank-card,#donate-tab .sl-rank-avatar,#donate-tab .sl-rank-button{transition:none!important;}
+}
