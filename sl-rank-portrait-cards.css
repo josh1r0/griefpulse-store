@@ -65,7 +65,7 @@
 #donate-tab .sl-rank-avatar{
   display:block!important;position:relative!important;z-index:1!important;
   flex:none!important;width:190px!important;height:190px!important;
-  background-image:url("assets/shadowland-rank-avatars.avif")!important;
+  background-image:url("assets/shadowland-rank-avatars.avif?v=hq384-20261120")!important;
   background-size:400% 200%!important;background-repeat:no-repeat!important;
   filter:drop-shadow(0 3px 13px color-mix(in srgb,var(--sl-rank-accent) 26%,transparent));
   transform:translateY(-4px)!important;
