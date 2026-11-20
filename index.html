@@ -44,6 +44,98 @@
 <link rel="stylesheet" href="coins-aurora-v1.css?v=20261120a">
 <link rel="stylesheet" href="coins-reference-v2.css?v=20261120c2">
 <link rel="stylesheet" href="coins-like-donors-v1.css?v=20261120align1">
+<style id="sl-coin-optical-alignment-v2">
+/* 6 equal product cards. Artwork in the source image was individually recentered.
+   Inline CSS intentionally bypasses stale external stylesheet caches. */
+#coins-tab .sl-coin-donor-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3,minmax(0,1fr)) !important;
+  align-items: stretch !important;
+  justify-content: center !important;
+  justify-items: stretch !important;
+  grid-auto-rows: auto !important;
+  gap: 18px !important;
+}
+#coins-tab .sl-coin-donor-card {
+  display: grid !important;
+  grid-template-columns: minmax(0,1fr) !important;
+  grid-template-rows: auto 39px 80px 46px 43px !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  align-items: stretch !important;
+  align-content: start !important;
+  gap: 0 !important;
+}
+#coins-tab .sl-coin-donor-art {
+  grid-column: 1 !important;
+  grid-row: 1 !important;
+  width: calc(100% + 28px) !important;
+  height: auto !important;
+  aspect-ratio: 336 / 208 !important;
+  margin: 0 -14px !important;
+  padding: 0 !important;
+  align-self: start !important;
+  background-image: url("assets/shadowland_coin_art_aligned.webp?v=centered-20261120b") !important;
+  background-size: 300% 200% !important;
+  background-repeat: no-repeat !important;
+}
+#coins-tab .sl-coin-donor-name {
+  grid-column:1 !important;
+  grid-row:2 !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  height:39px !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:0 2px !important;
+  text-align:center !important;
+  line-height:1.13 !important;
+}
+#coins-tab .sl-coin-donor-features {
+  grid-column:1 !important;
+  grid-row:3 !important;
+  height:80px !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:4px 2px 7px !important;
+  display:flex !important;
+  flex-direction:column !important;
+  justify-content:center !important;
+  gap:6px !important;
+}
+#coins-tab .sl-coin-donor-price {
+  grid-column:1 !important;
+  grid-row:4 !important;
+  height:46px !important;
+  min-height:0 !important;
+  margin:0 !important;
+  padding:5px 6px !important;
+}
+#coins-tab .sl-coin-donor-buy {
+  grid-column:1 !important;
+  grid-row:5 !important;
+  width:100% !important;
+  height:43px !important;
+  min-height:43px !important;
+  margin:0 !important;
+}
+@media(max-width:850px) {
+ #coins-tab .sl-coin-donor-grid {gap:12px !important;}
+ #coins-tab .sl-coin-donor-art {width:calc(100% + 20px) !important;margin:0 -10px !important;}
+}
+@media(max-width:600px) {
+ #coins-tab .sl-coin-donor-grid {grid-template-columns:repeat(2,minmax(0,1fr)) !important;}
+ #coins-tab .sl-coin-donor-card {grid-template-rows:auto 36px 75px 43px 39px !important;}
+ #coins-tab .sl-coin-donor-name {height:36px !important;}
+ #coins-tab .sl-coin-donor-features {height:75px !important;gap:4px !important;}
+ #coins-tab .sl-coin-donor-price {height:43px !important;}
+ #coins-tab .sl-coin-donor-buy {height:39px !important;min-height:39px !important;}
+}
+@media(max-width:345px){
+ #coins-tab .sl-coin-donor-grid {grid-template-columns:1fr !important;}
+}
+</style>
 </head>
 
 
