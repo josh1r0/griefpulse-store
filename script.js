@@ -269,6 +269,17 @@ async function buyRank(rank) {
         }
 
         const oldRank = String(quote.currentRank);
+        // The current Worker might still be the read-only version.
+        // In that case preserve regular sales, but do not create upgrade invoices.
+        if (quote.amountUsd == null && quote.checkoutEnabled === false) {
+            if (oldRank === "default") {
+                await buyRankFullPrice(key);
+            } else {
+                showMessage("Ранг найден: " + oldRank.toUpperCase() +
+                    ". Для докупа нужно обновить Cloudflare Worker.");
+            }
+            return;
+        }
         const rub = Number(quote.amountRub);
         const usd = Number(quote.amountUsd);
         if (!SL_RANK_ORDER.includes(oldRank) ||
@@ -284,9 +295,13 @@ async function buyRank(rank) {
             await buyRankFullPrice(key); // existing unchanged full-price route
             return;
         }
-        if (rub<50 || quote.checkoutEnabled !== true) {
+        if (rub < 50) {
             showMessage("Доплата "+oldRank.toUpperCase()+" → "+item.name+
                 " = "+rub+" ₽. Минимальная сумма Lava.top — 50 ₽.");
+            return;
+        }
+        if (quote.checkoutEnabled !== true) {
+            showMessage("Оплата докупа ещё не включена на Cloudflare. Покупка остановлена.");
             return;
         }
         await buyRankUpgrade(key,nickname,oldRank,rub,usd,quote.usdPayable===true);
