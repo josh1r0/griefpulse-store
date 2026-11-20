@@ -136,7 +136,7 @@ const STORE_RANKS = Object.freeze({
 
 let rankCheckoutInProgress = false;
 
-async function buyRank(rank) {
+async function buyRankFullPrice(rank) {
     const rankKey = String(rank || "").toLowerCase();
     const item = STORE_RANKS[rankKey];
     if (!item) {
@@ -214,85 +214,154 @@ async function buyRank(rank) {
     }
 }
 
+
+// Rank buttons now check the authenticated Minecraft rank before selecting a price.
+// The user's browser never supplies the old rank or the amount to /lava/create-upgrade.
+const SL_RANK_ORDER = ["default","silver","wither","reaper","titan","legend","overlord","imperator","shadow"];
+const SL_RANK_PRICES = {default:0,silver:25,wither:50,reaper:75,titan:110,legend:140,overlord:199,imperator:349,shadow:599};
+let slRankQuoteBusy = false;
+
+async function buyRank(rank) {
+    const key = String(rank||"").toLowerCase();
+    const item = STORE_RANKS[key];
+    if (!item || slRankQuoteBusy || rankCheckoutInProgress) return;
+    const nicknameInput = document.getElementById("nickname");
+    const nickname = (nicknameInput?.value || "").trim();
+    if (!/^[A-Za-z0-9_]{3,16}$/.test(nickname)) {
+        nicknameInput?.focus();
+        showMessage("Введи Minecraft-ник (3–16 символов) вверху магазина.");
+        return;
+    }
+    slRankQuoteBusy = true;
+    try {
+        showMessage("Проверяем текущую привилегию на сервере...");
+        let response, quote;
+        try {
+            const params = new URLSearchParams({ nickname, target: key });
+            response = await fetch(SHADOWLAND_WORKER_URL +
+                "/donate/upgrade-quote?" + params.toString(), {
+                    method:"GET",cache:"no-store"
+                });
+            quote = await response.json();
+        } catch (error) {
+            response = null;
+            quote = null;
+        }
+        if (response?.status === 409 && quote?.error === "not_an_upgrade") {
+            showMessage("У игрока уже " + String(quote.currentRank||"").toUpperCase() +
+                " — это не улучшение. Выбери ранг выше.");
+            return;
+        }
+
+        // Some buyers are offline or have not yet had a recent RankBridge sync.
+        // Do not quietly charge them full price if their existing rank is unknown.
+        if (!response?.ok || quote?.ok !== true) {
+            if (quote?.error !== "rank_not_verified" && response?.status !== 404 && response !== null) {
+                showMessage("Проверка доната не удалась. Попробуй позже.");
+                return;
+            }
+            const proceed = confirm("Не удалось проверить донат игрока " + nickname +
+                ".\nЕсли донат уже есть, зайди на Minecraft-сервер и повтори для точной доплаты." +
+                "\n\nКупить " + item.name + " за ПОЛНЫЕ " + item.rub +
+                " ₽ без скидки?\nНажми «Отмена», чтобы не переплатить.");
+            if (proceed) await buyRankFullPrice(key);
+            return;
+        }
+
+        const oldRank = String(quote.currentRank);
+        const rub = Number(quote.amountRub);
+        const usd = Number(quote.amountUsd);
+        if (!SL_RANK_ORDER.includes(oldRank) ||
+            SL_RANK_ORDER.indexOf(oldRank)>=SL_RANK_ORDER.indexOf(key) ||
+            String(quote.nickname).toLowerCase()!==nickname.toLowerCase() ||
+            String(quote.targetRank)!==key ||
+            rub !== SL_RANK_PRICES[key]-SL_RANK_PRICES[oldRank] ||
+            !Number.isInteger(rub)||!Number.isFinite(usd)) {
+            showMessage("Сервер вернул некорректную цену — покупка остановлена.");
+            return;
+        }
+        if (oldRank==="default") {
+            await buyRankFullPrice(key); // existing unchanged full-price route
+            return;
+        }
+        if (rub<50 || quote.checkoutEnabled !== true) {
+            showMessage("Доплата "+oldRank.toUpperCase()+" → "+item.name+
+                " = "+rub+" ₽. Минимальная сумма Lava.top — 50 ₽.");
+            return;
+        }
+        await buyRankUpgrade(key,nickname,oldRank,rub,usd,quote.usdPayable===true);
+    } finally {
+        slRankQuoteBusy=false;
+    }
+}
+
+async function buyRankUpgrade(rankKey,nickname,oldRank,rub,usd,usdPayable) {
+    const item=STORE_RANKS[rankKey];
+    const email=await requestBuyerEmail(item.name+" (докуп)");
+    if(!email) return;
+    let currency;
+    if(!usdPayable) {
+        if(!confirm("Доплата "+oldRank.toUpperCase()+" → "+item.name+" составляет "+rub+
+            " ₽.\nLava.top не принимает доплаты в долларах ниже $5."+
+            "\nПродолжить оплату в рублях?")) return;
+        currency="RUB";
+    } else {
+        currency=await requestPaymentCurrency(rub,usd);
+    }
+    if(!currency)return;
+    const expected=currency==="USD"?usd:rub;
+    const shown=currency==="USD"?"$"+usd.toFixed(2):rub+" ₽";
+    if(!confirm("ДОКУП: "+oldRank.toUpperCase()+" → "+item.name+
+       "\nПолная цена: "+item.rub+" ₽"+
+       "\nУчтён текущий ранг: "+(item.rub-rub)+" ₽"+
+       "\nНик: "+nickname+"\nE-mail: "+email+
+       "\nК оплате: "+shown+
+       "\n\nОткрыть оплату Lava.top?")) return;
+
+    rankCheckoutInProgress=true;
+    showMessage("Создаём счёт на "+shown+"...");
+    try {
+        const response=await fetch(SHADOWLAND_WORKER_URL+"/lava/create-upgrade",{
+            method:"POST",headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({nickname,email,currency,target:rankKey})
+        });
+        let data=null;
+        try{data=await response.json()}catch{}
+        if(!response.ok||!data?.ok||data?.purchaseType!=="upgrade"||
+           data?.targetRank!==rankKey||data?.currentRank!==oldRank||
+           data?.currency!==currency||Math.abs(Number(data?.amount)-expected)>0.001||
+           !data?.paymentUrl){
+            console.error("Lava upgrade error:",data?.error||data);
+            if(data?.error==="rank_not_verified"||data?.error==="not_an_upgrade")
+                showMessage("Ранг изменился или устарел. Обнови страницу и попробуй ещё раз.");
+            else if(data?.error==="too_many_requests")
+                showMessage("Счёт только что создавался. Повтори попытку через 30 секунд.");
+            else showMessage("Оплата докупа пока недоступна. Деньги не списаны.");
+            return;
+        }
+        const paymentUrl=new URL(data.paymentUrl);
+        if(paymentUrl.protocol!=="https:"||paymentUrl.hostname!=="app.lava.top")
+            throw Error("Unexpected payment provider URL");
+        try {
+            localStorage.setItem("shadowland_nickname",nickname);
+            localStorage.setItem("shadowland_email",email);
+            localStorage.setItem("shadowland_product",item.name+" (докуп)");
+            localStorage.setItem("shadowland_price",String(rub));
+        } catch {}
+        window.location.assign(paymentUrl.href);
+    } catch(error) {
+        console.error("Lava upgrade checkout:",error);
+        showMessage("Нет связи с оплатой. Деньги не списаны.");
+    } finally {
+        rankCheckoutInProgress=false;
+    }
+}
+
 // Keep backwards compatibility with older links/handlers.
 function buyNewRank(rank) {
     return buyRank(rank);
 }
 
-
-// ============================================================
-// SHADOWLAND — READ-ONLY UPGRADE QUOTE
-// Never infer an existing rank from the browser or make a payment here.
-// ============================================================
-let slUpgradeQuotePending = false;
-
-async function getUpgradeQuote() {
-    const result = document.getElementById("sl-upgrade-result");
-    const button = document.getElementById("sl-upgrade-check");
-    const nicknameInput = document.getElementById("nickname");
-    const targetSelect = document.getElementById("sl-upgrade-target");
-    if (!result || !button || !targetSelect || slUpgradeQuotePending) return;
-
-    const nickname = (nicknameInput?.value || "").trim();
-    const target = targetSelect.value;
-    if (!/^[A-Za-z0-9_]{3,16}$/.test(nickname)) {
-        result.textContent = "Сначала введи правильный Minecraft-ник (3–16 символов) вверху страницы.";
-        nicknameInput?.focus();
-        return;
-    }
-    if (!Object.prototype.hasOwnProperty.call({
-        silver:1, wither:1, reaper:1, titan:1, legend:1,
-        overlord:1, imperator:1, shadow:1
-    }, target)) {
-        result.textContent = "Выбери новый ранг.";
-        return;
-    }
-
-    slUpgradeQuotePending = true;
-    button.disabled = true;
-    result.textContent = "Проверяем текущий донат на сервере…";
-    try {
-        const params = new URLSearchParams({nickname, target});
-        const response = await fetch(
-            SHADOWLAND_WORKER_URL + "/donate/upgrade-quote?" + params.toString(),
-            {method: "GET", cache: "no-store"}
-        );
-        const data = await response.json();
-        if (!response.ok || !data?.ok) {
-            if (data?.error === "rank_not_verified") {
-                result.textContent = "Нет свежей проверки ранга. Зайди на Minecraft-сервер и повтори через минуту.";
-            } else if (data?.error === "not_an_upgrade") {
-                const current = String(data.currentRank || "").toUpperCase();
-                result.textContent = current
-                    ? "У тебя уже " + current + " или более высокий ранг. Выбери ранг выше."
-                    : "Выбранный ранг не выше текущего.";
-            } else {
-                result.textContent = "Проверка временно недоступна. Попробуй позже.";
-            }
-            return;
-        }
-        // Only render data returned by the Worker, never trust a hard-coded browser discount.
-        const price = Number(data.amountRub);
-        if (String(data.targetRank) !== target ||
-            String(data.nickname).toLowerCase() !== nickname.toLowerCase() ||
-            !Number.isInteger(price) || price <= 0) {
-            result.textContent = "Сервер вернул некорректную стоимость. Попробуй позже.";
-            return;
-        }
-        const from = String(data.currentRank || "default").toUpperCase();
-        const to = String(data.targetRank).toUpperCase();
-        result.textContent = from + " → " + to + ": доплата " + price + " ₽." +
-            (data.payable === false
-                ? " Сумма меньше минимального платежа Lava.top (50 ₽)."
-                : " Расчёт подтверждён сервером. Оплата докупа пока не подключена.");
-    } catch (error) {
-        console.error("Upgrade quote error:", error);
-        result.textContent = "Не удалось проверить ранг. Проверь интернет и попробуй позже.";
-    } finally {
-        slUpgradeQuotePending = false;
-        button.disabled = false;
-    }
-}
 
 // ============================================================
 // WITHER — shared checkout to prevent stale price/offer routing.
