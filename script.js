@@ -219,6 +219,81 @@ function buyNewRank(rank) {
     return buyRank(rank);
 }
 
+
+// ============================================================
+// SHADOWLAND — READ-ONLY UPGRADE QUOTE
+// Never infer an existing rank from the browser or make a payment here.
+// ============================================================
+let slUpgradeQuotePending = false;
+
+async function getUpgradeQuote() {
+    const result = document.getElementById("sl-upgrade-result");
+    const button = document.getElementById("sl-upgrade-check");
+    const nicknameInput = document.getElementById("nickname");
+    const targetSelect = document.getElementById("sl-upgrade-target");
+    if (!result || !button || !targetSelect || slUpgradeQuotePending) return;
+
+    const nickname = (nicknameInput?.value || "").trim();
+    const target = targetSelect.value;
+    if (!/^[A-Za-z0-9_]{3,16}$/.test(nickname)) {
+        result.textContent = "Сначала введи правильный Minecraft-ник (3–16 символов) вверху страницы.";
+        nicknameInput?.focus();
+        return;
+    }
+    if (!Object.prototype.hasOwnProperty.call({
+        silver:1, wither:1, reaper:1, titan:1, legend:1,
+        overlord:1, imperator:1, shadow:1
+    }, target)) {
+        result.textContent = "Выбери новый ранг.";
+        return;
+    }
+
+    slUpgradeQuotePending = true;
+    button.disabled = true;
+    result.textContent = "Проверяем текущий донат на сервере…";
+    try {
+        const params = new URLSearchParams({nickname, target});
+        const response = await fetch(
+            SHADOWLAND_WORKER_URL + "/donate/upgrade-quote?" + params.toString(),
+            {method: "GET", cache: "no-store"}
+        );
+        const data = await response.json();
+        if (!response.ok || !data?.ok) {
+            if (data?.error === "rank_not_verified") {
+                result.textContent = "Нет свежей проверки ранга. Зайди на Minecraft-сервер и повтори через минуту.";
+            } else if (data?.error === "not_an_upgrade") {
+                const current = String(data.currentRank || "").toUpperCase();
+                result.textContent = current
+                    ? "У тебя уже " + current + " или более высокий ранг. Выбери ранг выше."
+                    : "Выбранный ранг не выше текущего.";
+            } else {
+                result.textContent = "Проверка временно недоступна. Попробуй позже.";
+            }
+            return;
+        }
+        // Only render data returned by the Worker, never trust a hard-coded browser discount.
+        const price = Number(data.amountRub);
+        if (String(data.targetRank) !== target ||
+            String(data.nickname).toLowerCase() !== nickname.toLowerCase() ||
+            !Number.isInteger(price) || price <= 0) {
+            result.textContent = "Сервер вернул некорректную стоимость. Попробуй позже.";
+            return;
+        }
+        const from = String(data.currentRank || "default").toUpperCase();
+        const to = String(data.targetRank).toUpperCase();
+        result.textContent = from + " → " + to + ": доплата " + price + " ₽." +
+            (data.payable === false
+                ? " Сумма меньше минимального платежа Lava.top (50 ₽)."
+                : " Расчёт подтверждён сервером. Оплата докупа пока не подключена.");
+    } catch (error) {
+        console.error("Upgrade quote error:", error);
+        result.textContent = "Не удалось проверить ранг. Проверь интернет и попробуй позже.";
+    } finally {
+        slUpgradeQuotePending = false;
+        button.disabled = false;
+    }
+}
+
 // ============================================================
 // WITHER — shared checkout to prevent stale price/offer routing.
 // ============================================================
