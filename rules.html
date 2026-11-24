@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru" class="sl-eclipse-global">
+<html lang="ru" class="sl-eclipse-global sl-rules-night">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,6 +14,47 @@
 <link rel="stylesheet" href="obsidian-theme.css?v=20261111c">
 <link rel="stylesheet" href="nav-current.css?v=20261112a">
 <link rel="stylesheet" href="eclipse-global-v1.css?v=20261124-2">
+<style id="sl-rules-night-v3">
+/* Rules only — original text and links are unchanged. */
+html.sl-eclipse-global.sl-rules-night,html.sl-eclipse-global.sl-rules-night body{
+ background-color:#11071f!important;color:#f9f3ff!important;color-scheme:dark;
+}
+html.sl-eclipse-global.sl-rules-night body.nav-secondary-page{
+ background:linear-gradient(180deg,rgba(12,5,23,.12),rgba(12,5,23,.24)),url("assets/rules-shadowland-night.webp") center center/cover no-repeat fixed!important;
+}
+html.sl-rules-night body::before,html.sl-rules-night body::after{display:none!important}
+html.sl-rules-night body .legal-page.sl-legal,html.sl-rules-night body .legal-page.sl-legal>.container{
+ background:transparent!important;color:#f9f3ff!important;box-shadow:none!important;
+}
+html.sl-rules-night body .sl-legal .legal-hero{
+ background:radial-gradient(ellipse at 100% 0%,#7734b44d,transparent 72%),linear-gradient(135deg,#28143be8,#180e28f5)!important;
+ border-color:#bd82fa59!important;
+}
+html.sl-rules-night body .sl-legal .legal-card{
+ background:linear-gradient(145deg,rgba(37,22,53,.97),rgba(24,15,36,.97))!important;
+ border-color:#ae7ce048!important;box-shadow:0 12px 38px #09031266!important;
+}
+html.sl-rules-night body .sl-legal .legal-tabs{background:#1d112ef7!important;border-color:#b083e34d!important}
+html.sl-rules-night body .sl-legal .legal-tabs a,html.sl-rules-night body .sl-legal .sl-rules-toc a{
+ background:#302044!important;color:#e9daf8!important;border-color:#b083e33b!important;
+}
+html.sl-rules-night body .sl-legal .legal-tabs a:hover,html.sl-rules-night body .sl-legal .sl-rules-toc a:hover{background:#4a2b6b!important;color:#fff!important}
+html.sl-rules-night body .sl-legal .sl-rule-entry{background:#180f28!important;border-color:#a975d82e!important}
+html.sl-rules-night body .sl-legal :is(.legal-note,.sl-rules-basics,.sl-rules-ending){background:#301d43!important;color:#e0d1ed!important;border-color:#ad7cde49!important}
+html.sl-rules-night body .sl-legal .legal-card :is(h2,h3,strong){color:#fff!important}
+html.sl-rules-night body .sl-legal .legal-card :is(p,li){color:#d7c9e4!important}
+html.sl-rules-night body .sl-legal .sl-rule-copy .sl-rule-penalty{color:#f6b8c7!important}
+html.sl-rules-night body .sl-legal .sl-rule-penalty span{color:#ffa9b7!important}
+html.sl-rules-night body .sl-legal .legal-card a{color:#e4bcff!important}
+html.sl-rules-night body .sl-legal .sl-rules-action-primary{color:#fff!important}
+html.sl-rules-night body .sl-legal .sl-legal-ranks>div,html.sl-rules-night body .sl-legal .sl-legal-support-links a{background:#20142f!important}
+html.sl-rules-night body .header{background:#1c122bf5!important;border-color:#bc87fa4d!important}
+html.sl-rules-night body footer{background:#10091de8!important;border-color:#b58be333!important}
+@media(max-width:950px){html.sl-rules-night body.nav-secondary-page .header .nav nav.showcase-nav{background:#211331f7!important;border-color:#ad7cde4d!important}}
+@media(max-width:760px){
+ html.sl-eclipse-global.sl-rules-night body.nav-secondary-page{background:linear-gradient(180deg,#12091e33,#12091e66),url("assets/rules-shadowland-night.webp") center top/auto 100svh no-repeat,#11071f!important}
+}
+</style>
 </head>
 <body class="nav-secondary-page">
 <header class="header">
