@@ -153,6 +153,59 @@
   mask-composite:intersect !important;
 }
 </style>
+
+<style id="sl-case-preview-v1">
+/* Activate only once the new sprite is successfully available. Old shop remains intact otherwise. */
+html.sl-case-preview-v1 #cases-tab .sl-store-card {
+ display:flex!important;flex-direction:column!important;align-items:stretch!important;align-self:stretch!important;
+ position:relative!important;isolation:isolate!important;aspect-ratio:auto!important;height:auto!important;min-height:0!important;
+ padding:12px 15px 15px!important;border:1px solid rgba(175,119,236,.40)!important;border-radius:16px!important;overflow:hidden!important;
+ background:radial-gradient(ellipse 90% 50% at 50% 17%,rgba(114,44,173,.22),transparent),linear-gradient(180deg,#211431,#100e1d 65%)!important;
+ box-shadow:0 8px 22px rgba(5,2,13,.28)!important;clip-path:none!important;
+}
+html.sl-case-preview-v1 #cases-tab .sl-store-card::before,
+html.sl-case-preview-v1 #cases-tab .sl-store-card::after {display:none!important;content:none!important;}
+html.sl-case-preview-v1 #cases-tab .sl-store-card .sl-store-top,
+html.sl-case-preview-v1 #cases-tab .sl-store-card h4,
+html.sl-case-preview-v1 #cases-tab .sl-store-card p,
+html.sl-case-preview-v1 #cases-tab .sl-store-card .sl-store-bottom {
+ position:relative!important;inset:auto!important;transform:none!important;width:100%!important;max-width:none!important;
+ height:auto!important;min-height:0!important;margin:0!important;box-sizing:border-box!important;z-index:1!important;
+}
+html.sl-case-preview-v1 #cases-tab .sl-store-card .sl-store-top {display:flex!important;justify-content:space-between!important;align-items:center!important;gap:8px!important;padding:0!important;}
+html.sl-case-preview-v1 #cases-tab .sl-store-card .sl-full-art {
+ position:relative!important;inset:auto!important;transform:none!important;display:block!important;
+ width:100%!important;max-width:none!important;height:auto!important;min-height:0!important;max-height:none!important;
+ aspect-ratio:5/3!important;margin:4px 0 0!important;padding:0!important;clip-path:none!important;border-radius:0!important;
+ background-color:transparent!important;background-image:url("shadowland-cases-v1.webp")!important;
+ background-size:400% 300%!important;background-repeat:no-repeat!important;
+ background-position:var(--case-x,0%) var(--case-y,0%)!important;
+ -webkit-mask-image:none!important;mask-image:none!important;
+}
+html.sl-case-preview-v1 #cases-tab .sl-store-card .sl-full-art > img.sl-full-art-image {display:none!important;}
+html.sl-case-preview-v1 #cases-tab .sl-store-card h4 {font-size:20px!important;line-height:1.2!important;text-align:center!important;padding:3px 0 12px!important;color:#fff!important;background:none!important;}
+html.sl-case-preview-v1 #cases-tab .sl-store-card p {font-size:11px!important;line-height:1.45!important;padding:10px 3px!important;text-align:center!important;background:none!important;border:0!important;color:#ddd0e9!important;flex:1!important;}
+html.sl-case-preview-v1 #cases-tab .sl-store-card .sl-store-bottom {display:grid!important;gap:7px!important;margin-top:auto!important;padding:9px 0 0!important;border-top:1px solid rgba(220,190,255,.16)!important;}
+html.sl-case-preview-v1 #cases-tab .sl-store-card .sl-store-cost {position:relative!important;inset:auto!important;transform:none!important;display:flex!important;justify-content:center!important;text-align:center!important;}
+html.sl-case-preview-v1 #cases-tab .sl-store-card .sl-store-cost strong {font-size:21px!important;color:#fff!important;}
+html.sl-case-preview-v1 #cases-tab .sl-store-card .sl-store-buy {position:relative!important;inset:auto!important;clip-path:none!important;border-radius:9px!important;min-height:42px!important;height:auto!important;padding:9px 8px!important;background:linear-gradient(180deg,#a45ce3,#6425a0)!important;border:1px solid #ba7ceb!important;color:white!important;font-weight:800!important;}
+html.sl-case-preview-v1 #cases-tab .sl-case-donate .sl-store-card:nth-child(2) {--case-x:33.333333%;}
+html.sl-case-preview-v1 #cases-tab .sl-case-donate .sl-store-card:nth-child(3) {--case-x:66.666667%;}
+html.sl-case-preview-v1 #cases-tab .sl-case-coins .sl-store-card:nth-child(1) {--case-x:100%;}
+html.sl-case-preview-v1 #cases-tab .sl-case-coins .sl-store-card:nth-child(2) {--case-x:0%;--case-y:50%;}
+html.sl-case-preview-v1 #cases-tab .sl-case-coins .sl-store-card:nth-child(3) {--case-x:33.333333%;--case-y:50%;}
+html.sl-case-preview-v1 #cases-tab .sl-case-coins .sl-store-card:nth-child(4) {--case-x:66.666667%;--case-y:50%;}
+html.sl-case-preview-v1 #cases-tab .sl-case-money .sl-store-card:nth-child(1) {--case-x:100%;--case-y:50%;}
+html.sl-case-preview-v1 #cases-tab .sl-case-money .sl-store-card:nth-child(2) {--case-x:0%;--case-y:100%;}
+html.sl-case-preview-v1 #cases-tab .sl-case-money .sl-store-card:nth-child(3) {--case-x:33.333333%;--case-y:100%;}
+</style>
+<script>
+(function(){
+ var art=new Image();
+ art.onload=function(){if(art.naturalWidth===1600&&art.naturalHeight===720){document.documentElement.classList.add("sl-case-preview-v1");}};
+ art.src="shadowland-cases-v1.webp";
+})();
+</script>
 </head>
 
 
