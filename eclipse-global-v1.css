@@ -1,0 +1,140 @@
+/* SHADOWLAND — unified Eclipse atmosphere. Presentation only. */
+html.sl-eclipse-global{
+ color-scheme:dark;
+ --sl-page-bg:#100a1b;--sl-surface:#21172e;--sl-ink:#f7f2ff;--sl-muted:#c9bcd9;--sl-edge:#ad83dc45;
+ background:#100a1b!important;
+}
+html.sl-eclipse-global body,html.sl-eclipse-global.sl-case-hd body{
+ background:
+ radial-gradient(ellipse 900px 670px at 8% 3%,rgba(104,45,168,.27),transparent 75%),
+ radial-gradient(ellipse 820px 620px at 96% 35%,rgba(91,38,153,.22),transparent 78%),
+ radial-gradient(ellipse 920px 660px at 13% 76%,rgba(73,34,123,.22),transparent 78%),
+ linear-gradient(155deg,#170e27 0%,#100b1c 45%,#160d24 100%)!important;
+ color:var(--sl-ink)!important;min-height:100vh;
+}
+html.sl-eclipse-global body::before{display:none!important}
+html.sl-eclipse-global.sl-case-hd .hero{
+ background:radial-gradient(ellipse 70% 100% at 78% 35%,#663b9a48,transparent 85%),radial-gradient(ellipse at 8% 45%,#51307d30,transparent 75%),linear-gradient(150deg,#160e27,#1b102d 65%,#130b21)!important;
+}
+html.sl-eclipse-global.sl-case-hd .hero .showcase-snow-wave{background:linear-gradient(transparent,#160e25)!important}
+html.sl-eclipse-global.sl-case-hd .player-section,
+html.sl-eclipse-global.sl-case-hd #donate-tab,
+html.sl-eclipse-global.sl-case-hd #coins-tab,
+html.sl-eclipse-global.sl-case-hd #cases-tab,
+html.sl-eclipse-global.sl-case-hd #why{background:transparent!important}
+html.sl-eclipse-global .header{
+ background:linear-gradient(110deg,#1c132cf7,#130e1ff7)!important;
+ border:1px solid #c391ff40!important;
+ box-shadow:0 12px 40px #05030980,inset 0 1px #ffffff0a!important;
+}
+html.sl-eclipse-global .header .logo-text strong{color:#fff!important}
+html.sl-eclipse-global .header .logo-text small{color:#b7a6d0!important}
+html.sl-eclipse-global body .header .nav nav a:not(.is-current){color:#ded2eb!important;background:transparent!important}
+html.sl-eclipse-global body .header .nav nav a.is-current,
+html.sl-eclipse-global body .header .nav nav a:hover{
+ color:#fff!important;background:linear-gradient(130deg,#a65ee8,#7030ca)!important;
+ box-shadow:0 5px 18px #8f46da35!important;
+}
+html.sl-eclipse-global .header .nav-button{background:linear-gradient(130deg,#b16af1,#7030cd)!important;color:#fff!important;border:1px solid #d3a2fa66!important}
+html.sl-eclipse-global .legal-page.sl-legal{background:transparent!important;color:var(--sl-ink)!important}
+html.sl-eclipse-global .sl-legal .legal-hero{
+ background:radial-gradient(ellipse 85% 115% at 96% 0%,#7537b24d,transparent 75%),linear-gradient(135deg,#291b3e,#191225 80%)!important;
+ border-color:#b88ae659!important;box-shadow:0 20px 52px #07031066,inset 0 1px #ffffff10!important;
+}
+html.sl-eclipse-global .sl-legal .legal-hero h1{color:#fff!important}
+html.sl-eclipse-global .sl-legal .legal-hero h1 span{color:#d8aaff!important}
+html.sl-eclipse-global .sl-legal .legal-hero p{color:#d0c1e0!important}
+html.sl-eclipse-global .sl-legal .legal-kicker,
+html.sl-eclipse-global .sl-legal-number{color:#d2a2fa!important}
+html.sl-eclipse-global .sl-legal-highlights span{background:#9f69d221!important;border-color:#c698ed40!important;color:#e8d8fa!important}
+html.sl-eclipse-global .sl-legal .legal-tabs{
+ background:#1a132aef!important;border-color:var(--sl-edge)!important;box-shadow:0 10px 28px #07031066!important;
+}
+html.sl-eclipse-global .sl-legal .legal-tabs a,
+html.sl-eclipse-global .sl-rules-toc a{background:#281c39!important;color:#dfd0ed!important;border-color:#b78be540!important}
+html.sl-eclipse-global .sl-legal .legal-tabs a:hover,
+html.sl-eclipse-global .sl-rules-toc a:hover{background:#3c2655!important;color:#fff!important;border-color:#b78be5a0!important}
+html.sl-eclipse-global .sl-legal .legal-card,
+html.sl-eclipse-global .sl-complaint-panel,
+html.sl-eclipse-global .sl-forum-board{
+ background:linear-gradient(145deg,#241a33,#191323 90%)!important;
+ border:1px solid var(--sl-edge)!important;box-shadow:0 14px 36px #06030f55,inset 0 1px #ffffff0d!important;
+}
+html.sl-eclipse-global .sl-legal .legal-card h2,
+html.sl-eclipse-global .sl-legal .legal-card h3,
+html.sl-eclipse-global .sl-legal .legal-card strong,
+html.sl-eclipse-global .sl-complaint-panel h2,
+html.sl-eclipse-global .sl-forum-board h2{color:#faf4ff!important}
+html.sl-eclipse-global .sl-legal .legal-card p,
+html.sl-eclipse-global .sl-legal .legal-card li,
+html.sl-eclipse-global .sl-complaint-sub,
+html.sl-eclipse-global .sl-forum-board-heading p,
+html.sl-eclipse-global .sl-forum-footnote,
+html.sl-eclipse-global .sl-admin-list .sl-complaint-panel p{color:var(--sl-muted)!important}
+html.sl-eclipse-global .sl-legal .legal-card a,
+html.sl-eclipse-global .sl-legal .legal-back,
+html.sl-eclipse-global .sl-support-mini a,
+html.sl-eclipse-global .sl-forum-bottom a{color:#dfb9ff!important}
+html.sl-eclipse-global .sl-legal .legal-card a:hover{color:#fff!important}
+html.sl-eclipse-global .sl-legal .legal-note,
+html.sl-eclipse-global .sl-rules-basics,
+html.sl-eclipse-global .sl-rules-ending,
+html.sl-eclipse-global .sl-support-mini,
+html.sl-eclipse-global .sl-forum-bottom{
+ background:#2b1d3c!important;border-color:#b48be345!important;color:#d6c6e5!important;
+}
+html.sl-eclipse-global .sl-rule-group{border-color:#b58be333!important}
+html.sl-eclipse-global .sl-rule-entry{background:#171222!important;border-color:#b58be329!important}
+html.sl-eclipse-global .sl-rule-index{color:#d7a6ff!important}
+html.sl-eclipse-global .sl-legal .sl-rule-copy p{color:#d6c9e2!important}
+html.sl-eclipse-global .sl-legal .sl-rule-copy .sl-rule-penalty{color:#f3b9c5!important}
+html.sl-eclipse-global .sl-rule-penalty span{color:#ff9fae!important}
+html.sl-eclipse-global .sl-rules-ending span,
+html.sl-eclipse-global .sl-support-mini p,
+html.sl-eclipse-global .sl-forum-bottom p{color:var(--sl-muted)!important}
+html.sl-eclipse-global .sl-support-mini strong,
+html.sl-eclipse-global .sl-forum-bottom strong{color:#fff!important}
+html.sl-eclipse-global .sl-legal .sl-rules-action,
+html.sl-eclipse-global .sl-forum-external,
+html.sl-eclipse-global .sl-forum-refresh{
+ background:#302143!important;color:#ecddff!important;border-color:#c08fee54!important;
+}
+html.sl-eclipse-global .sl-legal .sl-rules-action-primary,
+html.sl-eclipse-global .sl-complaint-panel button[type="submit"]{
+ background:linear-gradient(135deg,#ac68ec,#7633cb)!important;color:white!important;border-color:#d4a5fa70!important;
+}
+html.sl-eclipse-global .sl-complaint-panel button[type="submit"]:disabled{opacity:.55!important}
+html.sl-eclipse-global .sl-forum-alert{background:#32251f!important;border-color:#b88a5159!important;color:#ead5bb!important}
+html.sl-eclipse-global .sl-forum-alert strong{color:#ffd9a5!important}
+html.sl-eclipse-global .sl-forum-alert a{color:#dfb9ff!important}
+html.sl-eclipse-global .sl-complaint-panel label{color:#e5d8f1!important}
+html.sl-eclipse-global .sl-complaint-panel input,
+html.sl-eclipse-global .sl-complaint-panel textarea,
+html.sl-eclipse-global .sl-complaint-panel select,
+html.sl-eclipse-global .sl-forum-filters input,
+html.sl-eclipse-global .sl-forum-filters select{
+ background:#130f1f!important;border:1px solid #b58be34f!important;color:#f8f3ff!important;color-scheme:dark;
+}
+html.sl-eclipse-global .sl-complaint-panel input::placeholder,
+html.sl-eclipse-global .sl-complaint-panel textarea::placeholder,
+html.sl-eclipse-global .sl-forum-filters input::placeholder{color:#a89bb9!important}
+html.sl-eclipse-global .sl-complaint-panel :is(input,textarea,select):focus,
+html.sl-eclipse-global .sl-forum-filters :is(input,select):focus{
+ border-color:#d09cff!important;box-shadow:0 0 0 3px #ae66e52b!important;
+}
+html.sl-eclipse-global .sl-forum-item{background:#191325!important;border-color:#b58be333!important}
+html.sl-eclipse-global .sl-forum-item:hover{background:#2a1c3b!important;border-color:#c08fee99!important}
+html.sl-eclipse-global .sl-forum-item-title{color:#f4ebff!important}
+html.sl-eclipse-global .sl-forum-item-meta,
+html.sl-eclipse-global .sl-forum-feedback,
+html.sl-eclipse-global .sl-status-result{color:#c6b8d7!important}
+html.sl-eclipse-global .sl-forum-status{background:#18382d!important;color:#a5e5bc!important;border-color:#64c28a55!important}
+html.sl-eclipse-global .sl-forum-status.closed{background:#36234e!important;color:#e1c2ff!important;border-color:#ba88ec55!important}
+html.sl-eclipse-global .sl-legal .sl-legal-support-links a{background:#1a1328!important;border-color:var(--sl-edge)!important}
+html.sl-eclipse-global .sl-legal .sl-legal-support-links a:hover{background:#312143!important}
+html.sl-eclipse-global footer{background:linear-gradient(#140e20,#0b0812)!important;border-top:1px solid #b48be333!important}
+html.sl-eclipse-global :is(button,a,input,textarea,select):focus-visible{outline:2px solid #d4a6ff!important;outline-offset:3px}
+@media(max-width:950px){
+ html.sl-eclipse-global .header{backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+ html.sl-eclipse-global body .header .nav nav{background:#1c142cfb!important;border-color:#b58be350!important;box-shadow:0 9px 30px #05030a99!important}
+}
