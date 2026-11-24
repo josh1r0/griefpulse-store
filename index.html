@@ -415,6 +415,40 @@ html.sl-case-hd :is(button,a,input):focus-visible{outline:2px solid #d7afff!impo
 </style>
 <link rel="stylesheet" href="eclipse-global-v1.css?v=20261124-2">
 <link rel="stylesheet" href="shadowland-world-hq.css?v=20261124-1">
+<style id="sl-hero-portal-wave-v1">
+/* Replace snowy tree and make the hero-to-shop transition a glowing wave. */
+html.sl-eclipse-global.sl-world-hq.sl-case-hd .hero::before{
+ content:""!important;display:block!important;position:absolute!important;
+ top:108px!important;left:0!important;right:auto!important;bottom:auto!important;
+ width:clamp(245px,calc((100vw - 1100px)/2),420px)!important;
+ height:clamp(390px,39vw,570px)!important;
+ background:url("assets/hero-portal-hq.webp") left center/cover no-repeat!important;
+ opacity:1!important;filter:none!important;pointer-events:none!important;z-index:1!important;
+ -webkit-mask-image:linear-gradient(to right,#000 0%,#000 65%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 15%,#000 80%,transparent 100%)!important;
+ mask-image:linear-gradient(to right,#000 0%,#000 65%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 15%,#000 80%,transparent 100%)!important;
+ -webkit-mask-composite:source-in!important;mask-composite:intersect!important;
+}
+html.sl-eclipse-global.sl-world-hq.sl-case-hd .hero .showcase-snow-wave{
+ position:relative!important;display:block!important;top:auto!important;bottom:auto!important;left:auto!important;right:auto!important;
+ width:100%!important;height:clamp(105px,9vw,168px)!important;margin:-12px 0 0!important;z-index:4!important;
+ background:url("assets/hero-wave-hq.webp") center 55%/100% auto no-repeat!important;
+ -webkit-mask-image:linear-gradient(to bottom,transparent 0%,#000 24%,#000 70%,transparent 100%)!important;
+ mask-image:linear-gradient(to bottom,transparent 0%,#000 24%,#000 70%,transparent 100%)!important;
+ pointer-events:none!important;
+}
+html.sl-eclipse-global.sl-world-hq.sl-case-hd .hero .showcase-snow-wave svg{display:none!important}
+html.sl-eclipse-global.sl-world-hq.sl-case-hd .hero .scroll-down{bottom:clamp(98px,8vw,145px)!important;z-index:9!important}
+@media(max-width:1450px){
+ html.sl-eclipse-global.sl-world-hq.sl-case-hd .hero::before{width:245px!important;opacity:.45!important;left:-50px!important}
+}
+@media(max-width:1050px){
+ html.sl-eclipse-global.sl-world-hq.sl-case-hd .hero::before{display:none!important}
+}
+@media(max-width:760px){
+ html.sl-eclipse-global.sl-world-hq.sl-case-hd .hero .showcase-snow-wave{height:95px!important;background-size:auto 215px!important;margin:-20px 0 0!important}
+ html.sl-eclipse-global.sl-world-hq.sl-case-hd .hero .scroll-down{bottom:85px!important}
+}
+</style>
 </head>
 
 
