@@ -1641,10 +1641,23 @@ function setupShopNavigation() {
         });
     });
 
-    // Clicking another tab changes the visible section without changing the document location.
+    // Category cards keep their original tab selection and smoothly reveal the products.
     document.querySelectorAll(".shop-tab").forEach((tab, index) => {
         tab.addEventListener("click", () => {
-            history.replaceState(null, "", "#" + tabs[index]);
+            const id = tabs[index];
+            if (!id) return;
+            history.replaceState(null, "", "#" + id);
+            if (!tab.closest("#showcase-categories")) return;
+            requestAnimationFrame(() => {
+                const section = document.getElementById(id);
+                if (!section || !section.getClientRects().length) return;
+                const target = section.querySelector(".sl-coinforge-heading, .section-heading") || section;
+                const header = document.querySelector(".header");
+                const offset = Math.max(0, header ? header.getBoundingClientRect().bottom : 0) + 24;
+                const top = Math.max(0, window.scrollY + target.getBoundingClientRect().top - offset);
+                const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+                window.scrollTo({ top, behavior: reducedMotion ? "instant" : "smooth" });
+            });
         });
     });
 
