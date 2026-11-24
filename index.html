@@ -177,7 +177,7 @@ html.sl-case-preview-v1 #cases-tab .sl-store-card .sl-full-art {
  position:relative!important;inset:auto!important;transform:none!important;display:block!important;
  width:100%!important;max-width:none!important;height:auto!important;min-height:0!important;max-height:none!important;
  aspect-ratio:5/3!important;margin:4px 0 0!important;padding:0!important;clip-path:none!important;border-radius:0!important;
- background-color:transparent!important;background-image:url("shadowland-cases-v1.webp")!important;
+ background-color:transparent!important;background-image:url("shadowland-cases-preview.webp")!important;
  background-size:400% 300%!important;background-repeat:no-repeat!important;
  background-position:var(--case-x,0%) var(--case-y,0%)!important;
  -webkit-mask-image:none!important;mask-image:none!important;
@@ -202,8 +202,8 @@ html.sl-case-preview-v1 #cases-tab .sl-case-money .sl-store-card:nth-child(3) {-
 <script>
 (function(){
  var art=new Image();
- art.onload=function(){if(art.naturalWidth===1600&&art.naturalHeight===720){document.documentElement.classList.add("sl-case-preview-v1");}};
- art.src="shadowland-cases-v1.webp";
+ art.onload=function(){if(((art.naturalWidth===1600&&art.naturalHeight===720)||(art.naturalWidth===640&&art.naturalHeight===288))){document.documentElement.classList.add("sl-case-preview-v1");}};
+ art.src="shadowland-cases-preview.webp";
 })();
 </script>
 </head>
