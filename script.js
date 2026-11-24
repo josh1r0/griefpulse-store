@@ -1532,34 +1532,60 @@ function showMessage(text) {
 function setupNickname() {
     const input = document.getElementById("nickname");
     const wrapper = document.querySelector(".nickname-wrap");
-    if (!input) return;
+    const button = wrapper?.querySelector(".nickname-check");
+    if (!input || !wrapper || !button) return;
 
-    const saved = localStorage.getItem("shadowland_nickname");
+    const isValid = value => /^[A-Za-z0-9_]{3,16}$/.test(value);
+    const savedKey = "shadowland_nickname";
+    const confirmedKey = "shadowland_nickname_confirmed";
+    let confirmedNickname = "";
+    try {
+        const saved = localStorage.getItem(savedKey);
+        if (saved && isValid(saved)) input.value = saved;
+        const confirmed = localStorage.getItem(confirmedKey);
+        if (confirmed && confirmed === input.value) confirmedNickname = confirmed;
+    } catch {}
 
-    if (saved && /^[A-Za-z0-9_]{3,16}$/.test(saved)) {
-        input.value = saved;
-    }
-
-    function update() {
-        input.value = input.value
-            .replace(/[^A-Za-z0-9_]/g, "")
-            .slice(0, 16);
-
-        const valid = /^[A-Za-z0-9_]{3,16}$/.test(input.value);
-
-        if (wrapper) {
-            wrapper.classList.toggle("valid", valid);
+    function update(edited = false) {
+        input.value = input.value.replace(/[^A-Za-z0-9_]/g, "").slice(0, 16);
+        const valid = isValid(input.value);
+        if (edited && confirmedNickname !== input.value) {
+            confirmedNickname = "";
+            try { localStorage.removeItem(confirmedKey); } catch {}
         }
-
+        const confirmed = valid && confirmedNickname === input.value;
+        wrapper.classList.toggle("valid", valid);
+        wrapper.classList.toggle("nickname-confirmed", confirmed);
+        button.textContent = confirmed ? "✓" : "→";
+        button.disabled = !valid || confirmed;
+        button.setAttribute("aria-label", confirmed ? "Ник подтверждён" : "Подтвердить Minecraft-ник");
+        button.title = confirmed ? "Ник подтверждён" : "Подтвердить ник";
         if (valid) {
-            localStorage.setItem("shadowland_nickname", input.value);
+            try { localStorage.setItem(savedKey, input.value); } catch {}
         }
     }
 
-    input.addEventListener("input", update);
+    function confirmNickname() {
+        update();
+        if (!isValid(input.value)) return;
+        confirmedNickname = input.value;
+        try {
+            localStorage.setItem(savedKey, confirmedNickname);
+            localStorage.setItem(confirmedKey, confirmedNickname);
+        } catch {}
+        update();
+    }
+
+    input.addEventListener("input", () => update(true));
+    input.addEventListener("keydown", event => {
+        if (event.key === "Enter" && !event.isComposing) {
+            event.preventDefault();
+            confirmNickname();
+        }
+    });
+    button.addEventListener("click", confirmNickname);
     update();
 }
-
 function setupReveal() {
     const elements = document.querySelectorAll(
         ".donate-card, .coin-card, .case-card, .advantages article, .section-heading, .player-card"

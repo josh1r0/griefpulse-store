@@ -535,6 +535,18 @@ html.sl-eclipse-global.sl-world-hq.sl-case-hd #why .sl-about-features p{font-siz
 }
 @media(prefers-reduced-motion:reduce){html.sl-eclipse-global.sl-world-hq.sl-case-hd #why .sl-about-features article{transition:none!important}html.sl-eclipse-global.sl-world-hq.sl-case-hd #why .sl-about-features article:hover{transform:none!important}}
 </style>
+<style id="sl-nickname-confirm-v1">
+html.sl-case-hd .player-card .nickname-wrap button.nickname-check{
+ border:1px solid #d6a0ff52!important;padding:0!important;line-height:1!important;
+ font:700 22px/1 'DM Sans',sans-serif!important;cursor:pointer!important;
+ pointer-events:auto!important;transition:opacity .18s,filter .18s,box-shadow .18s!important;
+}
+html.sl-case-hd .player-card .nickname-wrap:not(.valid) button.nickname-check{opacity:0!important;pointer-events:none!important}
+html.sl-case-hd .player-card .nickname-wrap.valid button.nickname-check{opacity:1!important}
+html.sl-case-hd .player-card .nickname-wrap.valid:not(.nickname-confirmed) button.nickname-check:hover{filter:brightness(1.18)!important;box-shadow:0 0 18px #b365f675!important}
+html.sl-case-hd .player-card .nickname-wrap.nickname-confirmed button.nickname-check{cursor:default!important;opacity:1!important}
+html.sl-case-hd .player-card .nickname-wrap button.nickname-check:focus-visible{outline:2px solid #e4c0ff!important;outline-offset:2px!important}
+</style>
 </head>
 
 
@@ -841,9 +853,7 @@ html.sl-eclipse-global.sl-world-hq.sl-case-hd #why .sl-about-features p{font-siz
                 >
 
 
-                <span class="nickname-check">
-                    ✓
-                </span>
+                <button type="button" class="nickname-check" aria-label="Подтвердить Minecraft-ник" title="Подтвердить ник" disabled>→</button>
 
 
             </div>
@@ -1374,7 +1384,7 @@ html.sl-eclipse-global.sl-world-hq.sl-case-hd #why .sl-about-features p{font-siz
 
 
 
-<script src="script.js?v=category-scroll-20261124"></script>
+<script src="script.js?v=nickname-confirm-20261124"></script>
 
 
 <script defer src="nav-current.js?v=20261112a"></script>
