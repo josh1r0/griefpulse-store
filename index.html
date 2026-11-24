@@ -137,6 +137,22 @@
 }
 </style>
   <link rel="stylesheet" href="coins-minimal-cyan-v1.css?v=20261120purplecard1">
+<style id="sl-coin-art-blend-v1">
+/* Coin artwork: feather all image edges into the purple card, as on donor portraits.
+   Keep existing products, layout, artwork, buttons and checkout unchanged. */
+#coins-tab .sl-coin-donor-card {
+  background:
+    radial-gradient(ellipse 85% 43% at 50% 15%, rgba(118,48,179,.24), transparent 100%),
+    linear-gradient(180deg,#30183f 0%,#241330 46%,#1b1028 100%) !important;
+}
+#coins-tab .sl-coin-donor-art img {
+  height:auto !important;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,#000 12%,#000 88%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 10%,#000 78%,transparent 100%) !important;
+  mask-image:linear-gradient(to right,transparent 0%,#000 12%,#000 88%,transparent 100%),linear-gradient(to bottom,transparent 0%,#000 10%,#000 78%,transparent 100%) !important;
+  -webkit-mask-composite:source-in !important;
+  mask-composite:intersect !important;
+}
+</style>
 </head>
 
 
