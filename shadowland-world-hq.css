@@ -1,0 +1,89 @@
+/* SHADOWLAND / Nightfall HQ — shared artwork and surface styling. */
+html.sl-eclipse-global.sl-world-hq{
+ color-scheme:dark;background:#10071e!important;
+ --sl-world-panel:#21152f;--sl-world-edge:rgba(196,149,249,.29);
+}
+html.sl-eclipse-global.sl-world-hq body,
+html.sl-eclipse-global.sl-world-hq body.nav-secondary-page,
+html.sl-eclipse-global.sl-world-hq.sl-rules-night body.nav-secondary-page,
+html.sl-eclipse-global.sl-world-hq.sl-case-hd body{
+ position:relative;isolation:isolate;
+ min-height:100vh;background:transparent!important;color:#f8f2ff!important;
+}
+html.sl-eclipse-global.sl-world-hq body::before,
+html.sl-eclipse-global.sl-world-hq.sl-rules-night body::before{
+ content:""!important;display:block!important;
+ position:fixed!important;inset:0!important;width:100%!important;height:100%!important;
+ z-index:-1!important;pointer-events:none!important;opacity:1!important;
+ transform:none!important;filter:none!important;animation:none!important;
+ background:
+ radial-gradient(ellipse at 100% 30%,rgba(83,44,177,.16),transparent 55%),
+ linear-gradient(180deg,rgba(12,5,25,.12),rgba(12,5,25,.24)),
+ url("assets/shadowland-world-hq.webp") center center / cover no-repeat #10071e!important;
+}
+html.sl-eclipse-global.sl-world-hq main,
+html.sl-eclipse-global.sl-world-hq .legal-page.sl-legal,
+html.sl-eclipse-global.sl-world-hq.sl-rules-night body .legal-page.sl-legal,
+html.sl-eclipse-global.sl-world-hq.sl-rules-night body .legal-page.sl-legal>.container,
+html.sl-eclipse-global.sl-world-hq.sl-case-hd .player-section,
+html.sl-eclipse-global.sl-world-hq.sl-case-hd #donate-tab,
+html.sl-eclipse-global.sl-world-hq.sl-case-hd #coins-tab,
+html.sl-eclipse-global.sl-world-hq.sl-case-hd #cases-tab,
+html.sl-eclipse-global.sl-world-hq.sl-case-hd #why{
+ background:transparent!important;
+}
+html.sl-eclipse-global.sl-world-hq.sl-case-hd .hero{
+ background:radial-gradient(ellipse 58% 95% at 80% 45%,rgba(94,49,153,.18),transparent 85%),linear-gradient(180deg,rgba(15,7,28,.22),transparent)!important;
+}
+html.sl-eclipse-global.sl-world-hq.sl-case-hd .hero .showcase-snow-wave{background:none!important}
+html.sl-eclipse-global.sl-world-hq .header,
+html.sl-eclipse-global.sl-world-hq.sl-rules-night body .header{
+ background:linear-gradient(120deg,#231632f8,#151022f8)!important;
+ border-color:#b685f04d!important;box-shadow:0 10px 35px #07031191,inset 0 1px #fff1!important;
+}
+html.sl-eclipse-global.sl-world-hq.sl-case-hd .player-card,
+html.sl-eclipse-global.sl-world-hq .sl-legal .legal-card,
+html.sl-eclipse-global.sl-world-hq.sl-rules-night body .sl-legal .legal-card,
+html.sl-eclipse-global.sl-world-hq .sl-complaint-panel,
+html.sl-eclipse-global.sl-world-hq .sl-forum-board,
+html.sl-eclipse-global.sl-world-hq.sl-case-hd #why .sl-about-hero,
+html.sl-eclipse-global.sl-world-hq.sl-case-hd #why .sl-about-features article{
+ background:linear-gradient(145deg,rgba(40,25,57,.96),rgba(22,15,35,.96) 86%)!important;
+ border-color:var(--sl-world-edge)!important;
+ box-shadow:0 14px 38px #07031166,inset 0 1px #ffffff0d!important;
+}
+html.sl-eclipse-global.sl-world-hq .sl-legal .legal-hero,
+html.sl-eclipse-global.sl-world-hq.sl-rules-night body .sl-legal .legal-hero{
+ background:radial-gradient(ellipse at 98% 0%,#7037b749,transparent 75%),linear-gradient(135deg,#2a193fe8,#190f2aef)!important;
+ border-color:#ba88f061!important;
+}
+html.sl-eclipse-global.sl-world-hq.sl-case-hd #cases-tab .sl-case-heading{
+ background:radial-gradient(ellipse at 100% 0%,color-mix(in srgb,var(--item-color,#b58de9) 15%,transparent),transparent 72%),linear-gradient(125deg,#2a1a3ce8,#1b132be8)!important;
+}
+html.sl-eclipse-global.sl-world-hq.sl-case-hd #coins-tab .sl-coin-donor-card,
+html.sl-eclipse-global.sl-world-hq.sl-case-hd #cases-tab .sl-store-card{
+ background:radial-gradient(ellipse 90% 55% at 50% 14%,rgba(115,55,175,.25),transparent 95%),linear-gradient(160deg,#2b1b40,#191225 75%)!important;
+ border-color:#b887ed5c!important;box-shadow:0 13px 35px #08031266,inset 0 1px #ffffff14!important;
+}
+html.sl-eclipse-global.sl-world-hq.sl-case-hd #donate-tab .sl-rank-card{
+ box-shadow:0 13px 35px #08031266,inset 0 1px #ffffff14!important;
+}
+html.sl-eclipse-global.sl-world-hq .sl-legal .legal-card :is(h2,h3,strong){color:#faf5ff!important}
+html.sl-eclipse-global.sl-world-hq .sl-legal .legal-card :is(p,li){color:#dbcee9!important}
+html.sl-eclipse-global.sl-world-hq .sl-legal .sl-rule-copy .sl-rule-penalty{color:#f6b8c7!important}
+html.sl-eclipse-global.sl-world-hq .sl-legal .legal-card a{color:#e1b7ff!important}
+html.sl-eclipse-global.sl-world-hq.sl-rules-night body .sl-legal .sl-rules-action-primary{color:white!important}
+html.sl-eclipse-global.sl-world-hq .sl-legal .legal-tabs,
+html.sl-eclipse-global.sl-world-hq.sl-rules-night body .sl-legal .legal-tabs{background:#1c122ef7!important;border-color:#b88bec4d!important}
+html.sl-eclipse-global.sl-world-hq footer,
+html.sl-eclipse-global.sl-world-hq.sl-rules-night body footer{
+ background:linear-gradient(180deg,rgba(18,10,31,.9),#0b0715)!important;border-color:#b58be333!important;
+}
+@media(max-width:760px){
+ html.sl-eclipse-global.sl-world-hq body::before,
+ html.sl-eclipse-global.sl-world-hq.sl-rules-night body::before{
+ background:
+ linear-gradient(180deg,rgba(12,5,25,.12),rgba(12,5,25,.28)),
+ url("assets/shadowland-world-hq.webp") center center / cover no-repeat #10071e!important;
+ }
+}
