@@ -228,6 +228,21 @@ html.sl-case-hd #cases-tab .sl-store-card:hover .sl-full-art > img.sl-full-art-i
  -webkit-mask-composite:source-in!important;mask-composite:intersect!important;
 }
 </style>
+<style id="sl-category-rendered-v1">
+/* Original artwork only; preserve the category layout and click targets. */
+#showcase-categories .showcase-category-art {
+ position:relative!important; overflow:visible!important; filter:none!important;
+}
+#showcase-categories .showcase-category-art > img {
+ display:block!important; width:100%!important; height:100%!important;
+ max-width:none!important; max-height:none!important; object-fit:cover!important;
+ object-position:center!important; border:0!important; border-radius:0!important;
+ background:none!important; box-shadow:none!important; image-rendering:auto!important;
+ -webkit-mask-image:linear-gradient(to right,transparent,#000 9%,#000 91%,transparent),linear-gradient(to bottom,transparent,#000 12%,#000 86%,transparent)!important;
+ mask-image:linear-gradient(to right,transparent,#000 9%,#000 91%,transparent),linear-gradient(to bottom,transparent,#000 12%,#000 86%,transparent)!important;
+ -webkit-mask-composite:source-in!important;mask-composite:intersect!important;
+}
+</style>
 </head>
 
 
@@ -562,9 +577,9 @@ html.sl-case-hd #cases-tab .sl-store-card:hover .sl-full-art > img.sl-full-art-i
 
 <div class="showcase-categories-title" aria-label="Категории магазина"><span>МАГАЗИН</span><h2><i></i>КАТЕГОРИИ<i></i></h2></div>
 <div class="shop-tabs" id="showcase-categories">
-<button type="button" class="shop-tab active" onclick="showShopTab('donate-tab', this)" aria-label="Открыть категорию Донат"><span class="showcase-category-art"><svg viewBox="0 0 90 90" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="tgc" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#FFF8BC"/><stop offset=".44" stop-color="#FFD85D"/><stop offset="1" stop-color="#B77719"/></linearGradient></defs><path d="M12 25 29 40 44 13 60 40 79 25 73 71H17Z" fill="url(#tgc)" stroke="#F7CC61" stroke-width="3"/><path d="M17 61h56v15H17z" fill="#B57C24"/><path d="M17 62h56v5H17z" fill="#FFE6A0"/><path d="M44 33 57 51 44 65 31 51Z" fill="#A93DFF" stroke="#F6C5FF" stroke-width="3"/><circle cx="14" cy="22" r="6" fill="#FFF6BA"/><circle cx="44" cy="11" r="6" fill="#FFF6BA"/><circle cx="78" cy="21" r="6" fill="#FFF6BA"/></svg></span><span class="showcase-category-info"><strong>Донат</strong><small>Привилегии и уникальные возможности на сервере.</small></span><span class="showcase-category-arrow">→</span></button>
-<button type="button" class="shop-tab" onclick="showShopTab('coins-tab', this)" aria-label="Открыть категорию Коины"><span class="showcase-category-art"><svg viewBox="0 0 90 90" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="tgg"><stop stop-color="#FFF2B1"/><stop offset=".5" stop-color="#FFD143"/><stop offset="1" stop-color="#C97A18"/></linearGradient></defs><g stroke="#B87617" stroke-width="2"><ellipse cx="33" cy="61" rx="25" ry="10" fill="#E6A421"/><path d="M8 41h50v20c0 14-50 14-50 0Z" fill="url(#tgg)"/><ellipse cx="33" cy="41" rx="25" ry="11" fill="#FFDC70"/><ellipse cx="54" cy="47" rx="25" ry="10" fill="#D89817"/><path d="M29 28h50v20c0 14-50 14-50 0Z" fill="url(#tgg)"/><ellipse cx="54" cy="28" rx="25" ry="11" fill="#FFE076"/><path d="M34 54h50v17c0 14-50 14-50 0Z" fill="#E3A126"/><ellipse cx="59" cy="54" rx="25" ry="10" fill="url(#tgg)"/></g><path d="m59 47 6 7-6 7-6-7z" fill="#FFF2B1"/></svg></span><span class="showcase-category-info"><strong>Коины</strong><small>Игровая валюта для покупок на сервере.</small></span><span class="showcase-category-arrow">→</span></button>
-<button type="button" class="shop-tab" onclick="showShopTab('cases-tab', this)" aria-label="Открыть категорию Кейсы"><span class="showcase-category-art"><svg viewBox="0 0 90 90" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="tgp"><stop stop-color="#C786FF"/><stop offset=".55" stop-color="#732AD9"/><stop offset="1" stop-color="#331260"/></linearGradient></defs><path d="M12 29 45 14 79 29 45 43Z" fill="#C28DFF" stroke="#D3AAFF" stroke-width="3"/><path d="M12 29v40l33 14V43z" fill="#7134AE" stroke="#A96DF0" stroke-width="3"/><path d="M45 43v40l34-14V29z" fill="#4B1E83" stroke="#B276FE" stroke-width="3"/><path d="M27 22v48l18 8 18-8V22L45 14z" fill="none" stroke="#E0B9FF" stroke-width="5"/><path d="M32 46h27v20H32z" fill="url(#tgp)" stroke="#D6AEFF" stroke-width="3"/><path d="M45 49v13M38 55h14" stroke="#F9E6FF" stroke-width="3"/></svg></span><span class="showcase-category-info"><strong>Кейсы</strong><small>Испытай удачу и получи ценные награды.</small></span><span class="showcase-category-arrow">→</span></button>
+<button type="button" class="shop-tab active" onclick="showShopTab('donate-tab', this)" aria-label="Открыть категорию Донат"><span class="showcase-category-art"><img src="assets/categories-rendered/donate.webp?v=20261124-art1" width="480" height="360" alt="" aria-hidden="true" decoding="async"></span><span class="showcase-category-info"><strong>Донат</strong><small>Привилегии и уникальные возможности на сервере.</small></span><span class="showcase-category-arrow">→</span></button>
+<button type="button" class="shop-tab" onclick="showShopTab('coins-tab', this)" aria-label="Открыть категорию Коины"><span class="showcase-category-art"><img src="assets/categories-rendered/coins.webp?v=20261124-art1" width="480" height="360" alt="" aria-hidden="true" decoding="async"></span><span class="showcase-category-info"><strong>Коины</strong><small>Игровая валюта для покупок на сервере.</small></span><span class="showcase-category-arrow">→</span></button>
+<button type="button" class="shop-tab" onclick="showShopTab('cases-tab', this)" aria-label="Открыть категорию Кейсы"><span class="showcase-category-art"><img src="assets/categories-rendered/cases.webp?v=20261124-art1" width="480" height="360" alt="" aria-hidden="true" decoding="async"></span><span class="showcase-category-info"><strong>Кейсы</strong><small>Испытай удачу и получи ценные награды.</small></span><span class="showcase-category-arrow">→</span></button>
 </div>
 
 
