@@ -3,6 +3,7 @@
   "name": "shadowland-forum-api",
   "main": "src/index.js",
   "compatibility_date": "2026-10-31",
+  "triggers": {"crons": ["* * * * *"]},
   "vars": {
     "TURNSTILE_SITEKEY": "REPLACE_WITH_TURNSTILE_SITEKEY"
   },

@@ -19,10 +19,11 @@
       const box=document.createElement("article");box.className="sl-complaint-panel";
       box.append(t("h2","#"+c.id+" · "+c.subject),t("p","Игрок: "+c.nickname+" | Тип: "+c.type+" | Указан: "+c.target+" | "+c.created_at));
       box.append(t("p","Пункт/причина: "+(c.rule||"—")),t("p","Описание: "+c.details),t("p","Доказательства: "+(c.evidence||"—")));
+      if(c.state==="approved"&&c.approved_at)box.append(t("p","Автоматическое закрытие: "+new Date(c.approved_at+86400000).toLocaleString("ru-RU")));
       const form=document.createElement("form");
       form.className="sl-admin-editor";
       const label=t("label","Статус");const sel=document.createElement("select");
-      for(const [value,caption] of [["pending","Ожидает проверки"],["open","Открыта"],["review","На рассмотрении"],["closed","Закрыта"],["rejected","Отклонена"]]){
+      for(const [value,caption] of [["pending","Ожидает проверки"],["open","Открыта"],["review","На рассмотрении"],["closed","Закрыта"],["rejected","Отклонена"],["approved","Одобрена"]]){
         const option=document.createElement("option");option.value=value;option.textContent=caption;if(c.state===value)option.selected=true;sel.append(option);
       }
       label.append(sel);

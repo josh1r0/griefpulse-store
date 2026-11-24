@@ -1,6 +1,6 @@
 /* ShadowLand complaints API: Cloudflare Worker + D1 + Turnstile */
 const ALLOW=["https://shadowland.land","https://www.shadowland.land"];
-const STATES=["pending","open","review","closed","rejected"];
+const STATES=["pending","open","review","closed","rejected","approved"];
 const TYPES=["player","staff","appeal"];
 function cors(req){
   const origin=req.headers.get("Origin");
@@ -22,9 +22,11 @@ async function verifyCaptcha(env,token,ip){
   }catch{return false;}
 }
 const authorized=(req,env)=>!!env.ADMIN_TOKEN && env.ADMIN_TOKEN.length>=24 && req.headers.get("Authorization")==="Bearer "+env.ADMIN_TOKEN;
+const closeApproved=env=>env.DB.prepare("UPDATE complaints SET state='closed',updated_at=approved_at+86400000 WHERE state='approved' AND approved_at IS NOT NULL AND approved_at<=?").bind(Date.now()-86400000).run();
 const publicEntry=(x)=>({id:x.id,type:x.type,nickname:x.nickname,subject:x.subject,state:x.state,reply:x.reply,created_at:x.created_at,updated_at:x.updated_at});
-const fullEntry=(x)=>({...publicEntry(x),target:x.target,rule:x.rule,details:x.details,evidence:x.evidence,public:Boolean(x.public)});
+const fullEntry=(x)=>({...publicEntry(x),target:x.target,rule:x.rule,details:x.details,evidence:x.evidence,public:Boolean(x.public),approved_at:x.approved_at});
 export default {
+  async scheduled(event,env,ctx){ctx.waitUntil(closeApproved(env));},
   async fetch(req,env){
     try{
       const origin=req.headers.get("Origin");
@@ -34,17 +36,19 @@ export default {
       if(path==="/api/config"&&req.method==="GET")return json(req,{configured:Boolean(env.DB&&env.ADMIN_TOKEN&&env.TURNSTILE_SECRET&&env.TURNSTILE_SITEKEY),sitekey:env.TURNSTILE_SITEKEY||""});
       if(!env.DB)return err(req,"База форума ещё не подключена.",503);
       if(path==="/api/complaints"&&req.method==="GET"){
-        const rows=await env.DB.prepare("SELECT id,type,nickname,subject,state,reply,created_at,updated_at FROM complaints WHERE public=1 AND state IN ('open','review','closed') ORDER BY id DESC LIMIT 100").all();
+        await closeApproved(env);
+        const rows=await env.DB.prepare("SELECT id,type,nickname,subject,state,reply,created_at,updated_at FROM complaints WHERE public=1 AND state IN ('open','review','closed','approved') ORDER BY id DESC LIMIT 100").all();
         return json(req,{items:(rows.results||[]).map(publicEntry)});
       }
       const detail=path.match(/^\/api\/complaints\/(\d+)$/);
       if(detail&&req.method==="GET"){
+        await closeApproved(env);
         const row=await env.DB.prepare("SELECT * FROM complaints WHERE id=?").bind(Number(detail[1])).first();
         if(!row)return err(req,"Обращение не найдено.",404);
         const code=u.searchParams.get("code")||"";
         const accepted=code.length>=20&&(await sha(code))===row.receipt_hash;
         if(accepted)return json(req,fullEntry(row));
-        if(row.public&&["open","review","closed"].includes(row.state))return json(req,publicEntry(row));
+        if(row.public&&["open","review","closed","approved"].includes(row.state))return json(req,publicEntry(row));
         return err(req,"Неверный номер или код.",404);
       }
       if(path==="/api/complaints"&&req.method==="POST"){
@@ -74,7 +78,9 @@ export default {
         return json(req,{id:result.meta.last_row_id,code,state:"pending"},201);
       }
       if(path==="/api/admin/complaints"&&req.method==="GET"){
+        
         if(!authorized(req,env))return err(req,"Недостаточно прав.",401);
+        await closeApproved(env);
         const rows=await env.DB.prepare("SELECT * FROM complaints ORDER BY id DESC LIMIT 100").all();
         return json(req,{items:(rows.results||[]).map(fullEntry)});
       }
@@ -84,7 +90,9 @@ export default {
         let data;try{data=await req.json();}catch{return err(req,"Неверный формат.");}
         if(!data||!STATES.includes(data.state)||typeof data.public!=="boolean"||typeof data.reply!=="string"||data.reply.length>1500)return err(req,"Неверные поля статуса.");
         const published=data.public&&!["pending","rejected"].includes(data.state)?1:0;
-        const out=await env.DB.prepare("UPDATE complaints SET state=?,public=?,reply=?,updated_at=? WHERE id=?").bind(data.state,published,data.reply,Date.now(),Number(admin[1])).run();
+        await closeApproved(env);
+        const now=Date.now();
+        const out=await env.DB.prepare("UPDATE complaints SET approved_at=CASE WHEN ?='approved' THEN CASE WHEN state='approved' THEN COALESCE(approved_at,?) ELSE ? END ELSE NULL END,state=?,public=?,reply=?,updated_at=? WHERE id=?").bind(data.state,now,now,data.state,published,data.reply,now,Number(admin[1])).run();
         if(!out.meta.changes)return err(req,"Обращение не найдено.",404);
         return json(req,{ok:true});
       }

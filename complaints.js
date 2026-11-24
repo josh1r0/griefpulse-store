@@ -21,7 +21,7 @@
     el.textContent = value;
     return el;
   }
-  const statuses = {pending:"Ожидает проверки",open:"Открыта",review:"На рассмотрении",closed:"Закрыта",rejected:"Отклонена"};
+  const statuses = {pending:"Ожидает проверки",open:"Открыта",review:"На рассмотрении",closed:"Закрыта",rejected:"Отклонена",approved:"Одобрена"};
   function fmtDate(value){return new Date(value).toLocaleDateString("ru-RU",{day:"2-digit",month:"long",year:"numeric"});}
   async function api(path, opts) {
     const response = await fetch(API + path, opts || {});
