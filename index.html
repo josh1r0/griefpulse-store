@@ -547,6 +547,18 @@ html.sl-case-hd .player-card .nickname-wrap.valid:not(.nickname-confirmed) butto
 html.sl-case-hd .player-card .nickname-wrap.nickname-confirmed button.nickname-check{cursor:default!important;opacity:1!important}
 html.sl-case-hd .player-card .nickname-wrap button.nickname-check:focus-visible{outline:2px solid #e4c0ff!important;outline-offset:2px!important}
 </style>
+<style id="sl-duels-store-addition">
+#donate-tab .sl-mode-heading,#cases-tab .sl-mode-heading{display:flex;align-items:center;gap:14px;max-width:1060px;margin:34px auto 18px;padding:14px 18px;border:1px solid #b58be34d;border-radius:14px;background:linear-gradient(110deg,#2b1b42,#1a1428);color:#eee3ff}
+#donate-tab .sl-mode-heading>span,#cases-tab .sl-mode-heading>span{font-size:23px;color:#d4a1ff}
+#donate-tab .sl-mode-heading h3,#cases-tab .sl-mode-heading h3{margin:0;color:#f7efff;font-size:clamp(21px,2.8vw,30px);font-weight:900;line-height:1.15;letter-spacing:.02em}
+#donate-tab .sl-mode-heading p,#cases-tab .sl-mode-heading p{margin:4px 0 0;color:#c9bad9;font-size:12px;line-height:1.4}
+#donate-tab .sl-duels-products,#cases-tab .sl-duels-products{margin-top:42px}
+#donate-tab .sl-duel-rank-grid .sl-rank-feature{white-space:normal!important;overflow-wrap:anywhere}
+#donate-tab .sl-duel-rank-grid .sl-rank-title{font-size:clamp(14px,1.9vw,21px)!important;color:var(--sl-rank-accent)!important}
+#donate-tab .sl-duel-rank-card .sl-rank-button:disabled,#cases-tab .sl-duel-case-card .sl-store-buy:disabled{cursor:not-allowed!important;opacity:.68!important;filter:none!important;transform:none!important}
+#donate-tab .sl-duel-info,#cases-tab .sl-duel-info{max-width:1060px;margin:16px auto 0;color:#c9bad9;font-size:12px;line-height:1.6}
+#donate-tab .sl-duel-info summary,#cases-tab .sl-duel-info summary{cursor:pointer;color:#dfbbff;font-weight:700}
+</style>
 </head>
 
 
@@ -929,6 +941,7 @@ html.sl-case-hd .player-card .nickname-wrap button.nickname-check:focus-visible{
 
 
 
+        <div class="sl-mode-heading"><span aria-hidden="true">✦</span><div><h3>ГРИФЫ</h3><p>Привилегии гриф-выживания</p></div></div>
         <div class="rank-shop-intro"><span class="rank-section-eyebrow">SHADOWLAND / ПРИВИЛЕГИИ</span></div>
         <div class="sl-rank-grid">
 
@@ -1045,6 +1058,34 @@ html.sl-case-hd .player-card .nickname-wrap button.nickname-check:focus-visible{
             </article>
         </div>
         <p class="rank-shop-note">Укажи Minecraft-ник выше и нажми «КУПИТЬ»: если у тебя уже есть привилегия, сайт проверит её и покажет точную доплату. SILVER за 25 ₽ отдельно недоступен из-за минимальной суммы Lava.top.</p>
+<div class="sl-duels-products" id="duels-donate"><div class="sl-mode-heading"><span aria-hidden="true">✦</span><div><h3>ДУЭЛИ</h3><p>Отдельные PvP-привилегии навсегда</p></div></div><div class="sl-rank-grid sl-duel-rank-grid"><article class="sl-rank-card sl-duel-rank-card" style="--sl-rank-accent:#70dc82;--sl-rank-deep:#2c8f48" aria-label="Привилегия дуэлей VIP, 35 рублей">
+<div class="sl-rank-art" aria-hidden="true"><span class="sl-rank-avatar sl-rank-avatar-silver"></span></div><h3 class="sl-rank-title">VIP</h3>
+<div class="sl-rank-features"><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Жетоны за победу: +5%</span></div><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Скидка на косметику: 5%</span></div><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Цветной префикс</span></div></div>
+<div class="sl-rank-price"><strong>35 <small>₽</small></strong></div><button type="button" class="sl-rank-button" disabled title="Оплата пока не подключена">СКОРО</button></article>
+<article class="sl-rank-card sl-duel-rank-card" style="--sl-rank-accent:#63d9ef;--sl-rank-deep:#237d9a" aria-label="Привилегия дуэлей PRIME, 75 рублей">
+<div class="sl-rank-art" aria-hidden="true"><span class="sl-rank-avatar sl-rank-avatar-titan"></span></div><h3 class="sl-rank-title">PRIME</h3>
+<div class="sl-rank-features"><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Жетоны за победу: +10%</span></div><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Скидка на косметику: 10%</span></div><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>След стрелы · /arrow</span></div><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Возможности VIP</span></div></div>
+<div class="sl-rank-price"><strong>75 <small>₽</small></strong></div><button type="button" class="sl-rank-button" disabled title="Оплата пока не подключена">СКОРО</button></article>
+<article class="sl-rank-card sl-duel-rank-card" style="--sl-rank-accent:#779aff;--sl-rank-deep:#3548ac" aria-label="Привилегия дуэлей ELITE, 125 рублей">
+<div class="sl-rank-art" aria-hidden="true"><span class="sl-rank-avatar sl-rank-avatar-wither"></span></div><h3 class="sl-rank-title">ELITE</h3>
+<div class="sl-rank-features"><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Жетоны за победу: +15%</span></div><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Скидка на косметику: 15%</span></div><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Питомец · /pet</span></div><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Возможности PRIME</span></div></div>
+<div class="sl-rank-price"><strong>125 <small>₽</small></strong></div><button type="button" class="sl-rank-button" disabled title="Оплата пока не подключена">СКОРО</button></article>
+<article class="sl-rank-card sl-duel-rank-card" style="--sl-rank-accent:#ffc26c;--sl-rank-deep:#ad5924" aria-label="Привилегия дуэлей BERSERK, 195 рублей">
+<div class="sl-rank-art" aria-hidden="true"><span class="sl-rank-avatar sl-rank-avatar-legend"></span></div><h3 class="sl-rank-title">BERSERK</h3>
+<div class="sl-rank-features"><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Жетоны за победу: +20%</span></div><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Скидка на косметику: 20%</span></div><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Цветной чат и полёт</span></div><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Возможности ELITE</span></div></div>
+<div class="sl-rank-price"><strong>195 <small>₽</small></strong></div><button type="button" class="sl-rank-button" disabled title="Оплата пока не подключена">СКОРО</button></article>
+<article class="sl-rank-card sl-duel-rank-card" style="--sl-rank-accent:#bd80ff;--sl-rank-deep:#7437b8" aria-label="Привилегия дуэлей CONQUEROR, 295 рублей">
+<div class="sl-rank-art" aria-hidden="true"><span class="sl-rank-avatar sl-rank-avatar-reaper"></span></div><h3 class="sl-rank-title">CONQUEROR</h3>
+<div class="sl-rank-features"><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Жетоны за победу: +25%</span></div><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Скидка на косметику: 25%</span></div><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Выбор арены при вызове</span></div><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Возможности BERSERK</span></div></div>
+<div class="sl-rank-price"><strong>295 <small>₽</small></strong></div><button type="button" class="sl-rank-button" disabled title="Оплата пока не подключена">СКОРО</button></article>
+<article class="sl-rank-card sl-duel-rank-card" style="--sl-rank-accent:#f18be9;--sl-rank-deep:#a53b9e" aria-label="Привилегия дуэлей IMMORTAL, 445 рублей">
+<div class="sl-rank-art" aria-hidden="true"><span class="sl-rank-avatar sl-rank-avatar-imperator"></span></div><h3 class="sl-rank-title">IMMORTAL</h3>
+<div class="sl-rank-features"><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Жетоны за победу: +35%</span></div><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Скидка на косметику: 30%</span></div><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>3 анимации убийств</span></div><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Возможности CONQUEROR</span></div></div>
+<div class="sl-rank-price"><strong>445 <small>₽</small></strong></div><button type="button" class="sl-rank-button" disabled title="Оплата пока не подключена">СКОРО</button></article>
+<article class="sl-rank-card sl-duel-rank-card" style="--sl-rank-accent:#ff7272;--sl-rank-deep:#b23438" aria-label="Привилегия дуэлей DOMINATOR, 695 рублей">
+<div class="sl-rank-art" aria-hidden="true"><span class="sl-rank-avatar sl-rank-avatar-shadow"></span></div><h3 class="sl-rank-title">DOMINATOR</h3>
+<div class="sl-rank-features"><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Жетоны за победу: +50%</span></div><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Скидка на косметику: 40%</span></div><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Боевой клич и защита от AFK</span></div><div class="sl-rank-feature"><span class="sl-rank-feature-icon">✦</span><span>Возможности IMMORTAL</span></div></div>
+<div class="sl-rank-price"><strong>695 <small>₽</small></strong></div><button type="button" class="sl-rank-button" disabled title="Оплата пока не подключена">СКОРО</button></article></div><p class="sl-duel-info">Донаты действуют только в дуэлях. Старшие привилегии наследуют возможности младших, бонусы и скидки не суммируются. Оплата пока не подключена.</p><details class="sl-duel-info"><summary>Все возможности привилегий дуэлей</summary><p>VIP — цветной префикс. PRIME — следы стрел. ELITE — питомцы в лобби. BERSERK — цвет и жирность чата, полёт в лобби. CONQUEROR — выбор арены при обычном вызове. IMMORTAL — первые три анимации убийств, эффект появления и цвет ника. DOMINATOR — шесть бесплатных анимаций убийств (кроме «Феникс-вспышка» и «Гнев Левиафана»), боевой клич с рогом и защита от AFK.</p></details></div>
 
 </div>
 
@@ -1145,6 +1186,7 @@ html.sl-case-hd .player-card .nickname-wrap button.nickname-check:focus-visible{
    <div><span class="section-small">СЛУЧАЙНЫЕ НАГРАДЫ</span><h2>КЕЙСЫ</h2><p>Открывай сундуки и испытывай удачу с наградами сервера.</p></div>
   </div>
   <div class="sl-store-intro"><span>SHADOWLAND / ТВОИ НАГРАДЫ</span><span class="sl-intro-secure">✧ НАГРАДЫ ПРИВЯЗАНЫ К MINECRAFT-НИКУ</span></div>
+  <div class="sl-mode-heading"><span aria-hidden="true">✦</span><div><h3>ГРИФЫ</h3><p>Кейсы гриф-выживания</p></div></div>
   <div class="case-block sl-case-block sl-case-donate" style="--item-color:#c9a3ff;--item-dark:#6130a8">
     <div class="sl-case-heading"><div><span class="sl-case-category">RANK CASE</span><h3>Кейсы с донатом</h3><p>Шанс получить особую привилегию</p></div><span class="sl-category-decor" aria-hidden="true">✦</span></div>
     <div class="case-grid sl-store-grid "><article class="case-card sl-store-card" style="--item-color:#c9a3ff;--item-dark:#6130a8">
@@ -1235,6 +1277,9 @@ html.sl-case-hd .player-card .nickname-wrap button.nickname-check:focus-visible{
  </article></div>
   </div>
   <div class="coming-soon sl-more-coming"><div class="sl-coming-gem" aria-hidden="true">✧</div><span>СКОРО</span><h3>Кейсы с вещами</h3><p>Новые уникальные предметы уже готовятся.</p></div>
+<div class="sl-duels-products" id="duels-cases"><div class="sl-mode-heading"><span aria-hidden="true">✦</span><div><h3>ДУЭЛИ</h3><p>Кейсы с PvP-привилегиями</p></div></div><div class="case-block sl-case-block sl-case-donate sl-duel-case-block" style="--item-color:#c9a3ff;--item-dark:#6130a8"><div class="sl-case-heading"><div><span class="sl-case-category">DUEL CASE</span><h3>Донат-кейсы дуэлей</h3><p>Отдельные ключи для режима дуэлей</p></div><span class="sl-category-decor" aria-hidden="true">✦</span></div><div class="case-grid sl-store-grid"><article class="case-card sl-store-card sl-duel-case-card" style="--item-color:#c9a3ff;--item-dark:#6130a8"><div class="sl-store-top"><span class="sl-item-type">ДУЭЛИ</span><span class="sl-item-badge">×3</span></div><div class="sl-full-art" data-art-type="case"><img class="sl-full-art-image" src="assets/cases-rendered/donate-3.webp?v=20261124-r3" alt="Донат-кейс дуэлей SHADOWLAND" width="960" height="576" loading="lazy" decoding="async"></div><h4>3 кейса</h4><p class="sl-case-description">Привилегии от VIP до DOMINATOR</p><div class="sl-store-bottom"><span class="sl-store-cost"><small>СТОИМОСТЬ</small><strong>99<em> ₽</em></strong></span><button type="button" class="sl-store-buy" disabled title="Оплата пока не подключена">СКОРО</button></div></article>
+<article class="case-card sl-store-card sl-duel-case-card" style="--item-color:#c9a3ff;--item-dark:#6130a8"><div class="sl-store-top"><span class="sl-item-type">ДУЭЛИ</span><span class="sl-item-badge">×10</span></div><div class="sl-full-art" data-art-type="case"><img class="sl-full-art-image" src="assets/cases-rendered/donate-10.webp?v=20261124-r3" alt="Донат-кейс дуэлей SHADOWLAND" width="960" height="576" loading="lazy" decoding="async"></div><h4>10 кейсов</h4><p class="sl-case-description">Привилегии от VIP до DOMINATOR · экономия 15%</p><div class="sl-store-bottom"><span class="sl-store-cost"><small>СТОИМОСТЬ</small><strong>279<em> ₽</em></strong></span><button type="button" class="sl-store-buy" disabled title="Оплата пока не подключена">СКОРО</button></div></article>
+<article class="case-card sl-store-card sl-duel-case-card" style="--item-color:#c9a3ff;--item-dark:#6130a8"><div class="sl-store-top"><span class="sl-item-type">ДУЭЛИ</span><span class="sl-item-badge">×30</span></div><div class="sl-full-art" data-art-type="case"><img class="sl-full-art-image" src="assets/cases-rendered/donate-30.webp?v=20261124-r3" alt="Донат-кейс дуэлей SHADOWLAND" width="960" height="576" loading="lazy" decoding="async"></div><h4>30 кейсов</h4><p class="sl-case-description">Привилегии от VIP до DOMINATOR · экономия 35%</p><div class="sl-store-bottom"><span class="sl-store-cost"><small>СТОИМОСТЬ</small><strong>645<em> ₽</em></strong></span><button type="button" class="sl-store-buy" disabled title="Оплата пока не подключена">СКОРО</button></div></article></div></div><details class="sl-duel-info"><summary>Награды и вероятности выпадения</summary><p>VIP — 35%, PRIME — 25%, ELITE — 18%, BERSERK — 10%, CONQUEROR — 7%, IMMORTAL — 4%, DOMINATOR — 1%. При выпадении привилегии ниже или равной текущей текущий донат сохраняется, дополнительной компенсации нет.</p></details><p class="sl-duel-info">Оплата новых кейсов пока не подключена.</p></div>
  </div>
 </section>
 
