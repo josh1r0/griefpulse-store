@@ -574,6 +574,18 @@ html.sl-case-hd #donate-tab .sl-duel-rank-grid .sl-duel-avatar-berserk{backgroun
 html.sl-case-hd #donate-tab .sl-duel-rank-grid .sl-duel-avatar-conqueror{background-position:66.666667% 0%!important;--sl-duel-art-filter:saturate(1.07);}
 html.sl-case-hd #donate-tab .sl-duel-rank-grid .sl-duel-avatar-immortal{background-position:66.666667% 100%!important;--sl-duel-art-filter:saturate(1.08);}
 html.sl-case-hd #donate-tab .sl-duel-rank-grid .sl-duel-avatar-dominator{background-position:100% 100%!important;--sl-duel-art-filter:hue-rotate(16deg) saturate(1.19);}
+
+/* Equal-width cards with a centered incomplete final row. */
+@media(min-width:1001px){
+ html.sl-case-hd #donate-tab .sl-duel-rank-grid{grid-template-columns:repeat(8,minmax(0,1fr))!important}
+ html.sl-case-hd #donate-tab .sl-duel-rank-grid>.sl-duel-rank-card{grid-column:span 2!important}
+ html.sl-case-hd #donate-tab .sl-duel-rank-grid>.sl-duel-rank-card:nth-child(5){grid-column:2/span 2!important}
+}
+@media(min-width:351px) and (max-width:1000px){
+ html.sl-case-hd #donate-tab .sl-duel-rank-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+ html.sl-case-hd #donate-tab .sl-duel-rank-grid>.sl-duel-rank-card{grid-column:span 2!important}
+ html.sl-case-hd #donate-tab .sl-duel-rank-grid>.sl-duel-rank-card:last-child{grid-column:2/span 2!important}
+}
 </style>
 </head>
 
