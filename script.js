@@ -1193,7 +1193,7 @@ async function buyDonateCase3() {
 // Россия -> RUB, Украина / другие страны -> USD
 // ============================================================
 
-function requestPaymentCurrency(rubPrice = 70, usdPrice = 0.83) {
+function requestPaymentCurrency(rubPrice = 70, usdPrice = 0.83, options = null) {
     return new Promise(resolve => {
         const oldModal = document.querySelector(".shadowland-currency-modal");
         if (oldModal) oldModal.remove();
@@ -1236,7 +1236,7 @@ function requestPaymentCurrency(rubPrice = 70, usdPrice = 0.83) {
         });
 
         const description = document.createElement("div");
-        description.textContent = "Для России — рубли. Для Украины и других стран — доллары.";
+        description.textContent = options ? (options.enabled ? "Выбери валюту оплаты." : "Приём оплаты пока отключён.") : "Для России — рубли. Для Украины и других стран — доллары.";
 
         Object.assign(description.style, {
             color: "#7d8795",
@@ -1260,7 +1260,18 @@ function requestPaymentCurrency(rubPrice = 70, usdPrice = 0.83) {
         usdButton.type = "button";
         usdButton.textContent = "🇺🇦 Украина / другие страны — $" + usdPrice;
 
-        [rubButton, usdButton].forEach(button => {
+        const extraButtons = [];
+        if (options) {
+            usdButton.textContent = "🇺🇸 Доллары — $" + usdPrice;
+            const eur = document.createElement("button");
+            eur.type = "button";
+            eur.textContent = "🇪🇺 Евро — €" + Number(options.eur).toFixed(2);
+            const uah = document.createElement("button");
+            uah.type = "button";
+            uah.textContent = options.uah === null ? "🇺🇦 грн — курс недоступен" : "🇺🇦 ≈ " + options.uah + " грн";
+            extraButtons.push([eur,"EUR"],[uah,"UAH"]);
+        }
+        [rubButton, usdButton, ...extraButtons.map(([button])=>button)].forEach(button => {
             Object.assign(button.style, {
                 width: "100%",
                 height: "44px",
@@ -1309,7 +1320,20 @@ function requestPaymentCurrency(rubPrice = 70, usdPrice = 0.83) {
             }
         });
 
-        buttons.append(rubButton, usdButton);
+        if (options) {
+            for (const [button, code] of [[rubButton,"RUB"],[usdButton,"USD"],...extraButtons]) {
+                const currency = code === "UAH" ? "USD" : code;
+                const eligible = options.payable[currency] === true && (code !== "UAH" || options.uah !== null);
+                if (!eligible && !(code === "UAH" && options.uah === null)) button.textContent += " · ниже минимума";
+                button.disabled = !options.enabled || !eligible;
+                if (button.disabled) {
+                    button.style.opacity = ".55";
+                    button.style.cursor = "not-allowed";
+                }
+            }
+            extraButtons.forEach(([button,code])=>button.addEventListener("click",()=>close(code)));
+        }
+        buttons.append(rubButton, usdButton, ...extraButtons.map(([button])=>button));
         box.append(title, description, buttons, cancel);
         overlay.appendChild(box);
         document.body.appendChild(overlay);
@@ -1753,29 +1777,6 @@ async function duelUahRate(){
         return null;
     }finally{clearTimeout(timer);}
 }
-function duelQuoteDialog(q,name,uah){
-    return new Promise(resolve=>{
-        const d=document.createElement("dialog");
-        Object.assign(d.style,{width:"min(420px,calc(100% - 32px))",boxSizing:"border-box",padding:"22px",border:"1px solid #8d56bb",borderRadius:"14px",background:"#120d1d",color:"#fff",fontFamily:"inherit",maxHeight:"85vh",overflow:"auto"});
-        const h=document.createElement("h3");h.textContent=q.purchaseType==="upgrade"?q.currentRank.toUpperCase()+" → "+name:name;
-        const p=document.createElement("p");p.textContent="Ник: "+q.nickname+" · "+(q.purchaseType==="upgrade"?"Доплата: ":"Стоимость: ")+q.amountRub+" ₽";
-        const note=document.createElement("p");note.textContent=q.checkoutEnabled===true?"Выбери валюту. Минимум Lava.top: 50 ₽ / $5 / €5.":"Тестовый расчёт. Приём оплаты пока отключён.";
-        Object.assign(note.style,{fontSize:"13px",color:"#cfb9e3",lineHeight:"1.5"});d.append(h,p,note);
-        let done=false;const finish=v=>{if(done)return;done=true;d.close();d.remove();resolve(v);};
-        const add=(label,disabled,fn)=>{
-            const b=document.createElement("button");b.type="button";b.textContent=label;b.disabled=disabled;
-            Object.assign(b.style,{display:"block",width:"100%",padding:"12px",marginTop:"9px",borderRadius:"8px",border:"1px solid #7854a0",background:disabled?"#21192d":"#593487",color:disabled?"#aa9bb8":"#fff",cursor:disabled?"not-allowed":"pointer",fontWeight:"700"});
-            b.addEventListener("click",fn);d.append(b);
-        };
-        for(const c of ["RUB","USD","EUR"]){const eligible=q.payable[c]===true;add(duelMoney(q.prices[c],c)+(eligible?"":" · ниже минимума"),!eligible||q.checkoutEnabled!==true,()=>finish(c));}
-        if(uah!==null){
-            add("🇺🇦 ≈ "+uah+" грн",q.payable.USD!==true||q.checkoutEnabled!==true,()=>finish("UAH"));
-        }else{
-            add("🇺🇦 грн — курс недоступен",true,()=>{});
-        }
-        add("Закрыть",false,()=>finish(null));d.addEventListener("cancel",e=>{e.preventDefault();finish(null);});document.body.append(d);d.showModal();
-    });
-}
 async function buyDuelProduct(target){
     if(slDuelBusy)return;
     const input=document.getElementById("nickname"),nickname=(input?.value||"").trim();
@@ -1789,17 +1790,26 @@ async function buyDuelProduct(target){
         if(!res.ok||q.ok!==true||q.target!==target||String(q.nickname).toLowerCase()!==nickname.toLowerCase()||!Object.hasOwn(SL_DUEL_PRICES,q.currentRank)){showMessage("Не удалось проверить стоимость.");return;}
         const rub=pack?SL_DUEL_PACKS[target]:SL_DUEL_PRICES[target]-SL_DUEL_PRICES[q.currentRank];
         if(!Number.isInteger(rub)||rub<=0||q.amountRub!==rub||q.prices?.RUB!==rub||!["RUB","USD","EUR"].every(c=>Number.isFinite(q.prices?.[c])&&q.prices[c]>0&&typeof q.payable?.[c]==="boolean")){showMessage("Некорректная цена. Покупка остановлена.");return;}
+        const purchaseName=q.purchaseType==="upgrade"?name+" (докуп)":name;
+        const email=await requestBuyerEmail(purchaseName);if(!email)return;
         const rate=await duelUahRate();
         const uah=rate===null?null:Math.round(q.prices.USD*rate);
-        const choice=await duelQuoteDialog(q,name,uah);
+        const choice=await requestPaymentCurrency(q.amountRub,q.prices.USD.toFixed(2),{eur:q.prices.EUR,uah,payable:q.payable,enabled:q.checkoutEnabled===true});
         const currency=choice==="UAH"?"USD":choice;
         if(!currency||q.checkoutEnabled!==true||q.payable[currency]!==true)return;
-        const email=await requestBuyerEmail(name);if(!email)return;
         const paymentText=choice==="UAH"?"≈ "+uah+" грн (счёт Lava.top: "+duelMoney(q.prices.USD,"USD")+". Итоговая сумма зависит от курса банка и комиссии.)":duelMoney(q.prices[currency],currency);
-        if(!confirm("Дуэли: "+name+"\nНик: "+nickname+"\nE-mail: "+email+"\nК оплате: "+paymentText+"\n\nОткрыть Lava.top? Продолжая, ты соглашаешься с условиями shadowland.land/rules.html."))return;
+        const summary=q.purchaseType==="upgrade"?"ДОКУП: "+q.currentRank.toUpperCase()+" → "+name+"\nПолная цена: "+SL_DUEL_PRICES[target]+" ₽\nУчтён текущий ранг: "+(SL_DUEL_PRICES[target]-rub)+" ₽":(pack?"Кейсы: ":"Привилегия: ")+name;
+        if(!confirm(summary+"\nMinecraft-ник: "+nickname+"\nE-mail: "+email+"\nК оплате: "+paymentText+"\n\nПроверь данные. Продолжая, ты соглашаешься с условиями покупки на shadowland.land/rules.html.\n\nОткрыть страницу оплаты Lava.top?"))return;
+        showMessage("Создаём счёт Lava.top...");
         const response=await fetch(SL_DUEL_API+"/lava/create-duel",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({nickname,target,email,currency})}),data=await response.json();
         if(!response.ok||data.ok!==true||data.target!==target||String(data.nickname).toLowerCase()!==nickname.toLowerCase()||data.currency!==currency||data.amount!==q.prices[currency]||typeof data.paymentUrl!=="string"){showMessage("Не удалось создать счёт по подтверждённой цене. Повтори проверку.");return;}
         const url=new URL(data.paymentUrl);if(url.protocol!=="https:"||url.hostname!=="app.lava.top"||url.username||url.password)throw Error("Unexpected checkout URL");
+        try{
+            localStorage.setItem("shadowland_nickname",nickname);
+            localStorage.setItem("shadowland_email",email);
+            localStorage.setItem("shadowland_product",purchaseName);
+            localStorage.setItem("shadowland_price",String(rub));
+        }catch{}
         window.location.assign(url.href);
     }catch(e){console.error("Duel checkout:",e);showMessage("Не удалось связаться с оплатой дуэлей. Попробуй позже.");}finally{slDuelBusy=false;}
 }
