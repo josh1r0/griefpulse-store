@@ -166,3 +166,13 @@
 @media(prefers-reduced-motion:reduce){
  #donate-tab .sl-rank-card,#donate-tab .sl-rank-avatar,#donate-tab .sl-rank-button{transition:none!important;}
 }
+
+/* Exclusive Duel rank portraits — grief portraits and existing store untouched. */
+#donate-tab .sl-duel-rank-grid .sl-rank-avatar{background-size:contain!important;background-position:center center!important;background-repeat:no-repeat!important;mask-image:radial-gradient(ellipse 75% 72% at 50% 45%,#000 52%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 75% 72% at 50% 45%,#000 52%,transparent 100%);}
+#donate-tab .sl-duel-rank-grid .sl-rank-avatar-silver{background-image:url("assets/duel-portraits/vip.avif?v=1")!important;}
+#donate-tab .sl-duel-rank-grid .sl-rank-avatar-titan{background-image:url("assets/duel-portraits/prime.avif?v=1")!important;}
+#donate-tab .sl-duel-rank-grid .sl-rank-avatar-wither{background-image:url("assets/duel-portraits/elite.avif?v=1")!important;}
+#donate-tab .sl-duel-rank-grid .sl-rank-avatar-legend{background-image:url("assets/duel-portraits/berserk.avif?v=1")!important;}
+#donate-tab .sl-duel-rank-grid .sl-rank-avatar-reaper{background-image:url("assets/duel-portraits/conqueror.avif?v=1")!important;}
+#donate-tab .sl-duel-rank-grid .sl-rank-avatar-imperator{background-image:url("assets/duel-portraits/immortal.avif?v=1")!important;}
+#donate-tab .sl-duel-rank-grid .sl-rank-avatar-shadow{background-image:url("assets/duel-portraits/dominator.avif?v=1")!important;}
