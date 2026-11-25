@@ -1749,7 +1749,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // DUELS: independent verified quotes and gated checkout.
-const SL_DUEL_PRICES=Object.freeze({default:0,vip:35,prime:75,elite:125,berserk:195,conqueror:295,immortal:445,dominator:695});
+const SL_DUEL_PRICES=Object.freeze({default:0,vip:50,prime:75,elite:125,berserk:195,conqueror:295,immortal:445,dominator:695});
 const SL_DUEL_PACKS=Object.freeze({case3:99,case10:279,case30:645});
 const SL_DUEL_API="https://shadowland-payments.josh1rogh.workers.dev";
 let slDuelBusy=false;
