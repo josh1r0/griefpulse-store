@@ -1722,3 +1722,59 @@ document.addEventListener("DOMContentLoaded", () => {
     if (cases) cases.style.display = "none";
     setupShopNavigation();
 });
+
+
+// DUELS: independent verified quotes and gated checkout.
+const SL_DUEL_PRICES=Object.freeze({default:0,vip:35,prime:75,elite:125,berserk:195,conqueror:295,immortal:445,dominator:695});
+const SL_DUEL_PACKS=Object.freeze({case3:99,case10:279,case30:645});
+const SL_DUEL_API="https://shadowland-payments.josh1rogh.workers.dev";
+let slDuelBusy=false;
+function duelMoney(amount,c){return c==="RUB"?amount+" ₽":(c==="USD"?"$":"€")+Number(amount).toFixed(2);}
+function duelQuoteDialog(q,name){
+    return new Promise(resolve=>{
+        const d=document.createElement("dialog");
+        Object.assign(d.style,{width:"min(420px,calc(100% - 32px))",boxSizing:"border-box",padding:"22px",border:"1px solid #8d56bb",borderRadius:"14px",background:"#120d1d",color:"#fff",fontFamily:"inherit",maxHeight:"85vh",overflow:"auto"});
+        const h=document.createElement("h3");h.textContent=q.purchaseType==="upgrade"?q.currentRank.toUpperCase()+" → "+name:name;
+        const p=document.createElement("p");p.textContent="Ник: "+q.nickname+" · "+(q.purchaseType==="upgrade"?"Доплата: ":"Стоимость: ")+q.amountRub+" ₽";
+        const note=document.createElement("p");note.textContent=q.checkoutEnabled===true?"Выбери валюту. Минимум Lava.top: 50 ₽ / $5 / €5.":"Тестовый расчёт. Приём оплаты пока отключён.";
+        Object.assign(note.style,{fontSize:"13px",color:"#cfb9e3",lineHeight:"1.5"});d.append(h,p,note);
+        let done=false;const finish=v=>{if(done)return;done=true;d.close();d.remove();resolve(v);};
+        const add=(label,disabled,fn)=>{
+            const b=document.createElement("button");b.type="button";b.textContent=label;b.disabled=disabled;
+            Object.assign(b.style,{display:"block",width:"100%",padding:"12px",marginTop:"9px",borderRadius:"8px",border:"1px solid #7854a0",background:disabled?"#21192d":"#593487",color:disabled?"#aa9bb8":"#fff",cursor:disabled?"not-allowed":"pointer",fontWeight:"700"});
+            b.addEventListener("click",fn);d.append(b);
+        };
+        for(const c of ["RUB","USD","EUR"]){const eligible=q.payable[c]===true;add(duelMoney(q.prices[c],c)+(eligible?"":" · ниже минимума"),!eligible||q.checkoutEnabled!==true,()=>finish(c));}
+        add("Закрыть",false,()=>finish(null));d.addEventListener("cancel",e=>{e.preventDefault();finish(null);});document.body.append(d);d.showModal();
+    });
+}
+async function buyDuelProduct(target){
+    if(slDuelBusy)return;
+    const input=document.getElementById("nickname"),nickname=(input?.value||"").trim();
+    if(!/^[A-Za-z0-9_]{3,16}$/.test(nickname)){input?.focus();showMessage("Укажи Minecraft-ник вверху магазина.");return;}
+    const pack=Object.hasOwn(SL_DUEL_PACKS,target),name=pack?target.slice(4)+" кейсов дуэлей":target.toUpperCase();
+    slDuelBusy=true;
+    try{
+        const res=await fetch(SL_DUEL_API+"/duel/quote?"+new URLSearchParams({nickname,target}),{cache:"no-store"}),q=await res.json();
+        if(q.error==="duel_rank_not_verified"){showMessage("Зайди на Minecraft-сервер под этим ником и повтори проверку.");return;}
+        if(q.error==="not_an_upgrade"){showMessage("У тебя уже есть "+String(q.currentRank).toUpperCase()+". Выбери привилегию выше.");return;}
+        if(!res.ok||q.ok!==true||q.target!==target||String(q.nickname).toLowerCase()!==nickname.toLowerCase()||!Object.hasOwn(SL_DUEL_PRICES,q.currentRank)){showMessage("Не удалось проверить стоимость.");return;}
+        const rub=pack?SL_DUEL_PACKS[target]:SL_DUEL_PRICES[target]-SL_DUEL_PRICES[q.currentRank];
+        if(!Number.isInteger(rub)||rub<=0||q.amountRub!==rub||q.prices?.RUB!==rub||!["RUB","USD","EUR"].every(c=>Number.isFinite(q.prices?.[c])&&q.prices[c]>0&&typeof q.payable?.[c]==="boolean")){showMessage("Некорректная цена. Покупка остановлена.");return;}
+        const currency=await duelQuoteDialog(q,name);
+        if(!currency||q.checkoutEnabled!==true||q.payable[currency]!==true)return;
+        const email=await requestBuyerEmail(name);if(!email)return;
+        if(!confirm("Дуэли: "+name+"\nНик: "+nickname+"\nE-mail: "+email+"\nК оплате: "+duelMoney(q.prices[currency],currency)+"\n\nОткрыть Lava.top? Продолжая, ты соглашаешься с условиями shadowland.land/rules.html."))return;
+        const response=await fetch(SL_DUEL_API+"/lava/create-duel",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({nickname,target,email,currency})}),data=await response.json();
+        if(!response.ok||data.ok!==true||data.target!==target||String(data.nickname).toLowerCase()!==nickname.toLowerCase()||data.currency!==currency||data.amount!==q.prices[currency]||typeof data.paymentUrl!=="string"){showMessage("Не удалось создать счёт по подтверждённой цене. Повтори проверку.");return;}
+        const url=new URL(data.paymentUrl);if(url.protocol!=="https:"||url.hostname!=="app.lava.top"||url.username||url.password)throw Error("Unexpected checkout URL");
+        window.location.assign(url.href);
+    }catch(e){console.error("Duel checkout:",e);showMessage("Не удалось связаться с оплатой дуэлей. Попробуй позже.");}finally{slDuelBusy=false;}
+}
+document.addEventListener("DOMContentLoaded",()=>{
+    function connect(card,target,selector){const b=card.querySelector(selector);if(!b)return;b.disabled=false;b.textContent="КУПИТЬ";b.title="Проверить стоимость и доступность оплаты";b.addEventListener("click",()=>buyDuelProduct(target));}
+    document.querySelectorAll(".sl-duel-rank-card").forEach(card=>{const target=card.querySelector(".sl-rank-title")?.textContent.trim().toLowerCase();if(target!=="default"&&Object.hasOwn(SL_DUEL_PRICES,target))connect(card,target,".sl-rank-button");});
+    document.querySelectorAll(".sl-duel-case-card").forEach(card=>{const n=card.querySelector(".sl-item-badge")?.textContent.trim().match(/^×(3|10|30)$/)?.[1];if(n)connect(card,"case"+n,".sl-store-buy");});
+    const note=document.querySelector("#duels-donate > p.sl-duel-info");if(note)note.textContent=note.textContent.replace("Оплата пока не подключена.","Нажми «КУПИТЬ» для проверки цены с учётом текущего ранга. Для проверки нужно быть на сервере.");
+    const caseNote=document.querySelector("#duels-cases > p.sl-duel-info");if(caseNote)caseNote.textContent="Нажми «КУПИТЬ» для проверки стоимости и доступных валют. Для проверки нужно быть на сервере.";
+});
