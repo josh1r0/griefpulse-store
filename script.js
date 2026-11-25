@@ -1730,7 +1730,30 @@ const SL_DUEL_PACKS=Object.freeze({case3:99,case10:279,case30:645});
 const SL_DUEL_API="https://shadowland-payments.josh1rogh.workers.dev";
 let slDuelBusy=false;
 function duelMoney(amount,c){return c==="RUB"?amount+" ₽":(c==="USD"?"$":"€")+Number(amount).toFixed(2);}
-function duelQuoteDialog(q,name){
+// UAH is an estimated display amount; the provider invoice remains in USD.
+async function duelUahRate(){
+    const key="sl_duel_usd_uah_rate";
+    let cached;
+    try{cached=JSON.parse(localStorage.getItem(key)||"null");}catch{}
+    const valid=x=>Number.isFinite(x?.rate)&&x.rate>0&&Number.isFinite(x?.time)&&Date.now()-x.time>=0&&Date.now()-x.time<48*3600000;
+    if(valid(cached)&&Date.now()-cached.time<6*3600000)return cached.rate;
+    const controller=new AbortController();
+    const timer=setTimeout(()=>controller.abort(),3500);
+    try{
+        const res=await fetch("https://bank.gov.ua/NBUStatService/v1/statdirectory/exchange?valcode=USD&json",{signal:controller.signal,cache:"no-store"});
+        if(!res.ok)throw Error("NBU rate unavailable");
+        const data=await res.json(),rate=Number(data.find(x=>x.cc==="USD")?.rate);
+        if(!Number.isFinite(rate)||rate<=0)throw Error("Invalid NBU rate");
+        try{localStorage.setItem(key,JSON.stringify({rate,time:Date.now()}));}catch{}
+        return rate;
+    }catch{
+        if(valid(cached))return cached.rate;
+        // Verified official NBU rate for 25 Nov 2026; never use indefinitely.
+        if(Date.now()>=Date.parse("2026-11-25T00:00:00+02:00")&&Date.now()<Date.parse("2026-11-27T00:00:00+02:00"))return 45.3541;
+        return null;
+    }finally{clearTimeout(timer);}
+}
+function duelQuoteDialog(q,name,uah){
     return new Promise(resolve=>{
         const d=document.createElement("dialog");
         Object.assign(d.style,{width:"min(420px,calc(100% - 32px))",boxSizing:"border-box",padding:"22px",border:"1px solid #8d56bb",borderRadius:"14px",background:"#120d1d",color:"#fff",fontFamily:"inherit",maxHeight:"85vh",overflow:"auto"});
@@ -1745,6 +1768,11 @@ function duelQuoteDialog(q,name){
             b.addEventListener("click",fn);d.append(b);
         };
         for(const c of ["RUB","USD","EUR"]){const eligible=q.payable[c]===true;add(duelMoney(q.prices[c],c)+(eligible?"":" · ниже минимума"),!eligible||q.checkoutEnabled!==true,()=>finish(c));}
+        if(uah!==null){
+            add("🇺🇦 ≈ "+uah+" грн",q.payable.USD!==true||q.checkoutEnabled!==true,()=>finish("UAH"));
+        }else{
+            add("🇺🇦 грн — курс недоступен",true,()=>{});
+        }
         add("Закрыть",false,()=>finish(null));d.addEventListener("cancel",e=>{e.preventDefault();finish(null);});document.body.append(d);d.showModal();
     });
 }
@@ -1761,10 +1789,14 @@ async function buyDuelProduct(target){
         if(!res.ok||q.ok!==true||q.target!==target||String(q.nickname).toLowerCase()!==nickname.toLowerCase()||!Object.hasOwn(SL_DUEL_PRICES,q.currentRank)){showMessage("Не удалось проверить стоимость.");return;}
         const rub=pack?SL_DUEL_PACKS[target]:SL_DUEL_PRICES[target]-SL_DUEL_PRICES[q.currentRank];
         if(!Number.isInteger(rub)||rub<=0||q.amountRub!==rub||q.prices?.RUB!==rub||!["RUB","USD","EUR"].every(c=>Number.isFinite(q.prices?.[c])&&q.prices[c]>0&&typeof q.payable?.[c]==="boolean")){showMessage("Некорректная цена. Покупка остановлена.");return;}
-        const currency=await duelQuoteDialog(q,name);
+        const rate=await duelUahRate();
+        const uah=rate===null?null:Math.round(q.prices.USD*rate);
+        const choice=await duelQuoteDialog(q,name,uah);
+        const currency=choice==="UAH"?"USD":choice;
         if(!currency||q.checkoutEnabled!==true||q.payable[currency]!==true)return;
         const email=await requestBuyerEmail(name);if(!email)return;
-        if(!confirm("Дуэли: "+name+"\nНик: "+nickname+"\nE-mail: "+email+"\nК оплате: "+duelMoney(q.prices[currency],currency)+"\n\nОткрыть Lava.top? Продолжая, ты соглашаешься с условиями shadowland.land/rules.html."))return;
+        const paymentText=choice==="UAH"?"≈ "+uah+" грн (счёт Lava.top: "+duelMoney(q.prices.USD,"USD")+". Итоговая сумма зависит от курса банка и комиссии.)":duelMoney(q.prices[currency],currency);
+        if(!confirm("Дуэли: "+name+"\nНик: "+nickname+"\nE-mail: "+email+"\nК оплате: "+paymentText+"\n\nОткрыть Lava.top? Продолжая, ты соглашаешься с условиями shadowland.land/rules.html."))return;
         const response=await fetch(SL_DUEL_API+"/lava/create-duel",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({nickname,target,email,currency})}),data=await response.json();
         if(!response.ok||data.ok!==true||data.target!==target||String(data.nickname).toLowerCase()!==nickname.toLowerCase()||data.currency!==currency||data.amount!==q.prices[currency]||typeof data.paymentUrl!=="string"){showMessage("Не удалось создать счёт по подтверждённой цене. Повтори проверку.");return;}
         const url=new URL(data.paymentUrl);if(url.protocol!=="https:"||url.hostname!=="app.lava.top"||url.username||url.password)throw Error("Unexpected checkout URL");
