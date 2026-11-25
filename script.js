@@ -136,6 +136,21 @@ const STORE_RANKS = Object.freeze({
 
 let rankCheckoutInProgress = false;
 
+function shopRecipientError(code) {
+    if(code==="player_not_registered") return "Игрок с таким ником ещё не зарегистрирован на сервере. Проверь ник.";
+    if(code==="shop_registry_unavailable"||code==="rank_not_verified"||code==="duel_rank_not_verified") return "Проверка данных игроков временно недоступна. Повтори позже.";
+    if(code==="grief_rank_not_purchasable") return "Текущая привилегия не входит в обычную линейку донатов. Обратись в поддержку.";
+    return "Не удалось проверить игрока. Повтори позже.";
+}
+async function checkShopRecipient(nickname) {
+    try {
+        const response=await fetch(SHADOWLAND_WORKER_URL+"/shop/player-check?"+new URLSearchParams({nickname}),{cache:"no-store"});
+        const data=await response.json();
+        if(response.ok&&data.ok===true&&String(data.nickname).toLowerCase()===nickname.toLowerCase())return true;
+        showMessage(shopRecipientError(data.error));return false;
+    }catch{showMessage("Проверка данных игроков временно недоступна. Повтори позже.");return false;}
+}
+
 async function buyRankFullPrice(rank) {
     const rankKey = String(rank || "").toLowerCase();
     const item = STORE_RANKS[rankKey];
@@ -153,6 +168,7 @@ async function buyRankFullPrice(rank) {
         return;
     }
 
+    if (!await checkShopRecipient(nickname)) return;
     const email = await requestBuyerEmail(item.name);
     if (!email) return;
 
@@ -261,18 +277,9 @@ async function buyRank(rank) {
             return;
         }
 
-        // Some buyers are offline or have not yet had a recent RankBridge sync.
-        // Do not quietly charge them full price if their existing rank is unknown.
+        // Offline recipients are checked against the server registration registry.
         if (!response?.ok || quote?.ok !== true) {
-            if (quote?.error !== "rank_not_verified" && response?.status !== 404 && response !== null) {
-                showMessage("Проверка доната не удалась. Попробуй позже.");
-                return;
-            }
-            const proceed = confirm("Не удалось проверить донат игрока " + nickname +
-                ".\nЕсли донат уже есть, зайди на Minecraft-сервер и повтори для точной доплаты." +
-                "\n\nКупить " + item.name + " за ПОЛНЫЕ " + item.rub +
-                " ₽ без скидки?\nНажми «Отмена», чтобы не переплатить.");
-            if (proceed) await buyRankFullPrice(key);
+            showMessage(shopRecipientError(quote?.error));
             return;
         }
 
@@ -355,7 +362,9 @@ async function buyRankUpgrade(rankKey,nickname,oldRank,rub,usd,usdPayable) {
            data?.currency!==currency||Math.abs(Number(data?.amount)-expected)>0.001||
            !data?.paymentUrl){
             console.error("Lava upgrade error:",data?.error||data);
-            if(data?.error==="rank_not_verified"||data?.error==="not_an_upgrade")
+            if(data?.error==="player_not_registered"||data?.error==="shop_registry_unavailable"||data?.error==="grief_rank_not_purchasable")
+                showMessage(shopRecipientError(data.error));
+            else if(data?.error==="rank_not_verified"||data?.error==="not_an_upgrade")
                 showMessage("Ранг изменился или устарел. Обнови страницу и попробуй ещё раз.");
             else if(data?.error==="too_many_requests")
                 showMessage("Счёт только что создавался. Повтори попытку через 30 секунд.");
@@ -413,6 +422,7 @@ async function buyLegend() {
         return;
     }
 
+    if (!await checkShopRecipient(nickname)) return;
     const email = await requestBuyerEmail("LEGEND");
     if (!email) return;
 
@@ -506,6 +516,7 @@ async function buyShadow() {
         return;
     }
 
+    if (!await checkShopRecipient(nickname)) return;
     const email = await requestBuyerEmail("SHADOW");
     if (!email) return;
 
@@ -593,6 +604,7 @@ async function buyCoins60() {
         return;
     }
 
+    if (!await checkShopRecipient(nickname)) return;
     const email = await requestBuyerEmail("60 COINS");
     if (!email) return;
 
@@ -680,6 +692,7 @@ async function buyCoins140() {
         return;
     }
 
+    if (!await checkShopRecipient(nickname)) return;
     const email = await requestBuyerEmail("140 COINS");
     if (!email) return;
 
@@ -767,6 +780,7 @@ async function buyCoins620() {
         return;
     }
 
+    if (!await checkShopRecipient(nickname)) return;
     const email = await requestBuyerEmail("620 COINS");
     if (!email) return;
 
@@ -854,6 +868,7 @@ async function buyCoins1800() {
         return;
     }
 
+    if (!await checkShopRecipient(nickname)) return;
     const email = await requestBuyerEmail("1800 COINS");
     if (!email) return;
 
@@ -941,6 +956,7 @@ async function buyCoins5000() {
         return;
     }
 
+    if (!await checkShopRecipient(nickname)) return;
     const email = await requestBuyerEmail("5000 COINS");
     if (!email) return;
 
@@ -1028,6 +1044,7 @@ async function buyCase(config) {
         return;
     }
 
+    if (!await checkShopRecipient(nickname)) return;
     const email = await requestBuyerEmail(config.title);
     if (!email) return;
 
@@ -1121,6 +1138,7 @@ async function buyDonateCase3() {
         return;
     }
 
+    if (!await checkShopRecipient(nickname)) return;
     const email = await requestBuyerEmail("3 DONATE CASES");
     if (!email) return;
 
@@ -1785,7 +1803,7 @@ async function buyDuelProduct(target){
     slDuelBusy=true;
     try{
         const res=await fetch(SL_DUEL_API+"/duel/quote?"+new URLSearchParams({nickname,target}),{cache:"no-store"}),q=await res.json();
-        if(q.error==="duel_rank_not_verified"){showMessage("Зайди на Minecraft-сервер под этим ником и повтори проверку.");return;}
+        if(["duel_rank_not_verified","player_not_registered","shop_registry_unavailable"].includes(q.error)){showMessage(shopRecipientError(q.error));return;}
         if(q.error==="not_an_upgrade"){showMessage("У тебя уже есть "+String(q.currentRank).toUpperCase()+". Выбери привилегию выше.");return;}
         if(!res.ok||q.ok!==true||q.target!==target||String(q.nickname).toLowerCase()!==nickname.toLowerCase()||!Object.hasOwn(SL_DUEL_PRICES,q.currentRank)){showMessage("Не удалось проверить стоимость.");return;}
         const rub=pack?SL_DUEL_PACKS[target]:SL_DUEL_PRICES[target]-SL_DUEL_PRICES[q.currentRank];
@@ -1805,7 +1823,9 @@ async function buyDuelProduct(target){
         if(!response.ok||data.ok!==true){
             const messages={
                 too_many_requests:"Счёт уже создавался. Повтори покупку через 60 секунд после последней попытки.",
-                duel_rank_not_verified:"Ник не проверен. Зайди на Minecraft-сервер и повтори покупку.",
+                duel_rank_not_verified:shopRecipientError("duel_rank_not_verified"),
+                player_not_registered:shopRecipientError("player_not_registered"),
+                shop_registry_unavailable:shopRecipientError("shop_registry_unavailable"),
                 not_an_upgrade:"У тебя уже есть эта привилегия или выше.",
                 fixed_duel_offer_not_configured:"Товар временно недоступен: не удалось проверить цену Lava.top.",
                 below_lava_minimum:"Эта сумма ниже минимальной суммы оплаты Lava.top.",
@@ -1834,6 +1854,6 @@ document.addEventListener("DOMContentLoaded",()=>{
     function connect(card,target,selector){const b=card.querySelector(selector);if(!b)return;b.disabled=false;b.textContent="КУПИТЬ";b.title="Проверить стоимость и доступность оплаты";b.addEventListener("click",()=>buyDuelProduct(target));}
     document.querySelectorAll(".sl-duel-rank-card").forEach(card=>{const target=card.querySelector(".sl-rank-title")?.textContent.trim().toLowerCase();if(target!=="default"&&Object.hasOwn(SL_DUEL_PRICES,target))connect(card,target,".sl-rank-button");});
     document.querySelectorAll(".sl-duel-case-card").forEach(card=>{const n=card.querySelector(".sl-item-badge")?.textContent.trim().match(/^×(3|10|30)$/)?.[1];if(n)connect(card,"case"+n,".sl-store-buy");});
-    const note=document.querySelector("#duels-donate > p.sl-duel-info");if(note)note.textContent=note.textContent.replace("Оплата пока не подключена.","Нажми «КУПИТЬ» для проверки цены с учётом текущего ранга. Для проверки нужно быть на сервере.");
-    const caseNote=document.querySelector("#duels-cases > p.sl-duel-info");if(caseNote)caseNote.textContent="Нажми «КУПИТЬ» для проверки стоимости и доступных валют. Для проверки нужно быть на сервере.";
+    const note=document.querySelector("#duels-donate > p.sl-duel-info");if(note)note.textContent=note.textContent.replace("Оплата пока не подключена.","Нажми «КУПИТЬ» для проверки цены с учётом текущего ранга. Игроку не обязательно находиться онлайн.");
+    const caseNote=document.querySelector("#duels-cases > p.sl-duel-info");if(caseNote)caseNote.textContent="Нажми «КУПИТЬ» для проверки стоимости и доступных валют. Игроку не обязательно находиться онлайн.";
 });
