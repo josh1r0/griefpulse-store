@@ -1802,7 +1802,24 @@ async function buyDuelProduct(target){
         if(!confirm(summary+"\nMinecraft-ник: "+nickname+"\nE-mail: "+email+"\nК оплате: "+paymentText+"\n\nПроверь данные. Продолжая, ты соглашаешься с условиями покупки на shadowland.land/rules.html.\n\nОткрыть страницу оплаты Lava.top?"))return;
         showMessage("Создаём счёт Lava.top...");
         const response=await fetch(SL_DUEL_API+"/lava/create-duel",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({nickname,target,email,currency})}),data=await response.json();
-        if(!response.ok||data.ok!==true||data.target!==target||String(data.nickname).toLowerCase()!==nickname.toLowerCase()||data.currency!==currency||data.amount!==q.prices[currency]||typeof data.paymentUrl!=="string"){showMessage("Не удалось создать счёт по подтверждённой цене. Повтори проверку.");return;}
+        if(!response.ok||data.ok!==true){
+            const messages={
+                too_many_requests:"Счёт уже создавался. Повтори покупку через 60 секунд после последней попытки.",
+                duel_rank_not_verified:"Ник не проверен. Зайди на Minecraft-сервер и повтори покупку.",
+                not_an_upgrade:"У тебя уже есть эта привилегия или выше.",
+                fixed_duel_offer_not_configured:"Товар временно недоступен: не удалось проверить цену Lava.top.",
+                below_lava_minimum:"Эта сумма ниже минимальной суммы оплаты Lava.top.",
+                duel_checkout_disabled:"Оплата дуэлей временно отключена.",
+                invalid_parameters:"Проверь адрес e-mail и валюту оплаты.",
+                invalid_lava_invoice_response:"Lava.top вернул некорректный ответ. Повтори позже."
+            };
+            const message=messages[data.error]||(data.error==="lava_create_invoice_error"?"Lava.top отклонил создание счёта (HTTP "+Number(data.status)+").":"Не удалось создать счёт. Код: "+String(data.error||response.status));
+            console.warn("Duel checkout rejected:",response.status,data.error,data.status);
+            showMessage(message);return;
+        }
+        if(data.target!==target||String(data.nickname).toLowerCase()!==nickname.toLowerCase()||data.currency!==currency||data.amount!==q.prices[currency]||typeof data.paymentUrl!=="string"){
+            showMessage("Данные счёта изменились. Повтори проверку цены.");return;
+        }
         const url=new URL(data.paymentUrl);if(url.protocol!=="https:"||url.hostname!=="app.lava.top"||url.username||url.password)throw Error("Unexpected checkout URL");
         try{
             localStorage.setItem("shadowland_nickname",nickname);
