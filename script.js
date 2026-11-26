@@ -101,18 +101,21 @@ function buy(product, price) {
     }
 
     if (numericPrice === 50 && (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))) {
-        buyCoins60(); return;
+        buyCoins50(); return;
     }
-    if (numericPrice === 100 && (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))) {
-        buyCoins140(); return;
+    if (numericPrice === 89 && (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))) {
+        buyCoins120(); return;
     }
-    if (numericPrice === 469 && (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))) {
-        buyCoins620(); return;
+    if (numericPrice === 199 && (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))) {
+        buyCoins350(); return;
     }
-    if (numericPrice === 899 && (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))) {
+    if (numericPrice === 389 && (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))) {
+        buyCoins800(); return;
+    }
+    if (numericPrice === 729 && (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))) {
         buyCoins1800(); return;
     }
-    if (numericPrice === 2499 && (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))) {
+    if (numericPrice === 1699 && (normalizedProduct.includes("коин") || normalizedProduct.includes("coin"))) {
         buyCoins5000(); return;
     }
 
@@ -583,10 +586,10 @@ async function buyShadow() {
 }
 
 // ============================================================
-// 60 COINS — ОПЛАТА ЧЕРЕЗ LAVA.TOP
+// 50 COINS — ОПЛАТА ЧЕРЕЗ LAVA.TOP
 // ============================================================
 
-async function buyCoins60() {
+async function buyCoins50() {
     const nicknameInput = document.getElementById("nickname");
     if (!nicknameInput) return;
 
@@ -605,33 +608,33 @@ async function buyCoins60() {
     }
 
     if (!await checkShopRecipient(nickname)) return;
-    const email = await requestBuyerEmail("60 COINS");
+    const email = await requestBuyerEmail("50 COINS");
     if (!email) return;
 
-    const paymentCurrency = await requestPaymentCurrency(50, 0.60);
+    const paymentCurrency = await requestPaymentCurrency(50, 0.61);
     if (!paymentCurrency) return;
 
     localStorage.setItem("shadowland_nickname", nickname);
     localStorage.setItem("shadowland_email", email);
-    localStorage.setItem("shadowland_product", "60 COINS");
+    localStorage.setItem("shadowland_product", "50 COINS");
     localStorage.setItem("shadowland_price", "50");
 
     const confirmed = confirm(
-        "Покупка: 60 COINS" +
+        "Покупка: 50 COINS" +
         "\nMinecraft ник: " + nickname +
         "\nE-mail: " + email +
-        "\nОплата: " + (paymentCurrency === "USD" ? "Украина / другие страны — $0.60" : "Россия — 50 ₽") +
+        "\nОплата: " + (paymentCurrency === "USD" ? "Украина / другие страны — $0.61" : "Россия — 50 ₽") +
         "\n\nПосле подтверждения откроется безопасная страница оплаты Lava.top." +
         "\n\nНажимая OK, ты подтверждаешь, что ознакомился с условиями покупки, возвратов и политикой конфиденциальности на shadowland.land/rules.html."
     );
 
     if (!confirmed) return;
 
-    showMessage("Создаём оплату 60 COINS...");
+    showMessage("Создаём оплату 50 COINS...");
 
     try {
         const response = await fetch(
-            SHADOWLAND_WORKER_URL + "/lava/create-coins60",
+            SHADOWLAND_WORKER_URL + "/lava/create-coins50",
             {
                 method: "POST",
                 headers: {
@@ -653,8 +656,8 @@ async function buyCoins60() {
         }
 
         if (!response.ok || !data || data.ok !== true || !data.paymentUrl) {
-            console.error("Lava 60 COINS create invoice error:", data);
-            showMessage("Не удалось создать оплату 60 COINS. Попробуй ещё раз или напиши в поддержку.");
+            console.error("Lava 50 COINS create invoice error:", data);
+            showMessage("Не удалось создать оплату 50 COINS. Попробуй ещё раз или напиши в поддержку.");
             return;
         }
 
@@ -665,16 +668,16 @@ async function buyCoins60() {
         }, 250);
 
     } catch (error) {
-        console.error("Lava 60 COINS network error:", error);
+        console.error("Lava 50 COINS network error:", error);
         showMessage("Не удалось подключиться к оплате Lava.top. Попробуй ещё раз.");
     }
 }
 
 // ============================================================
-// 140 COINS — ОПЛАТА ЧЕРЕЗ LAVA.TOP
+// 120 COINS — ОПЛАТА ЧЕРЕЗ LAVA.TOP
 // ============================================================
 
-async function buyCoins140() {
+async function buyCoins120() {
     const nicknameInput = document.getElementById("nickname");
     if (!nicknameInput) return;
 
@@ -693,33 +696,33 @@ async function buyCoins140() {
     }
 
     if (!await checkShopRecipient(nickname)) return;
-    const email = await requestBuyerEmail("140 COINS");
+    const email = await requestBuyerEmail("120 COINS");
     if (!email) return;
 
-    const paymentCurrency = await requestPaymentCurrency(100, 1.19);
+    const paymentCurrency = await requestPaymentCurrency(89, 1.08);
     if (!paymentCurrency) return;
 
     localStorage.setItem("shadowland_nickname", nickname);
     localStorage.setItem("shadowland_email", email);
-    localStorage.setItem("shadowland_product", "140 COINS");
-    localStorage.setItem("shadowland_price", "100");
+    localStorage.setItem("shadowland_product", "120 COINS");
+    localStorage.setItem("shadowland_price", "89");
 
     const confirmed = confirm(
-        "Покупка: 140 COINS" +
+        "Покупка: 120 COINS" +
         "\nMinecraft ник: " + nickname +
         "\nE-mail: " + email +
-        "\nОплата: " + (paymentCurrency === "USD" ? "Украина / другие страны — $1.19" : "Россия — 100 ₽") +
+        "\nОплата: " + (paymentCurrency === "USD" ? "Украина / другие страны — $1.08" : "Россия — 89 ₽") +
         "\n\nПосле подтверждения откроется безопасная страница оплаты Lava.top." +
         "\n\nНажимая OK, ты подтверждаешь, что ознакомился с условиями покупки, возвратов и политикой конфиденциальности на shadowland.land/rules.html."
     );
 
     if (!confirmed) return;
 
-    showMessage("Создаём оплату 140 COINS...");
+    showMessage("Создаём оплату 120 COINS...");
 
     try {
         const response = await fetch(
-            SHADOWLAND_WORKER_URL + "/lava/create-coins140",
+            SHADOWLAND_WORKER_URL + "/lava/create-coins120",
             {
                 method: "POST",
                 headers: {
@@ -741,8 +744,8 @@ async function buyCoins140() {
         }
 
         if (!response.ok || !data || data.ok !== true || !data.paymentUrl) {
-            console.error("Lava 140 COINS create invoice error:", data);
-            showMessage("Не удалось создать оплату 140 COINS. Попробуй ещё раз или напиши в поддержку.");
+            console.error("Lava 120 COINS create invoice error:", data);
+            showMessage("Не удалось создать оплату 120 COINS. Попробуй ещё раз или напиши в поддержку.");
             return;
         }
 
@@ -753,16 +756,16 @@ async function buyCoins140() {
         }, 250);
 
     } catch (error) {
-        console.error("Lava 140 COINS network error:", error);
+        console.error("Lava 120 COINS network error:", error);
         showMessage("Не удалось подключиться к оплате Lava.top. Попробуй ещё раз.");
     }
 }
 
 // ============================================================
-// 620 COINS — ОПЛАТА ЧЕРЕЗ LAVA.TOP
+// 350 COINS — ОПЛАТА ЧЕРЕЗ LAVA.TOP
 // ============================================================
 
-async function buyCoins620() {
+async function buyCoins350() {
     const nicknameInput = document.getElementById("nickname");
     if (!nicknameInput) return;
 
@@ -781,33 +784,33 @@ async function buyCoins620() {
     }
 
     if (!await checkShopRecipient(nickname)) return;
-    const email = await requestBuyerEmail("620 COINS");
+    const email = await requestBuyerEmail("350 COINS");
     if (!email) return;
 
-    const paymentCurrency = await requestPaymentCurrency(469, 5.58);
+    const paymentCurrency = await requestPaymentCurrency(199, 2.41);
     if (!paymentCurrency) return;
 
     localStorage.setItem("shadowland_nickname", nickname);
     localStorage.setItem("shadowland_email", email);
-    localStorage.setItem("shadowland_product", "620 COINS");
-    localStorage.setItem("shadowland_price", "469");
+    localStorage.setItem("shadowland_product", "350 COINS");
+    localStorage.setItem("shadowland_price", "199");
 
     const confirmed = confirm(
-        "Покупка: 620 COINS" +
+        "Покупка: 350 COINS" +
         "\nMinecraft ник: " + nickname +
         "\nE-mail: " + email +
-        "\nОплата: " + (paymentCurrency === "USD" ? "Украина / другие страны — $5.58" : "Россия — 469 ₽") +
+        "\nОплата: " + (paymentCurrency === "USD" ? "Украина / другие страны — $2.41" : "Россия — 199 ₽") +
         "\n\nПосле подтверждения откроется безопасная страница оплаты Lava.top." +
         "\n\nНажимая OK, ты подтверждаешь, что ознакомился с условиями покупки, возвратов и политикой конфиденциальности на shadowland.land/rules.html."
     );
 
     if (!confirmed) return;
 
-    showMessage("Создаём оплату 620 COINS...");
+    showMessage("Создаём оплату 350 COINS...");
 
     try {
         const response = await fetch(
-            SHADOWLAND_WORKER_URL + "/lava/create-coins620",
+            SHADOWLAND_WORKER_URL + "/lava/create-coins350",
             {
                 method: "POST",
                 headers: {
@@ -829,8 +832,8 @@ async function buyCoins620() {
         }
 
         if (!response.ok || !data || data.ok !== true || !data.paymentUrl) {
-            console.error("Lava 620 COINS create invoice error:", data);
-            showMessage("Не удалось создать оплату 620 COINS. Попробуй ещё раз или напиши в поддержку.");
+            console.error("Lava 350 COINS create invoice error:", data);
+            showMessage("Не удалось создать оплату 350 COINS. Попробуй ещё раз или напиши в поддержку.");
             return;
         }
 
@@ -841,7 +844,95 @@ async function buyCoins620() {
         }, 250);
 
     } catch (error) {
-        console.error("Lava 620 COINS network error:", error);
+        console.error("Lava 350 COINS network error:", error);
+        showMessage("Не удалось подключиться к оплате Lava.top. Попробуй ещё раз.");
+    }
+}
+
+// ============================================================
+// 800 COINS — ОПЛАТА ЧЕРЕЗ LAVA.TOP
+// ============================================================
+
+async function buyCoins800() {
+    const nicknameInput = document.getElementById("nickname");
+    if (!nicknameInput) return;
+
+    const nickname = nicknameInput.value.trim();
+
+    if (!nickname) {
+        nicknameInput.focus();
+        showMessage("Сначала введи свой Minecraft ник!");
+        return;
+    }
+
+    if (!/^[A-Za-z0-9_]{3,16}$/.test(nickname)) {
+        nicknameInput.focus();
+        showMessage("Проверь Minecraft ник. Допустимо 3–16 символов.");
+        return;
+    }
+
+    if (!await checkShopRecipient(nickname)) return;
+    const email = await requestBuyerEmail("800 COINS");
+    if (!email) return;
+
+    const paymentCurrency = await requestPaymentCurrency(389, 4.71);
+    if (!paymentCurrency) return;
+
+    localStorage.setItem("shadowland_nickname", nickname);
+    localStorage.setItem("shadowland_email", email);
+    localStorage.setItem("shadowland_product", "800 COINS");
+    localStorage.setItem("shadowland_price", "389");
+
+    const confirmed = confirm(
+        "Покупка: 800 COINS" +
+        "\nMinecraft ник: " + nickname +
+        "\nE-mail: " + email +
+        "\nОплата: " + (paymentCurrency === "USD" ? "Украина / другие страны — $4.71" : "Россия — 389 ₽") +
+        "\n\nПосле подтверждения откроется безопасная страница оплаты Lava.top." +
+        "\n\nНажимая OK, ты подтверждаешь, что ознакомился с условиями покупки, возвратов и политикой конфиденциальности на shadowland.land/rules.html."
+    );
+
+    if (!confirmed) return;
+
+    showMessage("Создаём оплату 800 COINS...");
+
+    try {
+        const response = await fetch(
+            SHADOWLAND_WORKER_URL + "/lava/create-coins800",
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    nickname: nickname,
+                    email: email,
+                    currency: paymentCurrency
+                })
+            }
+        );
+
+        let data = null;
+
+        try {
+            data = await response.json();
+        } catch (error) {
+        }
+
+        if (!response.ok || !data || data.ok !== true || !data.paymentUrl) {
+            console.error("Lava 800 COINS create invoice error:", data);
+            showMessage("Не удалось создать оплату 800 COINS. Попробуй ещё раз или напиши в поддержку.");
+            return;
+        }
+
+        showMessage("Открываем Lava.top...");
+
+        setTimeout(() => {
+            window.location.href = data.paymentUrl;
+        }, 250);
+
+    } catch (error) {
+        console.error("Lava 800 COINS network error:", error);
         showMessage("Не удалось подключиться к оплате Lava.top. Попробуй ещё раз.");
     }
 }
@@ -872,19 +963,19 @@ async function buyCoins1800() {
     const email = await requestBuyerEmail("1800 COINS");
     if (!email) return;
 
-    const paymentCurrency = await requestPaymentCurrency(899, 10.70);
+    const paymentCurrency = await requestPaymentCurrency(729, 8.82);
     if (!paymentCurrency) return;
 
     localStorage.setItem("shadowland_nickname", nickname);
     localStorage.setItem("shadowland_email", email);
     localStorage.setItem("shadowland_product", "1800 COINS");
-    localStorage.setItem("shadowland_price", "899");
+    localStorage.setItem("shadowland_price", "729");
 
     const confirmed = confirm(
         "Покупка: 1800 COINS" +
         "\nMinecraft ник: " + nickname +
         "\nE-mail: " + email +
-        "\nОплата: " + (paymentCurrency === "USD" ? "Украина / другие страны — $10.70" : "Россия — 899 ₽") +
+        "\nОплата: " + (paymentCurrency === "USD" ? "Украина / другие страны — $8.82" : "Россия — 729 ₽") +
         "\n\nПосле подтверждения откроется безопасная страница оплаты Lava.top." +
         "\n\nНажимая OK, ты подтверждаешь, что ознакомился с условиями покупки, возвратов и политикой конфиденциальности на shadowland.land/rules.html."
     );
@@ -960,19 +1051,19 @@ async function buyCoins5000() {
     const email = await requestBuyerEmail("5000 COINS");
     if (!email) return;
 
-    const paymentCurrency = await requestPaymentCurrency(2499, 29.74);
+    const paymentCurrency = await requestPaymentCurrency(1699, 20.56);
     if (!paymentCurrency) return;
 
     localStorage.setItem("shadowland_nickname", nickname);
     localStorage.setItem("shadowland_email", email);
     localStorage.setItem("shadowland_product", "5000 COINS");
-    localStorage.setItem("shadowland_price", "2499");
+    localStorage.setItem("shadowland_price", "1699");
 
     const confirmed = confirm(
         "Покупка: 5000 COINS" +
         "\nMinecraft ник: " + nickname +
         "\nE-mail: " + email +
-        "\nОплата: " + (paymentCurrency === "USD" ? "Украина / другие страны — $29.74" : "Россия — 2499 ₽") +
+        "\nОплата: " + (paymentCurrency === "USD" ? "Украина / другие страны — $20.56" : "Россия — 1699 ₽") +
         "\n\nПосле подтверждения откроется безопасная страница оплаты Lava.top." +
         "\n\nНажимая OK, ты подтверждаешь, что ознакомился с условиями покупки, возвратов и политикой конфиденциальности на shadowland.land/rules.html."
     );
